@@ -332,6 +332,8 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient, tool_switch: Optional[MC
     tool_switch = tool_switch or MCPToolSwitch()
     enabled_tools = []
     disabled_tools = []
+    registered_tools = set()
+    duplicate_skipped_tools = []
 
     # 拦截 @mcp.tool() 注册流程，实现按名称启停工具。
     original_tool_decorator = mcp.tool
@@ -345,6 +347,12 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient, tool_switch: Optional[MC
             normalized_name = normalize_tool_name(tool_name)
 
             if tool_switch.is_enabled(normalized_name):
+                if normalized_name in registered_tools:
+                    duplicate_skipped_tools.append(normalized_name)
+                    logger.warning(f" 检测到重复 MCP 工具名，已跳过重复注册: {normalized_name}")
+                    return func
+
+                registered_tools.add(normalized_name)
                 enabled_tools.append(normalized_name)
                 return base_decorator(func)
 
@@ -3467,8 +3475,8 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient, tool_switch: Optional[MC
             logger.error(f" Hakrawler crawling failed")
         return result
 
-    @mcp.tool()
-    def httpx_probe(targets: str = "", target_file: str = "", ports: str = "", methods: str = "GET", status_code: str = "", content_length: bool = False, output_file: str = "", additional_args: str = "") -> Dict[str, Any]:
+    @mcp.tool(name="httpx_bulk_probe")
+    def httpx_bulk_probe(targets: str = "", target_file: str = "", ports: str = "", methods: str = "GET", status_code: str = "", content_length: bool = False, output_file: str = "", additional_args: str = "") -> Dict[str, Any]:
         """
         执行 HTTPx 用于 HTTP probing 使用 增强日志.
 
@@ -5615,6 +5623,8 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient, tool_switch: Optional[MC
             logger.info(f" 启用名单: {', '.join(sorted(tool_switch.enabled_set))}")
         if tool_switch.disabled_set:
             logger.info(f" 禁用名单: {', '.join(sorted(tool_switch.disabled_set))}")
+    if duplicate_skipped_tools:
+        logger.warning(f" MCP 工具注册时跳过重复项: {', '.join(sorted(set(duplicate_skipped_tools)))}")
 
     return mcp
 
