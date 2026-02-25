@@ -16,7 +16,7 @@ import sys
 import os
 import argparse
 import logging
-from typing import Dict, Any, Optional
+from typing import Dict, Any, Optional, Set
 import requests
 import time
 from datetime import datetime
@@ -163,6 +163,40 @@ logger = logging.getLogger(__name__)
 DEFAULT_HEXSTRIKE_SERVER = "http://127.0.0.1:8888"  # 默认 HexStrike API 地址
 DEFAULT_REQUEST_TIMEOUT = 300  # API 请求默认超时（秒）
 MAX_RETRIES = 3  # 连接重试次数上限
+DEFAULT_ENABLE_TOOLS = os.environ.get("HEXSTRIKE_ENABLE_TOOLS", "")
+DEFAULT_DISABLE_TOOLS = os.environ.get("HEXSTRIKE_DISABLE_TOOLS", "")
+
+def normalize_tool_name(name: str) -> str:
+    """规范化工具名，便于统一匹配。"""
+    return (name or "").strip().lower().replace("-", "_").replace(" ", "_")
+
+def parse_tool_list(raw: str) -> Set[str]:
+    """解析逗号分隔工具列表。"""
+    if not raw:
+        return set()
+    return {
+        normalize_tool_name(part)
+        for part in raw.split(",")
+        if normalize_tool_name(part)
+    }
+
+class MCPToolSwitch:
+    """MCP 工具注册开关控制器。"""
+
+    def __init__(self, enable_tools: str = "", disable_tools: str = ""):
+        self.enabled_set = parse_tool_list(enable_tools)
+        self.disabled_set = parse_tool_list(disable_tools)
+
+    def is_enabled(self, tool_name: str) -> bool:
+        normalized = normalize_tool_name(tool_name)
+        if self.enabled_set and normalized not in self.enabled_set:
+            return False
+        if normalized in self.disabled_set:
+            return False
+        return True
+
+    def has_filters(self) -> bool:
+        return bool(self.enabled_set or self.disabled_set)
 
 class HexStrikeClient:
     """HexStrike API 客户端，封装连接重试与请求容错。"""
@@ -284,7 +318,7 @@ class HexStrikeClient:
         """
         return self.safe_get("health")
 
-def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
+def setup_mcp_server(hexstrike_client: HexStrikeClient, tool_switch: Optional[MCPToolSwitch] = None) -> FastMCP:
     """
     注册 MCP 服务端 及全部工具函数。
 
@@ -295,6 +329,31 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
         配置完成的 FastMCP 实例
     """
     mcp = FastMCP("hexstrike-ai-mcp")
+    tool_switch = tool_switch or MCPToolSwitch()
+    enabled_tools = []
+    disabled_tools = []
+
+    # 拦截 @mcp.tool() 注册流程，实现按名称启停工具。
+    original_tool_decorator = mcp.tool
+
+    def _conditional_tool(*decorator_args, **decorator_kwargs):
+        base_decorator = original_tool_decorator(*decorator_args, **decorator_kwargs)
+
+        def _register(func):
+            declared_name = decorator_kwargs.get("name")
+            tool_name = str(declared_name).strip() if declared_name else func.__name__
+            normalized_name = normalize_tool_name(tool_name)
+
+            if tool_switch.is_enabled(normalized_name):
+                enabled_tools.append(normalized_name)
+                return base_decorator(func)
+
+            disabled_tools.append(normalized_name)
+            return func
+
+        return _register
+
+    mcp.tool = _conditional_tool  # type: ignore[assignment]
 
     # ============================================================================
     # 核心网络扫描工具
@@ -5548,6 +5607,15 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
 
         return result
 
+    if tool_switch.has_filters():
+        enabled_count = len(set(enabled_tools))
+        disabled_count = len(set(disabled_tools))
+        logger.info(f" MCP 工具开关已生效：启用 {enabled_count} 个，禁用 {disabled_count} 个")
+        if tool_switch.enabled_set:
+            logger.info(f" 启用名单: {', '.join(sorted(tool_switch.enabled_set))}")
+        if tool_switch.disabled_set:
+            logger.info(f" 禁用名单: {', '.join(sorted(tool_switch.disabled_set))}")
+
     return mcp
 
 def parse_args():
@@ -5557,6 +5625,10 @@ def parse_args():
                       help=f"HexStrike AI API server URL (default: {DEFAULT_HEXSTRIKE_SERVER})")
     parser.add_argument("--timeout", type=int, default=DEFAULT_REQUEST_TIMEOUT,
                       help=f"Request timeout in seconds (default: {DEFAULT_REQUEST_TIMEOUT})")
+    parser.add_argument("--enable-tools", type=str, default=DEFAULT_ENABLE_TOOLS,
+                      help="仅启用指定工具（逗号分隔，名称为函数名，如 nmap_scan,gobuster_scan）")
+    parser.add_argument("--disable-tools", type=str, default=DEFAULT_DISABLE_TOOLS,
+                      help="禁用指定工具（逗号分隔，名称为函数名）")
     parser.add_argument("--debug", action="store_true", help="Enable debug logging")
     return parser.parse_args()
 
@@ -5593,7 +5665,11 @@ def main():
                     logger.warning(f" Missing tools: {', '.join(missing_tools[:5])}{'...' if len(missing_tools) > 5 else ''}")
 
         # 设置 up 与 run the MCP 服务端
-        mcp = setup_mcp_server(hexstrike_client)
+        tool_switch = MCPToolSwitch(
+            enable_tools=args.enable_tools,
+            disable_tools=args.disable_tools,
+        )
+        mcp = setup_mcp_server(hexstrike_client, tool_switch)
         logger.info(" Starting HexStrike AI MCP server")
         logger.info(" Ready to serve AI agents with enhanced cybersecurity capabilities")
         mcp.run()

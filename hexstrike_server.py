@@ -14,6 +14,7 @@ v6.0 重点：
 """
 
 import argparse
+import importlib.util
 import json
 import logging
 import os
@@ -7024,7 +7025,7 @@ class EnhancedCommandExecutor:
 {ModernVisualEngine.COLORS['BOLD']}│{ModernVisualEngine.COLORS['RESET']} {ModernVisualEngine.COLORS['CYBER_ORANGE']}  Duration:{ModernVisualEngine.COLORS['RESET']} {execution_time:.2f}s{timeout_status}
 {ModernVisualEngine.COLORS['BOLD']}│{ModernVisualEngine.COLORS['RESET']} {ModernVisualEngine.COLORS['WARNING']} Output Size:{ModernVisualEngine.COLORS['RESET']} {output_size} bytes
 {ModernVisualEngine.COLORS['BOLD']}│{ModernVisualEngine.COLORS['RESET']} {ModernVisualEngine.COLORS['ELECTRIC_PURPLE']} Exit Code:{ModernVisualEngine.COLORS['RESET']} {self.return_code}
-{ModernVisualEngine.COLORS['BOLD']}│{ModernVisualEngine.COLORS['RESET']} {status_color} Status:{ModernVisualEngine.COLORS['RESET']} {'SUCCESS' if success else 'FAILED'} | Cached: Yes
+{ModernVisualEngine.COLORS['BOLD']}│{ModernVisualEngine.COLORS['RESET']} {status_color} Status:{ModernVisualEngine.COLORS['RESET']} {'SUCCESS' if success else 'FAILED'} | 缓存: No
 {ModernVisualEngine.COLORS['MATRIX_GREEN']}{ModernVisualEngine.COLORS['BOLD']}╰─────────────────────────────────────────────────────────────────────────────╯{ModernVisualEngine.COLORS['RESET']}
 """
 
@@ -8710,11 +8711,14 @@ def execute_command(command: str, use_cache: bool = True) -> Dict[str, Any]:
     if use_cache:
         cached_result = cache.get(command, {})
         if cached_result:
-            return cached_result
+            cached_payload = dict(cached_result)
+            cached_payload["from_cache"] = True
+            return cached_payload
 
     # 执行 命令
     executor = EnhancedCommandExecutor(command)
     result = executor.execute()
+    result["from_cache"] = False
 
     # 缓存 successful 结果
     if use_cache and result.get("success", False):
@@ -9079,6 +9083,42 @@ class FileOperationsManager:
 # 全局 文件 操作 manager
 file_manager = FileOperationsManager()
 
+# 健康检查专用工具可用性判断：避免用子进程 `which` 造成噪声与误判。
+INTERNAL_HEALTH_TOOLS = {
+    "burpsuite",          # 使用内置 Burp 替代流程
+    "graphql-scanner",    # 内置 API 能力
+    "jwt-analyzer",       # 内置 API 能力
+    "api-schema-analyzer" # 内置 API 能力
+}
+
+TOOL_ALIAS_CANDIDATES = {
+    "nxc": ["netexec"],
+    "metasploit": ["msfconsole"],
+    "exploit-db": ["searchsploit"],
+    "volatility3": ["vol"],
+}
+
+PYTHON_MODULE_TOOLS = {
+    "pwntools": "pwn",
+    "angr": "angr",
+}
+
+def check_tool_availability(tool: str) -> bool:
+    """以低噪声方式判断工具是否可用。"""
+    name = (tool or "").strip()
+    if not name:
+        return False
+
+    if name in INTERNAL_HEALTH_TOOLS:
+        return True
+
+    module_name = PYTHON_MODULE_TOOLS.get(name)
+    if module_name:
+        return importlib.util.find_spec(module_name) is not None
+
+    candidates = [name] + TOOL_ALIAS_CANDIDATES.get(name, [])
+    return any(shutil.which(candidate) for candidate in candidates)
+
 # 说明：API Routes
 
 @app.route("/health", methods=["GET"])
@@ -9158,8 +9198,7 @@ def health_check():
 
     for tool in all_tools:
         try:
-            result = execute_command(f"which {tool}", use_cache=True)
-            tools_status[tool] = result["success"]
+            tools_status[tool] = check_tool_availability(tool)
         except:
             tools_status[tool] = False
 
