@@ -86,8 +86,9 @@ except PermissionError:
 logger = logging.getLogger(__name__)
 
 class ChineseLogFilter(logging.Filter):
-    """Best-effort log localization so terminal output is primarily Chinese."""
+    """日志中文化过滤器：尽量将常见英文运行日志替换为中文。"""
 
+    # 仅做轻量文本替换，不改变日志级别与原始调用流程。
     REPLACEMENTS = [
         ("Starting", "开始"),
         ("completed", "完成"),
@@ -106,12 +107,14 @@ class ChineseLogFilter(logging.Filter):
     ]
 
     def filter(self, record: logging.LogRecord) -> bool:
+        # 逐条替换消息文本，返回 True 让日志继续流向后续 handler。
         message = str(record.msg)
         for src, dst in self.REPLACEMENTS:
             message = message.replace(src, dst)
         record.msg = message
         return True
 
+# 为所有已注册处理器挂载中文过滤器，保证文件和终端输出保持一致风格。
 for handler in logging.getLogger().handlers:
     handler.addFilter(ChineseLogFilter())
 
@@ -14074,28 +14077,29 @@ def run_burp_passive_scan_workflow(
     close_browser_on_finish: bool = True,
     output_file: str = ""
 ) -> Dict[str, Any]:
-    """Run a Burp-like passive scan workflow for complex web systems.
+    """执行 Burp 风格被动扫描工作流（适配复杂系统）。
 
-    This workflow intentionally avoids active exploitation and focuses on:
-    - crawling and traffic collection
-    - passive response/header/content analysis
-    - browser-runtime passive inspection (DOM, storage, network logs)
+    设计目标：
+    - 默认不做主动攻击，仅做低风险被动分析。
+    - 结合爬虫流量与浏览器运行时信息，提升发现覆盖面。
+    - 统一输出结构，便于 MCP/前端直接消费。
     """
     target = (target or "").strip()
     if not target:
         return {"success": False, "error": "Target parameter is required"}
 
     def _norm_severity(value: str) -> str:
+        # 统一等级枚举，避免上游组件返回未知等级导致统计字段错乱。
         sev = str(value or "info").lower()
         return sev if sev in {"critical", "high", "medium", "low", "info"} else "info"
 
     try:
-        # Keep scans isolated to avoid cross-task contamination.
+        # 每次扫描可选择清空状态，避免多任务串扰造成误报/重复统计。
         if reset_state:
             http_framework.proxy_history = []
             http_framework.vulnerabilities = []
 
-        # Configure scope from target host.
+        # 根据目标自动推导作用域，限制后续分析边界。
         parsed = urlparse(target if "://" in target else f"http://{target}")
         scope_host = parsed.hostname or ""
         if scope_host:
@@ -14106,7 +14110,7 @@ def run_burp_passive_scan_workflow(
         if not discovered_urls:
             discovered_urls = [target]
 
-        # Deduplicate while keeping order and cap by request_limit.
+        # 保持发现顺序去重，并通过 request_limit 控制资源消耗。
         selected_urls = []
         seen_urls = set()
         for url in discovered_urls:
@@ -14159,6 +14163,7 @@ def run_burp_passive_scan_workflow(
             browser_result = browser_agent.navigate_and_inspect(target, wait_time)
 
             if browser_result.get("success"):
+                # 浏览器端输出抽象为轻量 summary，避免原始数据过大。
                 page_info = browser_result.get("page_info", {})
                 security = browser_result.get("security_analysis", {})
                 browser_summary.update({
@@ -14176,6 +14181,7 @@ def run_burp_passive_scan_workflow(
             else:
                 browser_summary["error"] = browser_result.get("error", "browser passive analysis failed")
 
+        # 合并框架与浏览器被动发现，并补充来源标签。
         framework_findings = []
         for vuln in http_framework.vulnerabilities:
             entry = dict(vuln)
@@ -14198,6 +14204,7 @@ def run_burp_passive_scan_workflow(
         for finding in all_findings:
             severity_breakdown[_norm_severity(finding.get("severity"))] += 1
 
+        # 统一结果契约：供 API/MCP/报告导出共用。
         results = {
             "success": True,
             "scan_type": "passive",
@@ -14230,6 +14237,7 @@ def run_burp_passive_scan_workflow(
 
         report_path = output_file.strip() if output_file else f"/tmp/hexstrike_burp_passive_{int(time.time())}.json"
         try:
+            # 导出时裁剪非必要字段，兼顾体积与可追溯性。
             export_payload = {
                 "target": results["target"],
                 "timestamp": results["timestamp"],
@@ -14269,15 +14277,17 @@ def run_burp_forwarded_traffic_analysis(
     reset_state: bool = True,
     output_file: str = "",
 ) -> Dict[str, Any]:
-    """Analyze Burp-forwarded packets with passive-first, safe verification policy."""
+    """分析 Burp 转发流量，采用“被动优先 + 安全验证”策略。"""
 
     class _CapturedResponse:
+        # 适配内部分析函数需要的 response 结构，避免重复实现解析逻辑。
         def __init__(self, status_code: int, headers: Dict[str, Any], body: str):
             self.status_code = status_code
             self.headers = headers
             self.text = body
             self.content = body.encode("utf-8", errors="ignore")
 
+    # 高风险特征库：命中后仅记录样本，不做主动复测。
     dangerous_signatures = [
         "sleep(",
         "benchmark(",
@@ -14308,6 +14318,7 @@ def run_burp_forwarded_traffic_analysis(
         accepted_entries = []
         blocked_entries = []
 
+        # 兼容多种 Burp 导出字段格式，统一映射到内部请求/响应模型。
         for item in traffic_entries:
             req = item.get("request", {}) if isinstance(item.get("request", {}), dict) else {}
             rsp = item.get("response", {}) if isinstance(item.get("response", {}), dict) else {}
@@ -14380,6 +14391,7 @@ def run_burp_forwarded_traffic_analysis(
         verification_results = []
         verified_urls = set()
         if run_safe_verify:
+            # 仅对 GET 做去重验证，避免重复请求与副作用风险。
             unique_urls = []
             seen = set()
             for entry in accepted_entries:
@@ -14394,6 +14406,7 @@ def run_burp_forwarded_traffic_analysis(
 
             for url in unique_urls:
                 try:
+                    # 安全验证仅附加无害参数，不发送注入 payload。
                     verify_resp = requests.get(
                         url,
                         params={"hexstrike_verify": "safe_probe"},
@@ -14430,6 +14443,7 @@ def run_burp_forwarded_traffic_analysis(
         severity_counts = {"critical": 0, "high": 0, "medium": 0, "low": 0, "info": 0}
         confidence_counts = {"high": 0, "medium": 0, "low": 0}
 
+        # 统计同类证据数量，用于提升置信度评估质量。
         evidence_counter = {}
         for vuln in http_framework.vulnerabilities:
             key = (vuln.get("type", "unknown"), vuln.get("url", ""))
@@ -14445,6 +14459,7 @@ def run_burp_forwarded_traffic_analysis(
 
             key = (finding.get("type", "unknown"), finding.get("url", ""))
             evidence_count = evidence_counter.get(key, 1)
+            # 至少两份证据或已通过安全验证，则提升到高置信度。
             confidence = "high" if evidence_count >= 2 or finding.get("url", "") in verified_urls else "medium"
             if finding.get("type") in {"information_disclosure"} and evidence_count <= 1 and finding.get("url", "") not in verified_urls:
                 confidence = "low"
@@ -14485,6 +14500,7 @@ def run_burp_forwarded_traffic_analysis(
                 "total_findings": len(findings),
                 "severity_breakdown": severity_counts,
                 "confidence_breakdown": confidence_counts,
+                # 质量评分偏向严重等级，便于快速判断修复优先级。
                 "quality_score": max(0, 100 - (severity_counts["high"] * 8 + severity_counts["critical"] * 12)),
             },
             "findings": findings[:300],
@@ -14803,13 +14819,14 @@ def burpsuite_alternative():
 
 @app.route("/api/tools/burp-passive-scan", methods=["POST"])
 def burp_passive_scan():
-    """Dedicated Burp-style passive scanning for complex systems."""
+    """Burp 风格被动扫描接口（复杂系统专用）。"""
     try:
         params = request.json or {}
         target = params.get("target", "")
         if not target:
             return jsonify({"error": "Target parameter is required"}), 400
 
+        # 统一参数边界，防止极端值拖垮扫描进程。
         max_depth = max(1, min(int(params.get("max_depth", 3)), 8))
         max_pages = max(1, min(int(params.get("max_pages", 60)), 300))
         request_limit = max(1, min(int(params.get("request_limit", 60)), 300))
@@ -14846,11 +14863,12 @@ def burp_passive_scan():
 
 @app.route("/api/tools/burp-traffic-analyze", methods=["POST"])
 def burp_traffic_analyze():
-    """Analyze packets forwarded from Burp and perform safe verification only."""
+    """Burp 流量转发分析接口（仅安全验证，不做危险注入）。"""
     try:
         params = request.json or {}
         traffic = params.get("traffic", [])
 
+        # 兼容调用方直接传 JSON 字符串的场景。
         if isinstance(traffic, str):
             try:
                 traffic = json.loads(traffic)
@@ -14860,6 +14878,7 @@ def burp_traffic_analyze():
         if not isinstance(traffic, list) or not traffic:
             return jsonify({"error": "traffic 参数必须是非空数组"}), 400
 
+        # 控制验证流量上限，避免在大规模抓包中造成额外压测。
         max_verify_requests = max(0, min(int(params.get("max_verify_requests", 20)), 200))
 
         logger.info(f"{ModernVisualEngine.create_section_header('BURP TRAFFIC FORWARD', '', 'CRIMSON')}")

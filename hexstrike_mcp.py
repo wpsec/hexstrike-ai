@@ -90,7 +90,8 @@ class HexStrikeColors:
 Colors = HexStrikeColors
 
 def localize_output_text(message: str) -> str:
-    """Best-effort English to Chinese output normalization for MCP terminal logs."""
+    """将 MCP 终端日志中的常见英文短语尽量转换为中文。"""
+    # 仅做可读性增强，不保证完整翻译；未知词保持原样。
     replacements = [
         ("Attempting to connect to HexStrike AI API at", "正在连接 HexStrike AI API："),
         ("Successfully connected to HexStrike AI API Server at", "已成功连接 HexStrike AI API 服务："),
@@ -113,7 +114,7 @@ def localize_output_text(message: str) -> str:
     return text
 
 class ColoredFormatter(logging.Formatter):
-    """日志格式化器：为不同级别日志附加颜色与 emoji。"""
+    """日志格式化器：按日志级别附加颜色并统一中文化输出。"""
 
     COLORS = {
         'DEBUG': HexStrikeColors.DEBUG,
@@ -136,7 +137,7 @@ class ColoredFormatter(logging.Formatter):
         color = self.COLORS.get(record.levelname, HexStrikeColors.BRIGHT_WHITE)
         translated = localize_output_text(record.msg)
 
-        # 在消息前缀追加可视化标记，便于终端快速分级识别
+        # 先中文化，再统一附加 ANSI 颜色，方便终端快速分级识别。
         record.msg = f"{color}{emoji} {translated}{HexStrikeColors.RESET}"
         return super().format(record)
 
@@ -5302,18 +5303,19 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
                                   headless: bool = True, max_depth: int = 3,
                                   max_pages: int = 50) -> Dict[str, Any]:
         """
-        Comprehensive Burp Suite alternative combining HTTP framework and browser agent for complete web security testing.
+        Burp Suite 替代扫描入口：整合 HTTP 框架与浏览器代理能力。
 
         Args:
-            target: Target URL or domain to scan
-            scan_type: Type of scan (comprehensive, spider, passive, active)
-            headless: Run browser in headless mode
-            max_depth: Maximum crawling depth
-            max_pages: Maximum pages to analyze
+            target: 待扫描目标 URL/域名
+            scan_type: 扫描类型（comprehensive/spider/passive/active）
+            headless: 是否无头浏览器模式
+            max_depth: 最大爬取深度
+            max_pages: 最大分析页面数
 
         Returns:
-            Comprehensive security assessment results
+            综合安全评估结果
         """
+        # 与服务端 API 契约保持一致，避免字段命名漂移。
         data_payload = {
             "target": target,
             "scan_type": scan_type,
@@ -5322,39 +5324,39 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
             "max_pages": max_pages
         }
 
-        logger.info(f"{HexStrikeColors.BLOOD_RED} Starting Burp Suite Alternative {scan_type} scan: {target}{HexStrikeColors.RESET}")
+        logger.info(f"{HexStrikeColors.BLOOD_RED} 开始 Burp 替代扫描（{scan_type}）：{target}{HexStrikeColors.RESET}")
         result = hexstrike_client.safe_post("api/tools/burpsuite-alternative", data_payload)
 
         if result.get("success"):
-            logger.info(f"{HexStrikeColors.SUCCESS} Burp Suite Alternative scan completed for {target}{HexStrikeColors.RESET}")
+            logger.info(f"{HexStrikeColors.SUCCESS} Burp 替代扫描完成：{target}{HexStrikeColors.RESET}")
 
-            # Enhanced logging for comprehensive results
+            # 结果摘要日志：便于 CLI 快速查看扫描产出。
             if result.get("summary"):
                 summary = result["summary"]
                 total_vulns = summary.get("total_vulnerabilities", 0)
                 pages_analyzed = summary.get("pages_analyzed", 0)
                 security_score = summary.get("security_score", 0)
 
-                logger.info(f"{HexStrikeColors.HIGHLIGHT_BLUE} SCAN SUMMARY {HexStrikeColors.RESET}")
-                logger.info(f"   Pages Analyzed: {pages_analyzed}")
-                logger.info(f"   Vulnerabilities: {total_vulns}")
-                logger.info(f"    Security Score: {security_score}/100")
+                logger.info(f"{HexStrikeColors.HIGHLIGHT_BLUE} 扫描摘要 {HexStrikeColors.RESET}")
+                logger.info(f"   分析页面: {pages_analyzed}")
+                logger.info(f"   漏洞数量: {total_vulns}")
+                logger.info(f"   安全评分: {security_score}/100")
 
-                # Log vulnerability breakdown
+                # 细分风险等级，方便排定修复优先级。
                 vuln_breakdown = summary.get("vulnerability_breakdown", {})
                 for severity, count in vuln_breakdown.items():
                     if count > 0:
                         color = {
-                                    'critical': HexStrikeColors.CRITICAL,
-        'high': HexStrikeColors.FIRE_RED,
-        'medium': HexStrikeColors.CYBER_ORANGE,
-        'low': HexStrikeColors.YELLOW,
-        'info': HexStrikeColors.INFO
-    }.get(severity.lower(), HexStrikeColors.WHITE)
+                            'critical': HexStrikeColors.CRITICAL,
+                            'high': HexStrikeColors.FIRE_RED,
+                            'medium': HexStrikeColors.CYBER_ORANGE,
+                            'low': HexStrikeColors.YELLOW,
+                            'info': HexStrikeColors.INFO
+                        }.get(severity.lower(), HexStrikeColors.WHITE)
 
                         logger.info(f"  {color}{severity.upper()}: {count}{HexStrikeColors.RESET}")
         else:
-            logger.error(f"{HexStrikeColors.ERROR} Burp Suite Alternative scan failed for {target}{HexStrikeColors.RESET}")
+            logger.error(f"{HexStrikeColors.ERROR} Burp 替代扫描失败：{target}{HexStrikeColors.RESET}")
 
         return result
 
@@ -5383,6 +5385,7 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
         Returns:
             被动扫描结果（包含被动发现、严重等级统计、报告路径）
         """
+        # 参数透传到服务端统一执行，MCP 只承担编排与展示职责。
         data_payload = {
             "target": target,
             "headless": headless,
@@ -5397,7 +5400,7 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
             "output_file": output_file,
         }
 
-        logger.info(f"{HexStrikeColors.BLOOD_RED} Starting Burp passive scan: {target}{HexStrikeColors.RESET}")
+        logger.info(f"{HexStrikeColors.BLOOD_RED} 开始 Burp 被动扫描：{target}{HexStrikeColors.RESET}")
         result = hexstrike_client.safe_post("api/tools/burp-passive-scan", data_payload)
 
         if result.get("success"):
@@ -5406,14 +5409,14 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
             security_score = summary.get("security_score", 0)
             report_file = result.get("report_file", "")
 
-            logger.info(f"{HexStrikeColors.SUCCESS} Burp passive scan completed for {target}{HexStrikeColors.RESET}")
-            logger.info(f"{HexStrikeColors.HIGHLIGHT_BLUE} PASSIVE SUMMARY {HexStrikeColors.RESET}")
-            logger.info(f"   Findings: {total_findings}")
-            logger.info(f"   Security Score: {security_score}/100")
+            logger.info(f"{HexStrikeColors.SUCCESS} Burp 被动扫描完成：{target}{HexStrikeColors.RESET}")
+            logger.info(f"{HexStrikeColors.HIGHLIGHT_BLUE} 被动扫描摘要 {HexStrikeColors.RESET}")
+            logger.info(f"   发现数量: {total_findings}")
+            logger.info(f"   安全评分: {security_score}/100")
             if report_file:
-                logger.info(f"   Report: {report_file}")
+                logger.info(f"   报告文件: {report_file}")
         else:
-            logger.error(f"{HexStrikeColors.ERROR} Burp passive scan failed for {target}{HexStrikeColors.RESET}")
+            logger.error(f"{HexStrikeColors.ERROR} Burp 被动扫描失败：{target}{HexStrikeColors.RESET}")
 
         return result
 
@@ -5442,6 +5445,7 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
         Returns:
             带置信度与质量评分的漏洞分析结果
         """
+        # traffic 由 Burp 扩展或中间层转发，结构在服务端做兼容解析。
         data_payload = {
             "traffic": traffic,
             "target": target,
@@ -5456,6 +5460,7 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
         result = hexstrike_client.safe_post("api/tools/burp-traffic-analyze", data_payload)
 
         if result.get("success"):
+            # 重点输出质量评分，避免只看数量导致误判测试质量。
             summary = result.get("summary", {})
             total_findings = summary.get("total_findings", 0)
             quality_score = summary.get("quality_score", 0)
