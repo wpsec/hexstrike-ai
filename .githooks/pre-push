@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+BLOCKED_PATH_REGEX='^(venv/|\.venv/)'
+EMPTY_TREE_SHA='4b825dc642cb6eb9a060e54bf8d69288fbee4904'
+
+while read -r local_ref local_sha remote_ref remote_sha; do
+  # Deletion push, nothing to check.
+  if [[ "${local_sha}" == "0000000000000000000000000000000000000000" ]]; then
+    continue
+  fi
+
+  base_sha="${remote_sha}"
+  if [[ "${remote_sha}" == "0000000000000000000000000000000000000000" ]]; then
+    base_sha="${EMPTY_TREE_SHA}"
+  fi
+
+  changed_files="$(git diff --name-only "${base_sha}" "${local_sha}")"
+  if [[ -z "${changed_files}" ]]; then
+    continue
+  fi
+
+  blocked_files="$(printf '%s\n' "${changed_files}" | grep -E "${BLOCKED_PATH_REGEX}" || true)"
+  if [[ -n "${blocked_files}" ]]; then
+    printf '[pre-push] 检测到禁止推送的路径（虚拟环境目录）：\n' >&2
+    printf '%s\n' "${blocked_files}" >&2
+    printf '[pre-push] 请移除相关文件后再推送。\n' >&2
+    exit 1
+  fi
+done
