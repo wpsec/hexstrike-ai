@@ -16,7 +16,9 @@
 
 **Advanced AI-powered penetration testing MCP framework with 150+ security tools and 12+ autonomous AI agents**
 
-[📋 What's New](#whats-new-in-v60) • [🏗️ Architecture](#architecture-overview) • [🚀 Installation](#installation) • [🛠️ Features](#features) • [🤖 AI Agents](#ai-agents) • [📡 API Reference](#api-reference)
+ Chinese docs: [README.zh-CN.md](README.zh-CN.md) •  Project docs: [docx/](docx/)
+
+[ What's New](#whats-new-in-v60) • [ Architecture](#architecture-overview) • [ Installation](#installation) • [ Features](#features) • [ AI Agents](#ai-agents) • [ API Reference](#api-reference)
 
 </div>
 
@@ -264,7 +266,7 @@ Configure VS Code settings in `.vscode/settings.json`:
 **150+ Professional Security Tools:**
 
 <details>
-<summary><b>🔍 Network Reconnaissance & Scanning (25+ Tools)</b></summary>
+<summary><b> Network Reconnaissance & Scanning (25+ Tools)</b></summary>
 
 - **Nmap** - Advanced port scanning with custom NSE scripts and service detection
 - **Rustscan** - Ultra-fast port scanner with intelligent rate limiting
@@ -287,7 +289,7 @@ Configure VS Code settings in `.vscode/settings.json`:
 </details>
 
 <details>
-<summary><b>🌐 Web Application Security Testing (40+ Tools)</b></summary>
+<summary><b> Web Application Security Testing (40+ Tools)</b></summary>
 
 - **Gobuster** - Directory, file, and DNS enumeration with intelligent wordlists
 - **Dirsearch** - Advanced directory and file discovery with enhanced logging
@@ -325,7 +327,7 @@ Configure VS Code settings in `.vscode/settings.json`:
 - **NoSQLMap** - NoSQL injection testing for MongoDB, CouchDB, etc.
 - **Tplmap** - Server-side template injection exploitation tool
 
-**🌐 Advanced Browser Agent:**
+** Advanced Browser Agent:**
 - **Headless Chrome Automation** - Full Chrome browser automation with Selenium
 - **Screenshot Capture** - Automated screenshot generation for visual inspection
 - **DOM Analysis** - Deep DOM tree analysis and JavaScript execution monitoring
@@ -340,7 +342,7 @@ Configure VS Code settings in `.vscode/settings.json`:
 </details>
 
 <details>
-<summary><b>🔐 Authentication & Password Security (12+ Tools)</b></summary>
+<summary><b> Authentication & Password Security (12+ Tools)</b></summary>
 
 - **Hydra** - Network login cracker supporting 50+ protocols
 - **John the Ripper** - Advanced password hash cracking with custom rules
@@ -358,7 +360,7 @@ Configure VS Code settings in `.vscode/settings.json`:
 </details>
 
 <details>
-<summary><b>🔬 Binary Analysis & Reverse Engineering (25+ Tools)</b></summary>
+<summary><b> Binary Analysis & Reverse Engineering (25+ Tools)</b></summary>
 
 - **GDB** - GNU Debugger with Python scripting and exploit development support
 - **GDB-PEDA** - Python Exploit Development Assistance for GDB
@@ -388,7 +390,7 @@ Configure VS Code settings in `.vscode/settings.json`:
 </details>
 
 <details>
-<summary><b>☁️ Cloud & Container Security (20+ Tools)</b></summary>
+<summary><b> Cloud & Container Security (20+ Tools)</b></summary>
 
 - **Prowler** - AWS/Azure/GCP security assessment with compliance checks
 - **Scout Suite** - Multi-cloud security auditing for AWS, Azure, GCP, Alibaba Cloud
@@ -414,7 +416,7 @@ Configure VS Code settings in `.vscode/settings.json`:
 </details>
 
 <details>
-<summary><b>🏆 CTF & Forensics Tools (20+ Tools)</b></summary>
+<summary><b> CTF & Forensics Tools (20+ Tools)</b></summary>
 
 - **Volatility** - Advanced memory forensics framework with comprehensive plugins
 - **Volatility3** - Next-generation memory forensics with enhanced analysis
@@ -445,7 +447,7 @@ Configure VS Code settings in `.vscode/settings.json`:
 </details>
 
 <details>
-<summary><b>🔥 Bug Bounty & OSINT Arsenal (20+ Tools)</b></summary>
+<summary><b> Bug Bounty & OSINT Arsenal (20+ Tools)</b></summary>
 
 - **Amass** - Advanced subdomain enumeration and OSINT gathering
 - **Subfinder** - Fast passive subdomain discovery with API integration
@@ -640,7 +642,7 @@ python3 hexstrike_mcp.py --debug
 
 ## Security Considerations
 
-⚠️ **Important Security Notes**:
+ **Important Security Notes**:
 - This tool provides AI agents with powerful system access
 - Run in isolated environments or dedicated security testing VMs
 - AI agents can execute arbitrary security tools - ensure proper oversight
@@ -649,15 +651,15 @@ python3 hexstrike_mcp.py --debug
 
 ### Legal & Ethical Use
 
-- ✅ **Authorized Penetration Testing** - With proper written authorization
-- ✅ **Bug Bounty Programs** - Within program scope and rules
-- ✅ **CTF Competitions** - Educational and competitive environments
-- ✅ **Security Research** - On owned or authorized systems
-- ✅ **Red Team Exercises** - With organizational approval
+-  **Authorized Penetration Testing** - With proper written authorization
+-  **Bug Bounty Programs** - Within program scope and rules
+-  **CTF Competitions** - Educational and competitive environments
+-  **Security Research** - On owned or authorized systems
+-  **Red Team Exercises** - With organizational approval
 
-- ❌ **Unauthorized Testing** - Never test systems without permission
-- ❌ **Malicious Activities** - No illegal or harmful activities
-- ❌ **Data Theft** - No unauthorized data access or exfiltration
+-  **Unauthorized Testing** - Never test systems without permission
+-  **Malicious Activities** - No illegal or harmful activities
+-  **Data Theft** - No unauthorized data access or exfiltration
 
 ---
 
@@ -685,11 +687,11 @@ python3 hexstrike_server.py --port 8888 --debug
 
 ### Priority Areas for Contribution
 
-- **🤖 AI Agent Integrations** - Support for new AI platforms and agents
-- **🛠️ Security Tool Additions** - Integration of additional security tools
-- **⚡ Performance Optimizations** - Caching improvements and scalability enhancements
-- **📖 Documentation** - AI usage examples and integration guides
-- **🧪 Testing Frameworks** - Automated testing for AI agent interactions
+- ** AI Agent Integrations** - Support for new AI platforms and agents
+- ** Security Tool Additions** - Integration of additional security tools
+- ** Performance Optimizations** - Caching improvements and scalability enhancements
+- ** Documentation** - AI usage examples and integration guides
+- ** Testing Frameworks** - Automated testing for AI agent interactions
 
 ---
 
@@ -731,11 +733,11 @@ MIT License - see LICENSE file for details.
 
 <div align="center">
 
-## 🌟 **Star History**
+##  **Star History**
 
 [![Star History Chart](https://api.star-history.com/svg?repos=0x4m4/hexstrike-ai&type=Date)](https://star-history.com/#0x4m4/hexstrike-ai&Date)
 
-### **📊 Project Statistics**
+### ** Project Statistics**
 
 - **150+ Security Tools** - Comprehensive security testing arsenal
 - **12+ AI Agents** - Autonomous decision-making and workflow management
@@ -744,13 +746,13 @@ MIT License - see LICENSE file for details.
 - **Real-time Processing** - Sub-second response times with intelligent caching
 - **99.9% Uptime** - Fault-tolerant architecture with graceful degradation
 
-### **🚀 Ready to Transform Your AI Agents?**
+### ** Ready to Transform Your AI Agents?**
 
-**[⭐ Star this repository](https://github.com/0x4m4/hexstrike-ai)** • **[🍴 Fork and contribute](https://github.com/0x4m4/hexstrike-ai/fork)** • **[📖 Read the docs](docs/)**
+**[ Star this repository](https://github.com/0x4m4/hexstrike-ai)** • **[ Fork and contribute](https://github.com/0x4m4/hexstrike-ai/fork)** • **[ Read the docs](docs/)**
 
 ---
 
-**Made with ❤️ by the cybersecurity community for AI-powered security automation**
+**Made with  by the cybersecurity community for AI-powered security automation**
 
 *HexStrike AI v6.0 - Where artificial intelligence meets cybersecurity excellence*
 
