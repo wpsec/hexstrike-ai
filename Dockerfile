@@ -1,6 +1,6 @@
 FROM kalilinux/kali-rolling
 
-ARG KALI_MIRROR=https://mirrors.aliyun.com/kali
+ARG KALI_MIRROR=http://mirrors.aliyun.com/kali
 ARG SECURITY_TOOLS_PROFILE=standard
 ARG SECURITY_TOOLS_STRICT=0
 ARG SECURITY_TOOLS_NO_BROWSER=1
