@@ -52,49 +52,14 @@
 HexStrike AI MCP v6.0 采用多代理架构，核心能力包括智能决策、工具编排、漏洞关联分析与可视化输出。
 
 ```mermaid
-%%{init: {"themeVariables": {
-  "primaryColor": "#b71c1c",
-  "secondaryColor": "#ff5252",
-  "tertiaryColor": "#ff8a80",
-  "background": "#2d0000",
-  "edgeLabelBackground":"#b71c1c",
-  "fontFamily": "monospace",
-  "fontSize": "16px",
-  "fontColor": "#fffde7",
-  "nodeTextColor": "#fffde7"
-}}}%%
-graph TD
-    A[AI Agent - Claude/GPT/Copilot] -->|MCP Protocol| B[HexStrike MCP Server v6.0]
-
-    B --> C[Intelligent Decision Engine]
-    B --> D[12+ Autonomous AI Agents]
-    B --> E[Modern Visual Engine]
-
-    C --> F[Tool Selection AI]
-    C --> G[Parameter Optimization]
-    C --> H[Attack Chain Discovery]
-
-    D --> I[BugBounty Agent]
-    D --> J[CTF Solver Agent]
-    D --> K[CVE Intelligence Agent]
-    D --> L[Exploit Generator Agent]
-
-    E --> M[Real-time Dashboards]
-    E --> N[Progress Visualization]
-    E --> O[Vulnerability Cards]
-
-    B --> P[150+ Security Tools]
-    P --> Q[Network Tools - 25+]
-    P --> R[Web App Tools - 40+]
-    P --> S[Cloud Tools - 20+]
-    P --> T[Binary Tools - 25+]
-    P --> U[CTF Tools - 20+]
-    P --> V[OSINT Tools - 20+]
-
-    B --> W[Advanced Process Management]
-    W --> X[Smart Caching]
-    W --> Y[Resource Optimization]
-    W --> Z[Error Recovery]
+graph LR
+    A[AI 客户端<br/>Claude/Cursor/Copilot] -->|MCP| B[HexStrike MCP 服务]
+    B --> C[智能决策层<br/>目标分析/参数优化]
+    B --> D[工具执行层<br/>网络/Web/云/取证]
+    B --> E[运行时管理<br/>缓存/重试/恢复]
+    C --> D
+    D --> F[结构化结果与报告]
+    E --> F
 ```
 
 ### 工作流程
