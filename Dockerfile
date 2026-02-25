@@ -9,7 +9,9 @@ ENV DEBIAN_FRONTEND=noninteractive \
     PIP_NO_CACHE_DIR=1 \
     PIP_INDEX_URL=https://pypi.mirrors.ustc.edu.cn/simple/ \
     PYTHONDONTWRITEBYTECODE=1 \
-    PYTHONUNBUFFERED=1
+    PYTHONUNBUFFERED=1 \
+    VIRTUAL_ENV=/opt/venv \
+    PATH=/opt/venv/bin:$PATH
 
 WORKDIR /opt/hexstrike
 
@@ -40,8 +42,9 @@ RUN chmod +x /usr/local/bin/install_security_tools.sh && \
     /usr/local/bin/install_security_tools.sh ${INSTALL_ARGS} && \
     rm -rf /var/lib/apt/lists/*
 
-RUN python3 -m pip install --break-system-packages --upgrade pip setuptools wheel && \
-    python3 -m pip install --break-system-packages -r requirements.txt
+RUN python3 -m venv "${VIRTUAL_ENV}" && \
+    pip install --upgrade pip setuptools wheel && \
+    pip install -r requirements.txt
 
 COPY . .
 
