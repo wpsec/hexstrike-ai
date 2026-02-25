@@ -21,7 +21,11 @@ import requests
 import time
 from datetime import datetime
 
-from mcp.server.fastmcp import FastMCP
+try:
+    from mcp.server.fastmcp import FastMCP
+except ImportError:
+    # 兼容不同 FastMCP 版本的导入路径
+    from fastmcp import FastMCP
 
 class HexStrikeColors:
     """与服务端 ModernVisualEngine 对齐的 ANSI 颜色常量。"""
@@ -5682,7 +5686,13 @@ def main():
         mcp = setup_mcp_server(hexstrike_client, tool_switch)
         logger.info(" Starting HexStrike AI MCP server")
         logger.info(" Ready to serve AI agents with enhanced cybersecurity capabilities")
-        mcp.run()
+
+        # 显式使用 stdio，避免不同 FastMCP 版本默认传输模式不一致导致客户端握手失败。
+        try:
+            mcp.run(transport="stdio")
+        except TypeError:
+            # 兼容老版本 FastMCP，不支持 transport 参数时回退默认启动方式。
+            mcp.run()
     except Exception as e:
         logger.error(f" Error starting MCP server: {str(e)}")
         import traceback
