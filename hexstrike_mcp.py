@@ -4,7 +4,7 @@ HexStrike AI MCP 客户端
 
 职责：
 - 作为 MCP 侧适配层，将 AI 客户端请求转发到 HexStrike API 服务。
-- 暴露统一的 MCP tools 接口，供 Claude/Cursor/Copilot 等客户端调用。
+- 暴露统一的 MCP 工具 接口，供 Claude/Cursor/Copilot 等客户端调用。
 
 v6.0 关键增强：
 - 与服务端统一的终端配色与输出风格
@@ -58,33 +58,33 @@ class HexStrikeColors:
     RUBY = '\033[38;5;161m'
 
     # 高亮背景色
-    HIGHLIGHT_RED = '\033[48;5;196m\033[38;5;15m'  # Red background, white text
-    HIGHLIGHT_YELLOW = '\033[48;5;226m\033[38;5;16m'  # Yellow background, black text
-    HIGHLIGHT_GREEN = '\033[48;5;46m\033[38;5;16m'  # Green background, black text
-    HIGHLIGHT_BLUE = '\033[48;5;51m\033[38;5;16m'  # Blue background, black text
-    HIGHLIGHT_PURPLE = '\033[48;5;129m\033[38;5;15m'  # Purple background, white text
+    HIGHLIGHT_RED = '\033[48;5;196m\033[38;5;15m'  # 说明：Red background, white text
+    HIGHLIGHT_YELLOW = '\033[48;5;226m\033[38;5;16m'  # 说明：Yellow background, black text
+    HIGHLIGHT_GREEN = '\033[48;5;46m\033[38;5;16m'  # 说明：Green background, black text
+    HIGHLIGHT_BLUE = '\033[48;5;51m\033[38;5;16m'  # 说明：Blue background, black text
+    HIGHLIGHT_PURPLE = '\033[48;5;129m\033[38;5;15m'  # 说明：Purple background, white text
 
     # 状态语义颜色
-    SUCCESS = '\033[38;5;46m'  # Bright green
-    WARNING = '\033[38;5;208m'  # Orange
-    ERROR = '\033[38;5;196m'  # Bright red
-    CRITICAL = '\033[48;5;196m\033[38;5;15m\033[1m'  # Red background, white bold text
-    INFO = '\033[38;5;51m'  # Cyan
-    DEBUG = '\033[38;5;240m'  # Gray
+    SUCCESS = '\033[38;5;46m'  # 说明：Bright green
+    WARNING = '\033[38;5;208m'  # 说明：Orange
+    ERROR = '\033[38;5;196m'  # 说明：Bright red
+    CRITICAL = '\033[48;5;196m\033[38;5;15m\033[1m'  # 说明：Red background, white bold text
+    INFO = '\033[38;5;51m'  # 说明：Cyan
+    DEBUG = '\033[38;5;240m'  # 说明：Gray
 
     # 漏洞等级颜色
-    VULN_CRITICAL = '\033[48;5;124m\033[38;5;15m\033[1m'  # Dark red background
-    VULN_HIGH = '\033[38;5;196m\033[1m'  # Bright red bold
-    VULN_MEDIUM = '\033[38;5;208m\033[1m'  # Orange bold
-    VULN_LOW = '\033[38;5;226m'  # Yellow
-    VULN_INFO = '\033[38;5;51m'  # Cyan
+    VULN_CRITICAL = '\033[48;5;124m\033[38;5;15m\033[1m'  # 说明：Dark red background
+    VULN_HIGH = '\033[38;5;196m\033[1m'  # 说明：Bright red bold
+    VULN_MEDIUM = '\033[38;5;208m\033[1m'  # 说明：Orange bold
+    VULN_LOW = '\033[38;5;226m'  # 说明：Yellow
+    VULN_INFO = '\033[38;5;51m'  # 说明：Cyan
 
     # 工具执行状态颜色
-    TOOL_RUNNING = '\033[38;5;46m\033[5m'  # Blinking green
-    TOOL_SUCCESS = '\033[38;5;46m\033[1m'  # Bold green
-    TOOL_FAILED = '\033[38;5;196m\033[1m'  # Bold red
-    TOOL_TIMEOUT = '\033[38;5;208m\033[1m'  # Bold orange
-    TOOL_RECOVERY = '\033[38;5;129m\033[1m'  # Bold purple
+    TOOL_RUNNING = '\033[38;5;46m\033[5m'  # 说明：Blinking green
+    TOOL_SUCCESS = '\033[38;5;46m\033[1m'  # 说明：Bold green
+    TOOL_FAILED = '\033[38;5;196m\033[1m'  # 说明：Bold red
+    TOOL_TIMEOUT = '\033[38;5;208m\033[1m'  # 说明：Bold orange
+    TOOL_RECOVERY = '\033[38;5;129m\033[1m'  # 说明：Bold purple
 
 # 向后兼容别名
 Colors = HexStrikeColors
@@ -171,7 +171,7 @@ class HexStrikeClient:
         """
         初始化 HexStrike API 客户端。
 
-        Args:
+        参数:
             server_url: HexStrike API 服务地址
             timeout: 请求超时（秒）
         """
@@ -184,7 +184,7 @@ class HexStrikeClient:
         for i in range(MAX_RETRIES):
             try:
                 logger.info(f" Attempting to connect to HexStrike AI API at {server_url} (attempt {i+1}/{MAX_RETRIES})")
-                # 先测 /health，验证服务可达与 JSON 响应可解析
+                # 先测 /健康，验证服务可达与 JSON 响应可解析
                 try:
                     test_response = self.session.get(f"{self.server_url}/health", timeout=5)
                     test_response.raise_for_status()
@@ -211,13 +211,13 @@ class HexStrikeClient:
 
     def safe_get(self, endpoint: str, params: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         """
-        发送 GET 请求并统一处理异常。
+        发送 获取 请求并统一处理异常。
 
-        Args:
+        参数:
             endpoint: API 路径（不含前导 `/`）
             params: 可选查询参数
 
-        Returns:
+        返回:
             结构化响应字典
         """
         if params is None:
@@ -241,11 +241,11 @@ class HexStrikeClient:
         """
         发送 POST 请求并统一处理异常。
 
-        Args:
+        参数:
             endpoint: API 路径（不含前导 `/`）
             json_data: 请求体 JSON
 
-        Returns:
+        返回:
             结构化响应字典
         """
         url = f"{self.server_url}/{endpoint}"
@@ -266,11 +266,11 @@ class HexStrikeClient:
         """
         调用后端通用命令执行接口。
 
-        Args:
+        参数:
             command: 要执行的命令
             use_cache: 是否启用缓存
 
-        Returns:
+        返回:
             命令执行结果
         """
         return self.safe_post("api/command", {"command": command, "use_cache": use_cache})
@@ -279,19 +279,19 @@ class HexStrikeClient:
         """
         查询 HexStrike API 健康状态。
 
-        Returns:
+        返回:
             健康检查结果
         """
         return self.safe_get("health")
 
 def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     """
-    注册 MCP server 及全部工具函数。
+    注册 MCP 服务端 及全部工具函数。
 
-    Args:
+    参数:
         hexstrike_client: 已初始化的 HexStrikeClient
 
-    Returns:
+    返回:
         配置完成的 FastMCP 实例
     """
     mcp = FastMCP("hexstrike-ai-mcp")
@@ -305,13 +305,13 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
         """
         执行增强版 Nmap 扫描，并输出实时日志。
 
-        Args:
+        参数:
             target: 目标 IP 或域名
             scan_type: 扫描类型（如 `-sV`、`-sC`）
             ports: 端口列表或范围（逗号分隔）
             additional_args: 额外 Nmap 参数
 
-        Returns:
+        返回:
             扫描结果与遥测信息
         """
         data = {
@@ -348,13 +348,13 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
         """
         执行 Gobuster 扫描目录/DNS/虚拟主机并记录增强日志。
 
-        Args:
+        参数:
             url: 目标 URL
             mode: 扫描模式（`dir`/`dns`/`fuzz`/`vhost`）
             wordlist: 字典路径
             additional_args: 额外参数
 
-        Returns:
+        返回:
             扫描结果与遥测信息
         """
         data = {
@@ -392,14 +392,14 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
         """
         执行 Nuclei 漏洞扫描，支持按严重级别/标签过滤。
 
-        Args:
+        参数:
             target: 目标 URL 或 IP
-            severity: 严重级别过滤（critical/high/medium/low/info）
+            severity: 严重级别过滤（严重/高/中/低/info）
             tags: 标签过滤（如 `cve,rce,lfi`）
             template: 自定义模板路径
             additional_args: 额外参数
 
-        Returns:
+        返回:
             漏洞发现结果与遥测信息
         """
         data = {
@@ -441,19 +441,19 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def prowler_scan(provider: str = "aws", profile: str = "default", region: str = "", checks: str = "", output_dir: str = "/tmp/prowler_output", output_format: str = "json", additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute Prowler for comprehensive cloud security assessment.
+        执行 Prowler 用于 综合 云 安全 assessment.
 
-        Args:
-            provider: Cloud provider (aws, azure, gcp)
-            profile: AWS profile to use
-            region: Specific region to scan
-            checks: Specific checks to run
-            output_dir: Directory to save results
-            output_format: Output format (json, csv, html)
-            additional_args: Additional Prowler arguments
+        参数:
+            provider: 云 provider (aws, azure, gcp)
+            profile: AWS profile 到 use
+            region: Specific region 到 扫描
+            checks: Specific checks 到 run
+            output_dir: 目录 到 save 结果
+            output_format: 输出 format (JSON, csv, html)
+            additional_args: 附加 Prowler arguments
 
-        Returns:
-            Cloud security assessment results
+        返回:
+            云 安全 assessment 结果
         """
         data = {
             "provider": provider,
@@ -475,18 +475,18 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def trivy_scan(scan_type: str = "image", target: str = "", output_format: str = "json", severity: str = "", output_file: str = "", additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute Trivy for container and filesystem vulnerability scanning.
+        执行 Trivy 用于 容器 与 filesystem 漏洞 扫描.
 
-        Args:
-            scan_type: Type of scan (image, fs, repo, config)
-            target: Target to scan (image name, directory, repository)
-            output_format: Output format (json, table, sarif)
-            severity: Severity filter (UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL)
-            output_file: File to save results
-            additional_args: Additional Trivy arguments
+        参数:
+            scan_type: 类型 的 扫描 (image, fs, repo, config)
+            target: 目标 到 扫描 (image name, 目录, repository)
+            output_format: 输出 format (JSON, table, sarif)
+            severity: Severity filter (UNKNOWN,低,中,高,严重)
+            output_file: 文件 到 save 结果
+            additional_args: 附加 Trivy arguments
 
-        Returns:
-            Vulnerability scan results
+        返回:
+            漏洞 扫描 结果
         """
         data = {
             "scan_type": scan_type,
@@ -505,7 +505,7 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
         return result
 
     # ============================================================================
-    # ENHANCED CLOUD AND CONTAINER SECURITY TOOLS (v6.0)
+    # 增强 云 与 容器 安全 工具 (v6.0)
     # ============================================================================
 
     @mcp.tool()
@@ -513,18 +513,18 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
                               report_dir: str = "/tmp/scout-suite", services: str = "",
                               exceptions: str = "", additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute Scout Suite for multi-cloud security assessment.
+        执行 Scout Suite 用于 multi-云 安全 assessment.
 
-        Args:
-            provider: Cloud provider (aws, azure, gcp, aliyun, oci)
-            profile: AWS profile to use
-            report_dir: Directory to save reports
-            services: Specific services to assess
-            exceptions: Exceptions file path
-            additional_args: Additional Scout Suite arguments
+        参数:
+            provider: 云 provider (aws, azure, gcp, aliyun, oci)
+            profile: AWS profile 到 use
+            report_dir: 目录 到 save reports
+            services: Specific services 到 assess
+            exceptions: Exceptions 文件 path
+            additional_args: 附加 Scout Suite arguments
 
-        Returns:
-            Multi-cloud security assessment results
+        返回:
+            Multi-云 安全 assessment 结果
         """
         data = {
             "provider": provider,
@@ -546,16 +546,16 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     def cloudmapper_analysis(action: str = "collect", account: str = "",
                             config: str = "config.json", additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute CloudMapper for AWS network visualization and security analysis.
+        执行 CloudMapper 用于 AWS 网络 visualization 与 安全 分析.
 
-        Args:
-            action: Action to perform (collect, prepare, webserver, find_admins, etc.)
-            account: AWS account to analyze
-            config: Configuration file path
-            additional_args: Additional CloudMapper arguments
+        参数:
+            action: Action 到 perform (收集, prepare, webserver, find_admins, etc.)
+            account: AWS account 到 分析
+            config: 配置 文件 path
+            additional_args: 附加 CloudMapper arguments
 
-        Returns:
-            AWS network visualization and security analysis results
+        返回:
+            AWS 网络 visualization 与 安全 分析 结果
         """
         data = {
             "action": action,
@@ -576,17 +576,17 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
                          data_services: str = "", regions: str = "",
                          additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute Pacu for AWS exploitation framework.
+        执行 Pacu 用于 AWS exploitation 框架.
 
-        Args:
-            session_name: Pacu session name
-            modules: Comma-separated list of modules to run
-            data_services: Data services to enumerate
-            regions: AWS regions to target
-            additional_args: Additional Pacu arguments
+        参数:
+            session_name: 说明：Pacu session name
+            modules: Comma-separated 列出 的 modules 到 run
+            data_services: Data services 到 enumerate
+            regions: AWS regions 到 目标
+            additional_args: 附加 Pacu arguments
 
-        Returns:
-            AWS exploitation framework results
+        返回:
+            AWS exploitation 框架 结果
         """
         data = {
             "session_name": session_name,
@@ -608,19 +608,19 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
                         interface: str = "", active: bool = False, report: str = "json",
                         additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute kube-hunter for Kubernetes penetration testing.
+        执行 kube-hunter 用于 Kubernetes penetration 测试.
 
-        Args:
-            target: Specific target to scan
-            remote: Remote target to scan
-            cidr: CIDR range to scan
-            interface: Network interface to scan
-            active: Enable active hunting (potentially harmful)
-            report: Report format (json, yaml)
-            additional_args: Additional kube-hunter arguments
+        参数:
+            target: Specific 目标 到 扫描
+            remote: Remote 目标 到 扫描
+            cidr: CIDR range 到 扫描
+            interface: 网络 接口 到 扫描
+            active: 启用 active hunting (potentially harmful)
+            report: 说明：Report format (JSON, yaml)
+            additional_args: 附加 kube-hunter arguments
 
-        Returns:
-            Kubernetes penetration testing results
+        返回:
+            Kubernetes penetration 测试 结果
         """
         data = {
             "target": target,
@@ -643,17 +643,17 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     def kube_bench_cis(targets: str = "", version: str = "", config_dir: str = "",
                       output_format: str = "json", additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute kube-bench for CIS Kubernetes benchmark checks.
+        执行 kube-bench 用于 CIS Kubernetes benchmark checks.
 
-        Args:
-            targets: Targets to check (master, node, etcd, policies)
-            version: Kubernetes version
-            config_dir: Configuration directory
-            output_format: Output format (json, yaml)
-            additional_args: Additional kube-bench arguments
+        参数:
+            targets: Targets 到 检查 (master, node, etcd, policies)
+            version: 说明：Kubernetes version
+            config_dir: 配置 目录
+            output_format: 输出 format (JSON, yaml)
+            additional_args: 附加 kube-bench arguments
 
-        Returns:
-            CIS Kubernetes benchmark results
+        返回:
+            CIS Kubernetes benchmark 结果
         """
         data = {
             "targets": targets,
@@ -675,16 +675,16 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
                                   output_file: str = "/tmp/docker-bench-results.json",
                                   additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute Docker Bench for Security for Docker security assessment.
+        执行 Docker Bench 用于 安全 用于 Docker 安全 assessment.
 
-        Args:
-            checks: Specific checks to run
-            exclude: Checks to exclude
-            output_file: Output file path
-            additional_args: Additional Docker Bench arguments
+        参数:
+            checks: Specific checks 到 run
+            exclude: Checks 到 exclude
+            output_file: 输出 文件 path
+            additional_args: 附加 Docker Bench arguments
 
-        Returns:
-            Docker security assessment results
+        返回:
+            Docker 安全 assessment 结果
         """
         data = {
             "checks": checks,
@@ -704,16 +704,16 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     def clair_vulnerability_scan(image: str, config: str = "/etc/clair/config.yaml",
                                 output_format: str = "json", additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute Clair for container vulnerability analysis.
+        执行 Clair 用于 容器 漏洞 分析.
 
-        Args:
-            image: Container image to scan
-            config: Clair configuration file
-            output_format: Output format (json, yaml)
-            additional_args: Additional Clair arguments
+        参数:
+            image: 容器 image 到 扫描
+            config: Clair 配置 文件
+            output_format: 输出 format (JSON, yaml)
+            additional_args: 附加 Clair arguments
 
-        Returns:
-            Container vulnerability analysis results
+        返回:
+            容器 漏洞 分析 结果
         """
         data = {
             "image": image,
@@ -734,17 +734,17 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
                                 rules_file: str = "", output_format: str = "json",
                                 duration: int = 60, additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute Falco for runtime security monitoring.
+        执行 Falco 用于 runtime 安全 监控.
 
-        Args:
-            config_file: Falco configuration file
-            rules_file: Custom rules file
-            output_format: Output format (json, text)
-            duration: Monitoring duration in seconds
-            additional_args: Additional Falco arguments
+        参数:
+            config_file: Falco 配置 文件
+            rules_file: Custom rules 文件
+            output_format: 输出 format (JSON, text)
+            duration: 监控 持续时间 在 seconds
+            additional_args: 附加 Falco arguments
 
-        Returns:
-            Runtime security monitoring results
+        返回:
+            Runtime 安全 监控 结果
         """
         data = {
             "config_file": config_file,
@@ -766,18 +766,18 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
                         skip_check: str = "", output_format: str = "json",
                         additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute Checkov for infrastructure as code security scanning.
+        执行 Checkov 用于 infrastructure as code 安全 扫描.
 
-        Args:
-            directory: Directory to scan
-            framework: Framework to scan (terraform, cloudformation, kubernetes, etc.)
-            check: Specific check to run
-            skip_check: Check to skip
-            output_format: Output format (json, yaml, cli)
-            additional_args: Additional Checkov arguments
+        参数:
+            directory: 目录 到 扫描
+            framework: 框架 到 扫描 (terraform, cloudformation, kubernetes, etc.)
+            check: Specific 检查 到 run
+            skip_check: 检查 到 skip
+            output_format: 输出 format (JSON, yaml, cli)
+            additional_args: 附加 Checkov arguments
 
-        Returns:
-            Infrastructure as code security scanning results
+        返回:
+            Infrastructure as code 安全 扫描 结果
         """
         data = {
             "directory": directory,
@@ -800,18 +800,18 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
                           policy_type: str = "", output_format: str = "json",
                           severity: str = "", additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute Terrascan for infrastructure as code security scanning.
+        执行 Terrascan 用于 infrastructure as code 安全 扫描.
 
-        Args:
-            scan_type: Type of scan (all, terraform, k8s, etc.)
-            iac_dir: Infrastructure as code directory
-            policy_type: Policy type to use
-            output_format: Output format (json, yaml, xml)
-            severity: Severity filter (high, medium, low)
-            additional_args: Additional Terrascan arguments
+        参数:
+            scan_type: 类型 的 扫描 (全部, terraform, k8s, etc.)
+            iac_dir: Infrastructure as code 目录
+            policy_type: Policy 类型 到 use
+            output_format: 输出 format (JSON, yaml, xml)
+            severity: Severity filter (高, 中, 低)
+            additional_args: 附加 Terrascan arguments
 
-        Returns:
-            Infrastructure as code security scanning results
+        返回:
+            Infrastructure as code 安全 扫描 结果
         """
         data = {
             "scan_type": scan_type,
@@ -830,21 +830,21 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
         return result
 
     # ============================================================================
-    # FILE OPERATIONS & PAYLOAD GENERATION
+    # 文件 操作 & 载荷 GENERATION
     # ============================================================================
 
     @mcp.tool()
     def create_file(filename: str, content: str, binary: bool = False) -> Dict[str, Any]:
         """
-        Create a file with specified content on the HexStrike server.
+        创建 a 文件 使用 specified content 在 the HexStrike 服务端.
 
-        Args:
-            filename: Name of the file to create
-            content: Content to write to the file
-            binary: Whether the content is binary data
+        参数:
+            filename: Name 的 the 文件 到 创建
+            content: Content 到 write 到 the 文件
+            binary: Whether the content is 二进制 data
 
-        Returns:
-            File creation results
+        返回:
+            文件 creation 结果
         """
         data = {
             "filename": filename,
@@ -862,15 +862,15 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def modify_file(filename: str, content: str, append: bool = False) -> Dict[str, Any]:
         """
-        Modify an existing file on the HexStrike server.
+        Modify an existing 文件 在 the HexStrike 服务端.
 
-        Args:
-            filename: Name of the file to modify
-            content: Content to write or append
-            append: Whether to append to the file (True) or overwrite (False)
+        参数:
+            filename: Name 的 the 文件 到 modify
+            content: Content 到 write 或 append
+            append: Whether 到 append 到 the 文件 (True) 或 overwrite (False)
 
-        Returns:
-            File modification results
+        返回:
+            文件 modification 结果
         """
         data = {
             "filename": filename,
@@ -888,13 +888,13 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def delete_file(filename: str) -> Dict[str, Any]:
         """
-        Delete a file or directory on the HexStrike server.
+        删除 a 文件 或 目录 在 the HexStrike 服务端.
 
-        Args:
-            filename: Name of the file or directory to delete
+        参数:
+            filename: Name 的 the 文件 或 目录 到 删除
 
-        Returns:
-            File deletion results
+        返回:
+            文件 deletion 结果
         """
         data = {
             "filename": filename
@@ -910,13 +910,13 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def list_files(directory: str = ".") -> Dict[str, Any]:
         """
-        List files in a directory on the HexStrike server.
+        列出 文件 在 a 目录 在 the HexStrike 服务端.
 
-        Args:
-            directory: Directory to list (relative to server's base directory)
+        参数:
+            directory: 目录 到 列出 (relative 到 服务端's base 目录)
 
-        Returns:
-            Directory listing results
+        返回:
+            目录 listing 结果
         """
         logger.info(f" Listing files in directory: {directory}")
         result = hexstrike_client.safe_get("api/files/list", {"directory": directory})
@@ -930,16 +930,16 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def generate_payload(payload_type: str = "buffer", size: int = 1024, pattern: str = "A", filename: str = "") -> Dict[str, Any]:
         """
-        Generate large payloads for testing and exploitation.
+        生成 large payloads 用于 测试 与 exploitation.
 
-        Args:
-            payload_type: Type of payload (buffer, cyclic, random)
-            size: Size of the payload in bytes
-            pattern: Pattern to use for buffer payloads
-            filename: Custom filename (auto-generated if empty)
+        参数:
+            payload_type: 类型 的 载荷 (buffer, cyclic, random)
+            size: Size 的 the 载荷 在 bytes
+            pattern: Pattern 到 use 用于 buffer payloads
+            filename: Custom filename (auto-generated 如果 empty)
 
-        Returns:
-            Payload generation results
+        返回:
+            载荷 generation 结果
         """
         data = {
             "type": payload_type,
@@ -958,20 +958,20 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
         return result
 
     # ============================================================================
-    # PYTHON ENVIRONMENT MANAGEMENT
+    # 说明：PYTHON ENVIRONMENT MANAGEMENT
     # ============================================================================
 
     @mcp.tool()
     def install_python_package(package: str, env_name: str = "default") -> Dict[str, Any]:
         """
-        Install a Python package in a virtual environment on the HexStrike server.
+        安装 a Python package 在 a virtual environment 在 the HexStrike 服务端.
 
-        Args:
-            package: Name of the Python package to install
-            env_name: Name of the virtual environment
+        参数:
+            package: Name 的 the Python package 到 安装
+            env_name: Name 的 the virtual environment
 
-        Returns:
-            Package installation results
+        返回:
+            Package installation 结果
         """
         data = {
             "package": package,
@@ -988,15 +988,15 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def execute_python_script(script: str, env_name: str = "default", filename: str = "") -> Dict[str, Any]:
         """
-        Execute a Python script in a virtual environment on the HexStrike server.
+        执行 a Python script 在 a virtual environment 在 the HexStrike 服务端.
 
-        Args:
-            script: Python script content to execute
-            env_name: Name of the virtual environment
-            filename: Custom script filename (auto-generated if empty)
+        参数:
+            script: Python script content 到 执行
+            env_name: Name 的 the virtual environment
+            filename: Custom script filename (auto-generated 如果 empty)
 
-        Returns:
-            Script execution results
+        返回:
+            Script execution 结果
         """
         data = {
             "script": script,
@@ -1014,21 +1014,21 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
         return result
 
     # ============================================================================
-    # ADDITIONAL SECURITY TOOLS FROM ORIGINAL IMPLEMENTATION
+    # 附加 安全 工具 来自 ORIGINAL IMPLEMENTATION
     # ============================================================================
 
     @mcp.tool()
     def dirb_scan(url: str, wordlist: str = "/usr/share/wordlists/dirb/common.txt", additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute Dirb for directory brute forcing with enhanced logging.
+        执行 Dirb 用于 目录 brute forcing 使用 增强日志.
 
-        Args:
-            url: The target URL
-            wordlist: Path to wordlist file
-            additional_args: Additional Dirb arguments
+        参数:
+            url: The 目标 URL
+            wordlist: Path 到 wordlist 文件
+            additional_args: 附加 Dirb arguments
 
-        Returns:
-            Scan results with enhanced telemetry
+        返回:
+            扫描 结果 使用 增强 telemetry
         """
         data = {
             "url": url,
@@ -1046,14 +1046,14 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def nikto_scan(target: str, additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute Nikto web vulnerability scanner with enhanced logging.
+        执行 Nikto web 漏洞 scanner 使用 增强日志.
 
-        Args:
-            target: The target URL or IP
-            additional_args: Additional Nikto arguments
+        参数:
+            target: The 目标 URL 或 IP
+            additional_args: 附加 Nikto arguments
 
-        Returns:
-            Scan results with discovered vulnerabilities
+        返回:
+            扫描 结果 使用 discovered 漏洞
         """
         data = {
             "target": target,
@@ -1070,15 +1070,15 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def sqlmap_scan(url: str, data: str = "", additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute SQLMap for SQL injection testing with enhanced logging.
+        执行 SQLMap 用于 SQL injection 测试 使用 增强日志.
 
-        Args:
-            url: The target URL
-            data: POST data for testing
-            additional_args: Additional SQLMap arguments
+        参数:
+            url: The 目标 URL
+            data: POST data 用于 测试
+            additional_args: 附加 SQLMap arguments
 
-        Returns:
-            SQL injection test results
+        返回:
+            SQL injection 测试 结果
         """
         data_payload = {
             "url": url,
@@ -1096,14 +1096,14 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def metasploit_run(module: str, options: Dict[str, Any] = {}) -> Dict[str, Any]:
         """
-        Execute a Metasploit module with enhanced logging.
+        执行 a Metasploit module 使用 增强日志.
 
-        Args:
-            module: The Metasploit module to use
-            options: Dictionary of module options
+        参数:
+            module: The Metasploit module 到 use
+            options: Dictionary 的 module options
 
-        Returns:
-            Metasploit execution results
+        返回:
+            Metasploit execution 结果
         """
         data = {
             "module": module,
@@ -1128,19 +1128,19 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
         additional_args: str = ""
     ) -> Dict[str, Any]:
         """
-        Execute Hydra for password brute forcing with enhanced logging.
+        执行 Hydra 用于 password brute forcing 使用 增强日志.
 
-        Args:
-            target: The target IP or hostname
-            service: The service to attack (ssh, ftp, http, etc.)
-            username: Single username to test
-            username_file: File containing usernames
-            password: Single password to test
-            password_file: File containing passwords
-            additional_args: Additional Hydra arguments
+        参数:
+            target: The 目标 IP 或 hostname
+            service: The service 到 attack (ssh, ftp, HTTP, etc.)
+            username: Single username 到 测试
+            username_file: 文件 containing usernames
+            password: Single password 到 测试
+            password_file: 文件 containing passwords
+            additional_args: 附加 Hydra arguments
 
-        Returns:
-            Brute force attack results
+        返回:
+            Brute force attack 结果
         """
         data = {
             "target": target,
@@ -1167,16 +1167,16 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
         additional_args: str = ""
     ) -> Dict[str, Any]:
         """
-        Execute John the Ripper for password cracking with enhanced logging.
+        执行 John the Ripper 用于 password cracking 使用 增强日志.
 
-        Args:
-            hash_file: File containing password hashes
-            wordlist: Wordlist file to use
-            format_type: Hash format type
-            additional_args: Additional John arguments
+        参数:
+            hash_file: 文件 containing password hashes
+            wordlist: Wordlist 文件 到 use
+            format_type: Hash format 类型
+            additional_args: 附加 John arguments
 
-        Returns:
-            Password cracking results
+        返回:
+            Password cracking 结果
         """
         data = {
             "hash_file": hash_file,
@@ -1195,14 +1195,14 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def wpscan_analyze(url: str, additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute WPScan for WordPress vulnerability scanning with enhanced logging.
+        执行 WPScan 用于 WordPress 漏洞 扫描 使用 增强日志.
 
-        Args:
-            url: The WordPress site URL
-            additional_args: Additional WPScan arguments
+        参数:
+            url: 说明：The WordPress site URL
+            additional_args: 附加 WPScan arguments
 
-        Returns:
-            WordPress vulnerability scan results
+        返回:
+            WordPress 漏洞 扫描 结果
         """
         data = {
             "url": url,
@@ -1219,14 +1219,14 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def enum4linux_scan(target: str, additional_args: str = "-a") -> Dict[str, Any]:
         """
-        Execute Enum4linux for SMB enumeration with enhanced logging.
+        执行 Enum4linux 用于 SMB enumeration 使用 增强日志.
 
-        Args:
-            target: The target IP address
-            additional_args: Additional Enum4linux arguments
+        参数:
+            target: The 目标 IP address
+            additional_args: 附加 Enum4linux arguments
 
-        Returns:
-            SMB enumeration results
+        返回:
+            SMB enumeration 结果
         """
         data = {
             "target": target,
@@ -1243,17 +1243,17 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def ffuf_scan(url: str, wordlist: str = "/usr/share/wordlists/dirb/common.txt", mode: str = "directory", match_codes: str = "200,204,301,302,307,401,403", additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute FFuf for web fuzzing with enhanced logging.
+        执行 FFuf 用于 web fuzzing 使用 增强日志.
 
-        Args:
-            url: The target URL
-            wordlist: Wordlist file to use
-            mode: Fuzzing mode (directory, vhost, parameter)
-            match_codes: HTTP status codes to match
-            additional_args: Additional FFuf arguments
+        参数:
+            url: The 目标 URL
+            wordlist: Wordlist 文件 到 use
+            mode: Fuzzing 模式 (目录, vhost, 参数)
+            match_codes: HTTP 状态 codes 到 match
+            additional_args: 附加 FFuf arguments
 
-        Returns:
-            Web fuzzing results
+        返回:
+            Web fuzzing 结果
         """
         data = {
             "url": url,
@@ -1273,19 +1273,19 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def netexec_scan(target: str, protocol: str = "smb", username: str = "", password: str = "", hash_value: str = "", module: str = "", additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute NetExec (formerly CrackMapExec) for network enumeration with enhanced logging.
+        执行 NetExec (formerly CrackMapExec) 用于 网络 enumeration 使用 增强日志.
 
-        Args:
-            target: The target IP or network
-            protocol: Protocol to use (smb, ssh, winrm, etc.)
-            username: Username for authentication
-            password: Password for authentication
-            hash_value: Hash for pass-the-hash attacks
-            module: NetExec module to execute
-            additional_args: Additional NetExec arguments
+        参数:
+            target: The 目标 IP 或 网络
+            protocol: Protocol 到 use (smb, ssh, winrm, etc.)
+            username: Username 用于 认证
+            password: Password 用于 认证
+            hash_value: Hash 用于 pass-the-hash attacks
+            module: NetExec module 到 执行
+            additional_args: 附加 NetExec arguments
 
-        Returns:
-            Network enumeration results
+        返回:
+            网络 enumeration 结果
         """
         data = {
             "target": target,
@@ -1307,15 +1307,15 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def amass_scan(domain: str, mode: str = "enum", additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute Amass for subdomain enumeration with enhanced logging.
+        执行 Amass 用于 subdomain enumeration 使用 增强日志.
 
-        Args:
-            domain: The target domain
-            mode: Amass mode (enum, intel, viz)
-            additional_args: Additional Amass arguments
+        参数:
+            domain: The 目标 域名
+            mode: Amass 模式 (enum, intel, viz)
+            additional_args: 附加 Amass arguments
 
-        Returns:
-            Subdomain enumeration results
+        返回:
+            Subdomain enumeration 结果
         """
         data = {
             "domain": domain,
@@ -1333,18 +1333,18 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def hashcat_crack(hash_file: str, hash_type: str, attack_mode: str = "0", wordlist: str = "/usr/share/wordlists/rockyou.txt", mask: str = "", additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute Hashcat for advanced password cracking with enhanced logging.
+        执行 Hashcat 用于 高级 password cracking 使用 增强日志.
 
-        Args:
-            hash_file: File containing password hashes
-            hash_type: Hash type number for Hashcat
-            attack_mode: Attack mode (0=dict, 1=combo, 3=mask, etc.)
-            wordlist: Wordlist file for dictionary attacks
-            mask: Mask for mask attacks
-            additional_args: Additional Hashcat arguments
+        参数:
+            hash_file: 文件 containing password hashes
+            hash_type: Hash 类型 number 用于 Hashcat
+            attack_mode: Attack 模式 (0=dict, 1=combo, 3=mask, etc.)
+            wordlist: Wordlist 文件 用于 dictionary attacks
+            mask: Mask 用于 mask attacks
+            additional_args: 附加 Hashcat arguments
 
-        Returns:
-            Password cracking results
+        返回:
+            Password cracking 结果
         """
         data = {
             "hash_file": hash_file,
@@ -1365,16 +1365,16 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def subfinder_scan(domain: str, silent: bool = True, all_sources: bool = False, additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute Subfinder for passive subdomain enumeration with enhanced logging.
+        执行 Subfinder 用于 passive subdomain enumeration 使用 增强日志.
 
-        Args:
-            domain: The target domain
-            silent: Run in silent mode
-            all_sources: Use all sources
-            additional_args: Additional Subfinder arguments
+        参数:
+            domain: The 目标 域名
+            silent: Run 在 silent 模式
+            all_sources: Use 全部 sources
+            additional_args: 附加 Subfinder arguments
 
-        Returns:
-            Passive subdomain enumeration results
+        返回:
+            Passive subdomain enumeration 结果
         """
         data = {
             "domain": domain,
@@ -1393,17 +1393,17 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def smbmap_scan(target: str, username: str = "", password: str = "", domain: str = "", additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute SMBMap for SMB share enumeration with enhanced logging.
+        执行 SMBMap 用于 SMB share enumeration 使用 增强日志.
 
-        Args:
-            target: The target IP address
-            username: Username for authentication
-            password: Password for authentication
-            domain: Domain for authentication
-            additional_args: Additional SMBMap arguments
+        参数:
+            target: The 目标 IP address
+            username: Username 用于 认证
+            password: Password 用于 认证
+            domain: 域名 用于 认证
+            additional_args: 附加 SMBMap arguments
 
-        Returns:
-            SMB share enumeration results
+        返回:
+            SMB share enumeration 结果
         """
         data = {
             "target": target,
@@ -1421,7 +1421,7 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
         return result
 
     # ============================================================================
-    # ENHANCED NETWORK PENETRATION TESTING TOOLS (v6.0)
+    # 增强 网络 PENETRATION 测试 工具 (v6.0)
     # ============================================================================
 
     @mcp.tool()
@@ -1429,19 +1429,19 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
                           batch_size: int = 4500, timeout: int = 1500,
                           scripts: bool = False, additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute Rustscan for ultra-fast port scanning with enhanced logging.
+        执行 Rustscan 用于 ultra-fast port 扫描 使用 增强日志.
 
-        Args:
-            target: The target IP address or hostname
-            ports: Specific ports to scan (e.g., "22,80,443")
-            ulimit: File descriptor limit
-            batch_size: Batch size for scanning
-            timeout: Timeout in milliseconds
-            scripts: Run Nmap scripts on discovered ports
-            additional_args: Additional Rustscan arguments
+        参数:
+            target: The 目标 IP address 或 hostname
+            ports: Specific ports 到 扫描 (e.g., "22,80,443")
+            ulimit: 文件 descriptor limit
+            batch_size: Batch size 用于 扫描
+            timeout: 超时 在 milliseconds
+            scripts: Run Nmap scripts 在 discovered ports
+            additional_args: 附加 Rustscan arguments
 
-        Returns:
-            Ultra-fast port scanning results
+        返回:
+            Ultra-fast port 扫描 结果
         """
         data = {
             "target": target,
@@ -1465,20 +1465,20 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
                           interface: str = "", router_mac: str = "", source_ip: str = "",
                           banners: bool = False, additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute Masscan for high-speed Internet-scale port scanning with intelligent rate limiting.
+        执行 Masscan 用于 high-speed Internet-scale port 扫描 使用 智能 rate limiting.
 
-        Args:
-            target: The target IP address or CIDR range
-            ports: Port range to scan
-            rate: Packets per second rate
-            interface: Network interface to use
-            router_mac: Router MAC address
-            source_ip: Source IP address
-            banners: Enable banner grabbing
-            additional_args: Additional Masscan arguments
+        参数:
+            target: The 目标 IP address 或 CIDR range
+            ports: Port range 到 扫描
+            rate: Packets per 第二 rate
+            interface: 网络 接口 到 use
+            router_mac: 说明：Router MAC address
+            source_ip: 说明：Source IP address
+            banners: 启用 banner grabbing
+            additional_args: 附加 Masscan arguments
 
-        Returns:
-            High-speed port scanning results with intelligent rate limiting
+        返回:
+            High-speed port 扫描 结果 使用 智能 rate limiting
         """
         data = {
             "target": target,
@@ -1504,22 +1504,22 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
                           version_detection: bool = False, aggressive: bool = False,
                           stealth: bool = False, additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute advanced Nmap scans with custom NSE scripts and optimized timing.
+        执行 高级 Nmap scans 使用 custom NSE scripts 与 optimized timing.
 
-        Args:
-            target: The target IP address or hostname
-            scan_type: Nmap scan type (e.g., -sS, -sT, -sU)
-            ports: Specific ports to scan
-            timing: Timing template (T0-T5)
-            nse_scripts: Custom NSE scripts to run
-            os_detection: Enable OS detection
-            version_detection: Enable version detection
-            aggressive: Enable aggressive scanning
-            stealth: Enable stealth mode
-            additional_args: Additional Nmap arguments
+        参数:
+            target: The 目标 IP address 或 hostname
+            scan_type: Nmap 扫描 类型 (e.g., -sS, -sT, -sU)
+            ports: Specific ports 到 扫描
+            timing: 说明：Timing template (T0-T5)
+            nse_scripts: Custom NSE scripts 到 run
+            os_detection: 启用 OS detection
+            version_detection: 启用 version detection
+            aggressive: 启用 aggressive 扫描
+            stealth: 启用 stealth 模式
+            additional_args: 附加 Nmap arguments
 
-        Returns:
-            Advanced Nmap scanning results with custom NSE scripts
+        返回:
+            高级 Nmap 扫描 结果 使用 custom NSE scripts
         """
         data = {
             "target": target,
@@ -1547,19 +1547,19 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
                                heartbeat: int = 60, timeout: int = 300,
                                additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute AutoRecon for comprehensive automated reconnaissance.
+        执行 AutoRecon 用于 综合 automated 侦察.
 
-        Args:
-            target: The target IP address or hostname
-            output_dir: Output directory for results
-            port_scans: Port scan configuration
-            service_scans: Service scan configuration
-            heartbeat: Heartbeat interval in seconds
-            timeout: Timeout for individual scans
-            additional_args: Additional AutoRecon arguments
+        参数:
+            target: The 目标 IP address 或 hostname
+            output_dir: 输出 目录 用于 结果
+            port_scans: Port 扫描 配置
+            service_scans: Service 扫描 配置
+            heartbeat: Heartbeat interval 在 seconds
+            timeout: 超时 用于 individual scans
+            additional_args: 附加 AutoRecon arguments
 
-        Returns:
-            Comprehensive automated reconnaissance results
+        返回:
+            综合 automated 侦察 结果
         """
         data = {
             "target": target,
@@ -1584,21 +1584,21 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
                                groups: bool = True, policy: bool = True,
                                additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute Enum4linux-ng for advanced SMB enumeration with enhanced logging.
+        执行 Enum4linux-ng 用于 高级 SMB enumeration 使用 增强日志.
 
-        Args:
-            target: The target IP address
-            username: Username for authentication
-            password: Password for authentication
-            domain: Domain for authentication
-            shares: Enumerate shares
-            users: Enumerate users
-            groups: Enumerate groups
-            policy: Enumerate policies
-            additional_args: Additional Enum4linux-ng arguments
+        参数:
+            target: The 目标 IP address
+            username: Username 用于 认证
+            password: Password 用于 认证
+            domain: 域名 用于 认证
+            shares: 说明：Enumerate shares
+            users: 说明：Enumerate users
+            groups: 说明：Enumerate groups
+            policy: 说明：Enumerate policies
+            additional_args: 附加 Enum4linux-ng arguments
 
-        Returns:
-            Advanced SMB enumeration results
+        返回:
+            高级 SMB enumeration 结果
         """
         data = {
             "target": target,
@@ -1624,18 +1624,18 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
                              domain: str = "", commands: str = "enumdomusers;enumdomgroups;querydominfo",
                              additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute rpcclient for RPC enumeration with enhanced logging.
+        执行 rpcclient 用于 RPC enumeration 使用 增强日志.
 
-        Args:
-            target: The target IP address
-            username: Username for authentication
-            password: Password for authentication
-            domain: Domain for authentication
-            commands: Semicolon-separated RPC commands
-            additional_args: Additional rpcclient arguments
+        参数:
+            target: The 目标 IP address
+            username: Username 用于 认证
+            password: Password 用于 认证
+            domain: 域名 用于 认证
+            commands: Semicolon-separated RPC 命令
+            additional_args: 附加 rpcclient arguments
 
-        Returns:
-            RPC enumeration results
+        返回:
+            RPC enumeration 结果
         """
         data = {
             "target": target,
@@ -1657,16 +1657,16 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     def nbtscan_netbios(target: str, verbose: bool = False, timeout: int = 2,
                        additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute nbtscan for NetBIOS name scanning with enhanced logging.
+        执行 nbtscan 用于 NetBIOS name 扫描 使用 增强日志.
 
-        Args:
-            target: The target IP address or range
-            verbose: Enable verbose output
-            timeout: Timeout in seconds
-            additional_args: Additional nbtscan arguments
+        参数:
+            target: The 目标 IP address 或 range
+            verbose: 启用 verbose 输出
+            timeout: 超时 在 seconds
+            additional_args: 附加 nbtscan arguments
 
-        Returns:
-            NetBIOS name scanning results
+        返回:
+            NetBIOS name 扫描 结果
         """
         data = {
             "target": target,
@@ -1686,18 +1686,18 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     def arp_scan_discovery(target: str = "", interface: str = "", local_network: bool = False,
                           timeout: int = 500, retry: int = 3, additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute arp-scan for network discovery with enhanced logging.
+        执行 arp-扫描 用于 网络 发现 使用 增强日志.
 
-        Args:
-            target: The target IP range (if not using local_network)
-            interface: Network interface to use
-            local_network: Scan local network
-            timeout: Timeout in milliseconds
-            retry: Number of retries
-            additional_args: Additional arp-scan arguments
+        参数:
+            target: The 目标 IP range (如果 not using local_network)
+            interface: 网络 接口 到 use
+            local_network: 扫描 本地 网络
+            timeout: 超时 在 milliseconds
+            retry: Number 的 retries
+            additional_args: 附加 arp-扫描 arguments
 
-        Returns:
-            Network discovery results via ARP scanning
+        返回:
+            网络 发现 结果 via ARP 扫描
         """
         data = {
             "target": target,
@@ -1721,19 +1721,19 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
                                    fingerprint: bool = False, duration: int = 300,
                                    additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute Responder for credential harvesting with enhanced logging.
+        执行 Responder 凭据采集，并启用增强日志。
 
-        Args:
-            interface: Network interface to use
-            analyze: Analyze mode only
-            wpad: Enable WPAD rogue proxy
-            force_wpad_auth: Force WPAD authentication
-            fingerprint: Fingerprint mode
-            duration: Duration to run in seconds
-            additional_args: Additional Responder arguments
+        参数:
+            interface: 使用的网络接口
+            analyze: 仅分析模式
+            wpad: 启用 WPAD 伪代理
+            force_wpad_auth: 强制进行 WPAD 认证
+            fingerprint: 启用指纹模式
+            duration: 运行时长（秒）
+            additional_args: 额外的 Responder 参数
 
-        Returns:
-            Credential harvesting results
+        返回:
+            凭据采集结果
         """
         data = {
             "interface": interface,
@@ -1755,16 +1755,16 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def volatility_analyze(memory_file: str, plugin: str, profile: str = "", additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute Volatility for memory forensics analysis with enhanced logging.
+        执行 Volatility 用于 内存 取证 分析 使用 增强日志.
 
-        Args:
-            memory_file: Path to memory dump file
-            plugin: Volatility plugin to use
-            profile: Memory profile to use
-            additional_args: Additional Volatility arguments
+        参数:
+            memory_file: Path 到 内存 dump 文件
+            plugin: Volatility plugin 到 use
+            profile: 内存 profile 到 use
+            additional_args: 附加 Volatility arguments
 
-        Returns:
-            Memory forensics analysis results
+        返回:
+            内存 取证 分析 结果
         """
         data = {
             "memory_file": memory_file,
@@ -1783,18 +1783,18 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def msfvenom_generate(payload: str, format_type: str = "", output_file: str = "", encoder: str = "", iterations: str = "", additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute MSFVenom for payload generation with enhanced logging.
+        执行 MSFVenom 用于 载荷 generation 使用 增强日志.
 
-        Args:
-            payload: The payload to generate
-            format_type: Output format (exe, elf, raw, etc.)
-            output_file: Output file path
-            encoder: Encoder to use
-            iterations: Number of encoding iterations
-            additional_args: Additional MSFVenom arguments
+        参数:
+            payload: The 载荷 到 生成
+            format_type: 输出 format (exe, elf, raw, etc.)
+            output_file: 输出 文件 path
+            encoder: Encoder 到 use
+            iterations: Number 的 encoding iterations
+            additional_args: 附加 MSFVenom arguments
 
-        Returns:
-            Payload generation results
+        返回:
+            载荷 generation 结果
         """
         data = {
             "payload": payload,
@@ -1813,22 +1813,22 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
         return result
 
     # ============================================================================
-    # BINARY ANALYSIS & REVERSE ENGINEERING TOOLS
+    # 二进制 分析 & 逆向工程 工具
     # ============================================================================
 
     @mcp.tool()
     def gdb_analyze(binary: str, commands: str = "", script_file: str = "", additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute GDB for binary analysis and debugging with enhanced logging.
+        执行 GDB 用于 二进制 分析 与 debugging 使用 增强日志.
 
-        Args:
-            binary: Path to the binary file
-            commands: GDB commands to execute
-            script_file: Path to GDB script file
-            additional_args: Additional GDB arguments
+        参数:
+            binary: Path 到 the 二进制 文件
+            commands: GDB 命令 到 执行
+            script_file: Path 到 GDB script 文件
+            additional_args: 附加 GDB arguments
 
-        Returns:
-            Binary analysis results
+        返回:
+            二进制 分析 结果
         """
         data = {
             "binary": binary,
@@ -1847,15 +1847,15 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def radare2_analyze(binary: str, commands: str = "", additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute Radare2 for binary analysis and reverse engineering with enhanced logging.
+        执行 Radare2 用于 二进制 分析 与 逆向工程 使用 增强日志.
 
-        Args:
-            binary: Path to the binary file
-            commands: Radare2 commands to execute
-            additional_args: Additional Radare2 arguments
+        参数:
+            binary: Path 到 the 二进制 文件
+            commands: Radare2 命令 到 执行
+            additional_args: 附加 Radare2 arguments
 
-        Returns:
-            Binary analysis results
+        返回:
+            二进制 分析 结果
         """
         data = {
             "binary": binary,
@@ -1873,15 +1873,15 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def binwalk_analyze(file_path: str, extract: bool = False, additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute Binwalk for firmware and file analysis with enhanced logging.
+        执行 Binwalk 用于 firmware 与 文件 分析 使用 增强日志.
 
-        Args:
-            file_path: Path to the file to analyze
-            extract: Whether to extract discovered files
-            additional_args: Additional Binwalk arguments
+        参数:
+            file_path: Path 到 the 文件 到 分析
+            extract: Whether 到 extract discovered 文件
+            additional_args: 附加 Binwalk arguments
 
-        Returns:
-            Firmware analysis results
+        返回:
+            Firmware 分析 结果
         """
         data = {
             "file_path": file_path,
@@ -1899,15 +1899,15 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def ropgadget_search(binary: str, gadget_type: str = "", additional_args: str = "") -> Dict[str, Any]:
         """
-        Search for ROP gadgets in a binary using ROPgadget with enhanced logging.
+        Search 用于 ROP gadgets 在 a 二进制 using ROPgadget 使用 增强日志.
 
-        Args:
-            binary: Path to the binary file
-            gadget_type: Type of gadgets to search for
-            additional_args: Additional ROPgadget arguments
+        参数:
+            binary: Path 到 the 二进制 文件
+            gadget_type: 类型 的 gadgets 到 search 用于
+            additional_args: 附加 ROPgadget arguments
 
-        Returns:
-            ROP gadget search results
+        返回:
+            ROP gadget search 结果
         """
         data = {
             "binary": binary,
@@ -1925,13 +1925,13 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def checksec_analyze(binary: str) -> Dict[str, Any]:
         """
-        Check security features of a binary with enhanced logging.
+        检查 安全 features 的 a 二进制 使用 增强日志.
 
-        Args:
-            binary: Path to the binary file
+        参数:
+            binary: Path 到 the 二进制 文件
 
-        Returns:
-            Security features analysis results
+        返回:
+            安全 features 分析 结果
         """
         data = {
             "binary": binary
@@ -1947,16 +1947,16 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def xxd_hexdump(file_path: str, offset: str = "0", length: str = "", additional_args: str = "") -> Dict[str, Any]:
         """
-        Create a hex dump of a file using xxd with enhanced logging.
+        创建 a hex dump 的 a 文件 using xxd 使用 增强日志.
 
-        Args:
-            file_path: Path to the file
-            offset: Offset to start reading from
-            length: Number of bytes to read
-            additional_args: Additional xxd arguments
+        参数:
+            file_path: Path 到 the 文件
+            offset: Offset 到 start reading 来自
+            length: Number 的 bytes 到 read
+            additional_args: 附加 xxd arguments
 
-        Returns:
-            Hex dump results
+        返回:
+            Hex dump 结果
         """
         data = {
             "file_path": file_path,
@@ -1975,15 +1975,15 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def strings_extract(file_path: str, min_len: int = 4, additional_args: str = "") -> Dict[str, Any]:
         """
-        Extract strings from a binary file with enhanced logging.
+        Extract strings 来自 a 二进制 文件 使用 增强日志.
 
-        Args:
-            file_path: Path to the file
-            min_len: Minimum string length
-            additional_args: Additional strings arguments
+        参数:
+            file_path: Path 到 the 文件
+            min_len: 说明：Minimum string length
+            additional_args: 附加 strings arguments
 
-        Returns:
-            String extraction results
+        返回:
+            String extraction 结果
         """
         data = {
             "file_path": file_path,
@@ -2001,15 +2001,15 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def objdump_analyze(binary: str, disassemble: bool = True, additional_args: str = "") -> Dict[str, Any]:
         """
-        Analyze a binary using objdump with enhanced logging.
+        分析 a 二进制 using objdump 使用 增强日志.
 
-        Args:
-            binary: Path to the binary file
-            disassemble: Whether to disassemble the binary
-            additional_args: Additional objdump arguments
+        参数:
+            binary: Path 到 the 二进制 文件
+            disassemble: Whether 到 disassemble the 二进制
+            additional_args: 附加 objdump arguments
 
-        Returns:
-            Binary analysis results
+        返回:
+            二进制 分析 结果
         """
         data = {
             "binary": binary,
@@ -2025,7 +2025,7 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
         return result
 
     # ============================================================================
-    # ENHANCED BINARY ANALYSIS AND EXPLOITATION FRAMEWORK (v6.0)
+    # 增强 二进制 分析 与 EXPLOITATION 框架 (v6.0)
     # ============================================================================
 
     @mcp.tool()
@@ -2033,18 +2033,18 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
                        script_file: str = "", analysis_timeout: int = 300,
                        output_format: str = "xml", additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute Ghidra for advanced binary analysis and reverse engineering.
+        执行 Ghidra 用于 高级 二进制 分析 与 逆向工程.
 
-        Args:
-            binary: Path to the binary file
-            project_name: Ghidra project name
-            script_file: Custom Ghidra script to run
-            analysis_timeout: Analysis timeout in seconds
-            output_format: Output format (xml, json)
-            additional_args: Additional Ghidra arguments
+        参数:
+            binary: Path 到 the 二进制 文件
+            project_name: 说明：Ghidra project name
+            script_file: Custom Ghidra script 到 run
+            analysis_timeout: 分析 超时 在 seconds
+            output_format: 输出 format (xml, JSON)
+            additional_args: 附加 Ghidra arguments
 
-        Returns:
-            Advanced binary analysis results from Ghidra
+        返回:
+            高级 二进制 分析 结果 来自 Ghidra
         """
         data = {
             "binary": binary,
@@ -2067,18 +2067,18 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
                         target_host: str = "", target_port: int = 0,
                         exploit_type: str = "local", additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute Pwntools for exploit development and automation.
+        执行 Pwntools 用于 利用 development 与 automation.
 
-        Args:
-            script_content: Python script content using pwntools
-            target_binary: Local binary to exploit
-            target_host: Remote host to connect to
-            target_port: Remote port to connect to
-            exploit_type: Type of exploit (local, remote, format_string, rop)
-            additional_args: Additional arguments
+        参数:
+            script_content: 说明：Python script content using pwntools
+            target_binary: 本地 二进制 到 利用
+            target_host: Remote host 到 connect 到
+            target_port: Remote port 到 connect 到
+            exploit_type: 类型 的 利用 (本地, remote, format_string, rop)
+            additional_args: 附加 arguments
 
-        Returns:
-            Exploit execution results
+        返回:
+            利用 execution 结果
         """
         data = {
             "script_content": script_content,
@@ -2099,15 +2099,15 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def one_gadget_search(libc_path: str, level: int = 1, additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute one_gadget to find one-shot RCE gadgets in libc.
+        执行 one_gadget 到 find one-shot RCE gadgets 在 libc.
 
-        Args:
-            libc_path: Path to libc binary
-            level: Constraint level (0, 1, 2)
-            additional_args: Additional one_gadget arguments
+        参数:
+            libc_path: Path 到 libc 二进制
+            level: 说明：Constraint level (0, 1, 2)
+            additional_args: 附加 one_gadget arguments
 
-        Returns:
-            One-shot RCE gadget search results
+        返回:
+            One-shot RCE gadget search 结果
         """
         data = {
             "libc_path": libc_path,
@@ -2126,16 +2126,16 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     def libc_database_lookup(action: str = "find", symbols: str = "",
                             libc_id: str = "", additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute libc-database for libc identification and offset lookup.
+        执行 libc-database 用于 libc identification 与 offset lookup.
 
-        Args:
-            action: Action to perform (find, dump, download)
-            symbols: Symbols with offsets for find action (format: "symbol1:offset1 symbol2:offset2")
-            libc_id: Libc ID for dump/download actions
-            additional_args: Additional arguments
+        参数:
+            action: Action 到 perform (find, dump, download)
+            symbols: Symbols 使用 offsets 用于 find action (format: "symbol1:offset1 symbol2:offset2")
+            libc_id: Libc ID 用于 dump/download actions
+            additional_args: 附加 arguments
 
-        Returns:
-            Libc database lookup results
+        返回:
+            Libc database lookup 结果
         """
         data = {
             "action": action,
@@ -2155,17 +2155,17 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     def gdb_peda_debug(binary: str = "", commands: str = "", attach_pid: int = 0,
                       core_file: str = "", additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute GDB with PEDA for enhanced debugging and exploitation.
+        执行 GDB 使用 PEDA 用于 增强 debugging 与 exploitation.
 
-        Args:
-            binary: Binary to debug
-            commands: GDB commands to execute
-            attach_pid: Process ID to attach to
-            core_file: Core dump file to analyze
-            additional_args: Additional GDB arguments
+        参数:
+            binary: 二进制 到 debug
+            commands: GDB 命令 到 执行
+            attach_pid: 进程 ID 到 attach 到
+            core_file: Core dump 文件 到 分析
+            additional_args: 附加 GDB arguments
 
-        Returns:
-            Enhanced debugging results with PEDA
+        返回:
+            增强 debugging 结果 使用 PEDA
         """
         data = {
             "binary": binary,
@@ -2187,18 +2187,18 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
                                find_address: str = "", avoid_addresses: str = "",
                                analysis_type: str = "symbolic", additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute angr for symbolic execution and binary analysis.
+        执行 angr 用于 symbolic execution 与 二进制 分析.
 
-        Args:
-            binary: Binary to analyze
-            script_content: Custom angr script content
-            find_address: Address to find during symbolic execution
-            avoid_addresses: Comma-separated addresses to avoid
-            analysis_type: Type of analysis (symbolic, cfg, static)
-            additional_args: Additional arguments
+        参数:
+            binary: 二进制 到 分析
+            script_content: 说明：Custom angr script content
+            find_address: Address 到 find during symbolic execution
+            avoid_addresses: Comma-separated addresses 到 avoid
+            analysis_type: 类型 的 分析 (symbolic, cfg, static)
+            additional_args: 附加 arguments
 
-        Returns:
-            Symbolic execution and binary analysis results
+        返回:
+            Symbolic execution 与 二进制 分析 结果
         """
         data = {
             "binary": binary,
@@ -2221,18 +2221,18 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
                             arch: str = "", search_string: str = "",
                             additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute ropper for advanced ROP/JOP gadget searching.
+        执行 ropper 用于 高级 ROP/JOP gadget searching.
 
-        Args:
-            binary: Binary to search for gadgets
-            gadget_type: Type of gadgets (rop, jop, sys, all)
-            quality: Gadget quality level (1-5)
-            arch: Target architecture (x86, x86_64, arm, etc.)
-            search_string: Specific gadget pattern to search for
-            additional_args: Additional ropper arguments
+        参数:
+            binary: 二进制 到 search 用于 gadgets
+            gadget_type: 类型 的 gadgets (rop, jop, sys, 全部)
+            quality: 说明：Gadget quality level (1-5)
+            arch: 目标 architecture (x86, x86_64, arm, etc.)
+            search_string: Specific gadget pattern 到 search 用于
+            additional_args: 附加 ropper arguments
 
-        Returns:
-            Advanced ROP/JOP gadget search results
+        返回:
+            高级 ROP/JOP gadget search 结果
         """
         data = {
             "binary": binary,
@@ -2254,17 +2254,17 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     def pwninit_setup(binary: str, libc: str = "", ld: str = "",
                      template_type: str = "python", additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute pwninit for CTF binary exploitation setup.
+        执行 pwninit 用于 CTF 二进制 exploitation 初始化.
 
-        Args:
-            binary: Binary file to set up
-            libc: Libc file to use
-            ld: Loader file to use
-            template_type: Template type (python, c)
-            additional_args: Additional pwninit arguments
+        参数:
+            binary: 二进制 文件 到 设置 up
+            libc: Libc 文件 到 use
+            ld: Loader 文件 到 use
+            template_type: Template 类型 (python, c)
+            additional_args: 附加 pwninit arguments
 
-        Returns:
-            CTF binary exploitation setup results
+        返回:
+            CTF 二进制 exploitation 初始化 结果
         """
         data = {
             "binary": binary,
@@ -2284,16 +2284,16 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def feroxbuster_scan(url: str, wordlist: str = "/usr/share/wordlists/dirb/common.txt", threads: int = 10, additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute Feroxbuster for recursive content discovery with enhanced logging.
+        执行 Feroxbuster 用于 recursive content 发现 使用 增强日志.
 
-        Args:
-            url: The target URL
-            wordlist: Wordlist file to use
-            threads: Number of threads
-            additional_args: Additional Feroxbuster arguments
+        参数:
+            url: The 目标 URL
+            wordlist: Wordlist 文件 到 use
+            threads: Number 的 threads
+            additional_args: 附加 Feroxbuster arguments
 
-        Returns:
-            Content discovery results
+        返回:
+            Content 发现 结果
         """
         data = {
             "url": url,
@@ -2312,15 +2312,15 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def dotdotpwn_scan(target: str, module: str = "http", additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute DotDotPwn for directory traversal testing with enhanced logging.
+        执行 DotDotPwn 用于 目录 traversal 测试 使用 增强日志.
 
-        Args:
-            target: The target hostname or IP
-            module: Module to use (http, ftp, tftp, etc.)
-            additional_args: Additional DotDotPwn arguments
+        参数:
+            target: The 目标 hostname 或 IP
+            module: Module 到 use (HTTP, ftp, tftp, etc.)
+            additional_args: 附加 DotDotPwn arguments
 
-        Returns:
-            Directory traversal test results
+        返回:
+            目录 traversal 测试 结果
         """
         data = {
             "target": target,
@@ -2338,15 +2338,15 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def xsser_scan(url: str, params: str = "", additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute XSSer for XSS vulnerability testing with enhanced logging.
+        执行 XSSer 用于 XSS 漏洞 测试 使用 增强日志.
 
-        Args:
-            url: The target URL
-            params: Parameters to test
-            additional_args: Additional XSSer arguments
+        参数:
+            url: The 目标 URL
+            params: 参数 到 测试
+            additional_args: 附加 XSSer arguments
 
-        Returns:
-            XSS vulnerability test results
+        返回:
+            XSS 漏洞 测试 结果
         """
         data = {
             "url": url,
@@ -2364,15 +2364,15 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def wfuzz_scan(url: str, wordlist: str = "/usr/share/wordlists/dirb/common.txt", additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute Wfuzz for web application fuzzing with enhanced logging.
+        执行 Wfuzz 用于 web application fuzzing 使用 增强日志.
 
-        Args:
-            url: The target URL (use FUZZ where you want to inject payloads)
-            wordlist: Wordlist file to use
-            additional_args: Additional Wfuzz arguments
+        参数:
+            url: The 目标 URL (use FUZZ where you want 到 inject payloads)
+            wordlist: Wordlist 文件 到 use
+            additional_args: 附加 Wfuzz arguments
 
-        Returns:
-            Web application fuzzing results
+        返回:
+            Web application fuzzing 结果
         """
         data = {
             "url": url,
@@ -2388,7 +2388,7 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
         return result
 
     # ============================================================================
-    # ENHANCED WEB APPLICATION SECURITY TOOLS (v6.0)
+    # 增强 WEB APPLICATION 安全 工具 (v6.0)
     # ============================================================================
 
     @mcp.tool()
@@ -2396,18 +2396,18 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
                       wordlist: str = "/usr/share/wordlists/dirsearch/common.txt",
                       threads: int = 30, recursive: bool = False, additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute Dirsearch for advanced directory and file discovery with enhanced logging.
+        执行 Dirsearch 用于 高级 目录 与 文件 发现 使用 增强日志.
 
-        Args:
-            url: The target URL
-            extensions: File extensions to search for
-            wordlist: Wordlist file to use
-            threads: Number of threads to use
-            recursive: Enable recursive scanning
-            additional_args: Additional Dirsearch arguments
+        参数:
+            url: The 目标 URL
+            extensions: 文件 extensions 到 search 用于
+            wordlist: Wordlist 文件 到 use
+            threads: Number 的 threads 到 use
+            recursive: 启用 recursive 扫描
+            additional_args: 附加 Dirsearch arguments
 
-        Returns:
-            Advanced directory discovery results
+        返回:
+            高级 目录 发现 结果
         """
         data = {
             "url": url,
@@ -2430,18 +2430,18 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
                     form_extraction: bool = True, output_format: str = "json",
                     additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute Katana for next-generation crawling and spidering with enhanced logging.
+        执行 Katana 用于 next-generation crawling 与 spidering 使用 增强日志.
 
-        Args:
-            url: The target URL to crawl
-            depth: Crawling depth
-            js_crawl: Enable JavaScript crawling
-            form_extraction: Enable form extraction
-            output_format: Output format (json, txt)
-            additional_args: Additional Katana arguments
+        参数:
+            url: The 目标 URL 到 crawl
+            depth: 说明：Crawling depth
+            js_crawl: 启用 JavaScript crawling
+            form_extraction: 启用 form extraction
+            output_format: 输出 format (JSON, txt)
+            additional_args: 附加 Katana arguments
 
-        Returns:
-            Advanced web crawling results with endpoints and forms
+        返回:
+            高级 web crawling 结果 使用 端点 与 forms
         """
         data = {
             "url": url,
@@ -2464,17 +2464,17 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
                      include_subs: bool = True, blacklist: str = "png,jpg,gif,jpeg,swf,woff,svg,pdf,css,ico",
                      additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute Gau (Get All URLs) for URL discovery from multiple sources with enhanced logging.
+        执行 Gau (获取 全部 URLs) 用于 URL 发现 来自 multiple sources 使用 增强日志.
 
-        Args:
-            domain: The target domain
-            providers: Data providers to use
-            include_subs: Include subdomains
-            blacklist: File extensions to blacklist
-            additional_args: Additional Gau arguments
+        参数:
+            domain: The 目标 域名
+            providers: Data providers 到 use
+            include_subs: 说明：Include subdomains
+            blacklist: 文件 extensions 到 blacklist
+            additional_args: 附加 Gau arguments
 
-        Returns:
-            Comprehensive URL discovery results from multiple sources
+        返回:
+            综合 URL 发现 结果 来自 multiple sources
         """
         data = {
             "domain": domain,
@@ -2495,16 +2495,16 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     def waybackurls_discovery(domain: str, get_versions: bool = False,
                              no_subs: bool = False, additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute Waybackurls for historical URL discovery with enhanced logging.
+        执行 Waybackurls 用于 historical URL 发现 使用 增强日志.
 
-        Args:
-            domain: The target domain
-            get_versions: Get all versions of URLs
-            no_subs: Don't include subdomains
-            additional_args: Additional Waybackurls arguments
+        参数:
+            domain: The 目标 域名
+            get_versions: 获取 全部 versions 的 URLs
+            no_subs: 说明：Don't include subdomains
+            additional_args: 附加 Waybackurls arguments
 
-        Returns:
-            Historical URL discovery results from Wayback Machine
+        返回:
+            Historical URL 发现 结果 来自 Wayback Machine
         """
         data = {
             "domain": domain,
@@ -2525,19 +2525,19 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
                                  delay: int = 0, threads: int = 25, stable: bool = False,
                                  additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute Arjun for HTTP parameter discovery with enhanced logging.
+        执行 Arjun 用于 HTTP 参数 发现 使用 增强日志.
 
-        Args:
-            url: The target URL
-            method: HTTP method to use
-            wordlist: Custom wordlist file
-            delay: Delay between requests
-            threads: Number of threads
-            stable: Use stable mode
-            additional_args: Additional Arjun arguments
+        参数:
+            url: The 目标 URL
+            method: HTTP method 到 use
+            wordlist: Custom wordlist 文件
+            delay: Delay between 请求
+            threads: Number 的 threads
+            stable: Use stable 模式
+            additional_args: 附加 Arjun arguments
 
-        Returns:
-            HTTP parameter discovery results
+        返回:
+            HTTP 参数 发现 结果
         """
         data = {
             "url": url,
@@ -2561,17 +2561,17 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
                           exclude: str = "png,jpg,gif,jpeg,swf,woff,svg,pdf,css,ico",
                           output: str = "", additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute ParamSpider for parameter mining from web archives with enhanced logging.
+        执行 ParamSpider 用于 参数 mining 来自 web archives 使用 增强日志.
 
-        Args:
-            domain: The target domain
-            level: Mining level depth
-            exclude: File extensions to exclude
-            output: Output file path
-            additional_args: Additional ParamSpider arguments
+        参数:
+            domain: The 目标 域名
+            level: 说明：Mining level depth
+            exclude: 文件 extensions 到 exclude
+            output: 输出 文件 path
+            additional_args: 附加 ParamSpider arguments
 
-        Returns:
-            Parameter mining results from web archives
+        返回:
+            参数 mining 结果 来自 web archives
         """
         data = {
             "domain": domain,
@@ -2593,18 +2593,18 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
                               method: str = "GET", body: str = "", headers: str = "",
                               additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute x8 for hidden parameter discovery with enhanced logging.
+        执行 x8 用于 hidden 参数 发现 使用 增强日志.
 
-        Args:
-            url: The target URL
-            wordlist: Parameter wordlist
-            method: HTTP method
-            body: Request body
-            headers: Custom headers
-            additional_args: Additional x8 arguments
+        参数:
+            url: The 目标 URL
+            wordlist: 参数 wordlist
+            method: 说明：HTTP method
+            body: 请求 body
+            headers: Custom 请求头
+            additional_args: 附加 x8 arguments
 
-        Returns:
-            Hidden parameter discovery results
+        返回:
+            Hidden 参数 发现 结果
         """
         data = {
             "url": url,
@@ -2627,18 +2627,18 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
                                  threads: int = 20, timeout: int = 20,
                                  additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute Jaeles for advanced vulnerability scanning with custom signatures.
+        执行 Jaeles 用于 高级 漏洞 扫描 使用 custom signatures.
 
-        Args:
-            url: The target URL
-            signatures: Custom signature path
-            config: Configuration file
-            threads: Number of threads
-            timeout: Request timeout
-            additional_args: Additional Jaeles arguments
+        参数:
+            url: The 目标 URL
+            signatures: 说明：Custom signature path
+            config: 配置 文件
+            threads: Number 的 threads
+            timeout: 请求 超时
+            additional_args: 附加 Jaeles arguments
 
-        Returns:
-            Advanced vulnerability scanning results with custom signatures
+        返回:
+            高级 漏洞 扫描 结果 使用 custom signatures
         """
         data = {
             "url": url,
@@ -2661,19 +2661,19 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
                        mining_dom: bool = True, mining_dict: bool = True,
                        custom_payload: str = "", additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute Dalfox for advanced XSS vulnerability scanning with enhanced logging.
+        执行 Dalfox 用于 高级 XSS 漏洞 扫描 使用 增强日志.
 
-        Args:
-            url: The target URL
-            pipe_mode: Use pipe mode for input
-            blind: Enable blind XSS testing
-            mining_dom: Enable DOM mining
-            mining_dict: Enable dictionary mining
-            custom_payload: Custom XSS payload
-            additional_args: Additional Dalfox arguments
+        参数:
+            url: The 目标 URL
+            pipe_mode: Use pipe 模式 用于 输入
+            blind: 启用 blind XSS 测试
+            mining_dom: 启用 DOM mining
+            mining_dict: 启用 dictionary mining
+            custom_payload: Custom XSS 载荷
+            additional_args: 附加 Dalfox arguments
 
-        Returns:
-            Advanced XSS vulnerability scanning results
+        返回:
+            高级 XSS 漏洞 扫描 结果
         """
         data = {
             "url": url,
@@ -2698,21 +2698,21 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
                    title: bool = False, web_server: bool = False, threads: int = 50,
                    additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute httpx for fast HTTP probing and technology detection.
+        执行 httpx 用于 fast HTTP probing 与 technology detection.
 
-        Args:
-            target: Target file or single URL
-            probe: Enable probing
-            tech_detect: Enable technology detection
-            status_code: Show status codes
-            content_length: Show content length
-            title: Show page titles
-            web_server: Show web server
-            threads: Number of threads
-            additional_args: Additional httpx arguments
+        参数:
+            target: 目标 文件 或 single URL
+            probe: 启用 probing
+            tech_detect: 启用 technology detection
+            status_code: Show 状态 codes
+            content_length: 说明：Show content length
+            title: 说明：Show page titles
+            web_server: Show web 服务端
+            threads: Number 的 threads
+            additional_args: 附加 httpx arguments
 
-        Returns:
-            Fast HTTP probing results with technology detection
+        返回:
+            Fast HTTP probing 结果 使用 technology detection
         """
         data = {
             "target": target,
@@ -2737,15 +2737,15 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     def anew_data_processing(input_data: str, output_file: str = "",
                             additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute anew for appending new lines to files (useful for data processing).
+        执行 anew 用于 appending new lines 到 文件 (useful 用于 data processing).
 
-        Args:
-            input_data: Input data to process
-            output_file: Output file path
-            additional_args: Additional anew arguments
+        参数:
+            input_data: 输入 data 到 进程
+            output_file: 输出 文件 path
+            additional_args: 附加 anew arguments
 
-        Returns:
-            Data processing results with unique line filtering
+        返回:
+            Data processing 结果 使用 unique line filtering
         """
         data = {
             "input_data": input_data,
@@ -2764,15 +2764,15 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     def qsreplace_parameter_replacement(urls: str, replacement: str = "FUZZ",
                                        additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute qsreplace for query string parameter replacement.
+        执行 qsreplace 用于 query string 参数 replacement.
 
-        Args:
-            urls: URLs to process
-            replacement: Replacement string for parameters
-            additional_args: Additional qsreplace arguments
+        参数:
+            urls: URLs 到 进程
+            replacement: Replacement string 用于 参数
+            additional_args: 附加 qsreplace arguments
 
-        Returns:
-            Parameter replacement results for fuzzing
+        返回:
+            参数 replacement 结果 用于 fuzzing
         """
         data = {
             "urls": urls,
@@ -2791,16 +2791,16 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     def uro_url_filtering(urls: str, whitelist: str = "", blacklist: str = "",
                          additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute uro for filtering out similar URLs.
+        执行 uro 用于 filtering out similar URLs.
 
-        Args:
-            urls: URLs to filter
-            whitelist: Whitelist patterns
-            blacklist: Blacklist patterns
-            additional_args: Additional uro arguments
+        参数:
+            urls: URLs 到 filter
+            whitelist: 说明：Whitelist patterns
+            blacklist: 说明：Blacklist patterns
+            additional_args: 附加 uro arguments
 
-        Returns:
-            Filtered URL results with duplicates removed
+        返回:
+            Filtered URL 结果 使用 duplicates removed
         """
         data = {
             "urls": urls,
@@ -2817,22 +2817,22 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
         return result
 
     # ============================================================================
-    # AI-POWERED PAYLOAD GENERATION (v5.0 ENHANCEMENT)
+    # AI-POWERED 载荷 GENERATION (v5.0 ENHANCEMENT)
     # ============================================================================
 
     @mcp.tool()
     def ai_generate_payload(attack_type: str, complexity: str = "basic", technology: str = "", url: str = "") -> Dict[str, Any]:
         """
-        Generate AI-powered contextual payloads for security testing.
+        生成 AI-powered contextual payloads 用于 安全 测试.
 
-        Args:
-            attack_type: Type of attack (xss, sqli, lfi, cmd_injection, ssti, xxe)
-            complexity: Complexity level (basic, advanced, bypass)
-            technology: Target technology (php, asp, jsp, python, nodejs)
-            url: Target URL for context
+        参数:
+            attack_type: 类型 的 attack (xss, sqli, lfi, cmd_injection, ssti, xxe)
+            complexity: Complexity level (基础, 高级, bypass)
+            technology: 目标 technology (php, asp, jsp, python, nodejs)
+            url: 目标 URL 用于 context
 
-        Returns:
-            Contextual payloads with risk assessment and test cases
+        返回:
+            Contextual payloads 使用 risk assessment 与 测试 cases
         """
         data = {
             "attack_type": attack_type,
@@ -2848,11 +2848,11 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
             count = payload_data.get("payload_count", 0)
             logger.info(f" Generated {count} contextual {attack_type} payloads")
 
-            # Log some example payloads for user awareness
+            # Log some 示例 payloads 用于 user awareness
             payloads = payload_data.get("payloads", [])
             if payloads:
                 logger.info(" Sample payloads generated:")
-                for i, payload_info in enumerate(payloads[:3]):  # Show first 3
+                for i, payload_info in enumerate(payloads[:3]):  # Show 第一 3
                     risk = payload_info.get("risk_level", "UNKNOWN")
                     context = payload_info.get("context", "basic")
                     logger.info(f"   ├─ [{risk}] {context}: {payload_info['payload'][:50]}...")
@@ -2864,15 +2864,15 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def ai_test_payload(payload: str, target_url: str, method: str = "GET") -> Dict[str, Any]:
         """
-        Test generated payload against target with AI analysis.
+        测试 generated 载荷 against 目标 使用 AI 分析.
 
-        Args:
-            payload: The payload to test
-            target_url: Target URL to test against
-            method: HTTP method (GET, POST)
+        参数:
+            payload: The 载荷 到 测试
+            target_url: 目标 URL 到 测试 against
+            method: HTTP method (获取, POST)
 
-        Returns:
-            Test results with AI analysis and vulnerability assessment
+        返回:
+            测试 结果 使用 AI 分析 与 漏洞 assessment
         """
         data = {
             "payload": payload,
@@ -2899,14 +2899,14 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def ai_generate_attack_suite(target_url: str, attack_types: str = "xss,sqli,lfi") -> Dict[str, Any]:
         """
-        Generate comprehensive attack suite with multiple payload types.
+        生成 综合 attack suite 使用 multiple 载荷 types.
 
-        Args:
-            target_url: Target URL for testing
-            attack_types: Comma-separated list of attack types
+        参数:
+            target_url: 目标 URL 用于 测试
+            attack_types: Comma-separated 列出 的 attack types
 
-        Returns:
-            Comprehensive attack suite with multiple payload types
+        返回:
+            综合 attack suite 使用 multiple 载荷 types
         """
         attack_list = [attack.strip() for attack in attack_types.split(",")]
         results = {
@@ -2926,18 +2926,18 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
         for attack_type in attack_list:
             logger.info(f" Generating {attack_type} payloads...")
 
-            # Generate payloads for this attack type
+            # 生成 payloads 用于 this attack 类型
             payload_result = self.ai_generate_payload(attack_type, "advanced", "", target_url)
 
             if payload_result.get("success"):
                 payload_data = payload_result.get("ai_payload_generation", {})
                 results["payload_suites"][attack_type] = payload_data
 
-                # Update summary
+                # 更新 summary
                 results["summary"]["total_payloads"] += payload_data.get("payload_count", 0)
                 results["summary"]["test_cases"] += len(payload_data.get("test_cases", []))
 
-                # Count high-risk payloads
+                # 说明：Count high-risk payloads
                 for payload_info in payload_data.get("payloads", []):
                     if payload_info.get("risk_level") == "HIGH":
                         results["summary"]["high_risk_payloads"] += 1
@@ -2954,22 +2954,22 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
         }
 
     # ============================================================================
-    # ADVANCED API TESTING TOOLS (v5.0 ENHANCEMENT)
+    # 高级 API 测试 工具 (v5.0 ENHANCEMENT)
     # ============================================================================
 
     @mcp.tool()
     def api_fuzzer(base_url: str, endpoints: str = "", methods: str = "GET,POST,PUT,DELETE", wordlist: str = "/usr/share/wordlists/api/api-endpoints.txt") -> Dict[str, Any]:
         """
-        Advanced API endpoint fuzzing with intelligent parameter discovery.
+        高级 API 端点 fuzzing 使用 智能 参数 发现.
 
-        Args:
-            base_url: Base URL of the API
-            endpoints: Comma-separated list of specific endpoints to test
-            methods: HTTP methods to test (comma-separated)
-            wordlist: Wordlist for endpoint discovery
+        参数:
+            base_url: Base URL 的 the API
+            endpoints: Comma-separated 列出 的 specific 端点 到 测试
+            methods: HTTP methods 到 测试 (comma-separated)
+            wordlist: Wordlist 用于 端点 发现
 
-        Returns:
-            API fuzzing results with endpoint discovery and vulnerability assessment
+        返回:
+            API fuzzing 结果 使用 端点 发现 与 漏洞 assessment
         """
         data = {
             "base_url": base_url,
@@ -2996,16 +2996,16 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def graphql_scanner(endpoint: str, introspection: bool = True, query_depth: int = 10, test_mutations: bool = True) -> Dict[str, Any]:
         """
-        Advanced GraphQL security scanning and introspection.
+        高级 GraphQL 安全 扫描 与 introspection.
 
-        Args:
-            endpoint: GraphQL endpoint URL
-            introspection: Test introspection queries
-            query_depth: Maximum query depth to test
-            test_mutations: Test mutation operations
+        参数:
+            endpoint: GraphQL 端点 URL
+            introspection: 测试 introspection queries
+            query_depth: Maximum query depth 到 测试
+            test_mutations: 测试 mutation 操作
 
-        Returns:
-            GraphQL security scan results with vulnerability assessment
+        返回:
+            GraphQL 安全 扫描 结果 使用 漏洞 assessment
         """
         data = {
             "endpoint": endpoint,
@@ -3026,7 +3026,7 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
 
             if vuln_count > 0:
                 logger.warning(f"  Found {vuln_count} GraphQL vulnerabilities!")
-                for vuln in scan_results.get("vulnerabilities", [])[:3]:  # Show first 3
+                for vuln in scan_results.get("vulnerabilities", [])[:3]:  # Show 第一 3
                     severity = vuln.get("severity", "UNKNOWN")
                     vuln_type = vuln.get("type", "unknown")
                     logger.warning(f"   ├─ [{severity}] {vuln_type}")
@@ -3038,14 +3038,14 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def jwt_analyzer(jwt_token: str, target_url: str = "") -> Dict[str, Any]:
         """
-        Advanced JWT token analysis and vulnerability testing.
+        高级 JWT token 分析 与 漏洞 测试.
 
-        Args:
-            jwt_token: JWT token to analyze
-            target_url: Optional target URL for testing token manipulation
+        参数:
+            jwt_token: JWT token 到 分析
+            target_url: Optional 目标 URL 用于 测试 token manipulation
 
-        Returns:
-            JWT analysis results with vulnerability assessment and attack vectors
+        返回:
+            JWT 分析 结果 使用 漏洞 assessment 与 attack vectors
         """
         data = {
             "jwt_token": jwt_token,
@@ -3065,7 +3065,7 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
 
             if vuln_count > 0:
                 logger.warning(f"  Found {vuln_count} JWT vulnerabilities!")
-                for vuln in analysis.get("vulnerabilities", [])[:3]:  # Show first 3
+                for vuln in analysis.get("vulnerabilities", [])[:3]:  # Show 第一 3
                     severity = vuln.get("severity", "UNKNOWN")
                     vuln_type = vuln.get("type", "unknown")
                     logger.warning(f"   ├─ [{severity}] {vuln_type}")
@@ -3077,14 +3077,14 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def api_schema_analyzer(schema_url: str, schema_type: str = "openapi") -> Dict[str, Any]:
         """
-        Analyze API schemas and identify potential security issues.
+        分析 API schemas 与 identify potential 安全 issues.
 
-        Args:
-            schema_url: URL to the API schema (OpenAPI/Swagger/GraphQL)
-            schema_type: Type of schema (openapi, swagger, graphql)
+        参数:
+            schema_url: URL 到 the API schema (OpenAPI/Swagger/GraphQL)
+            schema_type: 类型 的 schema (openapi, swagger, graphql)
 
-        Returns:
-            Schema analysis results with security issues and recommendations
+        返回:
+            Schema 分析 结果 使用 安全 issues 与 recommendations
         """
         data = {
             "schema_url": schema_url,
@@ -3103,14 +3103,14 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
 
             if issue_count > 0:
                 logger.warning(f"  Found {issue_count} security issues in schema!")
-                for issue in analysis.get("security_issues", [])[:3]:  # Show first 3
+                for issue in analysis.get("security_issues", [])[:3]:  # Show 第一 3
                     severity = issue.get("severity", "UNKNOWN")
                     issue_type = issue.get("issue", "unknown")
                     logger.warning(f"   ├─ [{severity}] {issue_type}")
 
             if endpoint_count > 0:
                 logger.info(f" Discovered endpoints:")
-                for endpoint in analysis.get("endpoints_found", [])[:5]:  # Show first 5
+                for endpoint in analysis.get("endpoints_found", [])[:5]:  # Show 第一 5
                     method = endpoint.get("method", "GET")
                     path = endpoint.get("path", "/")
                     logger.info(f"   ├─ {method} {path}")
@@ -3122,16 +3122,16 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def comprehensive_api_audit(base_url: str, schema_url: str = "", jwt_token: str = "", graphql_endpoint: str = "") -> Dict[str, Any]:
         """
-        Comprehensive API security audit combining multiple testing techniques.
+        综合 API 安全 audit combining multiple 测试 techniques.
 
-        Args:
-            base_url: Base URL of the API
-            schema_url: Optional API schema URL
-            jwt_token: Optional JWT token for analysis
-            graphql_endpoint: Optional GraphQL endpoint
+        参数:
+            base_url: Base URL 的 the API
+            schema_url: 说明：Optional API schema URL
+            jwt_token: Optional JWT token 用于 分析
+            graphql_endpoint: Optional GraphQL 端点
 
-        Returns:
-            Comprehensive audit results with all API security tests
+        返回:
+            综合 audit 结果 使用 全部 API 安全 tests
         """
         audit_results = {
             "base_url": base_url,
@@ -3144,14 +3144,14 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
 
         logger.info(f" Starting comprehensive API security audit: {base_url}")
 
-        # 1. API Endpoint Fuzzing
+        # 1. API 端点 Fuzzing
         logger.info(" Phase 1: API endpoint discovery and fuzzing")
         fuzz_result = self.api_fuzzer(base_url)
         if fuzz_result.get("success"):
             audit_results["tests_performed"].append("api_fuzzing")
             audit_results["api_fuzzing"] = fuzz_result
 
-        # 2. Schema Analysis (if provided)
+        # 2. Schema 分析 (如果 provided)
         if schema_url:
             logger.info(" Phase 2: API schema analysis")
             schema_result = self.api_schema_analyzer(schema_url)
@@ -3162,7 +3162,7 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
                 schema_data = schema_result.get("schema_analysis_results", {})
                 audit_results["total_vulnerabilities"] += len(schema_data.get("security_issues", []))
 
-        # 3. JWT Analysis (if provided)
+        # 3. JWT 分析 (如果 provided)
         if jwt_token:
             logger.info(" Phase 3: JWT token analysis")
             jwt_result = self.jwt_analyzer(jwt_token, base_url)
@@ -3173,7 +3173,7 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
                 jwt_data = jwt_result.get("jwt_analysis_results", {})
                 audit_results["total_vulnerabilities"] += len(jwt_data.get("vulnerabilities", []))
 
-        # 4. GraphQL Testing (if provided)
+        # 4. GraphQL 测试 (如果 provided)
         if graphql_endpoint:
             logger.info(" Phase 4: GraphQL security scanning")
             graphql_result = self.graphql_scanner(graphql_endpoint)
@@ -3184,7 +3184,7 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
                 graphql_data = graphql_result.get("graphql_scan_results", {})
                 audit_results["total_vulnerabilities"] += len(graphql_data.get("vulnerabilities", []))
 
-        # Generate comprehensive recommendations
+        # 生成 综合 recommendations
         audit_results["recommendations"] = [
             "Implement proper authentication and authorization",
             "Use HTTPS for all API communications",
@@ -3196,7 +3196,7 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
             "Implement proper error handling"
         ]
 
-        # Summary
+        # 说明：Summary
         audit_results["summary"] = {
             "tests_performed": len(audit_results["tests_performed"]),
             "total_vulnerabilities": audit_results["total_vulnerabilities"],
@@ -3214,22 +3214,22 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
         }
 
     # ============================================================================
-    # ADVANCED CTF TOOLS (v5.0 ENHANCEMENT)
+    # 高级 CTF 工具 (v5.0 ENHANCEMENT)
     # ============================================================================
 
     @mcp.tool()
     def volatility3_analyze(memory_file: str, plugin: str, output_file: str = "", additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute Volatility3 for advanced memory forensics with enhanced logging.
+        执行 Volatility3 用于 高级 内存 取证 使用 增强日志.
 
-        Args:
-            memory_file: Path to memory dump file
-            plugin: Volatility3 plugin to execute
-            output_file: Output file path
-            additional_args: Additional Volatility3 arguments
+        参数:
+            memory_file: Path 到 内存 dump 文件
+            plugin: Volatility3 plugin 到 执行
+            output_file: 输出 文件 path
+            additional_args: 附加 Volatility3 arguments
 
-        Returns:
-            Advanced memory forensics results
+        返回:
+            高级 内存 取证 结果
         """
         data = {
             "memory_file": memory_file,
@@ -3248,16 +3248,16 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def foremost_carving(input_file: str, output_dir: str = "/tmp/foremost_output", file_types: str = "", additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute Foremost for file carving with enhanced logging.
+        执行 Foremost 用于 文件 carving 使用 增强日志.
 
-        Args:
-            input_file: Input file or device to carve
-            output_dir: Output directory for carved files
-            file_types: File types to carve (jpg,gif,png,etc.)
-            additional_args: Additional Foremost arguments
+        参数:
+            input_file: 输入 文件 或 device 到 carve
+            output_dir: 输出 目录 用于 carved 文件
+            file_types: 文件 types 到 carve (jpg,gif,png,etc.)
+            additional_args: 附加 Foremost arguments
 
-        Returns:
-            File carving results
+        返回:
+            文件 carving 结果
         """
         data = {
             "input_file": input_file,
@@ -3276,18 +3276,18 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def steghide_analysis(action: str, cover_file: str, embed_file: str = "", passphrase: str = "", output_file: str = "", additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute Steghide for steganography analysis with enhanced logging.
+        执行 Steghide 用于 steganography 分析 使用 增强日志.
 
-        Args:
-            action: Action to perform (extract, embed, info)
-            cover_file: Cover file for steganography
-            embed_file: File to embed (for embed action)
-            passphrase: Passphrase for steganography
-            output_file: Output file path
-            additional_args: Additional Steghide arguments
+        参数:
+            action: Action 到 perform (extract, embed, info)
+            cover_file: Cover 文件 用于 steganography
+            embed_file: 文件 到 embed (用于 embed action)
+            passphrase: Passphrase 用于 steganography
+            output_file: 输出 文件 path
+            additional_args: 附加 Steghide arguments
 
-        Returns:
-            Steganography analysis results
+        返回:
+            Steganography 分析 结果
         """
         data = {
             "action": action,
@@ -3308,16 +3308,16 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def exiftool_extract(file_path: str, output_format: str = "", tags: str = "", additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute ExifTool for metadata extraction with enhanced logging.
+        执行 ExifTool 用于 metadata extraction 使用 增强日志.
 
-        Args:
-            file_path: Path to file for metadata extraction
-            output_format: Output format (json, xml, csv)
-            tags: Specific tags to extract
-            additional_args: Additional ExifTool arguments
+        参数:
+            file_path: Path 到 文件 用于 metadata extraction
+            output_format: 输出 format (JSON, xml, csv)
+            tags: Specific tags 到 extract
+            additional_args: 附加 ExifTool arguments
 
-        Returns:
-            Metadata extraction results
+        返回:
+            Metadata extraction 结果
         """
         data = {
             "file_path": file_path,
@@ -3336,17 +3336,17 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def hashpump_attack(signature: str, data: str, key_length: str, append_data: str, additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute HashPump for hash length extension attacks with enhanced logging.
+        执行 HashPump 用于 hash length extension attacks 使用 增强日志.
 
-        Args:
-            signature: Original hash signature
-            data: Original data
-            key_length: Length of secret key
-            append_data: Data to append
-            additional_args: Additional HashPump arguments
+        参数:
+            signature: 说明：Original hash signature
+            data: 说明：Original data
+            key_length: Length 的 secret key
+            append_data: Data 到 append
+            additional_args: 附加 HashPump arguments
 
-        Returns:
-            Hash length extension attack results
+        返回:
+            Hash length extension attack 结果
         """
         data = {
             "signature": signature,
@@ -3364,32 +3364,32 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
         return result
 
     # ============================================================================
-    # BUG BOUNTY RECONNAISSANCE TOOLS (v5.0 ENHANCEMENT)
+    # BUG BOUNTY 侦察 工具 (v5.0 ENHANCEMENT)
     # ============================================================================
 
     @mcp.tool()
     def hakrawler_crawl(url: str, depth: int = 2, forms: bool = True, robots: bool = True, sitemap: bool = True, wayback: bool = False, additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute Hakrawler for web endpoint discovery with enhanced logging.
+        执行 Hakrawler 用于 web 端点 发现 使用 增强日志.
 
-        Note: Uses standard Kali Linux hakrawler (hakluke/hakrawler) with parameter mapping:
-        - url: Piped via echo to stdin (not -url flag)
-        - depth: Mapped to -d flag (not -depth)
-        - forms: Mapped to -s flag for showing sources
-        - robots/sitemap/wayback: Mapped to -subs for subdomain inclusion
-        - Always includes -u for unique URLs
+        Note: Uses standard Kali Linux hakrawler (hakluke/hakrawler) 使用 参数 mapping:
+        - URL: Piped via echo 到 stdin (not -URL flag)
+        - depth: Mapped 到 -d flag (not -depth)
+        - forms: Mapped 到 -s flag 用于 showing sources
+        - robots/sitemap/wayback: Mapped 到 -subs 用于 subdomain inclusion
+        - Always includes -u 用于 unique URLs
 
-        Args:
-            url: Target URL to crawl
-            depth: Crawling depth (mapped to -d)
-            forms: Include forms in crawling (mapped to -s)
-            robots: Check robots.txt (mapped to -subs)
-            sitemap: Check sitemap.xml (mapped to -subs)
-            wayback: Use Wayback Machine (mapped to -subs)
-            additional_args: Additional Hakrawler arguments
+        参数:
+            url: 目标 URL 到 crawl
+            depth: Crawling depth (mapped 到 -d)
+            forms: Include forms 在 crawling (mapped 到 -s)
+            robots: 检查 robots.txt (mapped 到 -subs)
+            sitemap: 检查 sitemap.xml (mapped 到 -subs)
+            wayback: Use Wayback Machine (mapped 到 -subs)
+            additional_args: 附加 Hakrawler arguments
 
-        Returns:
-            Web endpoint discovery results
+        返回:
+            Web 端点 发现 结果
         """
         data = {
             "url": url,
@@ -3411,20 +3411,20 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def httpx_probe(targets: str = "", target_file: str = "", ports: str = "", methods: str = "GET", status_code: str = "", content_length: bool = False, output_file: str = "", additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute HTTPx for HTTP probing with enhanced logging.
+        执行 HTTPx 用于 HTTP probing 使用 增强日志.
 
-        Args:
-            targets: Target URLs or IPs
-            target_file: File containing targets
-            ports: Ports to probe
-            methods: HTTP methods to use
-            status_code: Filter by status code
-            content_length: Show content length
-            output_file: Output file path
-            additional_args: Additional HTTPx arguments
+        参数:
+            targets: 目标 URLs 或 IPs
+            target_file: 文件 containing targets
+            ports: Ports 到 probe
+            methods: HTTP methods 到 use
+            status_code: 过滤 由 状态 code
+            content_length: 说明：Show content length
+            output_file: 输出 文件 path
+            additional_args: 附加 HTTPx arguments
 
-        Returns:
-            HTTP probing results
+        返回:
+            HTTP probing 结果
         """
         data = {
             "targets": targets,
@@ -3447,17 +3447,17 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def paramspider_discovery(domain: str, exclude: str = "", output_file: str = "", level: int = 2, additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute ParamSpider for parameter discovery with enhanced logging.
+        执行 ParamSpider 用于 参数 发现 使用 增强日志.
 
-        Args:
-            domain: Target domain
-            exclude: Extensions to exclude
-            output_file: Output file path
-            level: Crawling level
-            additional_args: Additional ParamSpider arguments
+        参数:
+            domain: 目标 域名
+            exclude: Extensions 到 exclude
+            output_file: 输出 文件 path
+            level: 说明：Crawling level
+            additional_args: 附加 ParamSpider arguments
 
-        Returns:
-            Parameter discovery results
+        返回:
+            参数 发现 结果
         """
         data = {
             "domain": domain,
@@ -3475,26 +3475,26 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
         return result
 
     # ============================================================================
-    # ADVANCED WEB SECURITY TOOLS CONTINUED
+    # 高级 WEB 安全 工具 CONTINUED
     # ============================================================================
 
     @mcp.tool()
     def burpsuite_scan(project_file: str = "", config_file: str = "", target: str = "", headless: bool = False, scan_type: str = "", scan_config: str = "", output_file: str = "", additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute Burp Suite with enhanced logging.
+        执行 Burp Suite 使用 增强日志.
 
-        Args:
-            project_file: Burp project file path
-            config_file: Burp configuration file path
-            target: Target URL
-            headless: Run in headless mode
-            scan_type: Type of scan to perform
-            scan_config: Scan configuration
-            output_file: Output file path
-            additional_args: Additional Burp Suite arguments
+        参数:
+            project_file: Burp project 文件 path
+            config_file: Burp 配置 文件 path
+            target: 目标 URL
+            headless: Run 在 headless 模式
+            scan_type: 类型 的 扫描 到 perform
+            scan_config: 扫描 配置
+            output_file: 输出 文件 path
+            additional_args: 附加 Burp Suite arguments
 
-        Returns:
-            Burp Suite scan results
+        返回:
+            Burp Suite 扫描 结果
         """
         data = {
             "project_file": project_file,
@@ -3517,21 +3517,21 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def zap_scan(target: str = "", scan_type: str = "baseline", api_key: str = "", daemon: bool = False, port: str = "8090", host: str = "0.0.0.0", format_type: str = "xml", output_file: str = "", additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute OWASP ZAP with enhanced logging.
+        执行 OWASP ZAP 使用 增强日志.
 
-        Args:
-            target: Target URL
-            scan_type: Type of scan (baseline, full, api)
-            api_key: ZAP API key
-            daemon: Run in daemon mode
-            port: Port for ZAP daemon
-            host: Host for ZAP daemon
-            format_type: Output format (xml, json, html)
-            output_file: Output file path
-            additional_args: Additional ZAP arguments
+        参数:
+            target: 目标 URL
+            scan_type: 类型 的 扫描 (baseline, full, API)
+            api_key: 说明：ZAP API key
+            daemon: Run 在 daemon 模式
+            port: Port 用于 ZAP daemon
+            host: Host 用于 ZAP daemon
+            format_type: 输出 format (xml, JSON, html)
+            output_file: 输出 文件 path
+            additional_args: 附加 ZAP arguments
 
-        Returns:
-            ZAP scan results
+        返回:
+            ZAP 扫描 结果
         """
         data = {
             "target": target,
@@ -3555,19 +3555,19 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def arjun_scan(url: str, method: str = "GET", data: str = "", headers: str = "", timeout: str = "", output_file: str = "", additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute Arjun for parameter discovery with enhanced logging.
+        执行 Arjun 用于 参数 发现 使用 增强日志.
 
-        Args:
-            url: Target URL
-            method: HTTP method (GET, POST, etc.)
-            data: POST data for testing
-            headers: Custom headers
-            timeout: Request timeout
-            output_file: Output file path
-            additional_args: Additional Arjun arguments
+        参数:
+            url: 目标 URL
+            method: HTTP method (获取, POST, etc.)
+            data: POST data 用于 测试
+            headers: Custom 请求头
+            timeout: 请求 超时
+            output_file: 输出 文件 path
+            additional_args: 附加 Arjun arguments
 
-        Returns:
-            Parameter discovery results
+        返回:
+            参数 发现 结果
         """
         data = {
             "url": url,
@@ -3589,14 +3589,14 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def wafw00f_scan(target: str, additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute wafw00f to identify and fingerprint WAF products with enhanced logging.
+        执行 wafw00f 到 identify 与 指纹 WAF products 使用 增强日志.
 
-        Args:
-            target: Target URL or IP
-            additional_args: Additional wafw00f arguments
+        参数:
+            target: 目标 URL 或 IP
+            additional_args: 附加 wafw00f arguments
 
-        Returns:
-            WAF detection results
+        返回:
+            WAF detection 结果
         """
         data = {
             "target": target,
@@ -3613,15 +3613,15 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def fierce_scan(domain: str, dns_server: str = "", additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute fierce for DNS reconnaissance with enhanced logging.
+        执行 fierce 用于 DNS 侦察 使用 增强日志.
 
-        Args:
-            domain: Target domain
-            dns_server: DNS server to use
-            additional_args: Additional fierce arguments
+        参数:
+            domain: 目标 域名
+            dns_server: DNS 服务端 到 use
+            additional_args: 附加 fierce arguments
 
-        Returns:
-            DNS reconnaissance results
+        返回:
+            DNS 侦察 结果
         """
         data = {
             "domain": domain,
@@ -3639,16 +3639,16 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def dnsenum_scan(domain: str, dns_server: str = "", wordlist: str = "", additional_args: str = "") -> Dict[str, Any]:
         """
-        Execute dnsenum for DNS enumeration with enhanced logging.
+        执行 dnsenum 用于 DNS enumeration 使用 增强日志.
 
-        Args:
-            domain: Target domain
-            dns_server: DNS server to use
-            wordlist: Wordlist for brute forcing
-            additional_args: Additional dnsenum arguments
+        参数:
+            domain: 目标 域名
+            dns_server: DNS 服务端 到 use
+            wordlist: Wordlist 用于 brute forcing
+            additional_args: 附加 dnsenum arguments
 
-        Returns:
-            DNS enumeration results
+        返回:
+            DNS enumeration 结果
         """
         data = {
             "domain": domain,
@@ -3707,51 +3707,51 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
         additional_args: str = ""
     ) -> Dict[str, Any]:
         """
-        Execute AutoRecon for comprehensive target enumeration with full parameter support.
+        执行 AutoRecon 用于 综合 目标 enumeration 使用 full 参数 support.
 
-        Args:
-            target: Single target to scan
-            target_file: File containing multiple targets
-            ports: Specific ports to scan
-            output_dir: Output directory
-            max_scans: Maximum number of concurrent scans
-            max_port_scans: Maximum number of concurrent port scans
-            heartbeat: Heartbeat interval
-            timeout: Global timeout
-            target_timeout: Per-target timeout
-            config_file: Configuration file path
-            global_file: Global configuration file
-            plugins_dir: Plugins directory
-            add_plugins_dir: Additional plugins directory
-            tags: Plugin tags to include
-            exclude_tags: Plugin tags to exclude
-            port_scans: Port scan plugins to run
-            service_scans: Service scan plugins to run
-            reports: Report plugins to run
-            single_target: Use single target directory structure
-            only_scans_dir: Only create scans directory
-            no_port_dirs: Don't create port directories
-            nmap: Custom nmap command
-            nmap_append: Arguments to append to nmap
-            proxychains: Use proxychains
-            disable_sanity_checks: Disable sanity checks
-            disable_keyboard_control: Disable keyboard control
-            force_services: Force service detection
-            accessible: Enable accessible output
-            verbose: Verbosity level (0-3)
-            curl_path: Custom curl path
-            dirbuster_tool: Directory busting tool
-            dirbuster_wordlist: Directory busting wordlist
-            dirbuster_threads: Directory busting threads
-            dirbuster_ext: Directory busting extensions
-            onesixtyone_community_strings: SNMP community strings
-            global_username_wordlist: Global username wordlist
-            global_password_wordlist: Global password wordlist
-            global_domain: Global domain
-            additional_args: Additional AutoRecon arguments
+        参数:
+            target: Single 目标 到 扫描
+            target_file: 文件 containing multiple targets
+            ports: Specific ports 到 扫描
+            output_dir: 输出 目录
+            max_scans: Maximum number 的 concurrent scans
+            max_port_scans: Maximum number 的 concurrent port scans
+            heartbeat: 说明：Heartbeat interval
+            timeout: 全局 超时
+            target_timeout: Per-target 超时
+            config_file: 配置 文件 path
+            global_file: 全局 配置 文件
+            plugins_dir: Plugins 目录
+            add_plugins_dir: 附加 plugins 目录
+            tags: Plugin tags 到 include
+            exclude_tags: Plugin tags 到 exclude
+            port_scans: Port 扫描 plugins 到 run
+            service_scans: Service 扫描 plugins 到 run
+            reports: Report plugins 到 run
+            single_target: Use single 目标 目录 structure
+            only_scans_dir: 仅 创建 scans 目录
+            no_port_dirs: Don't 创建 port directories
+            nmap: Custom nmap 命令
+            nmap_append: Arguments 到 append 到 nmap
+            proxychains: 说明：Use proxychains
+            disable_sanity_checks: 禁用 sanity checks
+            disable_keyboard_control: 禁用 keyboard control
+            force_services: 说明：Force service detection
+            accessible: 启用 accessible 输出
+            verbose: 说明：Verbosity level (0-3)
+            curl_path: 说明：Custom curl path
+            dirbuster_tool: 目录 busting 工具
+            dirbuster_wordlist: 目录 busting wordlist
+            dirbuster_threads: 目录 busting threads
+            dirbuster_ext: 目录 busting extensions
+            onesixtyone_community_strings: 说明：SNMP community strings
+            global_username_wordlist: 全局 username wordlist
+            global_password_wordlist: 全局 password wordlist
+            global_domain: 全局 域名
+            additional_args: 附加 AutoRecon arguments
 
-        Returns:
-            Comprehensive enumeration results with full configurability
+        返回:
+            综合 enumeration 结果 使用 full configurability
         """
         data = {
             "target": target,
@@ -3803,16 +3803,16 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
         return result
 
     # ============================================================================
-    # SYSTEM MONITORING & TELEMETRY
+    # 系统 监控 & TELEMETRY
     # ============================================================================
 
     @mcp.tool()
     def server_health() -> Dict[str, Any]:
         """
-        Check the health status of the HexStrike AI server.
+        检查 the 健康 状态 的 the HexStrike AI 服务端.
 
-        Returns:
-            Server health information with tool availability and telemetry
+        返回:
+            服务端 健康 information 使用 工具 availability 与 telemetry
         """
         logger.info(f" Checking HexStrike AI server health")
         result = hexstrike_client.check_health()
@@ -3825,10 +3825,10 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def get_cache_stats() -> Dict[str, Any]:
         """
-        Get cache statistics from the HexStrike AI server.
+        获取 缓存 统计 来自 the HexStrike AI 服务端.
 
-        Returns:
-            Cache performance statistics
+        返回:
+            缓存 performance 统计
         """
         logger.info(f" Getting cache statistics")
         result = hexstrike_client.safe_get("api/cache/stats")
@@ -3839,10 +3839,10 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def clear_cache() -> Dict[str, Any]:
         """
-        Clear the cache on the HexStrike AI server.
+        Clear the 缓存 在 the HexStrike AI 服务端.
 
-        Returns:
-            Cache clear operation results
+        返回:
+            缓存 clear 操作 结果
         """
         logger.info(f" Clearing server cache")
         result = hexstrike_client.safe_post("api/cache/clear", {})
@@ -3855,10 +3855,10 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def get_telemetry() -> Dict[str, Any]:
         """
-        Get system telemetry from the HexStrike AI server.
+        获取 系统 telemetry 来自 the HexStrike AI 服务端.
 
-        Returns:
-            System performance and usage telemetry
+        返回:
+            系统 performance 与 usage telemetry
         """
         logger.info(f" Getting system telemetry")
         result = hexstrike_client.safe_get("api/telemetry")
@@ -3867,16 +3867,16 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
         return result
 
     # ============================================================================
-    # PROCESS MANAGEMENT TOOLS (v5.0 ENHANCEMENT)
+    # 进程 MANAGEMENT 工具 (v5.0 ENHANCEMENT)
     # ============================================================================
 
     @mcp.tool()
     def list_active_processes() -> Dict[str, Any]:
         """
-        List all active processes on the HexStrike AI server.
+        列出 全部 active processes 在 the HexStrike AI 服务端.
 
-        Returns:
-            List of active processes with their status and progress
+        返回:
+            列出 的 active processes 使用 their 状态 与 progress
         """
         logger.info(" Listing active processes")
         result = hexstrike_client.safe_get("api/processes/list")
@@ -3889,13 +3889,13 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def get_process_status(pid: int) -> Dict[str, Any]:
         """
-        Get the status of a specific process.
+        获取 the 状态 的 a specific 进程.
 
-        Args:
-            pid: Process ID to check
+        参数:
+            pid: 进程 ID 到 检查
 
-        Returns:
-            Process status information including progress and runtime
+        返回:
+            进程 状态 information including progress 与 runtime
         """
         logger.info(f" Checking status of process {pid}")
         result = hexstrike_client.safe_get(f"api/processes/status/{pid}")
@@ -3908,13 +3908,13 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def terminate_process(pid: int) -> Dict[str, Any]:
         """
-        Terminate a specific running process.
+        Terminate a specific running 进程.
 
-        Args:
-            pid: Process ID to terminate
+        参数:
+            pid: 进程 ID 到 terminate
 
-        Returns:
-            Success status of the termination operation
+        返回:
+            成功 状态 的 the termination 操作
         """
         logger.info(f" Terminating process {pid}")
         result = hexstrike_client.safe_post(f"api/processes/terminate/{pid}", {})
@@ -3927,13 +3927,13 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def pause_process(pid: int) -> Dict[str, Any]:
         """
-        Pause a specific running process.
+        Pause a specific running 进程.
 
-        Args:
-            pid: Process ID to pause
+        参数:
+            pid: 进程 ID 到 pause
 
-        Returns:
-            Success status of the pause operation
+        返回:
+            成功 状态 的 the pause 操作
         """
         logger.info(f" Pausing process {pid}")
         result = hexstrike_client.safe_post(f"api/processes/pause/{pid}", {})
@@ -3946,13 +3946,13 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def resume_process(pid: int) -> Dict[str, Any]:
         """
-        Resume a paused process.
+        Resume a paused 进程.
 
-        Args:
-            pid: Process ID to resume
+        参数:
+            pid: 进程 ID 到 resume
 
-        Returns:
-            Success status of the resume operation
+        返回:
+            成功 状态 的 the resume 操作
         """
         logger.info(f" Resuming process {pid}")
         result = hexstrike_client.safe_post(f"api/processes/resume/{pid}", {})
@@ -3965,10 +3965,10 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def get_process_dashboard() -> Dict[str, Any]:
         """
-        Get enhanced process dashboard with visual status indicators.
+        获取 增强 进程 dashboard 使用 visual 状态 indicators.
 
-        Returns:
-            Real-time dashboard with progress bars, system metrics, and process status
+        返回:
+            Real-time dashboard 使用 progress bars, 系统 指标, 与 进程 状态
         """
         logger.info(" Getting process dashboard")
         result = hexstrike_client.safe_get("api/processes/dashboard")
@@ -3976,10 +3976,10 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
             total = result.get("total_processes", 0)
             logger.info(f" Dashboard retrieved: {total} active processes")
 
-            # Log visual summary for better UX
+            # Log visual summary 用于 better UX
             if total > 0:
                 logger.info(" Active Processes Summary:")
-                for proc in result.get("processes", [])[:3]:  # Show first 3
+                for proc in result.get("processes", [])[:3]:  # Show 第一 3
                     logger.info(f"   ├─ PID {proc['pid']}: {proc['progress_bar']} {proc['progress_percent']}")
         else:
             logger.error(" Failed to get process dashboard")
@@ -3988,14 +3988,14 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def execute_command(command: str, use_cache: bool = True) -> Dict[str, Any]:
         """
-        Execute an arbitrary command on the HexStrike AI server with enhanced logging.
+        执行 an arbitrary 命令 在 the HexStrike AI 服务端 使用 增强日志.
 
-        Args:
-            command: The command to execute
-            use_cache: Whether to use caching for this command
+        参数:
+            command: The 命令 到 执行
+            use_cache: Whether 到 use caching 用于 this 命令
 
-        Returns:
-            Command execution results with enhanced telemetry
+        返回:
+            命令 execution 结果 使用 增强 telemetry
         """
         try:
             logger.info(f" Executing command: {command}")
@@ -4026,24 +4026,24 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
             }
 
     # ============================================================================
-    # ADVANCED VULNERABILITY INTELLIGENCE MCP TOOLS (v6.0 ENHANCEMENT)
+    # 高级 漏洞 INTELLIGENCE MCP 工具 (v6.0 ENHANCEMENT)
     # ============================================================================
 
     @mcp.tool()
     def monitor_cve_feeds(hours: int = 24, severity_filter: str = "HIGH,CRITICAL", keywords: str = "") -> Dict[str, Any]:
         """
-        Monitor CVE databases for new vulnerabilities with AI analysis.
+        监控 CVE databases 用于 new 漏洞 使用 AI 分析.
 
-        Args:
-            hours: Hours to look back for new CVEs (default: 24)
-            severity_filter: Filter by CVSS severity - comma-separated values (LOW,MEDIUM,HIGH,CRITICAL,ALL)
-            keywords: Filter CVEs by keywords in description (comma-separated)
+        参数:
+            hours: Hours 到 look back 用于 new CVEs (默认: 24)
+            severity_filter: 过滤 由 CVSS severity - comma-separated values (低,中,高,严重,全部)
+            keywords: 过滤 CVEs 由 keywords 在 description (comma-separated)
 
-        Returns:
-            Latest CVEs with exploitability analysis and threat intelligence
+        返回:
+            Latest CVEs 使用 exploitability 分析 与 threat intelligence
 
-        Example:
-            monitor_cve_feeds(48, "CRITICAL", "remote code execution")
+        示例:
+            monitor_cve_feeds(48, "严重", "remote code execution")
         """
         data = {
             "hours": hours,
@@ -4063,20 +4063,20 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def generate_exploit_from_cve(cve_id: str, target_os: str = "", target_arch: str = "x64", exploit_type: str = "poc", evasion_level: str = "none") -> Dict[str, Any]:
         """
-        Generate working exploits from CVE information using AI-powered analysis.
+        生成 working exploits 来自 CVE information using AI-powered 分析.
 
-        Args:
-            cve_id: CVE identifier (e.g., CVE-2024-1234)
-            target_os: Target operating system (windows, linux, macos, any)
-            target_arch: Target architecture (x86, x64, arm, any)
-            exploit_type: Type of exploit to generate (poc, weaponized, stealth)
-            evasion_level: Evasion sophistication (none, basic, advanced)
+        参数:
+            cve_id: 说明：CVE identifier (e.g., CVE-2024-1234)
+            target_os: 目标 operating 系统 (windows, linux, macos, any)
+            target_arch: 目标 architecture (x86, x64, arm, any)
+            exploit_type: 类型 的 利用 到 生成 (poc, weaponized, stealth)
+            evasion_level: Evasion sophistication (none, 基础, 高级)
 
-        Returns:
-            Generated exploit code with testing instructions and evasion techniques
+        返回:
+            Generated 利用 code 使用 测试 instructions 与 evasion techniques
 
-        Example:
-            generate_exploit_from_cve("CVE-2024-1234", "linux", "x64", "weaponized", "advanced")
+        示例:
+            generate_exploit_from_cve("CVE-2024-1234", "linux", "x64", "weaponized", "高级")
         """
         data = {
             "cve_id": cve_id,
@@ -4102,22 +4102,22 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def discover_attack_chains(target_software: str, attack_depth: int = 3, include_zero_days: bool = False) -> Dict[str, Any]:
         """
-        Discover multi-stage attack chains for target software with vulnerability correlation.
+        Discover multi-stage attack chains 用于 目标 software 使用 漏洞 correlation.
 
-        Args:
-            target_software: Target software/system (e.g., "Apache HTTP Server", "Windows Server 2019")
-            attack_depth: Maximum number of stages in attack chain (1-5)
-            include_zero_days: Include potential zero-day vulnerabilities in analysis
+        参数:
+            target_software: 目标 software/系统 (e.g., "Apache HTTP 服务端", "Windows 服务端 2019")
+            attack_depth: Maximum number 的 stages 在 attack chain (1-5)
+            include_zero_days: Include potential zero-day 漏洞 在 分析
 
-        Returns:
-            Attack chains with vulnerability combinations, success probabilities, and exploit availability
+        返回:
+            Attack chains 使用 漏洞 combinations, 成功 probabilities, 与 利用 availability
 
-        Example:
-            discover_attack_chains("Apache HTTP Server 2.4", 4, True)
+        示例:
+            discover_attack_chains("Apache HTTP 服务端 2.4", 4, True)
         """
         data = {
             "target_software": target_software,
-            "attack_depth": min(max(attack_depth, 1), 5),  # Clamp between 1-5
+            "attack_depth": min(max(attack_depth, 1), 5),  # 说明：Clamp between 1-5
             "include_zero_days": include_zero_days
         }
         logger.info(f" Discovering attack chains for {target_software} | Depth: {attack_depth} | Zero-days: {include_zero_days}")
@@ -4136,18 +4136,18 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def research_zero_day_opportunities(target_software: str, analysis_depth: str = "standard", source_code_url: str = "") -> Dict[str, Any]:
         """
-        Automated zero-day vulnerability research using AI analysis and pattern recognition.
+        Automated zero-day 漏洞 research using AI 分析 与 pattern recognition.
 
-        Args:
-            target_software: Software to research for vulnerabilities (e.g., "nginx", "OpenSSL")
-            analysis_depth: Depth of analysis (quick, standard, comprehensive)
-            source_code_url: URL to source code repository for enhanced analysis
+        参数:
+            target_software: Software 到 research 用于 漏洞 (e.g., "nginx", "OpenSSL")
+            analysis_depth: Depth 的 分析 (quick, standard, 综合)
+            source_code_url: URL 到 source code repository 用于 增强 分析
 
-        Returns:
-            Potential vulnerability areas with exploitation feasibility and research recommendations
+        返回:
+            Potential 漏洞 areas 使用 exploitation feasibility 与 research recommendations
 
-        Example:
-            research_zero_day_opportunities("nginx 1.20", "comprehensive", "https://github.com/nginx/nginx")
+        示例:
+            research_zero_day_opportunities("nginx 1.20", "综合", "HTTPS://github.com/nginx/nginx")
         """
         if analysis_depth not in ["quick", "standard", "comprehensive"]:
             analysis_depth = "standard"
@@ -4173,25 +4173,25 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def correlate_threat_intelligence(indicators: str, timeframe: str = "30d", sources: str = "all") -> Dict[str, Any]:
         """
-        Correlate threat intelligence across multiple sources with advanced analysis.
+        Correlate threat intelligence across multiple sources 使用 高级 分析.
 
-        Args:
-            indicators: Comma-separated IOCs (IPs, domains, hashes, CVEs, etc.)
-            timeframe: Time window for correlation (7d, 30d, 90d, 1y)
-            sources: Intelligence sources to query (cve, exploit-db, github, twitter, all)
+        参数:
+            indicators: 说明：Comma-separated IOCs (IPs, domains, hashes, CVEs, etc.)
+            timeframe: Time window 用于 correlation (7d, 30d, 90d, 1y)
+            sources: Intelligence sources 到 query (cve, 利用-db, github, twitter, 全部)
 
-        Returns:
-            Correlated threat intelligence with attribution, timeline, and threat scoring
+        返回:
+            Correlated threat intelligence 使用 attribution, timeline, 与 threat scoring
 
-        Example:
-            correlate_threat_intelligence("CVE-2024-1234,192.168.1.100,malware.exe", "90d", "all")
+        示例:
+            correlate_threat_intelligence("CVE-2024-1234,192.168.1.100,malware.exe", "90d", "全部")
         """
-        # Validate timeframe
+        # 校验 timeframe
         valid_timeframes = ["7d", "30d", "90d", "1y"]
         if timeframe not in valid_timeframes:
             timeframe = "30d"
 
-        # Parse indicators
+        # 解析 indicators
         indicator_list = [i.strip() for i in indicators.split(",") if i.strip()]
 
         if not indicator_list:
@@ -4219,19 +4219,19 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def advanced_payload_generation(attack_type: str, target_context: str = "", evasion_level: str = "standard", custom_constraints: str = "") -> Dict[str, Any]:
         """
-        Generate advanced payloads with AI-powered evasion techniques and contextual adaptation.
+        生成 高级 payloads 使用 AI-powered evasion techniques 与 contextual adaptation.
 
-        Args:
-            attack_type: Type of attack (rce, privilege_escalation, persistence, exfiltration, xss, sqli)
-            target_context: Target environment details (OS, software versions, security controls)
-            evasion_level: Evasion sophistication (basic, standard, advanced, nation-state)
-            custom_constraints: Custom payload constraints (size limits, character restrictions, etc.)
+        参数:
+            attack_type: 类型 的 attack (rce, privilege_escalation, persistence, exfiltration, xss, sqli)
+            target_context: 目标 environment details (OS, software versions, 安全 controls)
+            evasion_level: Evasion sophistication (基础, standard, 高级, nation-state)
+            custom_constraints: Custom 载荷 constraints (size limits, character restrictions, etc.)
 
-        Returns:
-            Advanced payloads with multiple evasion techniques and deployment instructions
+        返回:
+            高级 payloads 使用 multiple evasion techniques 与 deployment instructions
 
-        Example:
-            advanced_payload_generation("rce", "Windows 11 + Defender + AppLocker", "nation-state", "max_size:256,no_quotes")
+        示例:
+            说明：advanced_payload_generation("rce", "Windows 11 + Defender + AppLocker", "nation-state", "max_size:256,no_quotes")
         """
         valid_attack_types = ["rce", "privilege_escalation", "persistence", "exfiltration", "xss", "sqli", "lfi", "ssrf"]
         valid_evasion_levels = ["basic", "standard", "advanced", "nation-state"]
@@ -4267,30 +4267,30 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def vulnerability_intelligence_dashboard() -> Dict[str, Any]:
         """
-        Get a comprehensive vulnerability intelligence dashboard with latest threats and trends.
+        获取 a 综合 漏洞 intelligence dashboard 使用 latest threats 与 trends.
 
-        Returns:
-            Dashboard with latest CVEs, trending vulnerabilities, exploit availability, and threat landscape
+        返回:
+            Dashboard 使用 latest CVEs, trending 漏洞, 利用 availability, 与 threat landscape
 
-        Example:
-            vulnerability_intelligence_dashboard()
+        示例:
+            说明：vulnerability_intelligence_dashboard()
         """
         logger.info(" Generating vulnerability intelligence dashboard")
 
-        # Get latest critical CVEs
+        # 获取 latest 严重 CVEs
         latest_cves = hexstrike_client.safe_post("api/vuln-intel/cve-monitor", {
             "hours": 24,
             "severity_filter": "CRITICAL",
             "keywords": ""
         })
 
-        # Get trending attack types
+        # 获取 trending attack types
         trending_research = hexstrike_client.safe_post("api/vuln-intel/zero-day-research", {
             "target_software": "web applications",
             "analysis_depth": "quick"
         })
 
-        # Compile dashboard
+        # 说明：Compile dashboard
         dashboard = {
             "timestamp": time.time(),
             "latest_critical_cves": latest_cves.get("cve_monitoring", {}).get("cves", [])[:5],
@@ -4321,18 +4321,18 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def threat_hunting_assistant(target_environment: str, threat_indicators: str = "", hunt_focus: str = "general") -> Dict[str, Any]:
         """
-        AI-powered threat hunting assistant with vulnerability correlation and attack simulation.
+        AI-powered threat hunting assistant 使用 漏洞 correlation 与 attack simulation.
 
-        Args:
-            target_environment: Environment to hunt in (e.g., "Windows Domain", "Cloud Infrastructure")
-            threat_indicators: Known IOCs or suspicious indicators to investigate
-            hunt_focus: Focus area (general, apt, ransomware, insider_threat, supply_chain)
+        参数:
+            target_environment: Environment 到 hunt 在 (e.g., "Windows 域名", "云 Infrastructure")
+            threat_indicators: Known IOCs 或 suspicious indicators 到 investigate
+            hunt_focus: 说明：Focus area (general, apt, ransomware, insider_threat, supply_chain)
 
-        Returns:
-            Threat hunting playbook with detection queries, IOCs, and investigation steps
+        返回:
+            Threat hunting playbook 使用 detection queries, IOCs, 与 investigation steps
 
-        Example:
-            threat_hunting_assistant("Windows Domain", "suspicious_process.exe,192.168.1.100", "apt")
+        示例:
+            threat_hunting_assistant("Windows 域名", "suspicious_process.exe,192.168.1.100", "apt")
         """
         valid_hunt_focus = ["general", "apt", "ransomware", "insider_threat", "supply_chain"]
         if hunt_focus not in valid_hunt_focus:
@@ -4340,10 +4340,10 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
 
         logger.info(f" Generating threat hunting playbook for {target_environment} | Focus: {hunt_focus}")
 
-        # Parse indicators if provided
+        # 解析 indicators 如果 provided
         indicators = [i.strip() for i in threat_indicators.split(",") if i.strip()] if threat_indicators else []
 
-        # Generate hunting playbook
+        # 生成 hunting playbook
         hunting_playbook = {
             "target_environment": target_environment,
             "hunt_focus": hunt_focus,
@@ -4354,7 +4354,7 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
             "mitigation_strategies": []
         }
 
-        # Environment-specific detection queries
+        # 说明：Environment-specific detection queries
         if "windows" in target_environment.lower():
             hunting_playbook["detection_queries"] = [
                 "Get-WinEvent | Where-Object {$_.Id -eq 4688 -and $_.Message -like '*suspicious*'}",
@@ -4370,7 +4370,7 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
                 "Data exfiltration indicators"
             ]
 
-        # Focus-specific threat scenarios
+        # 说明：Focus-specific threat scenarios
         focus_scenarios = {
             "apt": [
                 "Spear phishing with weaponized documents",
@@ -4399,7 +4399,7 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
             "Data access violations"
         ])
 
-        # Investigation steps
+        # 说明：Investigation steps
         hunting_playbook["investigation_steps"] = [
             "1. Validate initial indicators and expand IOC list",
             "2. Run detection queries and analyze results",
@@ -4410,7 +4410,7 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
             "7. Document findings and update detection rules"
         ]
 
-        # Correlate with vulnerability intelligence if indicators provided
+        # Correlate 使用 漏洞 intelligence 如果 indicators provided
         if indicators:
             logger.info(f" Correlating {len(indicators)} indicators with threat intelligence")
             correlation_result = correlate_threat_intelligence(",".join(indicators), "30d", "all")
@@ -4425,16 +4425,16 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
         }
 
     # ============================================================================
-    # ENHANCED VISUAL OUTPUT TOOLS
+    # 增强 VISUAL 输出 工具
     # ============================================================================
 
     @mcp.tool()
     def get_live_dashboard() -> Dict[str, Any]:
         """
-        Get a beautiful live dashboard showing all active processes with enhanced visual formatting.
+        获取 a beautiful live dashboard showing 全部 active processes 使用 增强 visual formatting.
 
-        Returns:
-            Live dashboard with visual process monitoring and system metrics
+        返回:
+            Live dashboard 使用 visual 进程 监控 与 系统 指标
         """
         logger.info(" Fetching live process dashboard")
         result = hexstrike_client.safe_get("api/processes/dashboard")
@@ -4447,20 +4447,20 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def create_vulnerability_report(vulnerabilities: str, target: str = "", scan_type: str = "comprehensive") -> Dict[str, Any]:
         """
-        Create a beautiful vulnerability report with severity-based styling and visual indicators.
+        创建 a beautiful 漏洞 report 使用 severity-based styling 与 visual indicators.
 
-        Args:
-            vulnerabilities: JSON string containing vulnerability data
-            target: Target that was scanned
-            scan_type: Type of scan performed
+        参数:
+            vulnerabilities: JSON string containing 漏洞 data
+            target: 目标 that was scanned
+            scan_type: 类型 的 扫描 performed
 
-        Returns:
-            Formatted vulnerability report with visual enhancements
+        返回:
+            Formatted 漏洞 report 使用 visual enhancements
         """
         import json
 
         try:
-            # Parse vulnerabilities if provided as JSON string
+            # 解析 漏洞 如果 provided as JSON string
             if isinstance(vulnerabilities, str):
                 vuln_data = json.loads(vulnerabilities)
             else:
@@ -4468,14 +4468,14 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
 
             logger.info(f" Creating vulnerability report for {len(vuln_data)} findings")
 
-            # Create individual vulnerability cards
+            # 创建 individual 漏洞 cards
             vulnerability_cards = []
             for vuln in vuln_data:
                 card_result = hexstrike_client.safe_post("api/visual/vulnerability-card", vuln)
                 if card_result.get("success"):
                     vulnerability_cards.append(card_result.get("vulnerability_card", ""))
 
-            # Create summary report
+            # 创建 summary report
             summary_data = {
                 "target": target,
                 "vulnerabilities": vuln_data,
@@ -4501,15 +4501,15 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def format_tool_output_visual(tool_name: str, output: str, success: bool = True) -> Dict[str, Any]:
         """
-        Format tool output with beautiful visual styling, syntax highlighting, and structure.
+        Format 工具 输出 使用 beautiful visual styling, syntax highlighting, 与 structure.
 
-        Args:
-            tool_name: Name of the security tool
-            output: Raw output from the tool
-            success: Whether the tool execution was successful
+        参数:
+            tool_name: Name 的 the 安全 工具
+            output: Raw 输出 来自 the 工具
+            success: Whether the 工具 execution was successful
 
-        Returns:
-            Beautifully formatted tool output with visual enhancements
+        返回:
+            Beautifully formatted 工具 输出 使用 visual enhancements
         """
         logger.info(f" Formatting output for {tool_name}")
 
@@ -4531,17 +4531,17 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     def create_scan_summary(target: str, tools_used: str, vulnerabilities_found: int = 0,
                            execution_time: float = 0.0, findings: str = "") -> Dict[str, Any]:
         """
-        Create a comprehensive scan summary report with beautiful visual formatting.
+        创建 a 综合 扫描 summary report 使用 beautiful visual formatting.
 
-        Args:
-            target: Target that was scanned
-            tools_used: Comma-separated list of tools used
-            vulnerabilities_found: Number of vulnerabilities discovered
-            execution_time: Total execution time in seconds
-            findings: Additional findings or notes
+        参数:
+            target: 目标 that was scanned
+            tools_used: Comma-separated 列出 的 工具 used
+            vulnerabilities_found: Number 的 漏洞 discovered
+            execution_time: Total execution time 在 seconds
+            findings: 附加 findings 或 说明
 
-        Returns:
-            Beautiful scan summary report with visual enhancements
+        返回:
+            Beautiful 扫描 summary report 使用 visual enhancements
         """
         logger.info(f" Creating scan summary for {target}")
 
@@ -4551,7 +4551,7 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
             "target": target,
             "tools_used": tools_list,
             "execution_time": execution_time,
-            "vulnerabilities": [{"severity": "info"}] * vulnerabilities_found,  # Mock data for count
+            "vulnerabilities": [{"severity": "info"}] * vulnerabilities_found,  # Mock data 用于 count
             "findings": findings
         }
 
@@ -4566,20 +4566,20 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def display_system_metrics() -> Dict[str, Any]:
         """
-        Display current system metrics and performance indicators with visual formatting.
+        展示 current 系统 指标 与 performance indicators 使用 visual formatting.
 
-        Returns:
-            System metrics with beautiful visual presentation
+        返回:
+            系统 指标 使用 beautiful visual presentation
         """
         logger.info(" Fetching system metrics")
 
-        # Get telemetry data
+        # 获取 telemetry data
         telemetry_result = hexstrike_client.safe_get("api/telemetry")
 
         if telemetry_result.get("success", True):
             logger.info(" System metrics retrieved successfully")
 
-            # Format the metrics for better display
+            # Format the 指标 用于 better 展示
             metrics = telemetry_result.get("system_metrics", {})
             stats = {
                 "cpu_percent": metrics.get("cpu_percent", 0),
@@ -4609,19 +4609,19 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
             return telemetry_result
 
     # ============================================================================
-    # INTELLIGENT DECISION ENGINE TOOLS
+    # 智能 DECISION ENGINE 工具
     # ============================================================================
 
     @mcp.tool()
     def analyze_target_intelligence(target: str) -> Dict[str, Any]:
         """
-        Analyze target using AI-powered intelligence to create comprehensive profile.
+        分析 目标 using AI-powered intelligence 到 创建 综合 profile.
 
-        Args:
-            target: Target URL, IP address, or domain to analyze
+        参数:
+            target: 目标 URL, IP address, 或 域名 到 分析
 
-        Returns:
-            Comprehensive target profile with technology detection, risk assessment, and recommendations
+        返回:
+            综合 目标 profile 使用 technology detection, risk assessment, 与 recommendations
         """
         logger.info(f" Analyzing target intelligence for: {target}")
 
@@ -4639,14 +4639,14 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def select_optimal_tools_ai(target: str, objective: str = "comprehensive") -> Dict[str, Any]:
         """
-        Use AI to select optimal security tools based on target analysis and testing objective.
+        Use AI 到 选择 optimal 安全 工具 based 在 目标 分析 与 测试 objective.
 
-        Args:
-            target: Target to analyze
-            objective: Testing objective - "comprehensive", "quick", or "stealth"
+        参数:
+            target: 目标 到 分析
+            objective: 测试 objective - "综合", "quick", 或 "stealth"
 
-        Returns:
-            AI-selected optimal tools with effectiveness ratings and target profile
+        返回:
+            AI-selected optimal 工具 使用 effectiveness ratings 与 目标 profile
         """
         logger.info(f" Selecting optimal tools for {target} with objective: {objective}")
 
@@ -4667,15 +4667,15 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def optimize_tool_parameters_ai(target: str, tool: str, context: str = "{}") -> Dict[str, Any]:
         """
-        Use AI to optimize tool parameters based on target profile and context.
+        Use AI 到 optimize 工具 参数 based 在 目标 profile 与 context.
 
-        Args:
-            target: Target to test
-            tool: Security tool to optimize
-            context: JSON string with additional context (stealth, aggressive, etc.)
+        参数:
+            target: 目标 到 测试
+            tool: 安全 工具 到 optimize
+            context: JSON string 使用 附加 context (stealth, aggressive, etc.)
 
-        Returns:
-            AI-optimized parameters for maximum effectiveness
+        返回:
+            AI-optimized 参数 用于 maximum effectiveness
         """
         import json
 
@@ -4704,14 +4704,14 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def create_attack_chain_ai(target: str, objective: str = "comprehensive") -> Dict[str, Any]:
         """
-        Create an intelligent attack chain using AI-driven tool sequencing and optimization.
+        创建 an 智能 attack chain using AI-driven 工具 sequencing 与 optimization.
 
-        Args:
-            target: Target for the attack chain
-            objective: Attack objective - "comprehensive", "quick", or "stealth"
+        参数:
+            target: 目标 用于 the attack chain
+            objective: Attack objective - "综合", "quick", 或 "stealth"
 
-        Returns:
-            AI-generated attack chain with success probability and time estimates
+        返回:
+            AI-generated attack chain 使用 成功 probability 与 time estimates
         """
         logger.info(f"  Creating AI-driven attack chain for {target}")
 
@@ -4736,15 +4736,15 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def intelligent_smart_scan(target: str, objective: str = "comprehensive", max_tools: int = 5) -> Dict[str, Any]:
         """
-        Execute an intelligent scan using AI-driven tool selection and parameter optimization.
+        执行 an 智能 扫描 using AI-driven 工具 selection 与 参数 optimization.
 
-        Args:
-            target: Target to scan
-            objective: Scanning objective - "comprehensive", "quick", or "stealth"
-            max_tools: Maximum number of tools to use
+        参数:
+            target: 目标 到 扫描
+            objective: 扫描 objective - "综合", "quick", 或 "stealth"
+            max_tools: Maximum number 的 工具 到 use
 
-        Returns:
-            Results from AI-optimized scanning with tool execution summary
+        返回:
+            结果 来自 AI-optimized 扫描 使用 工具 execution summary
         """
         logger.info(f"{HexStrikeColors.FIRE_RED} Starting intelligent smart scan for {target}{HexStrikeColors.RESET}")
 
@@ -4760,7 +4760,7 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
             tools_executed = scan_results.get("tools_executed", [])
             execution_summary = scan_results.get("execution_summary", {})
 
-            # Enhanced logging with detailed results
+            # 增强日志 使用 detailed 结果
             logger.info(f"{HexStrikeColors.SUCCESS} Intelligent scan completed for {target}{HexStrikeColors.RESET}")
             logger.info(f"{HexStrikeColors.CYBER_ORANGE} Execution Summary:{HexStrikeColors.RESET}")
             logger.info(f"   • Tools executed: {execution_summary.get('successful_tools', 0)}/{execution_summary.get('total_tools', 0)}")
@@ -4768,17 +4768,17 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
             logger.info(f"   • Total vulnerabilities: {scan_results.get('total_vulnerabilities', 0)}")
             logger.info(f"   • Execution time: {execution_summary.get('total_execution_time', 0):.2f}s")
 
-            # Log successful tools
+            # Log successful 工具
             successful_tools = [t['tool'] for t in tools_executed if t.get('success')]
             if successful_tools:
                 logger.info(f"{HexStrikeColors.HIGHLIGHT_GREEN} Successful tools: {', '.join(successful_tools)} {HexStrikeColors.RESET}")
 
-            # Log failed tools
+            # Log 失败 工具
             failed_tools = [t['tool'] for t in tools_executed if not t.get('success')]
             if failed_tools:
                 logger.warning(f"{HexStrikeColors.HIGHLIGHT_RED} Failed tools: {', '.join(failed_tools)} {HexStrikeColors.RESET}")
 
-            # Log vulnerabilities found
+            # Log 漏洞 found
             if scan_results.get('total_vulnerabilities', 0) > 0:
                 logger.warning(f"{HexStrikeColors.VULN_HIGH} {scan_results['total_vulnerabilities']} vulnerabilities detected!{HexStrikeColors.RESET}")
         else:
@@ -4789,13 +4789,13 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def detect_technologies_ai(target: str) -> Dict[str, Any]:
         """
-        Use AI to detect technologies and provide technology-specific testing recommendations.
+        Use AI 到 detect technologies 与 provide technology-specific 测试 recommendations.
 
-        Args:
-            target: Target to analyze for technology detection
+        参数:
+            target: 目标 到 分析 用于 technology detection
 
-        Returns:
-            Detected technologies with AI-generated testing recommendations
+        返回:
+            Detected technologies 使用 AI-generated 测试 recommendations
         """
         logger.info(f" Detecting technologies for {target}")
 
@@ -4821,24 +4821,24 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def ai_reconnaissance_workflow(target: str, depth: str = "standard") -> Dict[str, Any]:
         """
-        Execute AI-driven reconnaissance workflow with intelligent tool chaining.
+        执行 AI-driven 侦察 workflow 使用 智能 工具 chaining.
 
-        Args:
-            target: Target for reconnaissance
-            depth: Reconnaissance depth - "surface", "standard", or "deep"
+        参数:
+            target: 目标 用于 侦察
+            depth: 侦察 depth - "surface", "standard", 或 "deep"
 
-        Returns:
-            Comprehensive reconnaissance results with AI-driven insights
+        返回:
+            综合 侦察 结果 使用 AI-driven insights
         """
         logger.info(f"  Starting AI reconnaissance workflow for {target} (depth: {depth})")
 
-        # First analyze the target
+        # 第一 分析 the 目标
         analysis_result = hexstrike_client.safe_post("api/intelligence/analyze-target", {"target": target})
 
         if not analysis_result.get("success"):
             return analysis_result
 
-        # Create attack chain for reconnaissance
+        # 创建 attack chain 用于 侦察
         objective = "comprehensive" if depth == "deep" else "quick" if depth == "surface" else "comprehensive"
         chain_result = hexstrike_client.safe_post("api/intelligence/create-attack-chain", {
             "target": target,
@@ -4848,7 +4848,7 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
         if not chain_result.get("success"):
             return chain_result
 
-        # Execute the reconnaissance
+        # 执行 the 侦察
         scan_result = hexstrike_client.safe_post("api/intelligence/smart-scan", {
             "target": target,
             "objective": objective,
@@ -4870,18 +4870,18 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def ai_vulnerability_assessment(target: str, focus_areas: str = "all") -> Dict[str, Any]:
         """
-        Perform AI-driven vulnerability assessment with intelligent prioritization.
+        Perform AI-driven 漏洞 assessment 使用 智能 prioritization.
 
-        Args:
-            target: Target for vulnerability assessment
-            focus_areas: Comma-separated focus areas - "web", "network", "api", "all"
+        参数:
+            target: 目标 用于 漏洞 assessment
+            focus_areas: Comma-separated focus areas - "web", "网络", "API", "全部"
 
-        Returns:
-            Prioritized vulnerability assessment results with AI insights
+        返回:
+            Prioritized 漏洞 assessment 结果 使用 AI insights
         """
         logger.info(f" Starting AI vulnerability assessment for {target}")
 
-        # Analyze target first
+        # 分析 目标 第一
         analysis_result = hexstrike_client.safe_post("api/intelligence/analyze-target", {"target": target})
 
         if not analysis_result.get("success"):
@@ -4890,7 +4890,7 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
         profile = analysis_result.get("target_profile", {})
         target_type = profile.get("target_type", "unknown")
 
-        # Select tools based on focus areas and target type
+        # 选择 工具 based 在 focus areas 与 目标 类型
         if focus_areas == "all":
             objective = "comprehensive"
         elif "web" in focus_areas and target_type == "web_application":
@@ -4900,7 +4900,7 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
         else:
             objective = "quick"
 
-        # Execute vulnerability assessment
+        # 执行 漏洞 assessment
         scan_result = hexstrike_client.safe_post("api/intelligence/smart-scan", {
             "target": target,
             "objective": objective,
@@ -4924,23 +4924,23 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
         }
 
     # ============================================================================
-    # BUG BOUNTY HUNTING SPECIALIZED WORKFLOWS
+    # 说明：BUG BOUNTY HUNTING SPECIALIZED WORKFLOWS
     # ============================================================================
 
     @mcp.tool()
     def bugbounty_reconnaissance_workflow(domain: str, scope: str = "", out_of_scope: str = "",
                                         program_type: str = "web") -> Dict[str, Any]:
         """
-        Create comprehensive reconnaissance workflow for bug bounty hunting.
+        创建 综合 侦察 workflow 用于 bug bounty hunting.
 
-        Args:
-            domain: Target domain for bug bounty
-            scope: Comma-separated list of in-scope domains/IPs
-            out_of_scope: Comma-separated list of out-of-scope domains/IPs
-            program_type: Type of program (web, api, mobile, iot)
+        参数:
+            domain: 目标 域名 用于 bug bounty
+            scope: Comma-separated 列出 的 in-scope domains/IPs
+            out_of_scope: Comma-separated 列出 的 out-of-scope domains/IPs
+            program_type: 类型 的 program (web, API, mobile, iot)
 
-        Returns:
-            Comprehensive reconnaissance workflow with phases and tools
+        返回:
+            综合 侦察 workflow 使用 phases 与 工具
         """
         data = {
             "domain": domain,
@@ -4964,15 +4964,15 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     def bugbounty_vulnerability_hunting(domain: str, priority_vulns: str = "rce,sqli,xss,idor,ssrf",
                                        bounty_range: str = "unknown") -> Dict[str, Any]:
         """
-        Create vulnerability hunting workflow prioritized by impact and bounty potential.
+        创建 漏洞 hunting workflow prioritized 由 impact 与 bounty potential.
 
-        Args:
-            domain: Target domain for bug bounty
-            priority_vulns: Comma-separated list of priority vulnerability types
-            bounty_range: Expected bounty range (low, medium, high, critical)
+        参数:
+            domain: 目标 域名 用于 bug bounty
+            priority_vulns: Comma-separated 列出 的 priority 漏洞 types
+            bounty_range: Expected bounty range (低, 中, 高, 严重)
 
-        Returns:
-            Vulnerability hunting workflow prioritized by impact
+        返回:
+            漏洞 hunting workflow prioritized 由 impact
         """
         data = {
             "domain": domain,
@@ -4994,14 +4994,14 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def bugbounty_business_logic_testing(domain: str, program_type: str = "web") -> Dict[str, Any]:
         """
-        Create business logic testing workflow for advanced bug bounty hunting.
+        创建 business logic 测试 workflow 用于 高级 bug bounty hunting.
 
-        Args:
-            domain: Target domain for bug bounty
-            program_type: Type of program (web, api, mobile)
+        参数:
+            domain: 目标 域名 用于 bug bounty
+            program_type: 类型 的 program (web, API, mobile)
 
-        Returns:
-            Business logic testing workflow with manual and automated tests
+        返回:
+            Business logic 测试 workflow 使用 manual 与 automated tests
         """
         data = {
             "domain": domain,
@@ -5023,13 +5023,13 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def bugbounty_osint_gathering(domain: str) -> Dict[str, Any]:
         """
-        Create OSINT (Open Source Intelligence) gathering workflow for bug bounty reconnaissance.
+        创建 OSINT (Open Source Intelligence) gathering workflow 用于 bug bounty 侦察.
 
-        Args:
-            domain: Target domain for OSINT gathering
+        参数:
+            domain: 目标 域名 用于 OSINT gathering
 
-        Returns:
-            OSINT gathering workflow with multiple intelligence phases
+        返回:
+            OSINT gathering workflow 使用 multiple intelligence phases
         """
         data = {"domain": domain}
 
@@ -5048,13 +5048,13 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def bugbounty_file_upload_testing(target_url: str) -> Dict[str, Any]:
         """
-        Create file upload vulnerability testing workflow with bypass techniques.
+        创建 文件 upload 漏洞 测试 workflow 使用 bypass techniques.
 
-        Args:
-            target_url: Target URL with file upload functionality
+        参数:
+            target_url: 目标 URL 使用 文件 upload functionality
 
-        Returns:
-            File upload testing workflow with malicious files and bypass techniques
+        返回:
+            文件 upload 测试 workflow 使用 malicious 文件 与 bypass techniques
         """
         data = {"target_url": target_url}
 
@@ -5076,17 +5076,17 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
                                          include_osint: bool = True,
                                          include_business_logic: bool = True) -> Dict[str, Any]:
         """
-        Create comprehensive bug bounty assessment combining all specialized workflows.
+        创建 综合 bug bounty assessment combining 全部 specialized workflows.
 
-        Args:
-            domain: Target domain for bug bounty
-            scope: Comma-separated list of in-scope domains/IPs
-            priority_vulns: Comma-separated list of priority vulnerability types
-            include_osint: Include OSINT gathering workflow
-            include_business_logic: Include business logic testing workflow
+        参数:
+            domain: 目标 域名 用于 bug bounty
+            scope: Comma-separated 列出 的 in-scope domains/IPs
+            priority_vulns: Comma-separated 列出 的 priority 漏洞 types
+            include_osint: 说明：Include OSINT gathering workflow
+            include_business_logic: Include business logic 测试 workflow
 
-        Returns:
-            Comprehensive bug bounty assessment with all workflows and summary
+        返回:
+            综合 bug bounty assessment 使用 全部 workflows 与 summary
         """
         data = {
             "domain": domain,
@@ -5111,14 +5111,14 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def bugbounty_authentication_bypass_testing(target_url: str, auth_type: str = "form") -> Dict[str, Any]:
         """
-        Create authentication bypass testing workflow for bug bounty hunting.
+        创建 认证 bypass 测试 workflow 用于 bug bounty hunting.
 
-        Args:
-            target_url: Target URL with authentication
-            auth_type: Type of authentication (form, jwt, oauth, saml)
+        参数:
+            target_url: 目标 URL 使用 认证
+            auth_type: 类型 的 认证 (form, jwt, oauth, saml)
 
-        Returns:
-            Authentication bypass testing strategies and techniques
+        返回:
+            认证 bypass 测试 strategies 与 techniques
         """
         bypass_techniques = {
             "form": [
@@ -5170,25 +5170,25 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
         }
 
     # ============================================================================
-    # ENHANCED HTTP TESTING FRAMEWORK & BROWSER AGENT (BURP SUITE ALTERNATIVE)
+    # 增强 HTTP 测试 框架 & 浏览器 AGENT (BURP SUITE ALTERNATIVE)
     # ============================================================================
 
     @mcp.tool()
     def http_framework_test(url: str, method: str = "GET", data: dict = {},
                            headers: dict = {}, cookies: dict = {}, action: str = "request") -> Dict[str, Any]:
         """
-        Enhanced HTTP testing framework (Burp Suite alternative) for comprehensive web security testing.
+        增强 HTTP 测试 框架 (Burp Suite alternative) 用于 综合 web 安全 测试.
 
-        Args:
-            url: Target URL to test
-            method: HTTP method (GET, POST, PUT, DELETE, etc.)
-            data: Request data/parameters
-            headers: Custom headers
-            cookies: Custom cookies
-            action: Action to perform (request, spider, proxy_history, set_rules, set_scope, repeater, intruder)
+        参数:
+            url: 目标 URL 到 测试
+            method: HTTP method (获取, POST, PUT, 删除, etc.)
+            data: 请求 data/参数
+            headers: Custom 请求头
+            cookies: 说明：Custom Cookie
+            action: Action 到 perform (请求, spider, proxy_history, set_rules, set_scope, repeater, intruder)
 
-        Returns:
-            HTTP testing results with vulnerability analysis
+        返回:
+            HTTP 测试 结果 使用 漏洞 分析
         """
         data_payload = {
             "url": url,
@@ -5205,7 +5205,7 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
         if result.get("success"):
             logger.info(f"{HexStrikeColors.SUCCESS} HTTP Framework {action} completed for {url}{HexStrikeColors.RESET}")
 
-            # Enhanced logging for vulnerabilities found
+            # 增强日志 用于 漏洞 found
             if result.get("result", {}).get("vulnerabilities"):
                 vuln_count = len(result["result"]["vulnerabilities"])
                 logger.info(f"{HexStrikeColors.HIGHLIGHT_RED} Found {vuln_count} potential vulnerabilities {HexStrikeColors.RESET}")
@@ -5218,18 +5218,18 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     def browser_agent_inspect(url: str, headless: bool = True, wait_time: int = 5,
                              action: str = "navigate", proxy_port: int = None, active_tests: bool = False) -> Dict[str, Any]:
         """
-        AI-powered browser agent for comprehensive web application inspection and security analysis.
+        AI-powered 浏览器 agent 用于 综合 web application inspection 与 安全 分析.
 
-        Args:
-            url: Target URL to inspect
-            headless: Run browser in headless mode
-            wait_time: Time to wait after page load
-            action: Action to perform (navigate, screenshot, close, status)
-            proxy_port: Optional proxy port for request interception
-            active_tests: Run lightweight active reflected XSS tests (safe GET-only)
+        参数:
+            url: 目标 URL 到 inspect
+            headless: Run 浏览器 在 headless 模式
+            wait_time: Time 到 wait after page load
+            action: Action 到 perform (navigate, screenshot, 关闭, 状态)
+            proxy_port: Optional 代理 port 用于 请求 interception
+            active_tests: Run 轻量 active reflected XSS tests (safe GET-only)
 
-        Returns:
-            Browser inspection results with security analysis
+        返回:
+            浏览器 inspection 结果 使用 安全 分析
         """
         data_payload = {
             "url": url,
@@ -5246,7 +5246,7 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
         if result.get("success"):
             logger.info(f"{HexStrikeColors.SUCCESS} Browser Agent {action} completed for {url}{HexStrikeColors.RESET}")
 
-            # Enhanced logging for security analysis
+            # 增强日志 用于 安全 分析
             if action == "navigate" and result.get("result", {}).get("security_analysis"):
                 security_analysis = result["result"]["security_analysis"]
                 issues_count = security_analysis.get("total_issues", 0)
@@ -5261,31 +5261,31 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
 
         return result
 
-    # ---------------- Additional HTTP Framework Tools (sync with server) ----------------
+    # ---------------- 附加 HTTP 框架 工具 (sync 使用 服务端) ----------------
     @mcp.tool()
     def http_set_rules(rules: list) -> Dict[str, Any]:
-        """Set match/replace rules used to rewrite parts of URL/query/headers/body before sending.
-        Rule format: {'where':'url|query|headers|body','pattern':'regex','replacement':'string'}"""
+        """设置 match/replace rules used 到 rewrite parts 的 URL/query/请求头/body before sending.
+        Rule format: {'where':'URL|query|请求头|body','pattern':'regex','replacement':'string'}"""
         payload = {"action": "set_rules", "rules": rules}
         return hexstrike_client.safe_post("api/tools/http-framework", payload)
 
     @mcp.tool()
     def http_set_scope(host: str, include_subdomains: bool = True) -> Dict[str, Any]:
-        """Define in-scope host (and optionally subdomains) so out-of-scope requests are skipped."""
+        """Define in-scope host (与 optionally subdomains) so out-of-scope 请求 are skipped."""
         payload = {"action": "set_scope", "host": host, "include_subdomains": include_subdomains}
         return hexstrike_client.safe_post("api/tools/http-framework", payload)
 
     @mcp.tool()
     def http_repeater(request_spec: dict) -> Dict[str, Any]:
-        """Send a crafted request (Burp Repeater equivalent). request_spec keys: url, method, headers, cookies, data."""
+        """Send a crafted 请求 (Burp Repeater equivalent). request_spec keys: URL, method, 请求头, Cookie, data."""
         payload = {"action": "repeater", "request": request_spec}
         return hexstrike_client.safe_post("api/tools/http-framework", payload)
 
     @mcp.tool()
     def http_intruder(url: str, method: str = "GET", location: str = "query", params: list = None,
                       payloads: list = None, base_data: dict = None, max_requests: int = 100) -> Dict[str, Any]:
-        """Simple Intruder (sniper) fuzzing. Iterates payloads over each param individually.
-        location: query|body|headers|cookie."""
+        """简单 Intruder (sniper) fuzzing. Iterates payloads over each param individually.
+        location: query|body|请求头|Cookie."""
         payload = {
             "action": "intruder",
             "url": url,
@@ -5305,14 +5305,14 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
         """
         Burp Suite 替代扫描入口：整合 HTTP 框架与浏览器代理能力。
 
-        Args:
+        参数:
             target: 待扫描目标 URL/域名
-            scan_type: 扫描类型（comprehensive/spider/passive/active）
+            scan_type: 扫描类型（综合/spider/passive/active）
             headless: 是否无头浏览器模式
             max_depth: 最大爬取深度
             max_pages: 最大分析页面数
 
-        Returns:
+        返回:
             综合安全评估结果
         """
         # 与服务端 API 契约保持一致，避免字段命名漂移。
@@ -5369,7 +5369,7 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
         """
         Burp 风格被动扫描（适合复杂系统的低风险渗透测试前期分析）。
 
-        Args:
+        参数:
             target: 目标 URL
             headless: 是否使用无头浏览器
             max_depth: 爬虫深度
@@ -5382,7 +5382,7 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
             close_browser: 扫描后是否关闭浏览器
             output_file: 结果输出文件（为空则默认写入 /tmp）
 
-        Returns:
+        返回:
             被动扫描结果（包含被动发现、严重等级统计、报告路径）
         """
         # 参数透传到服务端统一执行，MCP 只承担编排与展示职责。
@@ -5433,16 +5433,16 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
         """
         分析 Burp 转发的数据包，并执行“仅验证”模式的安全复测。
 
-        Args:
-            traffic: Burp 转发流量数组，每项包含 request/response
+        参数:
+            traffic: Burp 转发流量数组，每项包含 请求/响应
             target: 可选目标（用于作用域限制）
-            run_safe_verify: 是否执行安全验证请求（仅 GET + 无害参数）
+            run_safe_verify: 是否执行安全验证请求（仅 获取 + 无害参数）
             max_verify_requests: 安全验证请求上限
             include_subdomains: 作用域是否包含子域
             reset_state: 是否清空历史状态
             output_file: 报告输出文件
 
-        Returns:
+        返回:
             带置信度与质量评分的漏洞分析结果
         """
         # traffic 由 Burp 扩展或中间层转发，结构在服务端做兼容解析。
@@ -5479,10 +5479,10 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     @mcp.tool()
     def error_handling_statistics() -> Dict[str, Any]:
         """
-        Get intelligent error handling system statistics and recent error patterns.
+        获取 智能 错误 handling 系统 统计 与 最近 错误 patterns.
 
-        Returns:
-            Error handling statistics and patterns
+        返回:
+            错误 handling 统计 与 patterns
         """
         logger.info(f"{HexStrikeColors.ELECTRIC_PURPLE} Retrieving error handling statistics{HexStrikeColors.RESET}")
         result = hexstrike_client.safe_get("api/error-handling/statistics")
@@ -5496,7 +5496,7 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
             logger.info(f"   Total Errors: {total_errors}")
             logger.info(f"   Recent Errors: {recent_errors}")
 
-            # Log error breakdown by type
+            # Log 错误 breakdown 由 类型
             error_counts = stats.get("error_counts_by_type", {})
             if error_counts:
                 logger.info(f"{HexStrikeColors.HIGHLIGHT_BLUE} ERROR BREAKDOWN {HexStrikeColors.RESET}")
@@ -5511,15 +5511,15 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     def test_error_recovery(tool_name: str, error_type: str = "timeout",
                            target: str = "example.com") -> Dict[str, Any]:
         """
-        Test the intelligent error recovery system with simulated failures.
+        测试 the 智能 错误 恢复 系统 使用 simulated failures.
 
-        Args:
-            tool_name: Name of tool to simulate error for
-            error_type: Type of error to simulate (timeout, permission_denied, network_unreachable, etc.)
-            target: Target for the simulated test
+        参数:
+            tool_name: Name 的 工具 到 simulate 错误 用于
+            error_type: 类型 的 错误 到 simulate (超时, permission_denied, network_unreachable, etc.)
+            target: 目标 用于 the simulated 测试
 
-        Returns:
-            Recovery strategy and system response
+        返回:
+            恢复 策略 与 系统 响应
         """
         data_payload = {
             "tool_name": tool_name,
@@ -5539,7 +5539,7 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
             logger.info(f"   Recovery Action: {action}")
             logger.info(f"   Success Probability: {success_prob:.2%}")
 
-            # Log alternative tools if available
+            # Log alternative 工具 如果 available
             alternatives = result.get("alternative_tools", [])
             if alternatives:
                 logger.info(f"   Alternative Tools: {', '.join(alternatives)}")
@@ -5551,7 +5551,7 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
     return mcp
 
 def parse_args():
-    """Parse command line arguments."""
+    """解析 命令 line arguments."""
     parser = argparse.ArgumentParser(description="Run the HexStrike AI MCP Client")
     parser.add_argument("--server", type=str, default=DEFAULT_HEXSTRIKE_SERVER,
                       help=f"HexStrike AI API server URL (default: {DEFAULT_HEXSTRIKE_SERVER})")
@@ -5561,23 +5561,23 @@ def parse_args():
     return parser.parse_args()
 
 def main():
-    """Main entry point for the MCP server."""
+    """主入口 用于 the MCP 服务端."""
     args = parse_args()
 
-    # Configure logging based on debug flag
+    # 配置 logging based 在 debug flag
     if args.debug:
         logger.setLevel(logging.DEBUG)
         logger.debug(" Debug logging enabled")
 
-    # MCP compatibility: No banner output to avoid JSON parsing issues
+    # MCP compatibility: No banner 输出 到 avoid JSON parsing issues
     logger.info(f" Starting HexStrike AI MCP Client v6.0")
     logger.info(f" Connecting to: {args.server}")
 
     try:
-        # Initialize the HexStrike AI client
+        # 初始化 the HexStrike AI 客户端
         hexstrike_client = HexStrikeClient(args.server, args.timeout)
 
-        # Check server health and log the result
+        # 检查 服务端 健康 与 log the 结果
         health = hexstrike_client.check_health()
         if "error" in health:
             logger.warning(f"  Unable to connect to HexStrike AI API server at {args.server}: {health['error']}")
@@ -5592,7 +5592,7 @@ def main():
                 if missing_tools:
                     logger.warning(f" Missing tools: {', '.join(missing_tools[:5])}{'...' if len(missing_tools) > 5 else ''}")
 
-        # Set up and run the MCP server
+        # 设置 up 与 run the MCP 服务端
         mcp = setup_mcp_server(hexstrike_client)
         logger.info(" Starting HexStrike AI MCP server")
         logger.info(" Ready to serve AI agents with enhanced cybersecurity capabilities")

