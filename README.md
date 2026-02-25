@@ -194,7 +194,7 @@ curl -X POST http://localhost:8888/api/intelligence/analyze-target \
 - 与渗透测试工具生态最匹配，工具可用率更高。
 - 更适合本项目“安全工具优先”的运行目标。
 - 代价是镜像更大、构建时间更长。
-- 默认使用阿里云 Kali 源：`https://mirrors.aliyun.com/kali`（可通过构建参数覆盖）。
+- 默认使用阿里云 Kali 源：`http://mirrors.aliyun.com/kali`（可通过构建参数覆盖）。
 - 默认使用 USTC PyPI 源：`https://pypi.mirrors.ustc.edu.cn/simple/`。
 
 #### 1) 启动服务（单容器）
@@ -213,27 +213,57 @@ curl http://localhost:8888/health
 ```bash
 # 如需临时指定其他镜像源（示例）
 docker build \
-  --build-arg KALI_MIRROR=https://mirrors.aliyun.com/kali \
+  --build-arg KALI_MIRROR=http://mirrors.aliyun.com/kali \
+  --build-arg SECURITY_TOOLS_CATEGORIES=web,forensics \
+  --build-arg SECURITY_TOOLS_STRICT=1 \
   -t hexstrike-ai:kali .
 ```
+
+`docker-compose.yml` 中可通过 `build.args.SECURITY_TOOLS_CATEGORIES` 固定类别组合，例如 `web,forensics`。
 
 #### 2) 工具自动安装脚本（宿主机/容器通用）
 
 ```bash
-# 最小工具集
-./scripts/install_security_tools.sh --profile minimal
+# 查看可选类别
+./scripts/install_security_tools.sh --list-categories
 
-# 标准工具集
+# 按 profile 安装（兼容旧用法）
+./scripts/install_security_tools.sh --profile minimal
 ./scripts/install_security_tools.sh --profile standard
 
 # 完整工具集（严格模式）
 ./scripts/install_security_tools.sh --profile full --strict --non-interactive
+
+# 按类别安装（推荐：按需选择，减少无效依赖）
+./scripts/install_security_tools.sh --category web,forensics --strict --non-interactive
+./scripts/install_security_tools.sh --category network --category web
+
+# 仅预览将安装的包（不实际安装）
+./scripts/install_security_tools.sh --category web,forensics --dry-run
+
+# 安装实验性工具（可能依赖额外仓库）
+./scripts/install_security_tools.sh --category experimental
 ```
 
 支持 profile：
 - `minimal`：网络 + Web + 认证基础工具。
 - `standard`：`minimal` + 二进制 + 取证。
 - `full`：`standard` + 云安全 + OSINT + 浏览器依赖。
+
+支持 category（可组合）：
+- `network`：网络发现与侦察。
+- `web`：Web 渗透测试工具。
+- `auth`：认证与口令审计。
+- `binary`：二进制与逆向分析。
+- `forensics`：数字取证与证据提取。
+- `cloud`：云与 Kubernetes 基础工具。
+- `osint`：OSINT 侦察基础工具。
+- `browser`：浏览器运行依赖。
+- `experimental`：高级工具（可能需要额外源）。
+
+说明：
+- `--category` 支持重复传入和逗号分隔，传入后会优先于 `--profile`。
+- `volatility3` 会自动回退安装 `python3-volatility3`（仓库包名差异兼容）。
 
 ---
 
@@ -456,7 +486,7 @@ curl -X POST http://localhost:8888/api/tools/burp-traffic-analyze \
 - 降低“环境搭建失败”概率，减少手工依赖冲突。
 
 落地：
-- 提供统一入口：`scripts/install_security_tools.sh --profile <minimal|standard|full>`。
+- 提供统一入口：`scripts/install_security_tools.sh --profile <minimal|standard|full>` 或 `--category <web,forensics,...>`。
 - 安装前自动探测系统能力（apt、sudo、网络可达性）。
 - 输出结构化安装报告：已安装、已存在、失败、不可用。
 - `--strict` 模式用于 CI，确保依赖不完整时直接失败。
@@ -468,7 +498,7 @@ curl -X POST http://localhost:8888/api/tools/burp-traffic-analyze \
 
 落地：
 - 基础镜像固定 `kalilinux/kali-rolling`。
-- apt 源默认阿里云：`https://mirrors.aliyun.com/kali`。
+- apt 源默认阿里云：`http://mirrors.aliyun.com/kali`。
 - pip 源默认 USTC：`https://pypi.mirrors.ustc.edu.cn/simple/`。
 - 通过 `docker compose up -d --build hexstrike` 一键构建启动。
 

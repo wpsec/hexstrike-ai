@@ -6,7 +6,10 @@ STRICT_MODE=0
 SKIP_UPDATE=0
 NON_INTERACTIVE=0
 NO_BROWSER=0
+LIST_CATEGORIES=0
+DRY_RUN=0
 APT_RETRIES="${APT_RETRIES:-3}"
+CATEGORY_INPUTS=()
 
 log() {
   printf '[install-tools] %s\n' "$*"
@@ -27,7 +30,10 @@ Usage:
   scripts/install_security_tools.sh [options]
 
 Options:
-  --profile <name>     Install profile: minimal|standard|full|network|web|auth|binary|forensics|cloud|osint|browser
+  --profile <name>     Install profile: minimal|standard|full|network|web|auth|binary|forensics|cloud|osint|browser|experimental
+  --category <names>   Install by category (can repeat, supports comma-separated values)
+  --list-categories    Show all categories and exit
+  --dry-run            Print resolved package list and exit
   --strict             Exit non-zero when any package fails or is unavailable
   --skip-update        Skip apt repository update
   --non-interactive    Set DEBIAN_FRONTEND=noninteractive
@@ -36,8 +42,38 @@ Options:
 
 Examples:
   scripts/install_security_tools.sh --profile standard
+  scripts/install_security_tools.sh --category web,forensics --strict
+  scripts/install_security_tools.sh --category network --category web --non-interactive
+  scripts/install_security_tools.sh --category web,forensics --dry-run
   scripts/install_security_tools.sh --profile full --strict --non-interactive
 USAGE
+}
+
+list_categories() {
+  cat <<'CATEGORIES'
+Available categories:
+  network       Network discovery and reconnaissance tools
+  web           Web security testing tools
+  auth          Authentication and password auditing tools
+  binary        Binary analysis and reverse-engineering tools
+  forensics     Digital forensics and artifact extraction tools
+  cloud         Cloud and Kubernetes baseline tools
+  osint         OSINT-friendly reconnaissance tools
+  browser       Browser runtime dependencies
+  experimental  Advanced tools that may require extra repositories
+CATEGORIES
+}
+
+trim_whitespace() {
+  local value="$1"
+  value="${value#"${value%%[![:space:]]*}"}"
+  value="${value%"${value##*[![:space:]]}"}"
+  printf '%s' "$value"
+}
+
+join_by_comma() {
+  local IFS=','
+  printf '%s' "$*"
 }
 
 while [[ $# -gt 0 ]]; do
@@ -46,6 +82,19 @@ while [[ $# -gt 0 ]]; do
       [[ $# -ge 2 ]] || die "--profile requires a value"
       PROFILE="$2"
       shift 2
+      ;;
+    --category)
+      [[ $# -ge 2 ]] || die "--category requires a value"
+      CATEGORY_INPUTS+=("$2")
+      shift 2
+      ;;
+    --list-categories)
+      LIST_CATEGORIES=1
+      shift
+      ;;
+    --dry-run)
+      DRY_RUN=1
+      shift
       ;;
     --strict)
       STRICT_MODE=1
@@ -72,23 +121,6 @@ while [[ $# -gt 0 ]]; do
       ;;
   esac
 done
-
-if ! command -v apt-get >/dev/null 2>&1; then
-  die "This script currently supports apt-based systems only"
-fi
-
-SUDO_CMD=""
-if [[ "$(id -u)" -ne 0 ]]; then
-  if command -v sudo >/dev/null 2>&1; then
-    SUDO_CMD="sudo"
-  else
-    die "Please run as root or install sudo"
-  fi
-fi
-
-if [[ "$NON_INTERACTIVE" -eq 1 ]]; then
-  export DEBIAN_FRONTEND=noninteractive
-fi
 
 run_apt_get() {
   local attempt=1
@@ -120,48 +152,58 @@ run_apt_get() {
 }
 
 NETWORK_TOOLS=(
-  nmap masscan rustscan amass subfinder fierce dnsenum theharvester
+  nmap masscan amass subfinder fierce dnsenum theharvester
   responder enum4linux enum4linux-ng netexec
 )
 WEB_TOOLS=(
   gobuster feroxbuster ffuf dirb dirsearch nikto sqlmap wpscan
-  arjun dalfox wafw00f httpx
+  arjun wafw00f
 )
 AUTH_TOOLS=(
   hydra john hashcat medusa patator evil-winrm hash-identifier
 )
 BINARY_TOOLS=(
-  gdb radare2 binwalk checksec strings binutils
+  gdb radare2 binwalk checksec binutils
 )
 FORENSICS_TOOLS=(
   volatility3 foremost steghide exiftool sleuthkit testdisk
 )
 CLOUD_TOOLS=(
-  trivy kube-hunter kube-bench docker-bench-security checkov terrascan falco
+  awscli kubectl
 )
 OSINT_TOOLS=(
-  recon-ng spiderfoot sherlock
+  amass subfinder theharvester
 )
 BROWSER_TOOLS=(
   chromium chromium-driver
 )
+EXPERIMENTAL_TOOLS=(
+  checkov dalfox docker-bench-security falco httpx kube-bench kube-hunter
+  recon-ng rustscan sherlock spiderfoot terrascan trivy
+)
 
-select_packages() {
-  case "$PROFILE" in
+profile_categories() {
+  case "$1" in
     minimal)
-      printf '%s\n' "${NETWORK_TOOLS[@]}" "${WEB_TOOLS[@]}" "${AUTH_TOOLS[@]}"
+      printf '%s\n' network web auth
       ;;
     standard)
-      printf '%s\n' \
-        "${NETWORK_TOOLS[@]}" "${WEB_TOOLS[@]}" "${AUTH_TOOLS[@]}" \
-        "${BINARY_TOOLS[@]}" "${FORENSICS_TOOLS[@]}"
+      printf '%s\n' network web auth binary forensics
       ;;
     full)
-      printf '%s\n' \
-        "${NETWORK_TOOLS[@]}" "${WEB_TOOLS[@]}" "${AUTH_TOOLS[@]}" \
-        "${BINARY_TOOLS[@]}" "${FORENSICS_TOOLS[@]}" "${CLOUD_TOOLS[@]}" \
-        "${OSINT_TOOLS[@]}" "${BROWSER_TOOLS[@]}"
+      printf '%s\n' network web auth binary forensics cloud osint browser
       ;;
+    network|web|auth|binary|forensics|cloud|osint|browser|experimental)
+      printf '%s\n' "$1"
+      ;;
+    *)
+      die "Unsupported profile: $1"
+      ;;
+  esac
+}
+
+category_packages() {
+  case "$1" in
     network)
       printf '%s\n' "${NETWORK_TOOLS[@]}"
       ;;
@@ -186,13 +228,92 @@ select_packages() {
     browser)
       printf '%s\n' "${BROWSER_TOOLS[@]}"
       ;;
+    experimental)
+      printf '%s\n' "${EXPERIMENTAL_TOOLS[@]}"
+      ;;
     *)
-      die "Unsupported profile: $PROFILE"
+      die "Unsupported category: $1"
       ;;
   esac
 }
 
-readarray -t PACKAGES < <(select_packages | awk 'NF {print $1}' | sort -u)
+resolve_pkg_candidates() {
+  case "$1" in
+    volatility3)
+      printf '%s\n' "python3-volatility3 volatility3"
+      ;;
+    exiftool)
+      printf '%s\n' "libimage-exiftool-perl exiftool"
+      ;;
+    kubectl)
+      printf '%s\n' "kubernetes-client kubectl"
+      ;;
+    chromium-driver)
+      printf '%s\n' "chromium-driver chromium-chromedriver"
+      ;;
+    hash-identifier)
+      printf '%s\n' "hash-identifier hashid"
+      ;;
+    *)
+      printf '%s\n' "$1"
+      ;;
+  esac
+}
+
+parse_categories() {
+  local raw_input
+  local token
+  local normalized
+  local -a split_values=()
+  declare -A seen=()
+
+  for raw_input in "$@"; do
+    IFS=',' read -r -a split_values <<<"$raw_input"
+    for token in "${split_values[@]}"; do
+      normalized="$(trim_whitespace "$token")"
+      [[ -z "$normalized" ]] && continue
+      case "$normalized" in
+        network|web|auth|binary|forensics|cloud|osint|browser|experimental)
+          if [[ -z "${seen[$normalized]:-}" ]]; then
+            seen["$normalized"]=1
+            printf '%s\n' "$normalized"
+          fi
+          ;;
+        *)
+          die "Unsupported category: $normalized"
+          ;;
+      esac
+    done
+  done
+}
+
+collect_packages_from_categories() {
+  local category
+  for category in "$@"; do
+    category_packages "$category"
+  done
+}
+
+if [[ "$LIST_CATEGORIES" -eq 1 ]]; then
+  list_categories
+  exit 0
+fi
+
+SELECTED_CATEGORIES=()
+SOURCE_DESCRIPTION=""
+if [[ "${#CATEGORY_INPUTS[@]}" -gt 0 ]]; then
+  readarray -t SELECTED_CATEGORIES < <(parse_categories "${CATEGORY_INPUTS[@]}")
+  SOURCE_DESCRIPTION="categories: $(join_by_comma "${SELECTED_CATEGORIES[@]}")"
+else
+  readarray -t SELECTED_CATEGORIES < <(profile_categories "$PROFILE")
+  SOURCE_DESCRIPTION="profile: ${PROFILE} (categories: $(join_by_comma "${SELECTED_CATEGORIES[@]}"))"
+fi
+
+if [[ "${#SELECTED_CATEGORIES[@]}" -eq 0 ]]; then
+  die "No categories selected"
+fi
+
+readarray -t PACKAGES < <(collect_packages_from_categories "${SELECTED_CATEGORIES[@]}" | awk 'NF {print $1}' | sort -u)
 
 if [[ "$NO_BROWSER" -eq 1 ]]; then
   FILTERED=()
@@ -205,11 +326,34 @@ if [[ "$NO_BROWSER" -eq 1 ]]; then
 fi
 
 if [[ "${#PACKAGES[@]}" -eq 0 ]]; then
-  die "No packages selected for profile: $PROFILE"
+  die "No packages selected"
 fi
 
-log "Profile: $PROFILE"
+log "Selection: $SOURCE_DESCRIPTION"
 log "Total packages selected: ${#PACKAGES[@]}"
+
+if [[ "$DRY_RUN" -eq 1 ]]; then
+  log "Dry-run mode enabled. Resolved packages:"
+  printf '%s\n' "${PACKAGES[@]}"
+  exit 0
+fi
+
+if ! command -v apt-get >/dev/null 2>&1; then
+  die "This script currently supports apt-based systems only"
+fi
+
+SUDO_CMD=""
+if [[ "$(id -u)" -ne 0 ]]; then
+  if command -v sudo >/dev/null 2>&1; then
+    SUDO_CMD="sudo"
+  else
+    die "Please run as root or install sudo"
+  fi
+fi
+
+if [[ "$NON_INTERACTIVE" -eq 1 ]]; then
+  export DEBIAN_FRONTEND=noninteractive
+fi
 
 if [[ "$SKIP_UPDATE" -eq 0 ]]; then
   log "Updating apt repositories"
@@ -224,26 +368,53 @@ FAILED=()
 UNAVAILABLE=()
 
 install_pkg() {
-  local pkg="$1"
+  local tool="$1"
+  local selected_pkg=""
+  local candidate=""
+  local display_name=""
+  local -a candidates=()
 
-  if dpkg-query -W -f='${Status}' "$pkg" 2>/dev/null | grep -q "install ok installed"; then
-    ALREADY_INSTALLED+=("$pkg")
-    return 0
-  fi
+  read -r -a candidates <<<"$(resolve_pkg_candidates "$tool")"
 
-  if ! apt-cache show "$pkg" >/dev/null 2>&1; then
-    UNAVAILABLE+=("$pkg")
-    warn "Package not found in repositories: $pkg"
+  for candidate in "${candidates[@]}"; do
+    if dpkg-query -W -f='${Status}' "$candidate" 2>/dev/null | grep -q "install ok installed"; then
+      display_name="$tool"
+      if [[ "$candidate" != "$tool" ]]; then
+        display_name="${tool}(${candidate})"
+      fi
+      ALREADY_INSTALLED+=("$display_name")
+      return 0
+    fi
+  done
+
+  for candidate in "${candidates[@]}"; do
+    if apt-cache show "$candidate" >/dev/null 2>&1; then
+      selected_pkg="$candidate"
+      break
+    fi
+  done
+
+  if [[ -z "$selected_pkg" ]]; then
+    UNAVAILABLE+=("$tool")
+    warn "Package not found in repositories: $tool (candidates: ${candidates[*]})"
     return 1
   fi
 
-  if run_apt_get install -y --no-install-recommends "$pkg"; then
-    INSTALLED+=("$pkg")
+  if [[ "$selected_pkg" != "$tool" ]]; then
+    log "Using package '${selected_pkg}' for tool '${tool}'"
+  fi
+
+  if run_apt_get install -y --no-install-recommends "$selected_pkg"; then
+    display_name="$tool"
+    if [[ "$selected_pkg" != "$tool" ]]; then
+      display_name="${tool}(${selected_pkg})"
+    fi
+    INSTALLED+=("$display_name")
     return 0
   fi
 
-  FAILED+=("$pkg")
-  warn "Failed to install package: $pkg"
+  FAILED+=("$tool")
+  warn "Failed to install package: $tool (selected: $selected_pkg)"
   return 1
 }
 

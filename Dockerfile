@@ -2,6 +2,7 @@ FROM kalilinux/kali-rolling
 
 ARG KALI_MIRROR=http://mirrors.aliyun.com/kali
 ARG SECURITY_TOOLS_PROFILE=full
+ARG SECURITY_TOOLS_CATEGORIES=
 ARG SECURITY_TOOLS_STRICT=1
 ARG SECURITY_TOOLS_NO_BROWSER=0
 
@@ -37,6 +38,7 @@ COPY scripts/install_security_tools.sh /usr/local/bin/install_security_tools.sh
 
 RUN chmod +x /usr/local/bin/install_security_tools.sh && \
     INSTALL_ARGS="--profile ${SECURITY_TOOLS_PROFILE} --non-interactive" && \
+    if [ -n "${SECURITY_TOOLS_CATEGORIES}" ]; then INSTALL_ARGS="${INSTALL_ARGS} --category ${SECURITY_TOOLS_CATEGORIES}"; fi && \
     if [ "${SECURITY_TOOLS_NO_BROWSER}" = "1" ]; then INSTALL_ARGS="${INSTALL_ARGS} --no-browser"; fi && \
     if [ "${SECURITY_TOOLS_STRICT}" = "1" ]; then INSTALL_ARGS="${INSTALL_ARGS} --strict"; fi && \
     /usr/local/bin/install_security_tools.sh ${INSTALL_ARGS} && \
