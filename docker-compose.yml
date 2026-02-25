@@ -15,6 +15,7 @@ services:
     ports:
       - "8888:8888"
     environment:
+      HEXSTRIKE_HOST: "0.0.0.0"
       HEXSTRIKE_PORT: "8888"
       PYTHONUNBUFFERED: "1"
     cap_add:

@@ -124,7 +124,40 @@ app.config['JSON_SORT_KEYS'] = False
 
 # API 基础配置
 API_PORT = int(os.environ.get('HEXSTRIKE_PORT', 8888))
-API_HOST = os.environ.get('HEXSTRIKE_HOST', '127.0.0.1')
+API_HOST = os.environ.get('HEXSTRIKE_HOST', '0.0.0.0')
+
+def discover_access_urls(bind_host: str, port: int) -> List[str]:
+    """根据监听地址和网卡信息推导可访问 URL，方便客户端配置。"""
+    urls: List[str] = []
+    host = (bind_host or "").strip()
+
+    if host in {"", "0.0.0.0", "::"}:
+        urls.append(f"http://127.0.0.1:{port}")
+        ip_set = set()
+
+        try:
+            for interface_addrs in psutil.net_if_addrs().values():
+                for addr in interface_addrs:
+                    if addr.family == socket.AF_INET and addr.address and not addr.address.startswith("127."):
+                        ip_set.add(addr.address)
+        except Exception:
+            # 获取网卡地址失败时不影响主流程。
+            pass
+
+        for ip in sorted(ip_set):
+            urls.append(f"http://{ip}:{port}")
+    elif host == "localhost":
+        urls.append(f"http://127.0.0.1:{port}")
+    else:
+        urls.append(f"http://{host}:{port}")
+
+    dedup_urls: List[str] = []
+    seen = set()
+    for url in urls:
+        if url not in seen:
+            seen.add(url)
+            dedup_urls.append(url)
+    return dedup_urls
 
 # ============================================================================
 # 现代化终端可视化引擎（v2.0）
@@ -17850,28 +17883,34 @@ if __name__ == "__main__":
     print("服务启动横幅如下：")
     print(BANNER)
 
-    parser = argparse.ArgumentParser(description="Run the HexStrike AI API Server")
-    parser.add_argument("--debug", action="store_true", help="Enable debug mode")
-    parser.add_argument("--port", type=int, default=API_PORT, help=f"Port for the API server (default: {API_PORT})")
+    parser = argparse.ArgumentParser(description="运行 HexStrike AI API 服务端")
+    parser.add_argument("--debug", action="store_true", help="启用调试模式")
+    parser.add_argument("--host", type=str, default=API_HOST, help=f"监听地址（默认: {API_HOST}）")
+    parser.add_argument("--port", type=int, default=API_PORT, help=f"监听端口（默认: {API_PORT}）")
     args = parser.parse_args()
 
     if args.debug:
         DEBUG_MODE = True
         logger.setLevel(logging.DEBUG)
 
+    if args.host != API_HOST:
+        API_HOST = args.host
+
     if args.port != API_PORT:
         API_PORT = args.port
 
     # 增强 startup messages 使用 beautiful formatting
+    access_urls = discover_access_urls(API_HOST, API_PORT)
     startup_info = f"""
 {ModernVisualEngine.COLORS['MATRIX_GREEN']}{ModernVisualEngine.COLORS['BOLD']}╭─────────────────────────────────────────────────────────────────────────────╮{ModernVisualEngine.COLORS['RESET']}
-{ModernVisualEngine.COLORS['BOLD']}│{ModernVisualEngine.COLORS['RESET']} {ModernVisualEngine.COLORS['NEON_BLUE']} Starting HexStrike AI Tools API Server{ModernVisualEngine.COLORS['RESET']}
+{ModernVisualEngine.COLORS['BOLD']}│{ModernVisualEngine.COLORS['RESET']} {ModernVisualEngine.COLORS['NEON_BLUE']} 启动 HexStrike AI Tools API 服务端{ModernVisualEngine.COLORS['RESET']}
 {ModernVisualEngine.COLORS['BOLD']}├─────────────────────────────────────────────────────────────────────────────┤{ModernVisualEngine.COLORS['RESET']}
-{ModernVisualEngine.COLORS['BOLD']}│{ModernVisualEngine.COLORS['RESET']} {ModernVisualEngine.COLORS['CYBER_ORANGE']} Port:{ModernVisualEngine.COLORS['RESET']} {API_PORT}
-{ModernVisualEngine.COLORS['BOLD']}│{ModernVisualEngine.COLORS['RESET']} {ModernVisualEngine.COLORS['WARNING']} Debug Mode:{ModernVisualEngine.COLORS['RESET']} {DEBUG_MODE}
-{ModernVisualEngine.COLORS['BOLD']}│{ModernVisualEngine.COLORS['RESET']} {ModernVisualEngine.COLORS['ELECTRIC_PURPLE']} Cache Size:{ModernVisualEngine.COLORS['RESET']} {CACHE_SIZE} | TTL: {CACHE_TTL}s
-{ModernVisualEngine.COLORS['BOLD']}│{ModernVisualEngine.COLORS['RESET']} {ModernVisualEngine.COLORS['TERMINAL_GRAY']}  Command Timeout:{ModernVisualEngine.COLORS['RESET']} {COMMAND_TIMEOUT}s
-{ModernVisualEngine.COLORS['BOLD']}│{ModernVisualEngine.COLORS['RESET']} {ModernVisualEngine.COLORS['MATRIX_GREEN']} Enhanced Visual Engine:{ModernVisualEngine.COLORS['RESET']} Active
+{ModernVisualEngine.COLORS['BOLD']}│{ModernVisualEngine.COLORS['RESET']} {ModernVisualEngine.COLORS['CYBER_ORANGE']} 监听地址:{ModernVisualEngine.COLORS['RESET']} {API_HOST}
+{ModernVisualEngine.COLORS['BOLD']}│{ModernVisualEngine.COLORS['RESET']} {ModernVisualEngine.COLORS['CYBER_ORANGE']} 监听端口:{ModernVisualEngine.COLORS['RESET']} {API_PORT}
+{ModernVisualEngine.COLORS['BOLD']}│{ModernVisualEngine.COLORS['RESET']} {ModernVisualEngine.COLORS['WARNING']} 调试模式:{ModernVisualEngine.COLORS['RESET']} {DEBUG_MODE}
+{ModernVisualEngine.COLORS['BOLD']}│{ModernVisualEngine.COLORS['RESET']} {ModernVisualEngine.COLORS['ELECTRIC_PURPLE']} 缓存大小:{ModernVisualEngine.COLORS['RESET']} {CACHE_SIZE} | TTL: {CACHE_TTL}s
+{ModernVisualEngine.COLORS['BOLD']}│{ModernVisualEngine.COLORS['RESET']} {ModernVisualEngine.COLORS['TERMINAL_GRAY']} 命令超时:{ModernVisualEngine.COLORS['RESET']} {COMMAND_TIMEOUT}s
+{ModernVisualEngine.COLORS['BOLD']}│{ModernVisualEngine.COLORS['RESET']} {ModernVisualEngine.COLORS['MATRIX_GREEN']} 可视化引擎:{ModernVisualEngine.COLORS['RESET']} 已启用
 {ModernVisualEngine.COLORS['MATRIX_GREEN']}{ModernVisualEngine.COLORS['BOLD']}╰─────────────────────────────────────────────────────────────────────────────╯{ModernVisualEngine.COLORS['RESET']}
 """
 
@@ -17879,4 +17918,11 @@ if __name__ == "__main__":
         if line.strip():
             logger.info(line)
 
-    app.run(host="0.0.0.0", port=API_PORT, debug=DEBUG_MODE)
+    logger.info("MCP 可配置的服务地址如下：")
+    for url in access_urls:
+        logger.info(f"  {url}")
+    if API_HOST in {"0.0.0.0", "::"}:
+        logger.info(f"  健康检查: {access_urls[0]}/health")
+        logger.info("  远程连接请使用服务器公网 IP 或域名，例如: http://<公网IP>:8888")
+
+    app.run(host=API_HOST, port=API_PORT, debug=DEBUG_MODE)
