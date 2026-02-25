@@ -197,7 +197,32 @@ curl -X POST http://localhost:8888/api/intelligence/analyze-target \
 - 默认使用阿里云 Kali 源：`http://mirrors.aliyun.com/kali`（可通过构建参数覆盖）。
 - 默认使用 USTC PyPI 源：`https://pypi.mirrors.ustc.edu.cn/simple/`。
 
-#### 1) 启动服务（单容器）
+#### 1) 推荐部署流程（单容器）
+
+```bash
+# 1. 克隆并进入目录
+git clone https://github.com/wpsec/hexstrike-ai.git
+cd hexstrike-ai
+
+# 2. 构建镜像（会自动安装工具）
+docker compose build hexstrike
+
+# 3. 启动服务
+docker compose up -d hexstrike
+
+# 4. 查看日志
+docker compose logs -f hexstrike
+
+# 5. 健康检查
+curl http://127.0.0.1:8888/health
+```
+
+部署说明：
+- `docker compose build` / `docker compose up --build` 时会自动执行工具安装脚本。
+- 仅执行 `docker compose up -d`（不带 `--build`）不会重新安装工具。
+- 若远程连接容器服务，请在 MCP 客户端中填写宿主机 IP：`http://<宿主机IP>:8888`。
+
+#### 2) 启动服务（快捷方式）
 
 ```bash
 # 构建并启动（端口 8888）
@@ -211,7 +236,7 @@ curl http://localhost:8888/health
 ```
 
 ```bash
-# 如需临时指定其他镜像源（示例）
+# 如需临时指定构建参数（示例：镜像源 + 仅安装 web/forensics）
 docker build \
   --build-arg KALI_MIRROR=http://mirrors.aliyun.com/kali \
   --build-arg SECURITY_TOOLS_CATEGORIES=web,forensics \
@@ -221,7 +246,16 @@ docker build \
 
 `docker-compose.yml` 中可通过 `build.args.SECURITY_TOOLS_CATEGORIES` 固定类别组合，例如 `web,forensics`。
 
-#### 2) 工具自动安装脚本（宿主机/容器通用）
+```bash
+# 使用 compose 临时指定安装类别（无需改文件）
+docker compose build \
+  --build-arg SECURITY_TOOLS_CATEGORIES=web,forensics \
+  --build-arg SECURITY_TOOLS_STRICT=1 \
+  hexstrike
+docker compose up -d hexstrike
+```
+
+#### 3) 工具自动安装脚本（宿主机/容器通用）
 
 ```bash
 # 查看可选类别
@@ -269,6 +303,18 @@ docker build \
 
 ## AI 客户端集成
 
+前置条件（客户端机器）：
+1. 必须先下载项目代码，MCP 客户端通过本地 `hexstrike_mcp.py` 启动。
+2. 建议在项目目录创建虚拟环境并安装依赖：
+
+```bash
+git clone https://github.com/wpsec/hexstrike-ai.git
+cd hexstrike-ai
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
 ### Claude Desktop / Cursor
 
 编辑 `~/.config/Claude/claude_desktop_config.json`：
@@ -277,7 +323,7 @@ docker build \
 {
   "mcpServers": {
     "hexstrike-ai": {
-      "command": "python3",
+      "command": "/path/to/hexstrike-ai/.venv/bin/python3",
       "args": [
         "/path/to/hexstrike-ai/hexstrike_mcp.py",
         "--server",
@@ -300,7 +346,7 @@ docker build \
   "servers": {
     "hexstrike": {
       "type": "stdio",
-      "command": "python3",
+      "command": "/path/to/hexstrike-ai/.venv/bin/python3",
       "args": [
         "/path/to/hexstrike-ai/hexstrike_mcp.py",
         "--server",
@@ -311,6 +357,13 @@ docker build \
   "inputs": []
 }
 ```
+
+可选参数（用于 MCP 工具开关）：
+- `--enable-tools nmap_scan,gobuster_scan`
+- `--disable-tools sqlmap_scan`
+
+远程容器服务示例：
+- 服务端在其他机器时，将 `--server` 改为 `http://<宿主机IP>:8888`。
 
 ---
 
