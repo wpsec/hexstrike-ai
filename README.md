@@ -274,6 +274,9 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
+3. MCP 配置里的 `command` 必须与实际虚拟环境路径一致（如 `.venv/bin/python3` 或 `venv/bin/python3.12`）。
+   如果路径写错或解释器版本不一致，常见报错是 `MCP error -32000: Connection closed`。
+
 ### Claude Desktop / Cursor
 
 编辑 `~/.config/Claude/claude_desktop_config.json`：
@@ -323,6 +326,26 @@ pip install -r requirements.txt
 
 远程容器服务示例：
 - 服务端在其他机器时，将 `--server` 改为 `http://<宿主机IP>:8888`。
+
+稳定配置示例（推荐先用最小参数验证）：
+
+```json
+{
+  "mcpServers": {
+    "hexstrike-ai": {
+      "type": "stdio",
+      "command": "/Users/yourname/Documents/Github/hexstrike-ai/venv/bin/python3.12",
+      "args": [
+        "/Users/yourname/Documents/Github/hexstrike-ai/hexstrike_mcp.py",
+        "--server",
+        "http://<宿主机IP>:8888"
+      ],
+      "cwd": "/Users/yourname/Documents/Github/hexstrike-ai",
+      "timeout": 600
+    }
+  }
+}
+```
 
 ---
 
@@ -581,14 +604,34 @@ netstat -tlnp | grep 8888
 python3 hexstrike_server.py
 ```
 
-2. 工具不可用：
+2. `MCP error -32000: Connection closed`：
+
+```bash
+# 1) 直接用「配置里同一个解释器」手工启动 MCP 客户端
+/path/to/hexstrike-ai/venv/bin/python3.12 \
+  /path/to/hexstrike-ai/hexstrike_mcp.py \
+  --server http://<宿主机IP>:8888 --debug
+
+# 2) 检查该解释器是否具备依赖（兼容不同 FastMCP 版本导入路径）
+/path/to/hexstrike-ai/venv/bin/python3.12 -c "import mcp,requests,importlib.util; assert importlib.util.find_spec('mcp.server.fastmcp') or importlib.util.find_spec('fastmcp'); print('ok')"
+
+# 3) 检查服务端连通性
+curl -v --connect-timeout 5 http://<宿主机IP>:8888/health
+```
+
+排查结论要点：
+- 服务端日志只显示 `Running on 0.0.0.0:8888` 只能说明服务端正常，不代表 MCP 客户端已成功握手。
+- 客户端配置中的 `command` 路径必须指向存在的 Python 可执行文件，并与已安装依赖的虚拟环境一致。
+- 若使用 `python3.12 -m venv venv`，则 `command` 应写成 `.../venv/bin/python3.12`，不要写成 `.venv/bin/python3`。
+
+3. 工具不可用：
 
 ```bash
 # 检查工具安装
 which nmap gobuster nuclei
 ```
 
-3. AI 客户端连不上：
+4. AI 客户端连不上：
 
 ```bash
 # 打开调试日志
