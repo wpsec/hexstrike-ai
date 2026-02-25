@@ -89,6 +89,29 @@ class HexStrikeColors:
 # 向后兼容别名
 Colors = HexStrikeColors
 
+def localize_output_text(message: str) -> str:
+    """Best-effort English to Chinese output normalization for MCP terminal logs."""
+    replacements = [
+        ("Attempting to connect to HexStrike AI API at", "正在连接 HexStrike AI API："),
+        ("Successfully connected to HexStrike AI API Server at", "已成功连接 HexStrike AI API 服务："),
+        ("Server health status", "服务健康状态"),
+        ("Server version", "服务版本"),
+        ("Connection refused to", "连接被拒绝："),
+        ("Connection test failed", "连接测试失败："),
+        ("Connection attempt", "连接尝试"),
+        ("Request failed", "请求失败"),
+        ("Unexpected error", "未预期错误"),
+        ("Starting", "开始"),
+        ("completed", "完成"),
+        ("failed", "失败"),
+        ("scan", "扫描"),
+        ("analysis", "分析"),
+    ]
+    text = str(message)
+    for src, dst in replacements:
+        text = text.replace(src, dst)
+    return text
+
 class ColoredFormatter(logging.Formatter):
     """日志格式化器：为不同级别日志附加颜色与 emoji。"""
 
@@ -111,9 +134,10 @@ class ColoredFormatter(logging.Formatter):
     def format(self, record):
         emoji = self.EMOJIS.get(record.levelname, '')
         color = self.COLORS.get(record.levelname, HexStrikeColors.BRIGHT_WHITE)
+        translated = localize_output_text(record.msg)
 
         # 在消息前缀追加可视化标记，便于终端快速分级识别
-        record.msg = f"{color}{emoji} {record.msg}{HexStrikeColors.RESET}"
+        record.msg = f"{color}{emoji} {translated}{HexStrikeColors.RESET}"
         return super().format(record)
 
 # 初始化日志系统
@@ -3476,13 +3500,13 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
             "config_file": config_file,
             "target": target,
             "headless": headless,
-            "scan_type": scan_type,
+            "scan_type": scan_type or "comprehensive",
             "scan_config": scan_config,
             "output_file": output_file,
             "additional_args": additional_args
         }
         logger.info(f" Starting Burp Suite scan")
-        result = hexstrike_client.safe_post("api/tools/burpsuite", data)
+        result = hexstrike_client.safe_post("api/tools/burpsuite-alternative", data)
         if result.get("success"):
             logger.info(f" Burp Suite scan completed")
         else:
@@ -5305,8 +5329,8 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
             logger.info(f"{HexStrikeColors.SUCCESS} Burp Suite Alternative scan completed for {target}{HexStrikeColors.RESET}")
 
             # Enhanced logging for comprehensive results
-            if result.get("result", {}).get("summary"):
-                summary = result["result"]["summary"]
+            if result.get("summary"):
+                summary = result["summary"]
                 total_vulns = summary.get("total_vulnerabilities", 0)
                 pages_analyzed = summary.get("pages_analyzed", 0)
                 security_score = summary.get("security_score", 0)
@@ -5331,6 +5355,119 @@ def setup_mcp_server(hexstrike_client: HexStrikeClient) -> FastMCP:
                         logger.info(f"  {color}{severity.upper()}: {count}{HexStrikeColors.RESET}")
         else:
             logger.error(f"{HexStrikeColors.ERROR} Burp Suite Alternative scan failed for {target}{HexStrikeColors.RESET}")
+
+        return result
+
+    @mcp.tool()
+    def burp_passive_scan(target: str, headless: bool = True, max_depth: int = 3,
+                         max_pages: int = 60, request_limit: int = 60,
+                         wait_time: int = 5, include_browser: bool = True,
+                         include_subdomains: bool = True, reset_state: bool = True,
+                         close_browser: bool = True, output_file: str = "") -> Dict[str, Any]:
+        """
+        Burp 风格被动扫描（适合复杂系统的低风险渗透测试前期分析）。
+
+        Args:
+            target: 目标 URL
+            headless: 是否使用无头浏览器
+            max_depth: 爬虫深度
+            max_pages: 最大爬取页面数
+            request_limit: 被动请求分析上限
+            wait_time: 浏览器加载等待时间（秒）
+            include_browser: 是否启用浏览器运行时被动分析
+            include_subdomains: 是否将子域纳入作用域
+            reset_state: 是否清空历史扫描状态
+            close_browser: 扫描后是否关闭浏览器
+            output_file: 结果输出文件（为空则默认写入 /tmp）
+
+        Returns:
+            被动扫描结果（包含被动发现、严重等级统计、报告路径）
+        """
+        data_payload = {
+            "target": target,
+            "headless": headless,
+            "max_depth": max_depth,
+            "max_pages": max_pages,
+            "request_limit": request_limit,
+            "wait_time": wait_time,
+            "include_browser": include_browser,
+            "include_subdomains": include_subdomains,
+            "reset_state": reset_state,
+            "close_browser": close_browser,
+            "output_file": output_file,
+        }
+
+        logger.info(f"{HexStrikeColors.BLOOD_RED} Starting Burp passive scan: {target}{HexStrikeColors.RESET}")
+        result = hexstrike_client.safe_post("api/tools/burp-passive-scan", data_payload)
+
+        if result.get("success"):
+            summary = result.get("summary", {})
+            total_findings = summary.get("total_findings", 0)
+            security_score = summary.get("security_score", 0)
+            report_file = result.get("report_file", "")
+
+            logger.info(f"{HexStrikeColors.SUCCESS} Burp passive scan completed for {target}{HexStrikeColors.RESET}")
+            logger.info(f"{HexStrikeColors.HIGHLIGHT_BLUE} PASSIVE SUMMARY {HexStrikeColors.RESET}")
+            logger.info(f"   Findings: {total_findings}")
+            logger.info(f"   Security Score: {security_score}/100")
+            if report_file:
+                logger.info(f"   Report: {report_file}")
+        else:
+            logger.error(f"{HexStrikeColors.ERROR} Burp passive scan failed for {target}{HexStrikeColors.RESET}")
+
+        return result
+
+    @mcp.tool()
+    def burp_forwarded_traffic_analyze(
+        traffic: list,
+        target: str = "",
+        run_safe_verify: bool = True,
+        max_verify_requests: int = 20,
+        include_subdomains: bool = True,
+        reset_state: bool = True,
+        output_file: str = ""
+    ) -> Dict[str, Any]:
+        """
+        分析 Burp 转发的数据包，并执行“仅验证”模式的安全复测。
+
+        Args:
+            traffic: Burp 转发流量数组，每项包含 request/response
+            target: 可选目标（用于作用域限制）
+            run_safe_verify: 是否执行安全验证请求（仅 GET + 无害参数）
+            max_verify_requests: 安全验证请求上限
+            include_subdomains: 作用域是否包含子域
+            reset_state: 是否清空历史状态
+            output_file: 报告输出文件
+
+        Returns:
+            带置信度与质量评分的漏洞分析结果
+        """
+        data_payload = {
+            "traffic": traffic,
+            "target": target,
+            "run_safe_verify": run_safe_verify,
+            "max_verify_requests": max_verify_requests,
+            "include_subdomains": include_subdomains,
+            "reset_state": reset_state,
+            "output_file": output_file,
+        }
+
+        logger.info(f"{HexStrikeColors.BLOOD_RED} 开始分析 Burp 转发流量{HexStrikeColors.RESET}")
+        result = hexstrike_client.safe_post("api/tools/burp-traffic-analyze", data_payload)
+
+        if result.get("success"):
+            summary = result.get("summary", {})
+            total_findings = summary.get("total_findings", 0)
+            quality_score = summary.get("quality_score", 0)
+            report_file = result.get("report_file", "")
+
+            logger.info(f"{HexStrikeColors.SUCCESS} Burp 转发流量分析完成{HexStrikeColors.RESET}")
+            logger.info(f"   漏洞总数: {total_findings}")
+            logger.info(f"   质量评分: {quality_score}/100")
+            if report_file:
+                logger.info(f"   报告文件: {report_file}")
+        else:
+            logger.error(f"{HexStrikeColors.ERROR} Burp 转发流量分析失败{HexStrikeColors.RESET}")
 
         return result
 

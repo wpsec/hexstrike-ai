@@ -1,0 +1,43 @@
+FROM kalilinux/kali-rolling
+
+ARG KALI_MIRROR=https://mirrors.aliyun.com/kali
+
+ENV DEBIAN_FRONTEND=noninteractive \
+    PIP_NO_CACHE_DIR=1 \
+    PIP_INDEX_URL=https://pypi.mirrors.ustc.edu.cn/simple/ \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1
+
+WORKDIR /opt/hexstrike
+
+RUN printf 'deb %s kali-rolling main non-free contrib\n' "${KALI_MIRROR}" > /etc/apt/sources.list && \
+    printf 'deb-src %s kali-rolling main non-free contrib\n' "${KALI_MIRROR}" >> /etc/apt/sources.list && \
+    apt-get update && \
+    apt-get install -y --no-install-recommends \
+      bash \
+      ca-certificates \
+      curl \
+      git \
+      python3 \
+      python3-pip \
+      python3-venv \
+      build-essential \
+      python3-dev \
+      chromium \
+      chromium-driver && \
+    rm -rf /var/lib/apt/lists/*
+
+COPY requirements.txt ./
+COPY scripts/install_security_tools.sh /usr/local/bin/install_security_tools.sh
+
+RUN chmod +x /usr/local/bin/install_security_tools.sh && \
+    /usr/local/bin/install_security_tools.sh --profile full --non-interactive || true
+
+RUN python3 -m pip install --break-system-packages --upgrade pip setuptools wheel && \
+    python3 -m pip install --break-system-packages -r requirements.txt
+
+COPY . .
+
+EXPOSE 8888
+
+CMD ["python3", "hexstrike_server.py", "--port", "8888"]

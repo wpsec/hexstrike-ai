@@ -1,0 +1,20 @@
+services:
+  hexstrike:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        KALI_MIRROR: https://mirrors.aliyun.com/kali
+    image: hexstrike-ai:kali
+    container_name: hexstrike-ai
+    restart: unless-stopped
+    ports:
+      - "8888:8888"
+    environment:
+      HEXSTRIKE_PORT: "8888"
+      PYTHONUNBUFFERED: "1"
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    volumes:
+      - ./data:/data

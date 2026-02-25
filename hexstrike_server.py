@@ -85,6 +85,36 @@ except PermissionError:
     )
 logger = logging.getLogger(__name__)
 
+class ChineseLogFilter(logging.Filter):
+    """Best-effort log localization so terminal output is primarily Chinese."""
+
+    REPLACEMENTS = [
+        ("Starting", "开始"),
+        ("completed", "完成"),
+        ("failed", "失败"),
+        ("Error", "错误"),
+        ("error", "错误"),
+        ("Warning", "警告"),
+        ("Connection refused", "连接被拒绝"),
+        ("Connection test failed", "连接测试失败"),
+        ("Request failed", "请求失败"),
+        ("Unexpected error", "未预期错误"),
+        ("Server health status", "服务健康状态"),
+        ("Server version", "服务版本"),
+        ("scan", "扫描"),
+        ("analysis", "分析"),
+    ]
+
+    def filter(self, record: logging.LogRecord) -> bool:
+        message = str(record.msg)
+        for src, dst in self.REPLACEMENTS:
+            message = message.replace(src, dst)
+        record.msg = message
+        return True
+
+for handler in logging.getLogger().handlers:
+    handler.addFilter(ChineseLogFilter())
+
 # Flask 应用配置
 app = Flask(__name__)
 app.config['JSON_SORT_KEYS'] = False
@@ -14031,6 +14061,451 @@ class BrowserAgent:
 http_framework = HTTPTestingFramework()
 browser_agent = BrowserAgent()
 
+def run_burp_passive_scan_workflow(
+    target: str,
+    headless: bool = True,
+    max_depth: int = 3,
+    max_pages: int = 50,
+    request_limit: int = 40,
+    wait_time: int = 5,
+    include_browser: bool = True,
+    include_subdomains: bool = True,
+    reset_state: bool = True,
+    close_browser_on_finish: bool = True,
+    output_file: str = ""
+) -> Dict[str, Any]:
+    """Run a Burp-like passive scan workflow for complex web systems.
+
+    This workflow intentionally avoids active exploitation and focuses on:
+    - crawling and traffic collection
+    - passive response/header/content analysis
+    - browser-runtime passive inspection (DOM, storage, network logs)
+    """
+    target = (target or "").strip()
+    if not target:
+        return {"success": False, "error": "Target parameter is required"}
+
+    def _norm_severity(value: str) -> str:
+        sev = str(value or "info").lower()
+        return sev if sev in {"critical", "high", "medium", "low", "info"} else "info"
+
+    try:
+        # Keep scans isolated to avoid cross-task contamination.
+        if reset_state:
+            http_framework.proxy_history = []
+            http_framework.vulnerabilities = []
+
+        # Configure scope from target host.
+        parsed = urlparse(target if "://" in target else f"http://{target}")
+        scope_host = parsed.hostname or ""
+        if scope_host:
+            http_framework.set_scope(scope_host, include_subdomains)
+
+        spider_result = http_framework.spider_website(target, max_depth=max_depth, max_pages=max_pages)
+        discovered_urls = spider_result.get("discovered_urls", []) if spider_result.get("success") else []
+        if not discovered_urls:
+            discovered_urls = [target]
+
+        # Deduplicate while keeping order and cap by request_limit.
+        selected_urls = []
+        seen_urls = set()
+        for url in discovered_urls:
+            if url and url not in seen_urls:
+                seen_urls.add(url)
+                selected_urls.append(url)
+            if len(selected_urls) >= request_limit:
+                break
+
+        traffic_results = []
+        for url in selected_urls:
+            request_result = http_framework.intercept_request(url, method="GET")
+            if request_result.get("success"):
+                response_data = request_result.get("response", {})
+                traffic_results.append({
+                    "url": url,
+                    "status_code": response_data.get("status_code"),
+                    "size": response_data.get("size"),
+                    "duration": response_data.get("time"),
+                    "error": None,
+                })
+            else:
+                traffic_results.append({
+                    "url": url,
+                    "status_code": None,
+                    "size": 0,
+                    "duration": None,
+                    "error": request_result.get("error", "unknown error"),
+                })
+
+        browser_result = {}
+        browser_summary = {
+            "enabled": include_browser,
+            "success": False,
+            "url": "",
+            "title": "",
+            "forms": 0,
+            "links": 0,
+            "network_requests": 0,
+            "console_errors": 0,
+            "security_score": 0,
+            "passive_modules": [],
+            "screenshot": "",
+            "error": "",
+        }
+
+        if include_browser:
+            if not browser_agent.driver:
+                browser_agent.setup_browser(headless)
+            browser_result = browser_agent.navigate_and_inspect(target, wait_time)
+
+            if browser_result.get("success"):
+                page_info = browser_result.get("page_info", {})
+                security = browser_result.get("security_analysis", {})
+                browser_summary.update({
+                    "success": True,
+                    "url": page_info.get("url", ""),
+                    "title": page_info.get("title", ""),
+                    "forms": len(page_info.get("forms", [])),
+                    "links": len(page_info.get("links", [])),
+                    "network_requests": len(page_info.get("network_requests", [])),
+                    "console_errors": len(page_info.get("console_errors", [])),
+                    "security_score": security.get("security_score", 0),
+                    "passive_modules": security.get("passive_modules", []),
+                    "screenshot": browser_result.get("screenshot", ""),
+                })
+            else:
+                browser_summary["error"] = browser_result.get("error", "browser passive analysis failed")
+
+        framework_findings = []
+        for vuln in http_framework.vulnerabilities:
+            entry = dict(vuln)
+            entry["source"] = "http_framework"
+            entry["severity"] = _norm_severity(entry.get("severity"))
+            framework_findings.append(entry)
+
+        browser_findings = []
+        if browser_result.get("success"):
+            for issue in browser_result.get("security_analysis", {}).get("issues", []):
+                issue_entry = dict(issue)
+                issue_entry["source"] = "browser_agent"
+                issue_entry["severity"] = _norm_severity(issue_entry.get("severity"))
+                if "url" not in issue_entry:
+                    issue_entry["url"] = browser_summary.get("url", target)
+                browser_findings.append(issue_entry)
+
+        all_findings = framework_findings + browser_findings
+        severity_breakdown = {"critical": 0, "high": 0, "medium": 0, "low": 0, "info": 0}
+        for finding in all_findings:
+            severity_breakdown[_norm_severity(finding.get("severity"))] += 1
+
+        results = {
+            "success": True,
+            "scan_type": "passive",
+            "target": target,
+            "timestamp": datetime.now().isoformat(),
+            "scope": {
+                "host": scope_host,
+                "include_subdomains": include_subdomains,
+            },
+            "spider": {
+                "success": spider_result.get("success", False),
+                "total_pages": spider_result.get("total_pages", 0),
+                "discovered_urls": selected_urls,
+            },
+            "traffic_capture": {
+                "requests_tested": len(selected_urls),
+                "requests_captured": len(http_framework.proxy_history),
+                "request_results": traffic_results,
+            },
+            "browser_passive": browser_summary,
+            "summary": {
+                "total_findings": len(all_findings),
+                "framework_findings": len(framework_findings),
+                "browser_findings": len(browser_findings),
+                "severity_breakdown": severity_breakdown,
+                "security_score": max(0, 100 - (len(all_findings) * 4)),
+            },
+            "findings": all_findings[:200],
+        }
+
+        report_path = output_file.strip() if output_file else f"/tmp/hexstrike_burp_passive_{int(time.time())}.json"
+        try:
+            export_payload = {
+                "target": results["target"],
+                "timestamp": results["timestamp"],
+                "scan_type": results["scan_type"],
+                "summary": results["summary"],
+                "scope": results["scope"],
+                "spider": results["spider"],
+                "browser_passive": results["browser_passive"],
+                "traffic_capture": {
+                    "requests_tested": results["traffic_capture"]["requests_tested"],
+                    "requests_captured": results["traffic_capture"]["requests_captured"],
+                },
+                "findings": results["findings"],
+            }
+            with open(report_path, "w", encoding="utf-8") as report_file:
+                json.dump(export_payload, report_file, indent=2, ensure_ascii=False)
+            results["report_file"] = report_path
+        except Exception as write_error:
+            results["report_file"] = ""
+            results["report_write_error"] = str(write_error)
+
+        return results
+
+    except Exception as e:
+        logger.error(f"{ModernVisualEngine.format_error_card('CRITICAL', 'BurpPassiveWorkflow', str(e))}")
+        return {"success": False, "error": str(e)}
+    finally:
+        if include_browser and close_browser_on_finish:
+            browser_agent.close_browser()
+
+def run_burp_forwarded_traffic_analysis(
+    traffic_entries: List[Dict[str, Any]],
+    target: str = "",
+    run_safe_verify: bool = True,
+    max_verify_requests: int = 20,
+    include_subdomains: bool = True,
+    reset_state: bool = True,
+    output_file: str = "",
+) -> Dict[str, Any]:
+    """Analyze Burp-forwarded packets with passive-first, safe verification policy."""
+
+    class _CapturedResponse:
+        def __init__(self, status_code: int, headers: Dict[str, Any], body: str):
+            self.status_code = status_code
+            self.headers = headers
+            self.text = body
+            self.content = body.encode("utf-8", errors="ignore")
+
+    dangerous_signatures = [
+        "sleep(",
+        "benchmark(",
+        "xp_cmdshell",
+        "load_file(",
+        "into outfile",
+        "${jndi:",
+        "system(",
+        "__import__(",
+        "eval(",
+        "<script",
+        "onerror=",
+        "union select",
+    ]
+
+    try:
+        if reset_state:
+            http_framework.proxy_history = []
+            http_framework.vulnerabilities = []
+
+        scope_host = ""
+        if target:
+            parsed = urlparse(target if "://" in target else f"http://{target}")
+            scope_host = parsed.hostname or ""
+            if scope_host:
+                http_framework.set_scope(scope_host, include_subdomains)
+
+        accepted_entries = []
+        blocked_entries = []
+
+        for item in traffic_entries:
+            req = item.get("request", {}) if isinstance(item.get("request", {}), dict) else {}
+            rsp = item.get("response", {}) if isinstance(item.get("response", {}), dict) else {}
+
+            url = req.get("url") or item.get("url", "")
+            method = str(req.get("method") or item.get("method", "GET")).upper()
+            req_headers = req.get("headers", {}) if isinstance(req.get("headers", {}), dict) else {}
+            req_body = req.get("body", req.get("data", item.get("request_body", ""))) or ""
+
+            if not url:
+                continue
+            if scope_host and not http_framework._in_scope(url):
+                continue
+
+            status_code = rsp.get("status_code", item.get("status_code", 0))
+            try:
+                status_code = int(status_code)
+            except Exception:
+                status_code = 0
+
+            rsp_headers = rsp.get("headers", item.get("response_headers", {}))
+            if not isinstance(rsp_headers, dict):
+                rsp_headers = {}
+            rsp_body = rsp.get("body", rsp.get("content", item.get("response_body", ""))) or ""
+            rsp_body = str(rsp_body)
+
+            duration = rsp.get("time", rsp.get("duration", item.get("duration", 0)))
+            try:
+                duration = float(duration)
+            except Exception:
+                duration = 0.0
+
+            req_blob = f"{url}\n{req_body}\n{json.dumps(req_headers, ensure_ascii=False)}".lower()
+            has_danger = any(sig in req_blob for sig in dangerous_signatures)
+            if has_danger:
+                blocked_entries.append({
+                    "url": url,
+                    "method": method,
+                    "reason": "检测到高风险注入特征，仅记录不执行主动复测",
+                })
+
+            request_data = {
+                "id": len(http_framework.proxy_history) + 1,
+                "url": url,
+                "method": method,
+                "headers": req_headers,
+                "data": req_body,
+                "timestamp": datetime.now().isoformat(),
+                "source": "burp_forward",
+            }
+            response_data = {
+                "status_code": status_code,
+                "headers": rsp_headers,
+                "content": rsp_body[:10000],
+                "size": len(rsp_body.encode("utf-8", errors="ignore")),
+                "time": duration,
+            }
+            http_framework.proxy_history.append({"request": request_data, "response": response_data})
+
+            fake_response = _CapturedResponse(status_code, rsp_headers, rsp_body)
+            http_framework._analyze_response_for_vulns(url, fake_response)
+
+            accepted_entries.append({
+                "url": url,
+                "method": method,
+                "status_code": status_code,
+                "dangerous_signature_detected": has_danger,
+            })
+
+        verification_results = []
+        verified_urls = set()
+        if run_safe_verify:
+            unique_urls = []
+            seen = set()
+            for entry in accepted_entries:
+                u = entry.get("url", "")
+                m = entry.get("method", "GET")
+                if not u or m != "GET" or u in seen:
+                    continue
+                seen.add(u)
+                unique_urls.append(u)
+                if len(unique_urls) >= max_verify_requests:
+                    break
+
+            for url in unique_urls:
+                try:
+                    verify_resp = requests.get(
+                        url,
+                        params={"hexstrike_verify": "safe_probe"},
+                        timeout=10,
+                        verify=False,
+                        allow_redirects=True,
+                    )
+                    body_lower = verify_resp.text.lower()
+                    flags = []
+                    if "sql syntax error" in body_lower or "mysql_fetch_array" in body_lower or "ora-01756" in body_lower:
+                        flags.append("sql_error_signature")
+                    if "safe_probe" in body_lower or "hexstrike_verify" in body_lower:
+                        flags.append("reflection_detected")
+                    if flags:
+                        verified_urls.add(url)
+                    verification_results.append({
+                        "url": url,
+                        "status_code": verify_resp.status_code,
+                        "flags": flags,
+                        "verified": len(flags) > 0,
+                        "mode": "safe_verification_only",
+                    })
+                except Exception as verify_error:
+                    verification_results.append({
+                        "url": url,
+                        "status_code": None,
+                        "flags": [],
+                        "verified": False,
+                        "mode": "safe_verification_only",
+                        "error": str(verify_error),
+                    })
+
+        findings = []
+        severity_counts = {"critical": 0, "high": 0, "medium": 0, "low": 0, "info": 0}
+        confidence_counts = {"high": 0, "medium": 0, "low": 0}
+
+        evidence_counter = {}
+        for vuln in http_framework.vulnerabilities:
+            key = (vuln.get("type", "unknown"), vuln.get("url", ""))
+            evidence_counter[key] = evidence_counter.get(key, 0) + 1
+
+        for vuln in http_framework.vulnerabilities:
+            finding = dict(vuln)
+            sev = str(finding.get("severity", "info")).lower()
+            if sev not in severity_counts:
+                sev = "info"
+            finding["severity"] = sev
+            severity_counts[sev] += 1
+
+            key = (finding.get("type", "unknown"), finding.get("url", ""))
+            evidence_count = evidence_counter.get(key, 1)
+            confidence = "high" if evidence_count >= 2 or finding.get("url", "") in verified_urls else "medium"
+            if finding.get("type") in {"information_disclosure"} and evidence_count <= 1 and finding.get("url", "") not in verified_urls:
+                confidence = "low"
+            confidence_counts[confidence] += 1
+
+            finding["source"] = "burp_forwarded_traffic"
+            finding["evidence_count"] = evidence_count
+            finding["confidence"] = confidence
+            finding["verification_status"] = "已验证" if finding.get("url", "") in verified_urls else "仅被动证据"
+            findings.append(finding)
+
+        results = {
+            "success": True,
+            "mode": "burp_forwarded_passive_analysis",
+            "target": target,
+            "timestamp": datetime.now().isoformat(),
+            "safety_policy": {
+                "active_injection": False,
+                "verification_mode": "safe_verification_only",
+                "dangerous_functions_blocked": dangerous_signatures,
+                "note": "仅使用无害验证参数，不执行危险函数、不投递破坏性 payload",
+            },
+            "ingestion": {
+                "received_entries": len(traffic_entries),
+                "accepted_entries": len(accepted_entries),
+                "blocked_entries": len(blocked_entries),
+                "scope_host": scope_host,
+                "include_subdomains": include_subdomains,
+            },
+            "verification": {
+                "enabled": run_safe_verify,
+                "max_verify_requests": max_verify_requests,
+                "executed_requests": len(verification_results),
+                "verified_urls": len(verified_urls),
+                "results": verification_results,
+            },
+            "summary": {
+                "total_findings": len(findings),
+                "severity_breakdown": severity_counts,
+                "confidence_breakdown": confidence_counts,
+                "quality_score": max(0, 100 - (severity_counts["high"] * 8 + severity_counts["critical"] * 12)),
+            },
+            "findings": findings[:300],
+            "blocked_samples": blocked_entries[:100],
+        }
+
+        report_path = output_file.strip() if output_file else f"/tmp/hexstrike_burp_forwarded_{int(time.time())}.json"
+        try:
+            with open(report_path, "w", encoding="utf-8") as report_fp:
+                json.dump(results, report_fp, ensure_ascii=False, indent=2)
+            results["report_file"] = report_path
+        except Exception as report_error:
+            results["report_file"] = ""
+            results["report_write_error"] = str(report_error)
+
+        return results
+
+    except Exception as e:
+        logger.error(f"{ModernVisualEngine.format_error_card('CRITICAL', 'BurpForwardedTraffic', str(e))}")
+        return {"success": False, "error": str(e)}
+
 @app.route("/api/tools/http-framework", methods=["POST"])
 def http_framework_endpoint():
     """Enhanced HTTP testing framework (Burp Suite alternative)"""
@@ -14220,7 +14695,7 @@ def browser_agent_endpoint():
 def burpsuite_alternative():
     """Comprehensive Burp Suite alternative combining HTTP framework and browser agent"""
     try:
-        params = request.json
+        params = request.json or {}
         target = params.get("target", "")
         scan_type = params.get("scan_type", "comprehensive")  # comprehensive, spider, passive, active
         headless = params.get("headless", True)
@@ -14233,6 +14708,22 @@ def burpsuite_alternative():
         logger.info(f"{ModernVisualEngine.create_section_header('BURP SUITE ALTERNATIVE', '', 'BLOOD_RED')}")
         scan_message = f'Starting {scan_type} scan of {target}'
         logger.info(f"{ModernVisualEngine.format_highlighted_text(scan_message, 'RED')}")
+
+        if scan_type == "passive":
+            passive_result = run_burp_passive_scan_workflow(
+                target=target,
+                headless=headless,
+                max_depth=max_depth,
+                max_pages=max_pages,
+                request_limit=min(max_pages, 80),
+                wait_time=params.get("wait_time", 5),
+                include_browser=params.get("include_browser", True),
+                include_subdomains=params.get("include_subdomains", True),
+                reset_state=params.get("reset_state", True),
+                close_browser_on_finish=params.get("close_browser", True),
+                output_file=params.get("output_file", ""),
+            )
+            return jsonify(passive_result)
 
         results = {
             'target': target,
@@ -14309,6 +14800,93 @@ def burpsuite_alternative():
         return jsonify({
             "error": f"Server error: {str(e)}"
         }), 500
+
+@app.route("/api/tools/burp-passive-scan", methods=["POST"])
+def burp_passive_scan():
+    """Dedicated Burp-style passive scanning for complex systems."""
+    try:
+        params = request.json or {}
+        target = params.get("target", "")
+        if not target:
+            return jsonify({"error": "Target parameter is required"}), 400
+
+        max_depth = max(1, min(int(params.get("max_depth", 3)), 8))
+        max_pages = max(1, min(int(params.get("max_pages", 60)), 300))
+        request_limit = max(1, min(int(params.get("request_limit", 60)), 300))
+        wait_time = max(1, min(int(params.get("wait_time", 5)), 30))
+
+        logger.info(f"{ModernVisualEngine.create_section_header('BURP PASSIVE SCAN', '', 'CRIMSON')}")
+        logger.info(f"{ModernVisualEngine.format_tool_status('Burp-Passive', 'RUNNING', target)}")
+
+        result = run_burp_passive_scan_workflow(
+            target=target,
+            headless=params.get("headless", True),
+            max_depth=max_depth,
+            max_pages=max_pages,
+            request_limit=request_limit,
+            wait_time=wait_time,
+            include_browser=params.get("include_browser", True),
+            include_subdomains=params.get("include_subdomains", True),
+            reset_state=params.get("reset_state", True),
+            close_browser_on_finish=params.get("close_browser", True),
+            output_file=params.get("output_file", ""),
+        )
+
+        if result.get("success"):
+            total_findings = result.get("summary", {}).get("total_findings", 0)
+            logger.info(f"{ModernVisualEngine.format_tool_status('Burp-Passive', 'SUCCESS', f'findings={total_findings}')}")
+            return jsonify(result)
+
+        logger.error(f"{ModernVisualEngine.format_tool_status('Burp-Passive', 'FAILED', target)}")
+        return jsonify(result), 500
+
+    except Exception as e:
+        logger.error(f"{ModernVisualEngine.format_error_card('CRITICAL', 'BurpPassiveEndpoint', str(e))}")
+        return jsonify({"error": f"Server error: {str(e)}"}), 500
+
+@app.route("/api/tools/burp-traffic-analyze", methods=["POST"])
+def burp_traffic_analyze():
+    """Analyze packets forwarded from Burp and perform safe verification only."""
+    try:
+        params = request.json or {}
+        traffic = params.get("traffic", [])
+
+        if isinstance(traffic, str):
+            try:
+                traffic = json.loads(traffic)
+            except Exception:
+                return jsonify({"error": "traffic 字段格式错误，需为 JSON 数组"}), 400
+
+        if not isinstance(traffic, list) or not traffic:
+            return jsonify({"error": "traffic 参数必须是非空数组"}), 400
+
+        max_verify_requests = max(0, min(int(params.get("max_verify_requests", 20)), 200))
+
+        logger.info(f"{ModernVisualEngine.create_section_header('BURP TRAFFIC FORWARD', '', 'CRIMSON')}")
+        logger.info(f"{ModernVisualEngine.format_tool_status('Burp-Forward', 'RUNNING', f'packets={len(traffic)}')}")
+
+        result = run_burp_forwarded_traffic_analysis(
+            traffic_entries=traffic,
+            target=params.get("target", ""),
+            run_safe_verify=params.get("run_safe_verify", True),
+            max_verify_requests=max_verify_requests,
+            include_subdomains=params.get("include_subdomains", True),
+            reset_state=params.get("reset_state", True),
+            output_file=params.get("output_file", ""),
+        )
+
+        if result.get("success"):
+            total_findings = result.get("summary", {}).get("total_findings", 0)
+            quality_score = result.get("summary", {}).get("quality_score", 0)
+            logger.info(f"{ModernVisualEngine.format_tool_status('Burp-Forward', 'SUCCESS', f'findings={total_findings}, quality={quality_score}')}")
+            return jsonify(result)
+
+        logger.error(f"{ModernVisualEngine.format_tool_status('Burp-Forward', 'FAILED', 'analysis failed')}")
+        return jsonify(result), 500
+
+    except Exception as e:
+        logger.error(f"{ModernVisualEngine.format_error_card('CRITICAL', 'BurpTrafficEndpoint', str(e))}")
+        return jsonify({"error": f"Server error: {str(e)}"}), 500
 
 @app.route("/api/tools/zap", methods=["POST"])
 def zap():
