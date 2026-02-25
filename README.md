@@ -29,21 +29,7 @@
 
 ---
 
-<div align="center">
 
-## 关注我们
-
-<p align="center">
-  <a href="https://discord.gg/BWnmrrSHbA">
-    <img src="https://img.shields.io/badge/Discord-Join-7289DA?logo=discord&logoColor=white&style=for-the-badge" alt="Join our Discord" />
-  </a>
-  &nbsp;&nbsp;
-  <a href="https://www.linkedin.com/company/hexstrike-ai">
-    <img src="https://img.shields.io/badge/LinkedIn-Follow%20us-0A66C2?logo=linkedin&logoColor=white&style=for-the-badge" alt="Follow us on LinkedIn" />
-  </a>
-</p>
-
-</div>
 
 ---
 
