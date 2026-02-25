@@ -7,7 +7,7 @@ services:
         KALI_MIRROR: http://mirrors.aliyun.com/kali
         SECURITY_TOOLS_PROFILE: full
         SECURITY_TOOLS_CATEGORIES: ""
-        SECURITY_TOOLS_STRICT: "1"
+        SECURITY_TOOLS_STRICT: "0"
         SECURITY_TOOLS_NO_BROWSER: "0"
     image: hexstrike-ai:kali
     pull_policy: never

@@ -171,6 +171,8 @@ curl http://127.0.0.1:8888/health
 部署说明：
 - `docker compose build` / `docker compose up --build` 时会自动执行工具安装脚本。
 - 仅执行 `docker compose up -d`（不带 `--build`）不会重新安装工具。
+- Docker 默认 `SECURITY_TOOLS_STRICT=0`，单个工具安装失败不会中断构建。
+- 如需“依赖不完整就失败”，将 `SECURITY_TOOLS_STRICT` 设为 `1`。
 - 若远程连接容器服务，请在 MCP 客户端中填写宿主机 IP：`http://<宿主机IP>:8888`。
 
 #### 2) 启动服务（快捷方式）
@@ -204,6 +206,12 @@ docker compose build \
   --build-arg SECURITY_TOOLS_STRICT=1 \
   hexstrike
 docker compose up -d hexstrike
+```
+
+若构建日志出现 `did not complete successfully: exit code: 1` 且安装汇总里存在 `Failed > 0`，可先使用非严格模式构建：
+
+```bash
+docker compose build --build-arg SECURITY_TOOLS_STRICT=0 hexstrike
 ```
 
 #### 3) 工具自动安装脚本（宿主机/容器通用）

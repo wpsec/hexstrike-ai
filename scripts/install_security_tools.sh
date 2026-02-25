@@ -369,8 +369,9 @@ UNAVAILABLE=()
 
 install_pkg() {
   local tool="$1"
-  local selected_pkg=""
   local candidate=""
+  local attempted=0
+  local available_count=0
   local display_name=""
   local -a candidates=()
 
@@ -388,33 +389,39 @@ install_pkg() {
   done
 
   for candidate in "${candidates[@]}"; do
-    if apt-cache show "$candidate" >/dev/null 2>&1; then
-      selected_pkg="$candidate"
-      break
+    if ! apt-cache show "$candidate" >/dev/null 2>&1; then
+      continue
     fi
+
+    available_count=$((available_count + 1))
+    attempted=1
+
+    if [[ "$candidate" != "$tool" ]]; then
+      log "Using package '${candidate}' for tool '${tool}'"
+    fi
+
+    if run_apt_get install -y --no-install-recommends "$candidate"; then
+      display_name="$tool"
+      if [[ "$candidate" != "$tool" ]]; then
+        display_name="${tool}(${candidate})"
+      fi
+      INSTALLED+=("$display_name")
+      return 0
+    fi
+
+    warn "Candidate install failed: tool='${tool}', package='${candidate}'"
   done
 
-  if [[ -z "$selected_pkg" ]]; then
+  if [[ "$available_count" -eq 0 ]]; then
     UNAVAILABLE+=("$tool")
     warn "Package not found in repositories: $tool (candidates: ${candidates[*]})"
     return 1
   fi
 
-  if [[ "$selected_pkg" != "$tool" ]]; then
-    log "Using package '${selected_pkg}' for tool '${tool}'"
+  if [[ "$attempted" -eq 1 ]]; then
+    warn "All candidates failed for package: $tool (candidates: ${candidates[*]})"
   fi
-
-  if run_apt_get install -y --no-install-recommends "$selected_pkg"; then
-    display_name="$tool"
-    if [[ "$selected_pkg" != "$tool" ]]; then
-      display_name="${tool}(${selected_pkg})"
-    fi
-    INSTALLED+=("$display_name")
-    return 0
-  fi
-
   FAILED+=("$tool")
-  warn "Failed to install package: $tool (selected: $selected_pkg)"
   return 1
 }
 
@@ -437,7 +444,7 @@ if [[ "${#UNAVAILABLE[@]}" -gt 0 ]]; then
 fi
 
 if [[ "$STRICT_MODE" -eq 1 && ( "${#FAILED[@]}" -gt 0 || "${#UNAVAILABLE[@]}" -gt 0 ) ]]; then
-  die "Strict mode enabled and not all packages installed"
+  die "Strict mode enabled and not all packages installed (failed=${#FAILED[@]}, unavailable=${#UNAVAILABLE[@]})"
 fi
 
 log "Done"
