@@ -157,7 +157,7 @@ NETWORK_TOOLS=(
 )
 WEB_TOOLS=(
   gobuster feroxbuster ffuf dirb dirsearch nikto sqlmap wpscan
-  arjun wafw00f
+  arjun wafw00f nuclei katana httpx wordlists seclists
 )
 AUTH_TOOLS=(
   hydra john hashcat medusa patator evil-winrm hash-identifier
@@ -250,6 +250,21 @@ resolve_pkg_candidates() {
       ;;
     chromium-driver)
       printf '%s\n' "chromium-driver chromium-chromedriver"
+      ;;
+    nuclei)
+      printf '%s\n' "nuclei"
+      ;;
+    httpx)
+      printf '%s\n' "httpx-toolkit httpx"
+      ;;
+    katana)
+      printf '%s\n' "katana"
+      ;;
+    wordlists)
+      printf '%s\n' "wordlists"
+      ;;
+    seclists)
+      printf '%s\n' "seclists"
       ;;
     hash-identifier)
       printf '%s\n' "hash-identifier hashid"
@@ -429,6 +444,47 @@ for pkg in "${PACKAGES[@]}"; do
   install_pkg "$pkg" || true
 
 done
+
+ensure_wordlist_compat() {
+  local dirb_target="/usr/share/wordlists/dirb/common.txt"
+  local dirbuster_target="/usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt"
+  local dirb_source=""
+  local dirbuster_source=""
+
+  mkdir -p /usr/share/wordlists/dirb /usr/share/wordlists/dirbuster
+
+  for candidate in \
+    /usr/share/dirb/wordlists/common.txt \
+    /usr/share/seclists/Discovery/Web-Content/common.txt \
+    /usr/share/wordlists/dirb/common.txt; do
+    if [[ -f "$candidate" ]]; then
+      dirb_source="$candidate"
+      break
+    fi
+  done
+
+  for candidate in \
+    /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt \
+    /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt \
+    /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt; do
+    if [[ -f "$candidate" ]]; then
+      dirbuster_source="$candidate"
+      break
+    fi
+  done
+
+  if [[ -n "$dirb_source" && ! -f "$dirb_target" ]]; then
+    ln -sf "$dirb_source" "$dirb_target"
+    log "Linked dirb wordlist: $dirb_target -> $dirb_source"
+  fi
+
+  if [[ -n "$dirbuster_source" && ! -f "$dirbuster_target" ]]; then
+    ln -sf "$dirbuster_source" "$dirbuster_target"
+    log "Linked dirbuster wordlist: $dirbuster_target -> $dirbuster_source"
+  fi
+}
+
+ensure_wordlist_compat
 
 log "Installation summary"
 log "  Installed: ${#INSTALLED[@]}"

@@ -27,6 +27,7 @@ import hashlib
 import pickle
 import base64
 import queue
+import shlex
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timedelta
 from typing import Dict, Any, Optional
@@ -52,6 +53,7 @@ from bs4 import BeautifulSoup
 import selenium
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -7004,16 +7006,24 @@ class EnhancedCommandExecutor:
                 self.return_code = -1
                 telemetry.record_execution(False, execution_time)
 
-            # Always consider it a 成功 如果 we have 输出, even 使用 超时
-            success = True if self.timed_out and (self.stdout_data or self.stderr_data) else (self.return_code == 0)
+            # 超时只表示有部分输出，不应被标记为成功，避免误缓存误判。
+            success = (self.return_code == 0)
 
             # Log 增强 final 结果 使用 summary using ModernVisualEngine
             output_size = len(self.stdout_data) + len(self.stderr_data)
             execution_time = self.end_time - self.start_time if self.end_time else 0
 
             # 创建 状态 summary
-            status_icon = "" if success else ""
-            status_color = ModernVisualEngine.COLORS['MATRIX_GREEN'] if success else ModernVisualEngine.COLORS['HACKER_RED']
+            status_icon = ""
+            if self.timed_out:
+                status_label = "TIMEOUT"
+                status_color = ModernVisualEngine.COLORS['WARNING']
+            elif success:
+                status_label = "SUCCESS"
+                status_color = ModernVisualEngine.COLORS['MATRIX_GREEN']
+            else:
+                status_label = "FAILED"
+                status_color = ModernVisualEngine.COLORS['HACKER_RED']
             timeout_status = f" {ModernVisualEngine.COLORS['WARNING']}[TIMEOUT]{ModernVisualEngine.COLORS['RESET']}" if self.timed_out else ""
 
             # 创建 beautiful 结果 summary
@@ -7025,7 +7035,7 @@ class EnhancedCommandExecutor:
 {ModernVisualEngine.COLORS['BOLD']}│{ModernVisualEngine.COLORS['RESET']} {ModernVisualEngine.COLORS['CYBER_ORANGE']}  Duration:{ModernVisualEngine.COLORS['RESET']} {execution_time:.2f}s{timeout_status}
 {ModernVisualEngine.COLORS['BOLD']}│{ModernVisualEngine.COLORS['RESET']} {ModernVisualEngine.COLORS['WARNING']} Output Size:{ModernVisualEngine.COLORS['RESET']} {output_size} bytes
 {ModernVisualEngine.COLORS['BOLD']}│{ModernVisualEngine.COLORS['RESET']} {ModernVisualEngine.COLORS['ELECTRIC_PURPLE']} Exit Code:{ModernVisualEngine.COLORS['RESET']} {self.return_code}
-{ModernVisualEngine.COLORS['BOLD']}│{ModernVisualEngine.COLORS['RESET']} {status_color} Status:{ModernVisualEngine.COLORS['RESET']} {'SUCCESS' if success else 'FAILED'} | 缓存: No
+{ModernVisualEngine.COLORS['BOLD']}│{ModernVisualEngine.COLORS['RESET']} {status_color} Status:{ModernVisualEngine.COLORS['RESET']} {status_label} | 缓存: No
 {ModernVisualEngine.COLORS['MATRIX_GREEN']}{ModernVisualEngine.COLORS['BOLD']}╰─────────────────────────────────────────────────────────────────────────────╯{ModernVisualEngine.COLORS['RESET']}
 """
 
@@ -7040,7 +7050,7 @@ class EnhancedCommandExecutor:
                 "return_code": self.return_code,
                 "success": success,
                 "timed_out": self.timed_out,
-                "partial_results": self.timed_out and (self.stdout_data or self.stderr_data),
+                "partial_results": self.timed_out and bool(self.stdout_data or self.stderr_data),
                 "execution_time": self.end_time - self.start_time if self.end_time else 0,
                 "timestamp": datetime.now().isoformat()
             }
@@ -8695,34 +8705,43 @@ cve_intelligence = CVEIntelligenceManager()
 exploit_generator = AIExploitGenerator()
 vulnerability_correlator = VulnerabilityCorrelator()
 
-def execute_command(command: str, use_cache: bool = True) -> Dict[str, Any]:
+def execute_command(command: str, use_cache: bool = True, timeout: Optional[int] = None) -> Dict[str, Any]:
     """
     执行 a shell 命令 使用 增强 features
 
     参数:
         command: The 命令 到 执行
         use_cache: Whether 到 use caching 用于 this 命令
+        timeout: 可选命令超时（秒），未设置则使用全局默认
 
     返回:
         A dictionary containing the stdout, stderr, return code, 与 metadata
     """
 
+    normalized_command = normalize_command_for_runtime(command)
+    if normalized_command != command:
+        logger.info(f" Runtime command adjusted for compatibility: {normalized_command}")
+
+    command = normalized_command
+    effective_timeout = timeout if isinstance(timeout, int) and timeout > 0 else COMMAND_TIMEOUT
+    cache_params = {"timeout": effective_timeout}
+
     # 检查 缓存 第一
     if use_cache:
-        cached_result = cache.get(command, {})
+        cached_result = cache.get(command, cache_params)
         if cached_result:
             cached_payload = dict(cached_result)
             cached_payload["from_cache"] = True
             return cached_payload
 
     # 执行 命令
-    executor = EnhancedCommandExecutor(command)
+    executor = EnhancedCommandExecutor(command, timeout=effective_timeout)
     result = executor.execute()
     result["from_cache"] = False
 
     # 缓存 successful 结果
     if use_cache and result.get("success", False):
-        cache.set(command, {}, result)
+        cache.set(command, cache_params, result)
 
     return result
 
@@ -9109,6 +9128,9 @@ def check_tool_availability(tool: str) -> bool:
     if not name:
         return False
 
+    if name == "httpx":
+        return bool(resolve_httpx_binary())
+
     if name in INTERNAL_HEALTH_TOOLS:
         return True
 
@@ -9118,6 +9140,182 @@ def check_tool_availability(tool: str) -> bool:
 
     candidates = [name] + TOOL_ALIAS_CANDIDATES.get(name, [])
     return any(shutil.which(candidate) for candidate in candidates)
+
+DEFAULT_WEB_WORDLIST_CANDIDATES = [
+    "/usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt",
+    "/usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt",
+    "/usr/share/wordlists/dirb/common.txt",
+    "/usr/share/dirb/wordlists/common.txt",
+    "/usr/share/seclists/Discovery/Web-Content/common.txt",
+]
+FALLBACK_WORDLIST_PATH = "/tmp/hexstrike_wordlists/common.txt"
+HTTPX_BINARY_CANDIDATES = ("httpx", "httpx-toolkit")
+
+
+def normalize_network_target(target: str) -> str:
+    """将 URL/路径形式目标规范化为网络扫描工具可接受的主机。"""
+    raw_target = (target or "").strip()
+    if not raw_target:
+        return ""
+
+    if "://" in raw_target:
+        parsed = urlparse(raw_target)
+        if parsed.hostname:
+            return parsed.hostname
+
+    if "/" in raw_target and not raw_target.startswith("/"):
+        prefix = raw_target.split("/", 1)[0]
+        if prefix:
+            return prefix
+
+    return raw_target
+
+
+def extract_target_port_from_url(target: str) -> Optional[int]:
+    """从 URL 中提取端口，供 nmap 等工具在未指定端口时补齐。"""
+    raw_target = (target or "").strip()
+    if "://" not in raw_target:
+        return None
+    try:
+        return urlparse(raw_target).port
+    except ValueError:
+        return None
+
+
+def _ensure_fallback_wordlist() -> str:
+    """创建最小可用词典，避免目录扫描工具因词典缺失直接失败。"""
+    fallback_path = Path(FALLBACK_WORDLIST_PATH)
+    fallback_path.parent.mkdir(parents=True, exist_ok=True)
+    if not fallback_path.exists():
+        fallback_entries = [
+            "admin",
+            "login",
+            "api",
+            "dashboard",
+            "config",
+            "backup",
+            "uploads",
+            "robots.txt",
+            "sitemap.xml",
+            "index.php",
+            "health",
+        ]
+        fallback_path.write_text("\n".join(fallback_entries) + "\n", encoding="utf-8")
+    return str(fallback_path)
+
+
+def resolve_wordlist_path(preferred_path: str = "", purpose: str = "web_scan") -> str:
+    """解析可用词典路径，按优先级回退到系统词典或内置最小词典。"""
+    candidates = []
+    preferred = (preferred_path or "").strip()
+    if preferred:
+        candidates.append(preferred)
+    candidates.extend(DEFAULT_WEB_WORDLIST_CANDIDATES)
+
+    seen = set()
+    for candidate in candidates:
+        path = (candidate or "").strip()
+        if not path or path in seen:
+            continue
+        seen.add(path)
+        if Path(path).is_file():
+            return path
+
+    fallback_path = _ensure_fallback_wordlist()
+    logger.warning(
+        f" Wordlist not found for {purpose}; falling back to built-in list: {fallback_path}"
+    )
+    return fallback_path
+
+
+def resolve_httpx_binary() -> str:
+    """识别可用的 ProjectDiscovery httpx 二进制，避免误用 Python httpx CLI。"""
+    for candidate in HTTPX_BINARY_CANDIDATES:
+        binary_path = shutil.which(candidate)
+        if not binary_path:
+            continue
+
+        help_text = ""
+        try:
+            result = subprocess.run(
+                [candidate, "-h"],
+                capture_output=True,
+                text=True,
+                timeout=5
+            )
+            help_text = f"{result.stdout}\n{result.stderr}".lower()
+        except Exception:
+            help_text = ""
+
+        if candidate == "httpx":
+            python_httpx_signature = "usage: httpx [options] url"
+            if python_httpx_signature in help_text and "-l, --list" not in help_text and "-u, --target" not in help_text:
+                continue
+
+        return candidate
+    return ""
+
+
+def build_httpx_command(
+    target: str,
+    threads: int = 50,
+    probe: bool = True,
+    tech_detect: bool = False,
+    status_code: bool = False,
+    content_length: bool = False,
+    title: bool = False,
+    web_server: bool = False,
+    additional_args: str = "",
+) -> Tuple[str, str]:
+    """构造 httpx 命令；若未找到兼容二进制则回退到 curl 探测。"""
+    cleaned_target = (target or "").strip()
+    if not cleaned_target:
+        return "", ""
+
+    try:
+        thread_count = max(1, int(threads))
+    except (TypeError, ValueError):
+        thread_count = 50
+
+    httpx_binary = resolve_httpx_binary()
+    if httpx_binary:
+        cmd_parts = [httpx_binary, "-u", cleaned_target, "-threads", str(thread_count)]
+        if probe:
+            cmd_parts.append("-probe")
+        if tech_detect:
+            cmd_parts.append("-tech-detect")
+        if status_code:
+            cmd_parts.append("-sc")
+        if content_length:
+            cmd_parts.append("-cl")
+        if title:
+            cmd_parts.append("-title")
+        if web_server:
+            cmd_parts.append("-server")
+        if additional_args:
+            cmd_parts.extend(additional_args.split())
+        return " ".join(shlex.quote(part) for part in cmd_parts), httpx_binary
+
+    fallback_parts = ["curl", "-sS", "-L", "-I", "--max-time", "20", cleaned_target]
+    return " ".join(shlex.quote(part) for part in fallback_parts), "curl"
+
+
+def normalize_command_for_runtime(command: str) -> str:
+    """运行前修正常见环境差异，减少因路径差异导致的误失败。"""
+    normalized = command or ""
+    if not normalized:
+        return normalized
+
+    wordlist_placeholders = [
+        "/usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt",
+        "/usr/share/wordlists/dirb/common.txt",
+    ]
+    for placeholder in wordlist_placeholders:
+        if placeholder in normalized and not Path(placeholder).is_file():
+            fallback_path = resolve_wordlist_path(placeholder, purpose="runtime_command")
+            normalized = normalized.replace(placeholder, fallback_path)
+
+    return normalized
 
 # 说明：API Routes
 
@@ -9928,16 +10126,27 @@ def execute_nmap_scan(target, params):
         scan_type = params.get('scan_type', '-sV')
         ports = params.get('ports', '')
         additional_args = params.get('additional_args', '')
+        normalized_target = normalize_network_target(target)
+
+        if not normalized_target:
+            return {"success": False, "error": "Invalid target for nmap scan"}
+
+        if not ports:
+            inferred_port = extract_target_port_from_url(target)
+            if inferred_port:
+                ports = str(inferred_port)
 
         # Build nmap 命令
-        cmd_parts = ['nmap', scan_type]
+        cmd_parts = ['nmap']
+        if scan_type:
+            cmd_parts.extend(str(scan_type).split())
         if ports:
             cmd_parts.extend(['-p', ports])
         if additional_args:
             cmd_parts.extend(additional_args.split())
-        cmd_parts.append(target)
+        cmd_parts.append(normalized_target)
 
-        return execute_command(' '.join(cmd_parts))
+        return execute_command(' '.join(shlex.quote(part) for part in cmd_parts))
     except Exception as e:
         return {"success": False, "error": str(e)}
 
@@ -9945,14 +10154,17 @@ def execute_gobuster_scan(target, params):
     """执行 gobuster 扫描 使用 optimized 参数"""
     try:
         mode = params.get('mode', 'dir')
-        wordlist = params.get('wordlist', '/usr/share/wordlists/dirb/common.txt')
+        wordlist = resolve_wordlist_path(
+            params.get('wordlist', '/usr/share/wordlists/dirb/common.txt'),
+            purpose='gobuster'
+        )
         additional_args = params.get('additional_args', '')
 
         cmd_parts = ['gobuster', mode, '-u', target, '-w', wordlist]
         if additional_args:
             cmd_parts.extend(additional_args.split())
 
-        return execute_command(' '.join(cmd_parts))
+        return execute_command(' '.join(shlex.quote(part) for part in cmd_parts))
     except Exception as e:
         return {"success": False, "error": str(e)}
 
@@ -9971,7 +10183,7 @@ def execute_nuclei_scan(target, params):
         if additional_args:
             cmd_parts.extend(additional_args.split())
 
-        return execute_command(' '.join(cmd_parts))
+        return execute_command(' '.join(shlex.quote(part) for part in cmd_parts))
     except Exception as e:
         return {"success": False, "error": str(e)}
 
@@ -9983,7 +10195,7 @@ def execute_nikto_scan(target, params):
         if additional_args:
             cmd_parts.extend(additional_args.split())
 
-        return execute_command(' '.join(cmd_parts))
+        return execute_command(' '.join(shlex.quote(part) for part in cmd_parts))
     except Exception as e:
         return {"success": False, "error": str(e)}
 
@@ -9995,14 +10207,17 @@ def execute_sqlmap_scan(target, params):
         if additional_args:
             cmd_parts.extend(additional_args.split())
 
-        return execute_command(' '.join(cmd_parts))
+        return execute_command(' '.join(shlex.quote(part) for part in cmd_parts))
     except Exception as e:
         return {"success": False, "error": str(e)}
 
 def execute_ffuf_scan(target, params):
     """执行 ffuf 扫描 使用 optimized 参数"""
     try:
-        wordlist = params.get('wordlist', '/usr/share/wordlists/dirb/common.txt')
+        wordlist = resolve_wordlist_path(
+            params.get('wordlist', '/usr/share/wordlists/dirb/common.txt'),
+            purpose='ffuf'
+        )
         additional_args = params.get('additional_args', '')
 
         # Ensure 目标 has FUZZ placeholder
@@ -10013,21 +10228,24 @@ def execute_ffuf_scan(target, params):
         if additional_args:
             cmd_parts.extend(additional_args.split())
 
-        return execute_command(' '.join(cmd_parts))
+        return execute_command(' '.join(shlex.quote(part) for part in cmd_parts))
     except Exception as e:
         return {"success": False, "error": str(e)}
 
 def execute_feroxbuster_scan(target, params):
     """执行 feroxbuster 扫描 使用 optimized 参数"""
     try:
-        wordlist = params.get('wordlist', '/usr/share/wordlists/dirb/common.txt')
+        wordlist = resolve_wordlist_path(
+            params.get('wordlist', '/usr/share/wordlists/dirb/common.txt'),
+            purpose='feroxbuster'
+        )
         additional_args = params.get('additional_args', '')
 
         cmd_parts = ['feroxbuster', '-u', target, '-w', wordlist]
         if additional_args:
             cmd_parts.extend(additional_args.split())
 
-        return execute_command(' '.join(cmd_parts))
+        return execute_command(' '.join(shlex.quote(part) for part in cmd_parts))
     except Exception as e:
         return {"success": False, "error": str(e)}
 
@@ -10039,18 +10257,30 @@ def execute_katana_scan(target, params):
         if additional_args:
             cmd_parts.extend(additional_args.split())
 
-        return execute_command(' '.join(cmd_parts))
+        return execute_command(' '.join(shlex.quote(part) for part in cmd_parts))
     except Exception as e:
         return {"success": False, "error": str(e)}
 
 def execute_httpx_scan(target, params):
     """执行 httpx 扫描 使用 optimized 参数"""
     try:
-        additional_args = params.get('additional_args', '-tech-detect -status-code')
-        # Use shell 命令 使用 pipe 用于 httpx
-        cmd = f"echo {target} | httpx {additional_args}"
+        additional_args = params.get('additional_args', '')
+        command, runtime = build_httpx_command(
+            target=target,
+            threads=params.get('threads', 50),
+            probe=params.get('probe', True),
+            tech_detect=params.get('tech_detect', True),
+            status_code=params.get('status_code', True),
+            content_length=params.get('content_length', False),
+            title=params.get('title', False),
+            web_server=params.get('web_server', False),
+            additional_args=additional_args
+        )
 
-        return execute_command(cmd)
+        if runtime == "curl":
+            logger.warning(" ProjectDiscovery httpx binary not found; using curl fallback for basic probing")
+
+        return execute_command(command)
     except Exception as e:
         return {"success": False, "error": str(e)}
 
@@ -10062,7 +10292,7 @@ def execute_wpscan_scan(target, params):
         if additional_args:
             cmd_parts.extend(additional_args.split())
 
-        return execute_command(' '.join(cmd_parts))
+        return execute_command(' '.join(shlex.quote(part) for part in cmd_parts))
     except Exception as e:
         return {"success": False, "error": str(e)}
 
@@ -10074,7 +10304,7 @@ def execute_dirsearch_scan(target, params):
         if additional_args:
             cmd_parts.extend(additional_args.split())
 
-        return execute_command(' '.join(cmd_parts))
+        return execute_command(' '.join(shlex.quote(part) for part in cmd_parts))
     except Exception as e:
         return {"success": False, "error": str(e)}
 
@@ -10086,7 +10316,7 @@ def execute_arjun_scan(target, params):
         if additional_args:
             cmd_parts.extend(additional_args.split())
 
-        return execute_command(' '.join(cmd_parts))
+        return execute_command(' '.join(shlex.quote(part) for part in cmd_parts))
     except Exception as e:
         return {"success": False, "error": str(e)}
 
@@ -10098,7 +10328,7 @@ def execute_paramspider_scan(target, params):
         if additional_args:
             cmd_parts.extend(additional_args.split())
 
-        return execute_command(' '.join(cmd_parts))
+        return execute_command(' '.join(shlex.quote(part) for part in cmd_parts))
     except Exception as e:
         return {"success": False, "error": str(e)}
 
@@ -10110,7 +10340,7 @@ def execute_dalfox_scan(target, params):
         if additional_args:
             cmd_parts.extend(additional_args.split())
 
-        return execute_command(' '.join(cmd_parts))
+        return execute_command(' '.join(shlex.quote(part) for part in cmd_parts))
     except Exception as e:
         return {"success": False, "error": str(e)}
 
@@ -10122,7 +10352,7 @@ def execute_amass_scan(target, params):
         if additional_args:
             cmd_parts.extend(additional_args.split())
 
-        return execute_command(' '.join(cmd_parts))
+        return execute_command(' '.join(shlex.quote(part) for part in cmd_parts))
     except Exception as e:
         return {"success": False, "error": str(e)}
 
@@ -10134,7 +10364,7 @@ def execute_subfinder_scan(target, params):
         if additional_args:
             cmd_parts.extend(additional_args.split())
 
-        return execute_command(' '.join(cmd_parts))
+        return execute_command(' '.join(shlex.quote(part) for part in cmd_parts))
     except Exception as e:
         return {"success": False, "error": str(e)}
 
@@ -10441,6 +10671,15 @@ def nmap():
                 "error": "Target parameter is required"
             }), 400
 
+        normalized_target = normalize_network_target(target)
+        if not normalized_target:
+            return jsonify({"error": "Invalid target parameter"}), 400
+
+        if not ports:
+            inferred_port = extract_target_port_from_url(target)
+            if inferred_port:
+                ports = str(inferred_port)
+
         command = f"nmap {scan_type}"
 
         if ports:
@@ -10449,14 +10688,15 @@ def nmap():
         if additional_args:
             command += f" {additional_args}"
 
-        command += f" {target}"
+        command += f" {normalized_target}"
 
-        logger.info(f" Starting Nmap scan: {target}")
+        logger.info(f" Starting Nmap scan: {target} -> {normalized_target}")
 
         # Use 智能 错误 handling 如果 enabled
         if use_recovery:
             tool_params = {
                 "target": target,
+                "normalized_target": normalized_target,
                 "scan_type": scan_type,
                 "ports": ports,
                 "additional_args": additional_args
@@ -10498,7 +10738,9 @@ def gobuster():
                 "error": f"Invalid mode: {mode}. Must be one of: dir, dns, fuzz, vhost"
             }), 400
 
-        command = f"gobuster {mode} -u {url} -w {wordlist}"
+        resolved_wordlist = resolve_wordlist_path(wordlist, purpose="gobuster_endpoint")
+
+        command = f"gobuster {mode} -u {url} -w {resolved_wordlist}"
 
         if additional_args:
             command += f" {additional_args}"
@@ -10510,7 +10752,7 @@ def gobuster():
             tool_params = {
                 "target": url,
                 "mode": mode,
-                "wordlist": wordlist,
+                "wordlist": resolved_wordlist,
                 "additional_args": additional_args
             }
             result = execute_command_with_recovery("gobuster", command, tool_params)
@@ -11069,7 +11311,8 @@ def dirb():
                 "error": "URL parameter is required"
             }), 400
 
-        command = f"dirb {url} {wordlist}"
+        resolved_wordlist = resolve_wordlist_path(wordlist, purpose="dirb_endpoint")
+        command = f"dirb {url} {resolved_wordlist}"
 
         if additional_args:
             command += f" {additional_args}"
@@ -11685,7 +11928,16 @@ def nmap_advanced():
             logger.warning(" Advanced Nmap called without target parameter")
             return jsonify({"error": "Target parameter is required"}), 400
 
-        command = f"nmap {scan_type} {target}"
+        normalized_target = normalize_network_target(target)
+        if not normalized_target:
+            return jsonify({"error": "Invalid target parameter"}), 400
+
+        if not ports:
+            inferred_port = extract_target_port_from_url(target)
+            if inferred_port:
+                ports = str(inferred_port)
+
+        command = f"nmap {scan_type} {normalized_target}"
 
         if ports:
             command += f" -p {ports}"
@@ -11693,7 +11945,12 @@ def nmap_advanced():
         if stealth:
             command += " -T2 -f --mtu 24"
         else:
-            command += f" -{timing}"
+            normalized_timing = str(timing).strip()
+            if normalized_timing.startswith("-"):
+                normalized_timing = normalized_timing[1:]
+            if normalized_timing and not normalized_timing.startswith("T"):
+                normalized_timing = f"T{normalized_timing}"
+            command += f" -{normalized_timing or 'T4'}"
 
         if os_detection:
             command += " -O"
@@ -11707,12 +11964,12 @@ def nmap_advanced():
         if nse_scripts:
             command += f" --script={nse_scripts}"
         elif not aggressive:  # 默认 useful scripts 如果 not aggressive
-            command += " --script=default,discovery,safe"
+            command += " --script=default,safe"
 
         if additional_args:
             command += f" {additional_args}"
 
-        logger.info(f" Starting Advanced Nmap: {target}")
+        logger.info(f" Starting Advanced Nmap: {target} -> {normalized_target}")
         result = execute_command(command)
         logger.info(f" Advanced Nmap completed for {target}")
         return jsonify(result)
@@ -13251,30 +13508,21 @@ def httpx():
             logger.warning(" httpx called without target parameter")
             return jsonify({"error": "Target parameter is required"}), 400
 
-        command = f"httpx -l {target} -t {threads}"
-
-        if probe:
-            command += " -probe"
-
-        if tech_detect:
-            command += " -tech-detect"
-
-        if status_code:
-            command += " -sc"
-
-        if content_length:
-            command += " -cl"
-
-        if title:
-            command += " -title"
-
-        if web_server:
-            command += " -server"
-
-        if additional_args:
-            command += f" {additional_args}"
+        command, runtime = build_httpx_command(
+            target=target,
+            threads=threads,
+            probe=probe,
+            tech_detect=tech_detect,
+            status_code=status_code,
+            content_length=content_length,
+            title=title,
+            web_server=web_server,
+            additional_args=additional_args
+        )
 
         logger.info(f" Starting httpx probe: {target}")
+        if runtime == "curl":
+            logger.warning(" ProjectDiscovery httpx binary not found; using curl fallback for HTTP reachability check")
         result = execute_command(command)
         logger.info(f" httpx probe completed for {target}")
         return jsonify(result)
@@ -13758,11 +14006,36 @@ class BrowserAgent:
 
             # 启用 网络 logging
             chrome_options.set_capability('goog:loggingPrefs', {'performance': 'ALL'})
+            browser_candidates = [
+                shutil.which("chromium"),
+                shutil.which("chromium-browser"),
+                shutil.which("google-chrome"),
+                shutil.which("google-chrome-stable"),
+            ]
+            browser_binary = next((path for path in browser_candidates if path and Path(path).exists()), "")
+            if browser_binary:
+                chrome_options.binary_location = browser_binary
 
-            self.driver = webdriver.Chrome(options=chrome_options)
+            driver_candidates = [
+                shutil.which("chromedriver"),
+                "/usr/lib/chromium/chromedriver",
+                "/usr/bin/chromedriver",
+            ]
+            driver_binary = next((path for path in driver_candidates if path and Path(path).exists()), "")
+
+            if driver_binary:
+                service = ChromeService(executable_path=driver_binary)
+                self.driver = webdriver.Chrome(service=service, options=chrome_options)
+            else:
+                self.driver = webdriver.Chrome(options=chrome_options)
             self.driver.set_page_load_timeout(30)
 
-            logger.info(f"{ModernVisualEngine.format_tool_status('BrowserAgent', 'RUNNING', 'Chrome Browser Initialized')}")
+            runtime_message = "Chrome Browser Initialized"
+            if browser_binary:
+                runtime_message += f" | browser={browser_binary}"
+            if driver_binary:
+                runtime_message += f" | driver={driver_binary}"
+            logger.info(f"{ModernVisualEngine.format_tool_status('BrowserAgent', 'RUNNING', runtime_message)}")
             return True
 
         except Exception as e:
