@@ -5,6 +5,9 @@ services:
       dockerfile: Dockerfile
       args:
         KALI_MIRROR: https://mirrors.aliyun.com/kali
+        SECURITY_TOOLS_PROFILE: standard
+        SECURITY_TOOLS_STRICT: "0"
+        SECURITY_TOOLS_NO_BROWSER: "1"
     image: hexstrike-ai:kali
     container_name: hexstrike-ai
     restart: unless-stopped

@@ -1,6 +1,9 @@
 FROM kalilinux/kali-rolling
 
 ARG KALI_MIRROR=https://mirrors.aliyun.com/kali
+ARG SECURITY_TOOLS_PROFILE=standard
+ARG SECURITY_TOOLS_STRICT=0
+ARG SECURITY_TOOLS_NO_BROWSER=1
 
 ENV DEBIAN_FRONTEND=noninteractive \
     PIP_NO_CACHE_DIR=1 \
@@ -31,7 +34,11 @@ COPY requirements.txt ./
 COPY scripts/install_security_tools.sh /usr/local/bin/install_security_tools.sh
 
 RUN chmod +x /usr/local/bin/install_security_tools.sh && \
-    /usr/local/bin/install_security_tools.sh --profile full --non-interactive || true
+    INSTALL_ARGS="--profile ${SECURITY_TOOLS_PROFILE} --non-interactive" && \
+    if [ "${SECURITY_TOOLS_NO_BROWSER}" = "1" ]; then INSTALL_ARGS="${INSTALL_ARGS} --no-browser"; fi && \
+    if [ "${SECURITY_TOOLS_STRICT}" = "1" ]; then INSTALL_ARGS="${INSTALL_ARGS} --strict"; fi && \
+    /usr/local/bin/install_security_tools.sh ${INSTALL_ARGS} && \
+    rm -rf /var/lib/apt/lists/*
 
 RUN python3 -m pip install --break-system-packages --upgrade pip setuptools wheel && \
     python3 -m pip install --break-system-packages -r requirements.txt

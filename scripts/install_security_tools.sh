@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
-set -u
+set -euo pipefail
 
 PROFILE="standard"
 STRICT_MODE=0
 SKIP_UPDATE=0
 NON_INTERACTIVE=0
 NO_BROWSER=0
+APT_RETRIES="${APT_RETRIES:-3}"
 
 log() {
   printf '[install-tools] %s\n' "$*"
@@ -88,6 +89,35 @@ fi
 if [[ "$NON_INTERACTIVE" -eq 1 ]]; then
   export DEBIAN_FRONTEND=noninteractive
 fi
+
+run_apt_get() {
+  local attempt=1
+  local max_attempts="${APT_RETRIES}"
+
+  if [[ "$max_attempts" -lt 1 ]]; then
+    max_attempts=1
+  fi
+
+  while [[ "$attempt" -le "$max_attempts" ]]; do
+    if [[ -n "$SUDO_CMD" ]]; then
+      if "$SUDO_CMD" apt-get "$@"; then
+        return 0
+      fi
+    else
+      if apt-get "$@"; then
+        return 0
+      fi
+    fi
+
+    if [[ "$attempt" -lt "$max_attempts" ]]; then
+      warn "apt-get $* failed (attempt ${attempt}/${max_attempts}), retrying..."
+      sleep $((attempt * 2))
+    fi
+    attempt=$((attempt + 1))
+  done
+
+  return 1
+}
 
 NETWORK_TOOLS=(
   nmap masscan rustscan amass subfinder fierce dnsenum theharvester
@@ -183,7 +213,7 @@ log "Total packages selected: ${#PACKAGES[@]}"
 
 if [[ "$SKIP_UPDATE" -eq 0 ]]; then
   log "Updating apt repositories"
-  $SUDO_CMD apt-get update
+  run_apt_get update
 else
   log "Skipping apt update"
 fi
@@ -207,7 +237,7 @@ install_pkg() {
     return 1
   fi
 
-  if $SUDO_CMD apt-get install -y --no-install-recommends "$pkg"; then
+  if run_apt_get install -y --no-install-recommends "$pkg"; then
     INSTALLED+=("$pkg")
     return 0
   fi
